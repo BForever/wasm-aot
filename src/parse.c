@@ -268,8 +268,8 @@ void ParseSection_Global(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
         ReadLEB_i7(&waType, &i_bytes, i_end);
         NormalizeType(&type, waType);
         ReadLEB_u7(&isMutable, &i_bytes, i_end);
-        log(parse, "    global: [%d] %s mutable: %d", i, wasm_types_names[type], (u32)isMutable);
-
+        // log(parse,"    global: [%d] %s mutable=%d",i,wasm_types_names[type],isMutable);
+        logif(parse, printf("    global: [%d] %s ", i, wasm_types_names[type]); printf("mutable=%d", isMutable));
         wasm_global_ptr global;
         Module_AddGlobal(io_module, i, &global, type, isMutable, false /* isImport */);
         global->initExpr = i_bytes;
@@ -324,7 +324,8 @@ void ParseSection_Code(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
                     NormalizeType(&normalType, wasmType);
 
                     numLocals += varCount;
-                    log(parse, "      %2d locals; type: '%s'", varCount, wasm_types_names[normalType]);
+                    // log(parse, "      %2d locals; type: '%s'", varCount, wasm_types_names[normalType]);
+                    logif(parse, printf("      %2d locals; ", varCount); printf("type: '%s'", wasm_types_names[normalType]));
                 }
 
                 wasm_function_ptr func = &io_module->function_list[f + io_module->import_num];
@@ -361,8 +362,7 @@ void Module_AddFunction(wasm_module_ptr io_module, u32 index, u32 i_typeIndex, i
             func->import = *i_importInfo;
             func->name = i_importInfo->fieldUtf8;
         }
-
-        log(parse, "   added function: %3d; sig: %d", index, i_typeIndex);
+        logif(parse, {printf("   added function: %3d;", index);printf(" sig: %d;", i_typeIndex); });
     }
     else
     {
@@ -409,16 +409,11 @@ void ParseSection_Import(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
     for (u32 i = 0; i < numImports; ++i)
     {
         u8 importKind;
-        hexdump(i_bytes,10);
         Read_utf8(&import.moduleUtf8, &i_bytes, i_end);
-        
-        hexdump(i_bytes,10);
         Read_utf8(&import.fieldUtf8, &i_bytes, i_end);
-        hexdump(i_bytes,10);
         Read_u8(&importKind, &i_bytes, i_end);
-        hexdump(i_bytes,10);
         log(parse, "    kind: %d '%s.%s' ",
-            (u32)importKind, import.moduleUtf8, import.fieldUtf8);
+            importKind, import.moduleUtf8, import.fieldUtf8);
         switch (importKind)
         {
         case d_externalKind_function:
@@ -451,11 +446,12 @@ void ParseSection_Import(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
             ReadLEB_i7(&waType, &i_bytes, i_end);
             NormalizeType(&type, waType);
             ReadLEB_u7(&isMutable, &i_bytes, i_end);
-            log(parse, "     global: %s mutable=%d", wasm_types_names[type], (u32)isMutable);
+            // log(parse, "     global: %s mutable=%d", wasm_types_names[type], isMutable);
+            logif(parse, printf("     global: %s ", wasm_types_names[type]); printf("mutable=%d", isMutable));
 
             wasm_global_ptr global;
             Module_AddGlobal(io_module, io_module->global_num, &global, type, isMutable, true /* isImport */);
-            global->import=import;
+            global->import = import;
             import = clearImport;
         }
         break;
@@ -474,7 +470,7 @@ void ParseSection_Data(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
     ReadLEB_u32(&numDataSegments, &i_bytes, i_end);
     log(parse, "** Data [%d]", numDataSegments);
 
-    io_module->data_segment_list = malloc(numDataSegments*sizeof(data_segment));
+    io_module->data_segment_list = malloc(numDataSegments * sizeof(data_segment));
 
     io_module->data_segment_num = numDataSegments;
 
@@ -488,17 +484,20 @@ void ParseSection_Data(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
         Parse_InitExpr(io_module, &i_bytes, i_end);
         segment->initExprSize = (u32)(i_bytes - segment->initExpr);
 
-        if(segment->initExprSize <= 1){
+        if (segment->initExprSize <= 1)
+        {
             panicf("Wasm Missing Init Expression");
         }
 
         ReadLEB_u32(&segment->size, &i_bytes, i_end);
         segment->data = i_bytes;
-        log(parse, "    segment [%u]  memory: %u;  expr-size: %d;  size: %d",
-              i, segment->memoryRegion, segment->initExprSize, segment->size);
+        // log(parse, "    segment [%u]  memory: %u;  expr-size: %d;  size: %d",
+        //     i, segment->memoryRegion, segment->initExprSize, segment->size);
+        logif(parse, printf("    segment [%u]  ", i); printf("memory: %u;  ",
+         segment->memoryRegion); printf("expr-size: %d;  ", segment->initExprSize); 
+         printf("size: %d", segment->size););
         i_bytes += segment->size;
     }
-
 }
 
 void ParseSection_Start(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
@@ -513,5 +512,4 @@ void ParseSection_Start(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
     }
     else
         panicf("start function index out of bounds");
-
 }
