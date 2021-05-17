@@ -4,15 +4,23 @@
 typedef char bool;
 #define true 1
 #define false 0
+#include <stddef.h>
+
 typedef unsigned char u8;
 typedef char i8;
 typedef unsigned short u16;
 typedef short i16;
+#ifdef AVRORA
+typedef unsigned long u32;
+typedef long i32;
+#else
 typedef unsigned int u32;
 typedef int i32;
+#endif
 typedef unsigned long long u64;
 typedef long long i64;
 typedef unsigned char* bytes;
+
 struct WASM_MODULE;
 struct WASM_FUNCTION;
 struct IMPORT_INFO;

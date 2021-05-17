@@ -5,10 +5,10 @@
 #include "client.wasm.h"
 #include "debug.h"
 #include "types.h"
-#include"parse.h"
-// unsigned char mem[HEAPSIZE];
-void wasm_compile_module(wasm_module_ptr module){}
-void wasm_call_method(bytes method){}
+#include "parse.h"
+#include "compile.h"
+#include "utils.h"
+void wasm_call_method(bytes method) {}
 
 int main()
 {

@@ -1,6 +1,8 @@
 #include "types.h"
 #include "debug.h"
 #include "config.h"
+#include <stdlib.h>
+#include <string.h>
 
 void ReadLebUnsigned(u64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_end)
 {
@@ -154,4 +156,43 @@ void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end)
     }
     else
         panicf("missing utf8");
+}
+
+void hexdump(bytes buf, u32 buf_len) {
+	int i, j, mod = buf_len % 16;
+	int n = 16 - mod;
+	for (i = 0; i < buf_len; i++)
+	{
+		if (i % 16 == 0 && i != 0)
+		{
+			printf("\n");
+		}
+		printf("%02X ", buf[i]);
+		if ((i + 1) % 16 == 0)
+		{
+			printf("\t");
+			for (j = i - 15; j <= i; j++)
+			{
+				if (j == i - 8)
+					printf(" ");
+				if (buf[j] >= 32 && buf[j] < 127)
+					printf("%c", buf[j]);
+				else
+					printf(".");
+			}
+		}
+	}
+	for (i = 0; i < n; i++)
+		printf("   ");
+	printf("\t");
+	for (i = buf_len - mod; i < buf_len; i++)
+	{
+		if (i == buf_len - mod + 8)
+			printf(" ");
+		if (buf[i] >= 32 && buf[i] < 127)
+			printf("%c", buf[i]);
+		else
+			printf(".");
+	}
+	printf("\n");
 }

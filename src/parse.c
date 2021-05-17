@@ -1,6 +1,7 @@
 #include "types.h"
 #include <stdlib.h>
 #include "debug.h"
+#include "utils.h"
 
 wasm_module_ptr wasm_load_module(wasm_code_ptr code)
 {
@@ -20,7 +21,7 @@ wasm_module_ptr wasm_load_module(wasm_code_ptr code)
 
     if (magic != 0x6d736100 || version != 1)
     {
-        log(parse, "Wasm Malformed");
+        panicf("Wasm Malformed");
     }
 
     u8 previousSection = 0;
@@ -408,10 +409,14 @@ void ParseSection_Import(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
     for (u32 i = 0; i < numImports; ++i)
     {
         u8 importKind;
-
+        hexdump(i_bytes,10);
         Read_utf8(&import.moduleUtf8, &i_bytes, i_end);
+        
+        hexdump(i_bytes,10);
         Read_utf8(&import.fieldUtf8, &i_bytes, i_end);
+        hexdump(i_bytes,10);
         Read_u8(&importKind, &i_bytes, i_end);
+        hexdump(i_bytes,10);
         log(parse, "    kind: %d '%s.%s' ",
             (u32)importKind, import.moduleUtf8, import.fieldUtf8);
         switch (importKind)

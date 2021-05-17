@@ -1,16 +1,30 @@
+#ifndef DEBUG_H
+#define DEBUG_H
+
 #include<stdio.h>
 #define DEBUG 1
 #define d_log_parse 1
+#define d_log_wkreprog 1
 
-#define DEBUG 1
+#ifdef AVRORA
+    void avr_Printf(char * format, ...);
+    #define printf    avr_Printf
+#endif
+
 #if DEBUG
 
-    #define d_Log(CATEGORY, FMT, ...)                  printf (" %8s  |  " FMT, #CATEGORY, ##__VA_ARGS__);
-
+    #define d_Log(CATEGORY, FMT, ...)                  printf (" %8s  |  " FMT, #CATEGORY, ##__VA_ARGS__)
+   
     #if d_log_parse
         #define log_parse(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else
         #define log_parse(...) {}
+    #endif
+
+    #if d_log_wkreprog
+        #define log_wkreprog(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
+    #else
+        #define log_wkreprog(...) {}
     #endif
 
 
@@ -24,3 +38,8 @@
 #define panicf(FMT,...)  do{printf("ERROR! "FMT ":%s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);while(1);}while(0)
 #define panic()  do{printf("ERROR! at %s :%d\r\n",__FILE__,__LINE__);while(1);}while(0)
 
+
+
+
+
+#endif //DEBUG_H
