@@ -1,42 +1,49 @@
 # WASM-AoT
-cmake
 
-apt install gcc-avr avr-libc avrdude gdb-avr
-sudo apt install openjdk-11-jdk
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+## 介绍
+一个WASM AOT运行时
 
-#### 软件架构
-软件架构说明
+## 软件架构
+### libs
+第三方库
+包括AVRORA模拟器
+### include
+头文件
+### src
+基于WASM3的运行时代码
+### app
+WASM示例应用代码
 
 
-#### 安装教程
+## 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+0.  可能需要的依赖(Ubuntu系统)
+```
+apt install git build-essential wget curl unzip python3 gcc-multilib xxd cmake
+apt install gcc-avr avr-libc avrdude gdb-avr openjdk-11-jdk
+```
 
-#### 使用说明
+## 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  编译代码
 
-#### 参与贡献
+在根目录执行以下shell命令：
+```
+mkdir build&&cd build
+cmake ..
+make
+```
+2. 在模拟器中运行
+
+在根目录执行以下shell命令：
+```
+cd libs
+sh avrora.sh
+```
+
+## 参与贡献
 
 1.  Fork 本仓库
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
