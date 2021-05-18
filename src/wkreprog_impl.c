@@ -8,6 +8,19 @@
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 
+
+
+#define dj_di_getU8(pointer)  (pgm_read_byte_far(pointer))
+#define dj_di_getU16(pointer) (pgm_read_word_far(pointer))
+#define dj_di_getU32(pointer) (pgm_read_dword_far(pointer))
+#define dj_di_getLocalId(pointer) ((dj_local_id){pgm_read_byte_far(pointer),pgm_read_byte_far(pointer+1)})
+
+
+const unsigned char __attribute__((section (".rtc_code_marker"))) __attribute__ ((aligned (2))) rtc_start_of_compiled_code_marker;
+uint16_t rtc_start_of_next_method;
+
+
+
 // This function should be in the NRWW section to allow it to write to flash
 //void BOOTLOADER_SECTION avr_flash_program_page(uint_farptr_t page, uint8_t *buf);
 void __attribute__ ((section (".reprogram_flash_page"))) avr_flash_program_page (uint_farptr_t page, uint8_t *buf);
@@ -37,7 +50,7 @@ bool wkreprog_impl_open_app_archive(uint16_t start_write_position) {
 // Open reprogramming at any position in flash
 // If end_of_safe_region is set, the VM will panic when writing outside of this region.
 bool wkreprog_impl_open_raw(uint_farptr_t start_write_position, uint_farptr_t end_of_safe_region) {
-avroraStartReprogTimer();
+// avroraStartReprogTimer();
 	log(wkreprog, "AVR: Start writing to flash at address %p.\n", start_write_position);
 
 	// Allocate memory for the flash buffer
@@ -54,7 +67,7 @@ avroraStartReprogTimer();
 		avr_flash_pagebuffer[i] = dj_di_getU8(avr_flash_pageaddress+i);
 	avr_flash_end_of_safe_region = end_of_safe_region;
 
-avroraStopReprogTimer();
+// avroraStopReprogTimer();
 	return true;
 }
 
@@ -71,17 +84,17 @@ void avr_flash_program_page_if_not_modified(uint_farptr_t page, uint8_t *buf) {
 
 
 void wkreprog_impl_write(uint16_t size, uint8_t* data, bool skip) {
-avroraStartReprogTimer();
+// avroraStartReprogTimer();
 	// TODONR: Check if the size fits in the allocated space for app archive
+	 log(wkreprog,"wkreprog_impl_write");
 	if (avr_flash_pageaddress == 0)
 		return;
-	log(wkreprog, "AVR: Received %d bytes to flash to page 0x%x.\n", size, avr_flash_pageaddress);
-	log(wkreprog, "AVR: Buffer already contains %d bytes.\n", avr_flash_buf_len);
+	log(wkreprog, "AVR: Received %d bytes to flash to page 0x%x.", size, avr_flash_pageaddress);
+	log(wkreprog, "AVR: Buffer already contains %d bytes.", avr_flash_buf_len);
 	log(wkreprog, "AVR: Writing to 0x%x: ", avr_flash_pageaddress+avr_flash_buf_len);
 	for (uint16_t i=0; i<size; i++) {
-		log(wkreprog, " %x", data[i]);
+		log(wkreprog, " %02x", data[i]);
 	}
-	log(wkreprog, "\n");
 
 
 	if ((avr_flash_pageaddress + avr_flash_buf_len + size) > avr_flash_end_of_safe_region) {
@@ -108,11 +121,11 @@ avroraStartReprogTimer();
 		size -= bytes_on_this_page;
 		data += bytes_on_this_page;
 	}
-avroraStopReprogTimer();
+// avroraStopReprogTimer();
 }
 
 void wkreprog_impl_close() {
-avroraStartReprogTimer();
+// avroraStartReprogTimer();
 	log(wkreprog, "AVR: Closing flash file.\n");
 	if (avr_flash_buf_len != 0) { // If there's any data remaining, write it to flash.
 		// Fill the remaining of the buffer with the old data currently in the file
@@ -127,7 +140,7 @@ avroraStartReprogTimer();
 	// Release the memory allocated for the flash buffer
 	dj_mem_free(avr_flash_pagebuffer);
 	avr_flash_pagebuffer = NULL;
-avroraStopReprogTimer();
+// avroraStopReprogTimer();
 }
 
 void wkreprog_impl_reboot() {

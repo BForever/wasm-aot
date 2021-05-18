@@ -4,6 +4,7 @@
 #include<stdio.h>
 #define DEBUG 1
 #define d_log_parse 1
+#define d_log_compile 1
 #define d_log_wkreprog 1
 
 #ifdef AVRORA
@@ -25,6 +26,12 @@
         #define log_wkreprog(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else
         #define log_wkreprog(...) {}
+    #endif
+
+    #if d_log_compile
+        #define log_compile(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
+    #else
+        #define log_compile(...) {}
     #endif
 
 

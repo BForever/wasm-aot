@@ -1,4 +1,3 @@
-// #include "heap.h"
 #include <stdlib.h>
 #include "app.wasm.h"
 #include "hello.wasm.h"
@@ -26,7 +25,7 @@ int main()
 	// 编译烧写
 	wasm_compile_module(module);
 
+	// 开始执行
 	wasm_call_method(module->entry_method);
 
-	// dj_mem_init(mem, memsize);
 }

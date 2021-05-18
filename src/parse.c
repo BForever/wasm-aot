@@ -56,6 +56,7 @@ wasm_module_ptr wasm_load_module(wasm_code_ptr code)
         module = NULL;
         return NULL;
     }
+    log(parse,"Parsing done.");
     return module;
 }
 void ParseSection_Type(wasm_module_ptr io_module, bytes i_bytes, bytes i_end);

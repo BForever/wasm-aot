@@ -1,10 +1,13 @@
+#include <stdlib.h>
 #include "debug.h"
 #include "wkreprog.h"
-#include "rtc.h"
 #include "rtc_emit.h"
-#include "rtc_optimiser.h"
 
+#define rtc_optimise(buffer, code_end)
+
+static rtc_translationstate *rtc_ts;
 void emit_init(uint16_t *codebuffer) {
+    rtc_ts = malloc(sizeof(rtc_translationstate));
     rtc_ts->rtc_codebuffer = codebuffer;
     rtc_ts->rtc_codebuffer_position = codebuffer;
 }
@@ -27,7 +30,7 @@ void emit(uint16_t opcode) {
 
 void emit2(uint16_t opcode1, uint16_t opcode2) {
 #ifdef AVRORA
-    avroraRTCTraceDoubleWordInstruction(opcode1, opcode2);
+    // avroraRTCTraceDoubleWordInstruction(opcode1, opcode2);
 #endif
     emit_raw_word(opcode1);
     emit_raw_word(opcode2);
