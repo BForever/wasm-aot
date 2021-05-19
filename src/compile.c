@@ -7,6 +7,7 @@
 #include "debug.h"
 #include "utils.h"
 #include "wkreprog.h"
+#include <avr/pgmspace.h>
 bool is_imported(wasm_function_ptr func)
 {
     if (func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL)
@@ -21,8 +22,11 @@ void p()
 }
 
 typedef void (*compiled_method)();
+extern uint_farptr_t avr_flash_pageaddress;
 void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 {
+    
+
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
     bytes start = func->wasm;
     bytes end = func->wasmEnd;
@@ -30,23 +34,35 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
     u16 *codebuffer = malloc(RTC_CODEBUFFER_SIZE);
 
     wkreprog_open_raw(((uint32_t)rtc_start_of_next_method)*2,RTC_END_OF_COMPILED_CODE_SPACE);
-
+    log(compile,"spm_pagesize:%d",SPM_PAGESIZE);
     log(compile,"rtc_start_of_next_method:%p",((uint32_t)rtc_start_of_next_method)*2);
-
+    log(compile, "p function address: %p",p);
+    uint_farptr_t temp = avr_flash_pageaddress/2;
     log(compile, "before flush:");
-    hexdump((bytes)(((uint32_t)rtc_start_of_next_method)*2), 10);
+
+    
+    hexdump((bytes)(((uint32_t)rtc_start_of_next_method)), 10);
+    // hexdump(temp, SPM_PAGESIZE/4);
 
     emit_init(codebuffer);
 
     emit_2_CALL(p);
+    emit_RET();
 
     emit_flush_to_flash();
-    log(compile, "after flush:");
-    hexdump((bytes)(((uint32_t)rtc_start_of_next_method)*2), 10);
 
-    compiled_method method = (((uint32_t)rtc_start_of_next_method)*2);
+    wkreprog_close();
+    // log(compile, "after flush:");
+    hexdump((bytes)(((uint32_t)rtc_start_of_next_method)), 10);
+    // hexdump(temp, SPM_PAGESIZE/4);
+    compiled_method method = (((uint16_t)rtc_start_of_next_method));
+    log(compile, "method: %p",method);
 
     method();
+
+    log(compile, "method successfully returned!!!");
+    // p();
+    
 }
 void wasm_compile_module(wasm_module_ptr module)
 {

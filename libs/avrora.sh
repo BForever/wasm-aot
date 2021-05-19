@@ -10,4 +10,4 @@
 java -jar avrora.jar \
 -single -monitors=c-print \
 -mcu=atmega128 \
-../bin/test.elf
+../bin/aot.elf

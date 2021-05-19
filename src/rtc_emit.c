@@ -23,7 +23,7 @@ void emit_raw_word(uint16_t word) {
 
 void emit(uint16_t opcode) {
 #ifdef AVRORA
-    avroraRTCTraceSingleWordInstruction(opcode);
+    // avroraRTCTraceSingleWordInstruction(opcode);
 #endif
     emit_raw_word(opcode);
 }

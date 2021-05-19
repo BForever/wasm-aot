@@ -163,9 +163,12 @@ void hexdump(bytes buf, u32 buf_len) {
 	int n = 16 - mod;
 	for (i = 0; i < buf_len; i++)
 	{
-		if (i % 16 == 0 && i != 0)
+		if (i % 16 == 0)
 		{
-			printf("\n");
+            if(i!=0){
+                printf("\n");
+            }
+			printf("%p:\t",buf+i);
 		}
 		printf("%02X ", buf[i]);
 		if ((i + 1) % 16 == 0)
@@ -173,7 +176,7 @@ void hexdump(bytes buf, u32 buf_len) {
 			printf("\t");
 			for (j = i - 15; j <= i; j++)
 			{
-				if (j == i - 8)
+				if (j == i - 7)
 					printf(" ");
 				if (buf[j] >= 32 && buf[j] < 127)
 					printf("%c", buf[j]);
