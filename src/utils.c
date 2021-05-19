@@ -3,6 +3,7 @@
 #include "config.h"
 #include <stdlib.h>
 #include <string.h>
+#include <avr/pgmspace.h>
 
 void ReadLebUnsigned(u64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_end)
 {
@@ -168,7 +169,7 @@ void hexdump(bytes buf, u32 buf_len) {
             if(i!=0){
                 printf("\n");
             }
-			printf("%p:\t",buf+i);
+			printf("0x0800%04x:\t",buf+i);
 		}
 		printf("%02X ", buf[i]);
 		if ((i + 1) % 16 == 0)
@@ -194,6 +195,52 @@ void hexdump(bytes buf, u32 buf_len) {
 			printf(" ");
 		if (buf[i] >= 32 && buf[i] < 127)
 			printf("%c", buf[i]);
+		else
+			printf(".");
+	}
+	printf("\n");
+}
+
+void hexdump_pgm(bytes buf, u32 buf_len) {
+	int i, j, mod = buf_len % 16;
+	int n = 16 - mod;
+    u8 c;
+	for (i = 0; i < buf_len; i++)
+	{
+		if (i % 16 == 0)
+		{
+            if(i!=0){
+                printf("\n");
+            }
+			printf("0x%08x:\t",buf+i);
+		}
+        c =  pgm_read_byte(&buf[i]);
+		printf("%02X ", c);
+		if ((i + 1) % 16 == 0)
+		{
+			printf("\t");
+			for (j = i - 15; j <= i; j++)
+			{
+                c =  pgm_read_byte(&buf[j]);
+				if (j == i - 7)
+					printf(" ");
+				if (c >= 32 && c < 127)
+					printf("%c", c);
+				else
+					printf(".");
+			}
+		}
+	}
+	for (i = 0; i < n; i++)
+		printf("   ");
+	printf("\t");
+	for (i = buf_len - mod; i < buf_len; i++)
+	{
+        c =  pgm_read_byte(&buf[i]);
+		if (i == buf_len - mod + 8)
+			printf(" ");
+		if (c >= 32 && c < 127)
+			printf("%c", c);
 		else
 			printf(".");
 	}

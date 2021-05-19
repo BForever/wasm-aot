@@ -37,12 +37,12 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
     log(compile,"spm_pagesize:%d",SPM_PAGESIZE);
     log(compile,"rtc_start_of_next_method:%p",((uint32_t)rtc_start_of_next_method)*2);
     log(compile, "p function address: %p",p);
-    uint_farptr_t temp = avr_flash_pageaddress/2;
+    uint_farptr_t temp = avr_flash_pageaddress;
     log(compile, "before flush:");
 
-    
-    hexdump((bytes)(((uint32_t)rtc_start_of_next_method)), 10);
-    // hexdump(temp, SPM_PAGESIZE/4);
+    hexdump("test",4);
+    hexdump_pgm((bytes)(((uint16_t)rtc_start_of_next_method)*2), 10);
+    // hexdump_pgm(temp, SPM_PAGESIZE);
 
     emit_init(codebuffer);
 
@@ -50,11 +50,11 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
     emit_RET();
 
     emit_flush_to_flash();
-
+    
     wkreprog_close();
     // log(compile, "after flush:");
-    hexdump((bytes)(((uint32_t)rtc_start_of_next_method)), 10);
-    // hexdump(temp, SPM_PAGESIZE/4);
+    hexdump_pgm((bytes)(((uint16_t)rtc_start_of_next_method)*2), 10);
+    // hexdump_pgm(temp, SPM_PAGESIZE);
     compiled_method method = (((uint16_t)rtc_start_of_next_method));
     log(compile, "method: %p",method);
 

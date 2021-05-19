@@ -17,4 +17,5 @@ void ReadLEB_i64(i64 *o_value, bytes *io_bytes, bytes i_end);
 void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end);
 
 void hexdump(bytes buf, u32 buf_len);
+void hexdump_pgm(bytes buf, u32 buf_len);
 #endif
