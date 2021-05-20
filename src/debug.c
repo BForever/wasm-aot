@@ -28,4 +28,6 @@ void avr_Printf(char * format, ...)
 	avr_VPrint(format, arg);
 	va_end(arg);
 }
+// char global_print_buff[128];
+
 #endif

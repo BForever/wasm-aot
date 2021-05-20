@@ -17,21 +17,22 @@
 
 
 const unsigned char __attribute__((section (".rtc_code_marker"))) __attribute__ ((aligned (2))) rtc_start_of_compiled_code_marker;
-uint16_t rtc_start_of_next_method;
+u16 rtc_start_of_next_method;
+u16 pc;
 
 
 
 // This function should be in the NRWW section to allow it to write to flash
-//void BOOTLOADER_SECTION avr_flash_program_page(uint_farptr_t page, uint8_t *buf);
-void __attribute__ ((section (".reprogram_flash_page"))) avr_flash_program_page (uint_farptr_t page, uint8_t *buf);
+//void BOOTLOADER_SECTION avr_flash_program_page(uint_farptr_t page, u8 *buf);
+void __attribute__ ((section (".reprogram_flash_page"))) avr_flash_program_page (uint_farptr_t page, u8 *buf);
 extern unsigned char di_app_infusion_archive_data[];
 
-uint8_t *avr_flash_pagebuffer = NULL;
+u8 *avr_flash_pagebuffer = NULL;
 uint_farptr_t avr_flash_pageaddress = 0;
 uint_farptr_t avr_flash_end_of_safe_region = 0;
-uint16_t avr_flash_buf_len = 0;
+u16 avr_flash_buf_len = 0;
 
-uint16_t wkreprog_impl_get_page_size() {
+u16 wkreprog_impl_get_page_size() {
 	return SPM_PAGESIZE;
 }
 
@@ -42,9 +43,9 @@ uint_farptr_t wkreprog_impl_get_raw_position() {
 
 
 // Open reprogramming at a position within the app archive
-bool wkreprog_impl_open_app_archive(uint16_t start_write_position) {
+bool wkreprog_impl_open_app_archive(u16 start_write_position) {
 	void *x = (void *)di_app_infusion_archive_data;
-	return wkreprog_impl_open_raw((uint16_t)x + start_write_position, 0); // TODONR: proper end of safe region (restrict writing to the app infusion)
+	return wkreprog_impl_open_raw((u16)x + start_write_position, 0); // TODONR: proper end of safe region (restrict writing to the app infusion)
 }
 
 // Open reprogramming at any position in flash
@@ -71,9 +72,9 @@ bool wkreprog_impl_open_raw(uint_farptr_t start_write_position, uint_farptr_t en
 	return true;
 }
 
-void avr_flash_program_page_if_not_modified(uint_farptr_t page, uint8_t *buf) {
+void avr_flash_program_page_if_not_modified(uint_farptr_t page, u8 *buf) {
 	// Don't wear out the flash unnecessarily
-	for (uint16_t i=0; i<SPM_PAGESIZE; i++) {
+	for (u16 i=0; i<SPM_PAGESIZE; i++) {
 		if (avr_flash_pagebuffer[i] != dj_di_getU8(page+i)) {
 			// Buffer and flash memory differ. Write the page.
 			avr_flash_program_page (page, buf);
@@ -83,7 +84,7 @@ void avr_flash_program_page_if_not_modified(uint_farptr_t page, uint8_t *buf) {
 }
 
 
-void wkreprog_impl_write(uint16_t size, uint8_t* data, bool skip) {
+void wkreprog_impl_write(u16 size, u8* data, bool skip) {
 // avroraStartReprogTimer();
 	// TODONR: Check if the size fits in the allocated space for app archive
 	 log(wkreprog,"wkreprog_impl_write");
@@ -92,7 +93,7 @@ void wkreprog_impl_write(uint16_t size, uint8_t* data, bool skip) {
 	log(wkreprog, "AVR: Received %d bytes to flash to page 0x%x.", size, avr_flash_pageaddress);
 	log(wkreprog, "AVR: Buffer already contains %d bytes.", avr_flash_buf_len);
 	log(wkreprog, "AVR: Writing to 0x%x: ", avr_flash_pageaddress+avr_flash_buf_len);
-	for (uint16_t i=0; i<size; i++) {
+	for (u16 i=0; i<size; i++) {
 		log(wkreprog, " %02x", data[i]);
 	}
 
@@ -102,7 +103,7 @@ void wkreprog_impl_write(uint16_t size, uint8_t* data, bool skip) {
 	}
 
 	while(size!=0) {
-		uint16_t bytes_on_this_page = size;
+		u16 bytes_on_this_page = size;
 		if (avr_flash_buf_len + size > SPM_PAGESIZE) {
 			// Only 1 page at a time
 			bytes_on_this_page = SPM_PAGESIZE-avr_flash_buf_len;
@@ -157,10 +158,10 @@ void wkreprog_impl_reboot() {
 }
 
 // Copied from avr/boot.h example
-void avr_flash_program_page (uint_farptr_t page, uint8_t *buf)
+void avr_flash_program_page (uint_farptr_t page, u8 *buf)
 {
-	uint16_t i;
-	uint8_t sreg;
+	u16 i;
+	u8 sreg;
 
 	// Disable interrupts.
 	sreg = SREG;
@@ -174,7 +175,7 @@ void avr_flash_program_page (uint_farptr_t page, uint8_t *buf)
 	for (i=0; i<SPM_PAGESIZE; i+=2)
 	{
 		// Set up little-endian word.
-		uint16_t w = *buf++;
+		u16 w = *buf++;
 		w += (*buf++) << 8;
 		boot_page_fill (page + i, w);
 	}

@@ -4,7 +4,7 @@
 #include "types.h"
 #include "wkreprog_impl.h"
 
-extern bool wkreprog_open_file(uint8_t filenumber, uint16_t start_write_position);
+extern bool wkreprog_open_file(u8 filenumber, u16 start_write_position);
 
 // For now these can be the same.
 // Get the page size

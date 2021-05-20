@@ -18,31 +18,36 @@ bool is_imported(wasm_function_ptr func)
 }
 void p()
 {
-    printf("test call\r\n");
+    printf("hello, world!\r\n");
 }
-
-typedef void (*compiled_method)();
 extern uint_farptr_t avr_flash_pageaddress;
-
-void reprog_init()
+u16 *codebuffer;
+void compile_init()
 {
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
-    u16 *codebuffer = malloc(RTC_CODEBUFFER_SIZE);
-
-    wkreprog_open_raw(((uint32_t)rtc_start_of_next_method) * 2, RTC_END_OF_COMPILED_CODE_SPACE);
+    codebuffer = malloc(RTC_CODEBUFFER_SIZE*2);
     emit_init(codebuffer);
     // hexdump_pgm((bytes)(((uint16_t)rtc_start_of_next_method)*2), 10);
-    // compiled_method method = (((uint16_t)rtc_start_of_next_method));
-    // method();
 }
-
-void reprog_close()
+void compile_deinit()
+{
+    free(codebuffer);
+}
+//为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
+void compile_open()
+{
+    wkreprog_open_raw(((uint32_t)rtc_start_of_next_method) * 2, RTC_END_OF_COMPILED_CODE_SPACE);
+}
+void compile_close()
 {
     emit_flush_to_flash();
+    RTC_SET_START_OF_NEXT_METHOD(wkreprog_get_raw_position());
     wkreprog_close();
 }
+
 void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 {
+    compile_open();
     bytes start = func->wasm;
     bytes end = func->wasmEnd;
 
@@ -51,30 +56,16 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 
     while (start<=end)
     {
-        u8 op = *(start++);
-        if(op==Call){
-            log(compile,"compiling CALL instruction...");
-            u32 index;
-            ReadLEB_u32(&index,&start,end);
-            log(compile,"called function index :%d",index);
-            if(index>=module->function_num){
-                panicf("called index out of scope");
-            }
-            wasm_function_ptr called_func = module->function_list[index];
-            if(is_imported(called_func)){
-                emit_2_CALL(called_func->native);//TODO 不同签名类型的函数应当有不同的局部变量预处理
-            }else{
-                emit_2_CALL(called_func->compiled);
-            }
-            emit_RET();
-        }
+        compile_single_instruction(module,func,&start,end);
+        
     }
-    func->compiled = (((uint16_t)rtc_start_of_next_method));
+    func->compiled = rtc_start_of_next_method;
     
+    compile_close();
 }
 void wasm_compile_module(wasm_module_ptr module)
 {
-    reprog_init();
+    compile_init();
 
     wasm_function_ptr func;
     for (int i = 0; i < module->function_num; i++)
@@ -91,13 +82,13 @@ void wasm_compile_module(wasm_module_ptr module)
         {
             wasm_compile_function(module, func);
             log(compile, "add compiled function %s", func->name);
-            if(i==module->import_num){
-                //TODO 暂时以第一个函数为入口函数
+            if(i==module->function_num-1){
+                //TODO 暂时以最后一个函数为入口函数
                 module->entry_method = func->compiled;
                 log(compile,"entry function: %s",func->name);
             }
         }
     }
 
-    reprog_close();
+    compile_deinit();
 }

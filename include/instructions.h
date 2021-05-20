@@ -1,6 +1,10 @@
 #ifndef INSTRUCTIONS_H
 #define INSTRUCTIONS_H
 
+#include "types.h"
+
+void compile_single_instruction(wasm_module_ptr module, wasm_function_ptr func,bytes *start,bytes end);
+
 enum INSTRUCTION
 {
     Unreachable = 0x00,       // unreachable

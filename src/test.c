@@ -15,6 +15,7 @@ void wasm_call_method(normal_function method) {
 
 int main()
 {
+
 	// WASM 代码数组
 	wasm_code_ptr code = malloc(sizeof(wasm_code));
 	// code->ptr = app_wasm;
@@ -36,5 +37,7 @@ int main()
 	wasm_call_method(module->entry_method);
 
 	printf("wasm entry function returned.\r\n");
+
+	
 
 }

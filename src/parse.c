@@ -363,10 +363,10 @@ void Module_AddFunction(wasm_module_ptr io_module, u32 i_typeIndex, import_info_
             func->name = i_importInfo->fieldUtf8;
         }else{
             func->name = malloc(10);
-            snprintf(func->name,9,"f%d",io_module->function_num-io_module->import_num);
+            snprintf(func->name,10,"f%d",io_module->function_num-io_module->import_num);
         }
+        // log(parse,"   added function %3d: %s; sig: %d;",io_module->function_num-1,func->name, i_typeIndex);
         logif(parse, {printf("   added function %3d:",io_module->function_num-1);printf(" %s;",func->name);printf(" sig: %d;", i_typeIndex); });
-        log(parse,"addr: %p",func);
     }
     else
     {
