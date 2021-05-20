@@ -6,6 +6,7 @@
 #define d_log_parse 1
 #define d_log_compile 1
 #define d_log_wkreprog 1
+#define d_log_emit 1
 
 #ifdef AVRORA
 // extern char global_print_buff[128];
@@ -36,6 +37,12 @@
         #define log_compile(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else
         #define log_compile(...) {}
+    #endif
+
+    #if d_log_emit
+        #define log_emit(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
+    #else
+        #define log_emit(...) {}
     #endif
 
 

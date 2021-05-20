@@ -139,3 +139,36 @@ void emit_x_postinvoke_code() {
 void emit_x_postinvoke() {
     emit_2_CALL((uint16_t)&emit_x_postinvoke_code);
 }
+
+void emit_x_push_all(){
+    for(int i=0;i<32;i++){
+        emit_PUSH(R0+i);  
+    }
+}
+void emit_x_pop_all(){
+    for(int i=31;i>=0;i--){
+        emit_POP(R0+i);  
+    }
+}
+
+void emit_LDI_SBCI_SUBI_CPI(uint16_t opcode, uint8_t reg, uint8_t constant) {
+    uint16_t encoded_constant = (constant & 0x0F) + ((constant & 0xF0) << 4); // 0000 KKKK 0000 KKKK
+    emit (opcode
+             + (((reg) - 16) << 4)
+             + encoded_constant);
+
+}
+//                                      0000 000d dddd 0000
+uint16_t asm_opcodeWithSingleRegOperand(uint16_t opcode, uint8_t reg) {
+	return (((opcode) + ((reg) << 4)));
+}
+void emit_opcodeWithSingleRegOperand(uint16_t opcode, uint8_t reg) {
+	emit (asm_opcodeWithSingleRegOperand(opcode, reg));
+}
+//                                      0000 00rd dddd rrrr, with d=dest register, r=source register
+uint16_t asm_opcodeWithSrcAndDestRegOperand(uint16_t opcode, uint8_t destreg, uint8_t srcreg) {
+    return (((opcode) + ((destreg) << 4) + makeSourceRegister(srcreg)));
+}
+void emit_opcodeWithSrcAndDestRegOperand(uint16_t opcode, uint8_t destreg, uint8_t srcreg) {
+    emit (asm_opcodeWithSrcAndDestRegOperand(opcode, destreg, srcreg));
+}

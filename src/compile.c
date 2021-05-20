@@ -10,15 +10,15 @@
 #include <avr/pgmspace.h>
 bool is_imported(wasm_function_ptr func)
 {
-    if (func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL)
-    {
-        return false;
-    }
-    return true;
+    return  !(func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL);
 }
-void p()
+bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func){
+    return func==module->function_list[module->function_num-1];
+}
+void hello(u32 res)
 {
     printf("hello, world!\r\n");
+    printf("result: %d\r\n",res);
 }
 extern uint_farptr_t avr_flash_pageaddress;
 u16 *codebuffer;
@@ -54,11 +54,15 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
     log(compile,"code contained: ");
     hexdump(start,end-start);
 
-    while (start<=end)
-    {
-        compile_single_instruction(module,func,&start,end);
-        
+    if(is_entry_func(module,func)){//TODO 在入口函数前保存状态
+        emit_x_push_all();
     }
+
+    while (start<end)
+    {
+        emit_single_instruction(module,func,&start,end);
+    }
+
     func->compiled = rtc_start_of_next_method;
     
     compile_close();
@@ -75,7 +79,7 @@ void wasm_compile_module(wasm_module_ptr module)
         if (is_imported(func))
         {
             log(compile, "add native function %s", func->name);
-            func->native = p;
+            func->native = hello;
             continue; //TODO 链接外部函数
         }
         else
