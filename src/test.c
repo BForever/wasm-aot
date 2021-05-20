@@ -2,12 +2,16 @@
 #include "app.wasm.h"
 #include "hello.wasm.h"
 #include "client.wasm.h"
+#include "test.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"
 #include "compile.h"
 #include "utils.h"
-void wasm_call_method(bytes method) {}
+void wasm_call_method(normal_function method) {
+	printf("starting wasm execution...\r\n");
+	method();
+}
 
 int main()
 {
@@ -15,10 +19,13 @@ int main()
 	wasm_code_ptr code = malloc(sizeof(wasm_code));
 	// code->ptr = app_wasm;
 	// code->length = app_wasm_len;
-	code->ptr = hello_wasm;
-	code->length = hello_wasm_len;
-	code->ptr = client_wasm;
-	code->length = client_wasm_len;
+	// code->ptr = hello_wasm;
+	// code->length = hello_wasm_len;
+	// code->ptr = client_wasm;
+	// code->length = client_wasm_len;
+	code->ptr = test_wasm;
+	code->length  = test_wasm_len;
+
 
 	// 读取WASM字节码
 	wasm_module_ptr module = wasm_load_module(code);
@@ -27,5 +34,7 @@ int main()
 
 	// 开始执行
 	wasm_call_method(module->entry_method);
+
+	printf("wasm entry function returned.\r\n");
 
 }

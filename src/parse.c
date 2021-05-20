@@ -260,7 +260,6 @@ void ParseSection_Global(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
     io_module->global_num = numGlobals;
 
     io_module->global_list = malloc(numGlobals * sizeof(wasm_global));
-
     for (u32 i = 0; i < numGlobals; ++i)
     {
         i8 waType;
@@ -329,10 +328,10 @@ void ParseSection_Code(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
                     logif(parse, printf("      %2d locals; ", varCount); printf("type: '%s'", wasm_types_names[normalType]));
                 }
 
-                wasm_function_ptr func = &io_module->function_list[f + io_module->import_num];
-
+                wasm_function_ptr func = io_module->function_list[f + io_module->import_num];
+                // wasm_function_ptr func = &io_module->function_list[f + io_module->import_num];
                 func->module = io_module;
-                func->wasm = start;
+                func->wasm = ptr;
                 func->wasmEnd = i_bytes;
                 func->numLocals = numLocals;
             }
@@ -341,29 +340,33 @@ void ParseSection_Code(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
         }
     }
 }
-void Module_AddFunction(wasm_module_ptr io_module, u32 index, u32 i_typeIndex, import_info_ptr i_importInfo)
+void Module_AddFunction(wasm_module_ptr io_module, u32 i_typeIndex, import_info_ptr i_importInfo)
 {
+    if(io_module->function_num==0){
+        io_module->function_list=malloc(sizeof(wasm_function_ptr));
+        io_module->function_list[0]= malloc(sizeof(wasm_function));
+        io_module->function_num=1;
+    }else {
+        io_module->function_num++;
+        io_module->function_list = realloc(io_module->function_list, io_module->function_num * sizeof(wasm_function_ptr));
+        io_module->function_list[io_module->function_num-1] = malloc(sizeof(wasm_function));
+    }
 
     if (i_typeIndex < io_module->func_type_num)
     {
-        wasm_function_ptr func;
-        func_type_ptr ft = io_module->func_type_list[i_typeIndex];
-
-        if (index >= io_module->function_num)
-        { //超出索引，增加空间
-            io_module->function_num++;
-            io_module->function_list = realloc(io_module->function_list, io_module->function_num * sizeof(wasm_function_ptr));
-            io_module->function_list[io_module->function_num - 1] = malloc(sizeof(wasm_function));
-        }
-        func = io_module->function_list[index];
-        func->funcType = ft;
+        wasm_function_ptr func = io_module->function_list[io_module->function_num-1];
+        func->funcType = io_module->func_type_list[i_typeIndex];
 
         if (i_importInfo)
         {
             func->import = *i_importInfo;
             func->name = i_importInfo->fieldUtf8;
+        }else{
+            func->name = malloc(10);
+            snprintf(func->name,9,"f%d",io_module->function_num-io_module->import_num);
         }
-        logif(parse, {printf("   added function: %3d;", index);printf(" sig: %d;", i_typeIndex); });
+        logif(parse, {printf("   added function %3d:",io_module->function_num-1);printf(" %s;",func->name);printf(" sig: %d;", i_typeIndex); });
+        log(parse,"addr: %p",func);
     }
     else
     {
@@ -375,19 +378,12 @@ void ParseSection_Function(wasm_module_ptr io_module, bytes i_bytes, bytes i_end
     u32 numFunctions;
     ReadLEB_u32(&numFunctions, &i_bytes, i_end);
     log(parse, "** Function [%d]", numFunctions);
-    io_module->function_num = numFunctions;
-    io_module->function_list = malloc(numFunctions * sizeof(wasm_function_ptr));
-    for (int i = 0; i < numFunctions; i++)
-    {
-        io_module->function_list[i] = malloc(sizeof(wasm_function));
-    }
 
     for (u32 i = 0; i < numFunctions; ++i)
     {
         u32 funcTypeIndex;
         ReadLEB_u32(&funcTypeIndex, &i_bytes, i_end);
-
-        Module_AddFunction(io_module, i, funcTypeIndex, NULL /* import info */);
+        Module_AddFunction(io_module, funcTypeIndex, NULL /* import info */);
     }
 }
 void FreeImportInfo(import_info_ptr i_info)
@@ -421,7 +417,7 @@ void ParseSection_Import(wasm_module_ptr io_module, bytes i_bytes, bytes i_end)
         {
             u32 typeIndex;
             ReadLEB_u32(&typeIndex, &i_bytes, i_end);
-            Module_AddFunction(io_module, io_module->function_num, typeIndex, &import);
+            Module_AddFunction(io_module, typeIndex, &import);
             import = clearImport;
 
             io_module->import_num++;

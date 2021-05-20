@@ -63,6 +63,8 @@ typedef struct WASM_GLOBAL
     bool                    isMutable;
 }wasm_global;
 typedef wasm_global* wasm_global_ptr;
+
+typedef void (*normal_function)();
 typedef struct WASM_FUNCTION
 {
     struct WASM_MODULE*      module;
@@ -76,7 +78,9 @@ typedef struct WASM_FUNCTION
 
     struct FUNC_TYPE*      funcType;
 
-    // pc_t                    compiled;
+    u16                    compiled;
+    normal_function         native;
+
 
     u16                     maxStackSlots;
 
@@ -110,7 +114,7 @@ typedef struct WASM_MODULE
   char* name;
 
   struct MEMORY_INFO memory;
-bool memory_imported;
+  bool memory_imported;
 
   u32 global_num;
   struct WASM_GLOBAL*  global_list;
@@ -121,7 +125,7 @@ bool memory_imported;
   struct WASM_FUNCTION** function_list;
 
   u32 startFunction;
-  bytes entry_method;
+  normal_function entry_method;
 
   struct FUNC_TYPE** func_type_list;
   u32 func_type_num;
