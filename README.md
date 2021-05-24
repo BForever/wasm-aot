@@ -25,6 +25,19 @@ apt install gcc-avr avr-libc avrdude gdb-avr openjdk-11-jdk
 
 ## 使用说明
 
+0. 编译wasm代码
+首先编写`test.wat`文件（暂时使用文本格式直接编写wasm代码，方便调试）
+
+然后使用一下指令将其转化为`.h`格式
+```
+wat2wasm test.wat -o test.wasm --enable-annotations -v
+wasm2wat test.wasm -o testi.wat  
+xxd -i test.wasm > test.wasm.h
+```
+第一个命令中附加的参数可以方便查看wasm二进制格式的具体情况
+
+第二个命令反向从二进制格式转化为文本格式，可以用于对比验证手动编写代码的正确性
+
 1.  编译代码
 
 在根目录执行以下shell命令：
