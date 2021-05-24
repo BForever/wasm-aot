@@ -24,33 +24,33 @@
     #if d_log_parse
         #define log_parse(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else
-        #define log_parse(...) {}
+        #define log_parse(...) do{}while(0)
     #endif
 
     #if d_log_wkreprog
         #define log_wkreprog(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else
-        #define log_wkreprog(...) {}
+        #define log_wkreprog(...) do{}while(0)
     #endif
 
     #if d_log_compile
         #define log_compile(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else
-        #define log_compile(...) {}
+        #define log_compile(...) do{}while(0)
     #endif
 
     #if d_log_emit
         #define log_emit(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else
-        #define log_emit(...) {}
+        #define log_emit(...) do{}while(0)
     #endif
 
 
     #define log(CATEGORY, FMT, ...)                    log_##CATEGORY (CATEGORY, FMT "\r\n", ##__VA_ARGS__)
     #define logif(CATEGORY, STATEMENT)                 do{log_##CATEGORY (CATEGORY, ""); if (d_log_##CATEGORY) { STATEMENT; printf ("\r\n"); }}while(0)
 #else
-    #define log(CATEGORY, FMT, ...)                    {}
-    #define logif(CATEGORY, STATEMENT)                 {}
+    #define log(CATEGORY, FMT, ...)                    do{}while(0)
+    #define logif(CATEGORY, STATEMENT)                 do{}while(0)
 # endif
 
 #define panicf(FMT,...)  do{printf("ERROR! "FMT ":%s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);while(1);}while(0)

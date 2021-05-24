@@ -7,30 +7,45 @@
 #include "debug.h"
 #include "utils.h"
 #include "wkreprog.h"
+#include "user_import.h"
 #include <avr/pgmspace.h>
+#include<string.h>
 bool is_imported(wasm_function_ptr func)
 {
     return  !(func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL);
 }
-bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func){
-    return func==module->function_list[module->function_num-1];
-}
-void hello(u32 res)
-{
-    printf("hello, world!\r\n");
-    printf("result: %d\r\n",res);
-}
+
+u16 jump_vector_start_addr;
+
 extern uint_farptr_t avr_flash_pageaddress;
 u16 *codebuffer;
-void compile_init()
+void compile_init(wasm_module_ptr module)
 {
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
     codebuffer = malloc(RTC_CODEBUFFER_SIZE*2);
     emit_init(codebuffer);
+
+    jump_vector_start_addr = rtc_start_of_next_method;
+
+    // 留出跳转向量表的空间
+    compile_open();
+    wkreprog_skip(4*(module->function_num-module->import_num));
+    compile_close();
+
+    // call_target_list = calloc(module->function_num-module->import_num,sizeof(u16));
     // hexdump_pgm((bytes)(((uint16_t)rtc_start_of_next_method)*2), 10);
 }
-void compile_deinit()
+void compile_deinit(wasm_module_ptr module)
 {
+    RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
+    compile_open();
+    for(int i=0;i<module->function_num-module->import_num;i++){
+        emit_2_JMP(module->function_list[module->import_num+i]->compiled*2);
+    }
+    compile_close();
+
+
+    // 烧写跳转向量表
     free(codebuffer);
 }
 //为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
@@ -51,11 +66,16 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
     bytes start = func->wasm;
     bytes end = func->wasmEnd;
 
-    log(compile,"code contained: ");
-    hexdump(start,end-start);
+    if(end<start){
+        panicf("code section range error");
+    }
 
-    if(is_entry_func(module,func)){//TODO 在入口函数前保存状态
-        emit_x_push_all();
+    log(compile,"code contained:");
+    logif(compile,printf("\r\n");hexdump(start,end-start););
+
+    if(is_entry_func(module,func)){//TODO 在入口函数的前部保存状态
+        log(emit,"push for call save");
+        emit_x_call_save();
     }
 
     while (start<end)
@@ -69,7 +89,7 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 }
 void wasm_compile_module(wasm_module_ptr module)
 {
-    compile_init();
+    compile_init(module);
 
     wasm_function_ptr func;
     for (int i = 0; i < module->function_num; i++)
@@ -79,20 +99,31 @@ void wasm_compile_module(wasm_module_ptr module)
         if (is_imported(func))
         {
             log(compile, "add native function %s", func->name);
-            func->native = hello;
+            bool found=false;
+
+            for(int j=0;j<imports_num;j++){
+                if(0==mystrcmp(func->name,imports_name[j])){
+                    func->native = imports[j];
+                    found = true;
+                    log(compile,"found function \"%s\"",imports_name[j]);
+                }
+            }
+            if(!found){
+                panicf("import function not found!");
+            }
             continue; //TODO 链接外部函数
         }
         else
         {
             wasm_compile_function(module, func);
             log(compile, "add compiled function %s", func->name);
-            if(i==module->function_num-1){
-                //TODO 暂时以最后一个函数为入口函数
+            if(is_entry_func(module,func)){
+                //TODO 暂时以第一个函数为入口函数
                 module->entry_method = func->compiled;
                 log(compile,"entry function: %s",func->name);
             }
         }
     }
 
-    compile_deinit();
+    compile_deinit(module);
 }

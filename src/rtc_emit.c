@@ -22,6 +22,10 @@ void emit_raw_word(u16 word) {
     }
 }
 
+u16 emit_get_relative_position(){
+    return codebuffer_position-code_buffer;
+}
+
 void emit(u16 opcode) {
 #ifdef AVRORA
     // avroraRTCTraceSingleWordInstruction(opcode);

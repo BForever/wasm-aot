@@ -140,13 +140,17 @@ void emit_x_postinvoke() {
     emit_2_CALL((uint16_t)&emit_x_postinvoke_code);
 }
 
-void emit_x_push_all(){
-    for(int i=0;i<32;i++){
+void emit_x_call_save(){
+    for(int i=2;i<18;i++){
         emit_PUSH(R0+i);  
     }
+    emit_PUSH(R28);
+    emit_PUSH(R29);
 }
-void emit_x_pop_all(){
-    for(int i=31;i>=0;i--){
+void emit_x_call_restore(){
+    emit_POP(R29);
+    emit_POP(R28);
+    for(int i=17;i>=2;i--){
         emit_POP(R0+i);  
     }
 }

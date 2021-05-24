@@ -42,7 +42,8 @@ typedef struct FUNC_TYPE
 
     u32                     numArgs;
     u8                      returnType;
-    u8                      argTypes        [3];    // 用于32位对齐
+    u8  need_memory_pass;
+    u8                      argTypes        [2];    // 用于32位对齐
 }func_type;
 typedef func_type* func_type_ptr;
 
@@ -151,17 +152,17 @@ typedef wasm_code* wasm_code_ptr;
 static const char * const wasm_types_names []          = { "nil", "i32", "i64", "f32", "f64", "void", "void *" };
 static const char * const wasm_types_names_compact []   = { "0", "i", "I", "f", "F", "v", "*" };
 
-enum // EWaTypes
+enum // WASM Variable Types
 {
-    c_m3Type_none   = 0,
-    c_m3Type_i32    = 1,
-    c_m3Type_i64    = 2,
-    c_m3Type_f32    = 3,
-    c_m3Type_f64    = 4,
+    WASM_Type_none   = 0,
+    WASM_Type_i32    = 1,
+    WASM_Type_i64    = 2,
+    WASM_Type_f32    = 3,
+    WASM_Type_f64    = 4,
 
-    c_m3Type_void,
-    c_m3Type_ptr,
-    c_m3Type_trap
+    WASM_Type_void,
+    WASM_Type_ptr,
+    WASM_Type_trap
 };
 
 static inline

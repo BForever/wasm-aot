@@ -246,3 +246,21 @@ void hexdump_pgm(bytes buf, u32 buf_len) {
 	}
 	printf("\n");
 }
+
+u32 mystrcmp(const char* S1,const char* S2){
+    while(*S1){
+        if(*(S1++)!=*(S2++)){
+            return 1;
+        }
+    }
+    if(*S2){
+        return 1;
+    }
+
+    return 0;
+}
+
+bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func){
+    // return func==module->function_list[module->function_num-1];
+    return func==module->function_list[module->import_num];
+}

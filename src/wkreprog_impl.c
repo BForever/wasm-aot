@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "types.h"
 #include "debug.h"
+#include "utils.h"
 #ifdef AVRORA
 #include "wkreprog_impl.h"
 #include <avr/boot.h>
@@ -87,16 +88,12 @@ void avr_flash_program_page_if_not_modified(uint_farptr_t page, u8 *buf) {
 void wkreprog_impl_write(u16 size, u8* data, bool skip) {
 // avroraStartReprogTimer();
 	// TODONR: Check if the size fits in the allocated space for app archive
-	 log(wkreprog,"wkreprog_impl_write");
 	if (avr_flash_pageaddress == 0)
 		return;
 	log(wkreprog, "AVR: Received %d bytes to flash to page 0x%x.", size, avr_flash_pageaddress);
 	log(wkreprog, "AVR: Buffer already contains %d bytes.", avr_flash_buf_len);
 	log(wkreprog, "AVR: Writing to 0x%x: ", avr_flash_pageaddress+avr_flash_buf_len);
-	for (u16 i=0; i<size; i++) {
-		log(wkreprog, " %02x", data[i]);
-	}
-
+	logif(wkreprog,printf("\r\n");hexdump(data,size););
 
 	if ((avr_flash_pageaddress + avr_flash_buf_len + size) > avr_flash_end_of_safe_region) {
 		panicf("PANIC_REPROGRAM_OUTSIDE_REGION");

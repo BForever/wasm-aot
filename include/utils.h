@@ -18,4 +18,7 @@ void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end);
 
 void hexdump(bytes buf, u32 buf_len);
 void hexdump_pgm(bytes buf, u32 buf_len);
+
+u32 mystrcmp(const char* S1,const char* S2);
+bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func);
 #endif
