@@ -62,6 +62,7 @@ typedef struct WASM_GLOBAL
     bool                    imported;
     struct IMPORT_INFO     import;
     bool                    isMutable;
+    u16                   offset;
 }wasm_global;
 typedef wasm_global* wasm_global_ptr;
 
@@ -142,7 +143,7 @@ typedef wasm_module* wasm_module_ptr;
 typedef struct WASM_CODE
 {
   bytes ptr;
-  u32 length;
+  u16 length;
 }wasm_code;
 
 typedef wasm_code* wasm_code_ptr;

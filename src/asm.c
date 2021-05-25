@@ -144,23 +144,60 @@ void emit_x_call_save(){
     for(int i=2;i<18;i++){
         emit_PUSH(R0+i);  
     }
+    emit_PUSH(R30);
+    emit_PUSH(R31);
     emit_PUSH(R28);
     emit_PUSH(R29);
 }
 void emit_x_call_restore(){
     emit_POP(R29);
     emit_POP(R28);
+    emit_POP(R31);
+    emit_POP(R30);
     for(int i=17;i>=2;i--){
         emit_POP(R0+i);  
     }
 }
-
+// 6 bit offset q has to be inserted in the opcode like this:
+// 00q0 qq00 0000 0qqq
+#define makeLDDSTDoffset(offset) ( \
+               ((offset) & 0x07) \
+            + (((offset) & 0x18) << 7) \
+            + (((offset) & 0x20) << 8))
+// LDD                                  10q0 qq0d dddd yqqq, with d=dest register, q=offset from Y or Z, y=1 for Y 0 for Z
+void emit_LDD(uint8_t reg, uint8_t yz, uint16_t offset) {
+    emit (OPCODE_LDD
+             + ((reg) << 4)
+             + ((yz) << 3)
+             + makeLDDSTDoffset(offset));
+}
+// STD                                  10q0 qq1r rrrr yqqq, with r=source register, q=offset from Y or Z, y=1 for Y 0 for Z
+void emit_STD(uint8_t reg, uint8_t yz, uint16_t offset) {
+    emit ((OPCODE_STD
+             + ((reg) << 4)
+             + ((yz) << 3)
+             + makeLDDSTDoffset(offset)));
+}
 void emit_LDI_SBCI_SUBI_CPI(uint16_t opcode, uint8_t reg, uint8_t constant) {
     uint16_t encoded_constant = (constant & 0x0F) + ((constant & 0xF0) << 4); // 0000 KKKK 0000 KKKK
     emit (opcode
              + (((reg) - 16) << 4)
              + encoded_constant);
 
+}
+// ADIW                                 1001 0110 KKdd KKKK, with d=r24, r26, r28, or r30
+void emit_ADIW(uint8_t reg, uint8_t constant) {
+	emit ((OPCODE_ADIW
+			 + ((((reg)-24)/2)<<4)
+			 + ((constant) & 0x0F)
+             + (((constant) & 0x30) << 2)));
+}
+// SBIW                                 1001 0110 KKdd KKKK, with d=r24, r26, r28, or r30
+void emit_SBIW(uint8_t reg, uint8_t constant) {
+    emit ((OPCODE_SBIW
+             + ((((reg)-24)/2)<<4)
+             + ((constant) & 0x0F)
+             + (((constant) & 0x30) << 2)));
 }
 //                                      0000 000d dddd 0000
 uint16_t asm_opcodeWithSingleRegOperand(uint16_t opcode, uint8_t reg) {
@@ -176,3 +213,69 @@ uint16_t asm_opcodeWithSrcAndDestRegOperand(uint16_t opcode, uint8_t destreg, ui
 void emit_opcodeWithSrcAndDestRegOperand(uint16_t opcode, uint8_t destreg, uint8_t srcreg) {
     emit (asm_opcodeWithSrcAndDestRegOperand(opcode, destreg, srcreg));
 }
+
+
+void emit_local_init(u16 numLocalBytes){
+    emit_PUSH(R28);
+    emit_PUSH(R29);
+    emit_IN(R28,0x3d);
+    emit_IN(R29,0x3e);
+    emit_SBIW(R28,numLocalBytes);
+    
+    // R29需要在关中断的情况下进行修改
+    emit_IN(R0,0x3f);
+    emit_CLI();
+    emit_OUT(0x3e,R29);
+    emit_OUT(0x3f,R0);
+
+    emit_OUT(0x3d,R28);
+}
+void emit_local_deinit(u16 numLocalBytes){
+    emit_ADIW(R28,numLocalBytes);
+
+    // R29需要在关中断的情况下进行修改
+    emit_IN(R0,0x3f);
+    emit_CLI();
+    emit_OUT(0x3e,R29);
+    emit_OUT(0x3f,R0);
+
+    emit_OUT(0x3d,R28);
+    emit_POP(R29);
+    emit_POP(R28);
+}
+
+// void emit_set_SP(){
+//     emit_OUT()
+// }
+// 前置流程
+//                              push	r28
+//     2d34:	df 93       	push	r29
+//     2d36:	cd b7       	in	r28, 0x3d	; 61
+//     2d38:	de b7       	in	r29, 0x3e	; 62
+//     2d3a:	2c 97       	sbiw	r28, 0x0c	; 12
+//     2d3c:	0f b6       	in	r0, 0x3f	; 63
+//     2d3e:	f8 94       	cli
+//     2d40:	de bf       	out	0x3e, r29	; 62
+//     2d42:	0f be       	out	0x3f, r0	; 63
+//     2d44:	cd bf       	out	0x3d, r28	; 61
+// 后置流程
+    // 2eb4:	2c 96       	adiw	r28, 0x0c	; 12
+    // 2eb6:	0f b6       	in	r0, 0x3f	; 63
+    // 2eb8:	f8 94       	cli
+    // 2eba:	de bf       	out	0x3e, r29	; 62
+    // 2ebc:	0f be       	out	0x3f, r0	; 63
+    // 2ebe:	cd bf       	out	0x3d, r28	; 61
+    // 2ec0:	df 91       	pop	r29
+    // 2ec2:	cf 91       	pop	r28
+// void emit_save_Y(){
+//     emit_PUSH(R28);
+//     emit_PUSH(R29);
+// }
+// void emit_restore_Y(){
+//     emit_POP(R29);
+//     emit_POP(R28);
+// }
+// void emit_init_Y(){
+//     emit_IN(R28,0x3d);
+//     emit_IN(R29,0x3e);
+// }

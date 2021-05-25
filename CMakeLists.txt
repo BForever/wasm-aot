@@ -9,7 +9,13 @@ set (CMAKE_C_COMPILER "avr-gcc")
 set (CMAKE_CXX_COMPILER "avr-g++")
 #-Werror
 add_compile_options(-mmcu=atmega128 -Os -finline-limit-0 -ggdb -Wall  -std=gnu99 -fdata-sections -ffunction-sections)
-set (CMAKE_EXE_LINKER_FLAGS "-mmcu=atmega128 -Wl,--section-start=.reprogram_flash_page=0x1F800 -Wl,-T${PROJECT_SOURCE_DIR}/libs/ld.lnk -Wl,--gc-sections")
+set (CMAKE_EXE_LINKER_FLAGS "-mmcu=atmega128 \
+-Wl,--section-start=.reprogram_flash_page=0x1F800 \
+-Wl,-T${PROJECT_SOURCE_DIR}/libs/ld.lnk \
+-Wl,--gc-sections \
+")
+# -Wl,--defsym=__heap_start=0x802000,--defsym=__heap_end=0x803fff")
+
 endif()
 
 #head file path

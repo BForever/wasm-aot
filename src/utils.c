@@ -1,7 +1,8 @@
 #include "types.h"
 #include "debug.h"
 #include "config.h"
-#include <stdlib.h>
+#include "utils.h"
+#include "heap.h"
 #include <string.h>
 #include <avr/pgmspace.h>
 
@@ -144,7 +145,7 @@ void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end)
         if (end <= i_end)
         {
             char *utf8;
-            utf8 = malloc(utf8Length + 1);
+            utf8 = sys_malloc(utf8Length + 1);
 
             memcpy(utf8, ptr, utf8Length);
             utf8[utf8Length] = 0;
@@ -263,4 +264,24 @@ u32 mystrcmp(const char* S1,const char* S2){
 bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func){
     // return func==module->function_list[module->function_num-1];
     return func==module->function_list[module->import_num];
+}
+
+void* sys_malloc(u16 size){
+    void* ret = aot_malloc(size);
+    logif(sys,printf("malloc %d bytes at ",size);printf("%p",ret););
+    return ret;
+}
+void* sys_calloc(u16 numBlocks,u16 size){
+    void* ret = aot_calloc(numBlocks,size);
+    logif(sys,printf("calloc %d bytes at ",size*numBlocks);printf("%p",ret););
+    return ret;
+}
+void* sys_realloc(void* ptr,u16 size){
+    void* ret = aot_realloc(ptr,size);
+    logif(sys,printf("realloc %d bytes at ",size);printf("%p",ret););
+    return ret;
+}
+void sys_free(void* ptr){
+    aot_free(ptr);
+    log(sys,"free %p",ptr);
 }

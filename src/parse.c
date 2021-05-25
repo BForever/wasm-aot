@@ -14,12 +14,16 @@ void ParseSection_Data(wasm_module_ptr module, bytes start, bytes end);
 
 wasm_module_ptr wasm_load_module(wasm_code_ptr code)
 {
+    log(parse, "code addr:%p", code);
+
     int result = 0;
     wasm_module_ptr module;
-    module = malloc(sizeof(wasm_module));
+    module = sys_malloc(sizeof(wasm_module));
 
     module->name = ".unnamed";
+
     log(parse, "load module: %d bytes", code->length);
+    log(parse, "at %p", code->ptr);
 
     bytes pos = code->ptr;
     bytes end = pos + code->length;
@@ -60,12 +64,12 @@ wasm_module_ptr wasm_load_module(wasm_code_ptr code)
     }
     if (result)
     {
-        log(parse, "err, free module\r\n");
-        free(module);
+        log(parse, "err, sys_free module\r\n");
+        sys_free(module);
         module = NULL;
         return NULL;
     }
-    log(parse,"Parsing done.");
+    log(parse, "Parsing done.");
     return module;
 }
 
@@ -111,7 +115,7 @@ void AllocFuncType(func_type_ptr *o_functionType, u32 i_numArgs)
 {
     size_t funcTypeSize = sizeof(func_type) - 2 /* sizeof (argTypes [2]) */ + i_numArgs;
 
-    *o_functionType = malloc(funcTypeSize);
+    *o_functionType = sys_malloc(funcTypeSize);
 }
 int NormalizeType(u8 *o_type, i8 i_convolutedWasmType)
 {
@@ -154,7 +158,7 @@ void ParseSection_Type(wasm_module_ptr module, bytes start, bytes end)
     if (numTypes)
     {
         // table of IM3FuncType (that point to the actual M3FuncType struct in the Environment)
-        module->func_type_list = malloc(numTypes * sizeof(func_type_ptr));
+        module->func_type_list = sys_malloc(numTypes * sizeof(func_type_ptr));
         module->func_type_num = numTypes;
 
         for (u32 i = 0; i < numTypes; ++i)
@@ -205,8 +209,8 @@ void FreeImportInfo(import_info_ptr i_info)
 {
     if (i_info->fieldUtf8 && i_info->moduleUtf8)
     {
-        free(i_info->moduleUtf8);
-        free(i_info->fieldUtf8);
+        sys_free(i_info->moduleUtf8);
+        sys_free(i_info->fieldUtf8);
     }
 }
 
@@ -277,28 +281,34 @@ void ParseSection_Import(wasm_module_ptr module, bytes start, bytes end)
 }
 void Module_AddFunction(wasm_module_ptr module, u32 i_typeIndex, import_info_ptr i_importInfo)
 {
-    if(module->function_num==0){
-        module->function_list=malloc(sizeof(wasm_function_ptr));
-        module->function_list[0]= malloc(sizeof(wasm_function));
-        module->function_num=1;
-    }else {
+    if (module->function_num == 0)
+    {
+        module->function_list = sys_malloc(sizeof(wasm_function_ptr));
+        module->function_list[0] = sys_malloc(sizeof(wasm_function));
+        module->function_num = 1;
+    }
+    else
+    {
         module->function_num++;
-        module->function_list = realloc(module->function_list, module->function_num * sizeof(wasm_function_ptr));
-        module->function_list[module->function_num-1] = malloc(sizeof(wasm_function));
+        log(parse,"bytes to alloc: %d",module->function_num * sizeof(wasm_function_ptr));
+        module->function_list = sys_realloc(module->function_list, module->function_num * sizeof(wasm_function_ptr));
+        module->function_list[module->function_num - 1] = sys_malloc(sizeof(wasm_function));
     }
 
     if (i_typeIndex < module->func_type_num)
     {
-        wasm_function_ptr func = module->function_list[module->function_num-1];
+        wasm_function_ptr func = module->function_list[module->function_num - 1];
         func->funcType = module->func_type_list[i_typeIndex];
 
         if (i_importInfo)
         {
             func->import = *i_importInfo;
             func->name = i_importInfo->fieldUtf8;
-        }else{
-            func->name = malloc(10);
-            snprintf(func->name,10,"f%d",module->function_num-module->import_num);
+        }
+        else
+        {
+            func->name = sys_malloc(10);
+            snprintf(func->name, 10, "f%d", module->function_num - module->import_num);
         }
         // log(parse,"   added function %3d: %s; sig: %d;",module->function_num-1,func->name, i_typeIndex);
         logif(parse, {printf("   added function %3d:",module->function_num-1);printf(" %s;",func->name);printf(" sig: %d;", i_typeIndex); });
@@ -350,7 +360,7 @@ void Module_AddGlobal(wasm_module_ptr module, u32 index, wasm_global_ptr *o_glob
     if (index == module->global_num)
     {
         module->global_num++;
-        realloc(module->global_list, module->global_num * sizeof(wasm_global));
+        sys_realloc(module->global_list, module->global_num * sizeof(wasm_global));
     }
     wasm_global_ptr global = &module->global_list[index];
 
@@ -381,7 +391,7 @@ void ParseSection_Global(wasm_module_ptr module, bytes start, bytes end)
     log(parse, "** Global [%d]", numGlobals);
     module->global_num = numGlobals;
 
-    module->global_list = malloc(numGlobals * sizeof(wasm_global));
+    module->global_list = sys_malloc(numGlobals * sizeof(wasm_global));
     for (u32 i = 0; i < numGlobals; ++i)
     {
         i8 waType;
@@ -446,6 +456,7 @@ void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end)
                 log(parse, "    code size: %-4d", size);
 
                 u32 numLocals = 0;
+                u32 numLocalBytes = 0;
 
                 for (u32 l = 0; l < numLocalBlocks; ++l)
                 {
@@ -458,6 +469,21 @@ void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end)
                     NormalizeType(&normalType, wasmType);
 
                     numLocals += varCount;
+
+                    switch (normalType)
+                    {
+                    case WASM_Type_i32:
+                    case WASM_Type_f32:
+                        numLocalBytes += 4 * varCount;
+                        break;
+                    case WASM_Type_i64:
+                    case WASM_Type_f64:
+                        numLocalBytes += 8 * varCount;
+                        break;
+                    default:
+                        panicf("unsupported local type");
+                        break;
+                    }
                     // log(parse, "      %2d locals; type: '%s'", varCount, wasm_types_names[normalType]);
                     logif(parse, printf("      %2d locals; ", varCount); printf("type: '%s'", wasm_types_names[normalType]));
                 }
@@ -468,6 +494,7 @@ void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end)
                 func->wasm = ptr;
                 func->wasmEnd = start;
                 func->numLocals = numLocals;
+                func->numLocalBytes = numLocalBytes;
             }
             else
                 panicf("Wasm Section Overrun");
@@ -475,15 +502,13 @@ void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end)
     }
 }
 
-
-
 void ParseSection_Data(wasm_module_ptr module, bytes start, bytes end)
 {
     u32 numDataSegments;
     ReadLEB_u32(&numDataSegments, &start, end);
     log(parse, "** Data [%d]", numDataSegments);
 
-    module->data_segment_list = malloc(numDataSegments * sizeof(data_segment));
+    module->data_segment_list = sys_malloc(numDataSegments * sizeof(data_segment));
 
     module->data_segment_num = numDataSegments;
 
@@ -507,9 +532,9 @@ void ParseSection_Data(wasm_module_ptr module, bytes start, bytes end)
         // log(parse, "    segment [%u]  memory: %u;  expr-size: %d;  size: %d",
         //     i, segment->memoryRegion, segment->initExprSize, segment->size);
         logif(parse, printf("    segment [%u]  ", i); printf("memory: %u;  ",
-         segment->memoryRegion); printf("expr-size: %d;  ", segment->initExprSize); 
-         printf("size: %d", segment->size););
+                                                             segment->memoryRegion);
+              printf("expr-size: %d;  ", segment->initExprSize);
+              printf("size: %d", segment->size););
         start += segment->size;
     }
 }
-
