@@ -19,7 +19,7 @@ WASM示例应用代码
 
 0.  可能需要的依赖(Ubuntu系统)
 ```
-apt install git build-essential wget curl unzip python3 gcc-multilib xxd cmake
+apt install git build-essential wget curl unzip python3 gcc-multilib xxd cmake wabt
 apt install gcc-avr avr-libc avrdude gdb-avr openjdk-11-jdk
 ```
 
