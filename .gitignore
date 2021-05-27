@@ -2,4 +2,3 @@ build/
 .vscode/
 bin/*
 !bin/.gitignore
-lbr_app/*

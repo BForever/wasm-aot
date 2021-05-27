@@ -13,9 +13,13 @@ typedef short i16;
 #ifdef AVRORA
 typedef unsigned long u32;
 typedef long i32;
+typedef float f32;
+typedef double f64; // need to be confirmed
 #else
 typedef unsigned int u32;
 typedef int i32;
+typedef float f32;
+typedef double f64;
 #endif
 typedef unsigned long long u64;
 typedef long long i64;

@@ -11,7 +11,17 @@ u32 getA(){
 u32 getB(){
     return 33;
 }
-
-normal_function imports[3]={printInt,getA,getB};
-char* imports_name[3]={"printInt","getA","getB"};
-u32 imports_num=3;
+void printF32(f32 res)
+{
+    printf("length of types: float: %d, double: %d\r\n", sizeof(float), sizeof(double));
+    printf("result: %f\r\n",res);
+}
+f32 getF32A(){
+    return 1.1;
+}
+f32 getF32B(){
+    return 2.2;
+}
+normal_function imports[6]={printInt, getA, getB, printF32, getF32A, getF32B};
+char* imports_name[6]={"printInt", "getA", "getB", "printF32", "getF32A", "getF32B"};
+u32 imports_num=6;
