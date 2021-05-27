@@ -12,7 +12,7 @@ extern void wkreprog_impl_close();
 extern void wkreprog_impl_reboot();
 extern uint_farptr_t wkreprog_impl_get_raw_position();
 
-extern u16 pc;
+// extern u16 pc;
 // 烧写起始地址相关设置
 #define GET_FAR_ADDRESS(var)                          \
 ({                                                    \

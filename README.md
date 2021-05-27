@@ -17,18 +17,21 @@ WASM示例应用代码
 
 ## 安装教程
 
-0.  可能需要的依赖(Ubuntu系统)
+1.  可能需要的依赖(Ubuntu系统)
 ```
 apt install git build-essential wget curl unzip python3 gcc-multilib xxd cmake wabt
 apt install gcc-avr avr-libc avrdude gdb-avr openjdk-11-jdk
 ```
 
+2. [WABT工具下载](https://github.com/WebAssembly/wabt/releases)
+
 ## 使用说明
 
-0. 编译wasm代码
+1. 编译wasm代码[可选]
+
 首先编写`test.wat`文件（暂时使用文本格式直接编写wasm代码，方便调试）
 
-然后使用一下指令将其转化为`.h`格式
+然后使用以下指令将其转化为`.h`格式
 ```
 wat2wasm test.wat -o test.wasm --enable-annotations -v
 wasm2wat test.wasm -o testi.wat  
@@ -43,7 +46,7 @@ xxd -i test.wasm > test.wasm.h
 即可直接查看结果。
 如果在wat中有import的函数，请在`instance.py`中同样添加。
 
-1.  编译代码
+2.  编译代码
 
 在根目录执行以下shell命令：
 ```
@@ -52,7 +55,7 @@ mkdir build&&cd build
 cmake ..
 make
 ```
-2. 在模拟器中运行
+3. 在模拟器中运行
 
 在根目录执行以下shell命令：
 ```

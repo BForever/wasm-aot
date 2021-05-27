@@ -33,7 +33,7 @@ from wasmer_compiler_cranelift import Compiler
 #       (export "add_one" (func $add_one_f)))
 #     """
 # )
-wasm_bytes = open("../test.wasm", 'rb').read()
+wasm_bytes = open("../branch-test.wasm", 'rb').read()
 
 # Create a store. Engines and compilers are explained in other
 # examples.

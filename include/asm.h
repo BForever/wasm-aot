@@ -25,7 +25,11 @@ void emit_x_avroraPrintRegs();
 void emit_x_preinvoke();
 void emit_x_postinvoke();
 
-
+// void emit_save_Y();
+// void emit_restore_Y();
+// void emit_init_Y();
+void emit_local_init(u16 numLocalBytes);
+void emit_local_deinit(u16 numLocalBytes);
 
 
 #define R0        0
@@ -366,5 +370,7 @@ void emit_x_postinvoke();
 #define OPCODE_SUBI                     0x5000
 #define emit_SUBI(reg, constant)        emit_LDI_SBCI_SUBI_CPI(OPCODE_SUBI, reg, constant)
 
+#define OPCODE_CLI                      0x94f8
+#define emit_CLI()                      emit(OPCODE_CLI)
 
 #endif // ASM_H

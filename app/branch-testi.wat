@@ -1,8 +1,8 @@
 (module
   (type (;0;) (func (param i32)))
-  (type (;1;) (func))
+  (type (;1;) (func (result i32)))
+  (type (;2;) (func))
   (import "env" "printInt" (func (;0;) (type 0)))
-<<<<<<< HEAD
   (import "env" "getA" (func (;1;) (type 1)))
   (import "env" "getB" (func (;2;) (type 1)))
   (func (;3;) (type 2)
@@ -30,12 +30,3 @@
     i32.add
     call 0)
   (export "main" (func 3)))
-=======
-  (func (;1;) (type 1)
-    (local i32)
-    i32.const 10
-    local.set 0
-    local.get 0
-    call 0)
-  (global (;0;) (mut i32) (i32.const 1)))
->>>>>>> 4be8bdeffdc08ce89ca15b5ae154461cabd568ed

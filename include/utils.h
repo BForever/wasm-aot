@@ -1,6 +1,12 @@
 #ifndef UTILS_H
 #define UTILS_H
 #include"types.h"
+
+void* sys_malloc(u16 size);
+void* sys_calloc(u16 numBlocks,u16 size);
+void* sys_realloc(void* ptr,u16 size);
+void sys_free(void* ptr);
+
 void ReadLebUnsigned(u64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_end);
 void ReadLebSigned(i64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_end);
 

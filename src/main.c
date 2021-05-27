@@ -1,7 +1,6 @@
-#include <stdlib.h>
 #include "app.wasm.h"
-#include "hello.wasm.h"
-#include "client.wasm.h"
+// #include "hello.wasm.h"
+// #include "client.wasm.h"
 #include "test.wasm.h"
 #include "debug.h"
 #include "types.h"
@@ -9,15 +8,17 @@
 #include "compile.h"
 #include "utils.h"
 void wasm_call_method(normal_function method) {
-	printf("starting wasm execution...\r\n");
+	log(temp,"start exec");
 	method();
 }
 
+// extern char* __data_start;
+// extern void* __malloc_heap_start;
+
 int main()
 {
-
 	// WASM 代码数组
-	wasm_code_ptr code = malloc(sizeof(wasm_code));
+	wasm_code_ptr code = sys_malloc(sizeof(wasm_code));
 	// code->ptr = app_wasm;
 	// code->length = app_wasm_len;
 	// code->ptr = hello_wasm;
@@ -27,14 +28,14 @@ int main()
 	code->ptr = test_wasm;
 	code->length  = test_wasm_len;
 
-
 	// 读取WASM字节码
 	wasm_module_ptr module = wasm_load_module(code);
 	// 编译烧写
 	wasm_compile_module(module);
 
 	// 开始执行
+	log(temp,"SP:%p",STACK_POINTER());
 	wasm_call_method(module->entry_method);
 
-	printf("wasm entry function returned.\r\n");
+	log(temp,"wasm func returned.");
 }
