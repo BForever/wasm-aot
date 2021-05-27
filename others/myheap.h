@@ -2,7 +2,7 @@
 #define HEAP_H
 #include "types.h"
 
-#define heap_size 2048
+#define heap_size 1024
 
 void *aot_calloc(u16 nele, u16 size);
 void *aot_realloc(void *ptr, u16 len);

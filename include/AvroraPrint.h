@@ -59,7 +59,7 @@
 
 #ifndef _AVRORAPRINT_H_
 #define _AVRORAPRINT_H_
-
+#include "types.h"
 #include <stdarg.h>
 #ifdef __GNUC__
 # define AVRORA_PRINT_INLINE __inline__
@@ -67,7 +67,7 @@
 /* Try the C99 keyword instead. */
 # define AVRORA_PRINT_INLINE inline
 #endif
-volatile uint8_t debugbuf1[5];
+volatile u8 debugbuf1[5];
 
 
 #define AVRORA_PRINT_STRINGS  					0x2

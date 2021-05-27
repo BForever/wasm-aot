@@ -1,18 +1,19 @@
 #include "heap.h"
-
+#include "debug.h"
 struct freelist
 {
     u16 sz;
     struct freelist *nx;
 };
 
+// char __attribute__((section (".eheap"))) __attribute__ ((aligned (2))) heap[heap_size];
 char heap[heap_size];
 
 char *malloc_heap_start = heap;
 char *malloc_heap_end = heap + heap_size;
 
-char *brkval;
-struct freelist *flp;
+char *brkval=NULL;
+struct freelist *flp=NULL;
 
 void *aot_malloc(u16 len)
 {
@@ -113,15 +114,17 @@ void *aot_malloc(u16 len)
 	 * Since we don't have an operating system, just make sure
 	 * that we don't collide with the stack.
 	 */
-    if (brkval == 0)
+    if (brkval == 0){
         brkval = malloc_heap_start;
+    }
+        
     cp = malloc_heap_end;
-
-    if (cp <= brkval)
-        /*
+    if (cp <= brkval){
+      /*
 	   * Memory exhausted.
 	   */
-        return 0;
+      return 0;
+    }
     avail = cp - brkval;
     /*
 	 * Both tests below are needed to catch the case len >= 0xfffe.

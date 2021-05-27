@@ -11,6 +11,7 @@ cd ../app
 wat2wasm test.wat -o test.wasm --enable-annotations -v
 wasm2wat test.wasm -o testi.wat
 xxd -i test.wasm > test.wasm.h
+sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# test.wasm.h
 
 cd ../build
 make 

@@ -357,11 +357,11 @@ void ParseSection_Memory(wasm_module_ptr module, bytes start, bytes end)
 }
 void Module_AddGlobal(wasm_module_ptr module, u32 index, wasm_global_ptr *o_global, u8 i_type, bool i_mutable, bool i_isImported)
 {
-    if (index == module->global_num)
-    {
-        module->global_num++;
-        sys_realloc(module->global_list, module->global_num * sizeof(wasm_global));
-    }
+    // if (index == module->global_num)
+    // {
+    //     module->global_num++;
+    //     sys_realloc(module->global_list, module->global_num * sizeof(wasm_global));
+    // }
     wasm_global_ptr global = &module->global_list[index];
 
     global->type = i_type;
@@ -401,7 +401,7 @@ void ParseSection_Global(wasm_module_ptr module, bytes start, bytes end)
         NormalizeType(&type, waType);
         ReadLEB_u7(&isMutable, &start, end);
         // log(parse,"    global: [%d] %s mutable=%d",i,wasm_types_names[type],isMutable);
-        logif(parse, printf("    global: [%d] %s ", i, wasm_types_names[type]); printf("mutable=%d", isMutable));
+        logif(parse, printf("    global: [%d] ",i);printf("%s ", wasm_types_names[type]); printf("mutable=%d", isMutable));
         wasm_global_ptr global;
         Module_AddGlobal(module, i, &global, type, isMutable, false /* isImport */);
         global->initExpr = start;

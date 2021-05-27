@@ -2,12 +2,15 @@
 #define DEBUG_H
 
 #include<stdio.h>
+#include<avr/io.h>
 #define DEBUG 1
-#define d_log_parse 1
+#define d_log_parse 0
 #define d_log_compile 1
-#define d_log_wkreprog 1
+#define d_log_wkreprog 0
 #define d_log_emit 1
-#define d_log_sys 1
+#define d_log_sys 0
+#define d_log_temp 1
+#define d_log_panic 0
 
 #ifdef AVRORA
 // extern char global_print_buff[128];
@@ -52,19 +55,32 @@
         #define log_sys(...) do{}while(0)
     #endif
 
+    #if d_log_temp
+        #define log_temp(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
+    #else
+        #define log_temp(...) do{}while(0)
+    #endif
+
 
     #define log(CATEGORY, FMT, ...)                    log_##CATEGORY (CATEGORY, FMT "\r\n", ##__VA_ARGS__)
     #define logif(CATEGORY, STATEMENT)                 do{log_##CATEGORY (CATEGORY, ""); if (d_log_##CATEGORY) { STATEMENT; printf ("\r\n"); }}while(0)
+
+
+
 #else
     #define log(CATEGORY, FMT, ...)                    do{}while(0)
     #define logif(CATEGORY, STATEMENT)                 do{}while(0)
 # endif
 
-#define panicf(FMT,...)  do{printf("ERROR! "FMT ":%s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);while(1);}while(0)
-#define panic()  do{printf("ERROR! at %s :%d\r\n",__FILE__,__LINE__);while(1);}while(0)
+#if d_log_panic
+#define panicf(FMT,...)  do{printf("%s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);while(1);}while(0)
+#define panic()  do{printf("%s :%d\r\n",__FILE__,__LINE__);while(1);}while(0)
+#else
+#define panicf(FMT,...)  do{while(1);}while(0)
+#define panic()  do{while(1);}while(0)
+#endif
 
 
-
-
+#define STACK_POINTER() ((char *)AVR_STACK_POINTER_REG)
 
 #endif //DEBUG_H

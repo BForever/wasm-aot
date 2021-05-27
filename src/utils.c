@@ -2,8 +2,9 @@
 #include "debug.h"
 #include "config.h"
 #include "utils.h"
-#include "heap.h"
+// #include "heap.h"
 #include <string.h>
+#include <stdlib.h>
 #include <avr/pgmspace.h>
 
 void ReadLebUnsigned(u64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_end)
@@ -15,7 +16,8 @@ void ReadLebUnsigned(u64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_en
 
     while (ptr < i_end)
     {
-        u64 byte = *(ptr++);
+        u64 byte = pgm_read_byte_far(ptr);
+        ptr++;
 
         value |= ((byte & 0x7f) << shift);
         shift += 7;
@@ -45,7 +47,8 @@ void ReadLebSigned(i64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_end)
 
     while (ptr < i_end)
     {
-        u64 byte = *(ptr++);
+        u64 byte = pgm_read_byte_far(ptr);
+        ptr++;
 
         value |= ((byte & 0x7f) << shift);
         shift += 7;
@@ -74,25 +77,26 @@ void ReadLEB_u7(u8 *o_value, bytes *io_bytes, bytes i_end)
     ReadLebUnsigned(&value, 7, io_bytes, i_end);
     *o_value = (u8)value;
 }
-void Read_u8(u8 *o_value, bytes *io_bytes, bytes i_end)
-{
-    const u8 *ptr = *io_bytes;
-
-    if (ptr < i_end)
-    {
-        *o_value = *ptr;
-        ptr += sizeof(u8);
-        *io_bytes = ptr;
-    }
-    else
-        panicf("Wasm Underrun");
-}
 void ReadLEB_u32(u32 *o_value, bytes *io_bytes, bytes i_end)
 {
     u64 value;
     ReadLebUnsigned(&value, 32, io_bytes, i_end);
     *o_value = (u32)value;
 }
+void Read_u8(u8 *o_value, bytes *io_bytes, bytes i_end)
+{
+    const u8 *ptr = *io_bytes;
+
+    if (ptr < i_end)
+    {
+        *o_value = pgm_read_byte_far(ptr);
+        ptr += sizeof(u8);
+        *io_bytes = ptr;
+    }
+    else
+        panicf("Wasm Underrun");
+}
+
 void Read_u32(u32 *o_value, bytes *io_bytes, bytes i_end)
 {
     const u8 *ptr = *io_bytes;
@@ -100,7 +104,8 @@ void Read_u32(u32 *o_value, bytes *io_bytes, bytes i_end)
 
     if (ptr <= i_end)
     {
-        memcpy(o_value, *io_bytes, sizeof(u32));
+        *o_value = pgm_read_dword_far(*io_bytes);
+        // memcpy(o_value, *io_bytes, sizeof(u32));
         BSWAP_u32(*o_value);
         *io_bytes = ptr;
     }
@@ -130,6 +135,14 @@ void ReadLEB_i64(i64 *o_value, bytes *io_bytes, bytes i_end)
     *o_value = value;
 }
 
+void pgm_memcpy(u8* dst_dm,u8* src_pgm,u16 len){
+    for(int i=0;i<len;i++){
+        *dst_dm = pgm_read_byte_far(src_pgm);
+        dst_dm++;
+        src_pgm++;
+    }
+}
+
 void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end)
 {
     *o_utf8 = NULL;
@@ -147,7 +160,7 @@ void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end)
             char *utf8;
             utf8 = sys_malloc(utf8Length + 1);
 
-            memcpy(utf8, ptr, utf8Length);
+            pgm_memcpy(utf8, ptr, utf8Length);
             utf8[utf8Length] = 0;
             *o_utf8 = utf8;
 
@@ -267,21 +280,21 @@ bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func){
 }
 
 void* sys_malloc(u16 size){
-    void* ret = aot_malloc(size);
-    logif(sys,printf("malloc %d bytes at ",size);printf("%p",ret););
+    void* ret = malloc(size);
+    logif(sys,printf("malloc %d b at ",size);printf("%p",ret););
     return ret;
 }
 void* sys_calloc(u16 numBlocks,u16 size){
-    void* ret = aot_calloc(numBlocks,size);
-    logif(sys,printf("calloc %d bytes at ",size*numBlocks);printf("%p",ret););
+    void* ret = calloc(numBlocks,size);
+    logif(sys,printf("calloc %d b at ",size*numBlocks);printf("%p",ret););
     return ret;
 }
 void* sys_realloc(void* ptr,u16 size){
-    void* ret = aot_realloc(ptr,size);
-    logif(sys,printf("realloc %d bytes at ",size);printf("%p",ret););
+    void* ret = realloc(ptr,size);
+    logif(sys,printf("realloc %d b at ",size);printf("%p",ret););
     return ret;
 }
 void sys_free(void* ptr){
-    aot_free(ptr);
+    free(ptr);
     log(sys,"free %p",ptr);
 }

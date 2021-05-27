@@ -4,12 +4,13 @@
 #include "utils.h"
 #include "compile.h"
 #include <stdlib.h>
+#include <avr/pgmspace.h>
 
 
 
 void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, bytes *start, bytes end)
 {
-    u8 op = **start;
+    u8 op = pgm_read_byte_far(*start);
     (*start)++;
     u32 temp;
     switch (op)
@@ -51,7 +52,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                     if(base<R8){
                         //TODO栈传值
                     }else{
-                        logif(emit,printf("pop32 for param %d at:",i);printf(" R%d ",base);printf(" R%d ",base+1);printf(" R%d ",base+2);printf(" R%d ",base+3););
+                        logif(emit,printf("pop32 for param %d at",i);printf(" R%d.",base););
                         emit_x_POP_32bit(base);
                     }
                 }
@@ -60,7 +61,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             if(need_memory_pass){
                 
             }
-            log(emit,"call imported function %s",called_func->name);
+            log(emit,"call func %s",called_func->name);
             emit_2_CALL(called_func->native); //TODO 不同签名类型的函数应当有不同的局部变量预处理
 
             if(type->returnType!=WASM_Type_none){
@@ -72,7 +73,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         }
         else
         {
-            log(emit,"call compiled function %s",called_func->name);
+            log(emit,"call func %s",called_func->name);
             int index = temp-module->import_num;
             emit_2_CALL(jump_vector_start_addr+2*(index));
             // emit_2_CALL(called_func->compiled);
@@ -87,7 +88,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 如果函数有局部变量，则恢复Y指针
         if(func->numLocals){
             // emit_restore_Y();
-            log(emit,"deinit %d bytes locals",func->numLocalBytes);
+            log(emit,"deinit %dB locals",func->numLocalBytes);
             emit_local_deinit(func->numLocalBytes);
         }
 
@@ -97,7 +98,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     case I32Const:
         ReadLEB_u32(&temp,start,end);
         log(emit,"[I32.CONST %d]",temp);
-        log(emit, "load const %d to R22,R23,R24,R25",temp);
+        log(emit, "load %d to R22.",temp);
         emit_LDI(R22,(u8)temp);
         emit_LDI(R23,(u8)temp>>8);
         emit_LDI(R24,(u8)temp>>16);
@@ -107,11 +108,11 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         break;
     case I32Add:
         log(emit,"[I32.ADD]");
-        log(emit, "pop32 to R22...");
+        log(emit, "pop32 to R22.");
         emit_x_POP_32bit(R22);
-        log(emit, "pop32 to R18...");
+        log(emit, "pop32 to R18.");
         emit_x_POP_32bit(R18);
-        log(emit, "add32 R22... = R22... + R18...");
+        log(emit, "add32 R22. = R22. + R18.");
         emit_ADD(R22,R18);
         emit_ADC(R23,R19);
         emit_ADC(R24,R20);
@@ -133,7 +134,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         //读取局部变量索引
         ReadLEB_u32(&temp,start,end);
         log(emit,"[LOCAL.GET %d]",temp);
-        log(emit,"Load R22... from local space[%d]",temp*4);
+        log(emit,"Load R22... from local[%d]",temp*4);
         emit_LDD(R22,Y,1+temp*4);
         emit_LDD(R23,Y,2+temp*4);
         emit_LDD(R24,Y,3+temp*4);
@@ -147,7 +148,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit,"[LOCAL.SET %d]",temp);
         log(emit, "pop32 to R22...");
         emit_x_POP_32bit(R22);
-        log(emit, "Store R22... to local space[%d]",temp*4);
+        log(emit, "Store R22... to local[%d]",temp*4);
         emit_STD(R22,Y,1+temp*4);
         emit_STD(R23,Y,2+temp*4);
         emit_STD(R24,Y,3+temp*4);
@@ -157,7 +158,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         //读取全局变量索引
         ReadLEB_u32(&temp,start,end);
         log(emit,"[GLOBAL.GET %d]",temp);
-        log(emit,"Load R22... from global space[%d]",module->global_list[temp].offset);
+        log(emit,"Load R22. from global[%d]",module->global_list[temp].offset);
         emit_LDD(R22,Z,module->global_list[temp].offset);
         emit_LDD(R23,Z,module->global_list[temp].offset+1);
         emit_LDD(R24,Z,module->global_list[temp].offset+2);
@@ -168,9 +169,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     case GlobalSet:
         ReadLEB_u32(&temp,start,end);
         log(emit,"[GLOBAL.SET %d]",temp);
-        log(emit, "pop32 to R22...");
+        log(emit, "pop32 to R22.");
         emit_x_POP_32bit(R22);
-        log(emit, "Store R22... to global space[%d]",module->global_list[temp].offset);
+        log(emit, "Store R22. to global[%d]",module->global_list[temp].offset);
         emit_STD(R22,Z,module->global_list[temp].offset);
         emit_STD(R23,Z,module->global_list[temp].offset+1);
         emit_STD(R24,Z,module->global_list[temp].offset+2);
