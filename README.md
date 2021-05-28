@@ -41,10 +41,16 @@ xxd -i test.wasm > test.wasm.h
 
 第二个命令反向从二进制格式转化为文本格式，可以用于对比验证手动编写代码的正确性
 
+如需测试wat是否正确，可以在`app/wasmer-test`下运行`python3 instance.py`
+(依赖: `pip install wasmer wasmer_compiler_cranelift`)
+即可直接查看结果。
+如果在wat中有import的函数，请在`instance.py`中同样添加。
+
 2.  编译代码
 
 在根目录执行以下shell命令：
 ```
+rm -rf build
 mkdir build&&cd build
 cmake ..
 make
