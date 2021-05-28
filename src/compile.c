@@ -15,7 +15,8 @@ bool is_imported(wasm_function_ptr func)
     return !(func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL);
 }
 
-u16 jump_vector_start_addr;
+
+
 bytes wasm_globals_start;
 extern uint_farptr_t avr_flash_pageaddress;
 u16 *codebuffer;
@@ -31,6 +32,7 @@ void compile_init(wasm_module_ptr module)
 void compile_deinit(wasm_module_ptr module)
 {
     // 烧写跳转向量表
+    RTC_SET_START_OF_NEXT_METHOD(jump_vector_start_addr);
     compile_open();
     jump_vector_start_addr = rtc_start_of_next_method;
     for (int i = 0; i < module->function_num - module->import_num; i++)
@@ -139,13 +141,15 @@ void wasm_compile_module(wasm_module_ptr module)
             if (is_entry_func(module, func))
             {
                 //TODO 暂时以第一个函数为入口函数
-                module->entry_method = func->compiled;
+                // module->entry_method = func->compiled;
+                
                 log(compile, "entry: %s", func->name);
             }
         }
     }
-
+    
     compile_deinit(module);
+    module->entry_method = jump_vector_start_addr;
 }
 
 

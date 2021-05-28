@@ -14,6 +14,7 @@ void wasm_call_method(normal_function method) {
 
 // extern char* __data_start;
 // extern void* __malloc_heap_start;
+extern char* __brkval;
 
 int main()
 {
@@ -34,6 +35,7 @@ int main()
 	wasm_compile_module(module);
 
 	// 开始执行
+	log(temp,"heap:%p",__brkval);
 	log(temp,"SP:%p",STACK_POINTER());
 	wasm_call_method(module->entry_method);
 
