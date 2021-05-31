@@ -107,7 +107,6 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 }
 void wasm_compile_module(wasm_module_ptr module)
 {
-    logif(wkreprog, printf("before flash\r\n"); hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE, 64););
     wasm_global_init(module);
 
     compile_init(module);
@@ -155,7 +154,6 @@ void wasm_compile_module(wasm_module_ptr module)
     compile_deinit(module);
     module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE/2;
     log(compile, "entry:%p", GET_FAR_ADDRESS(jump_vector_start_addr));
-    logif(wkreprog, printf("\r\n"); hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE, 64););
 }
 
 void wasm_global_init(wasm_module_ptr module)

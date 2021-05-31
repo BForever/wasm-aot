@@ -228,7 +228,7 @@ void emit_local_deinit(u16 numLocalBytes);
 
 // LDD                                  10q0 qq0d dddd yqqq, with d=dest register, q=offset from Y or Z, y=1 for Y 0 for Z
 #define OPCODE_LDD                      0x8000
-#define emit_LDD(reg, xy, offset)       emit_LDD(reg, xy, offset)
+#define emit_LDD(reg, yz, offset)       emit_LDD(reg, yz, offset)
 
 // LDI                                  1110 KKKK dddd KKKK, with K=constant to load, d=dest register-16 (can only load to r16-r31)
 #define OPCODE_LDI                      0xE000

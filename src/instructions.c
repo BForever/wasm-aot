@@ -13,6 +13,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     u8 op = pgm_read_byte_far(*start);
     (*start)++;
     u32 temp;
+    u8 base;
     switch (op)
     {
     case Call:
@@ -30,7 +31,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             func_type_ptr type = called_func->funcType;
             
             //先检查时候需要通过内存（栈）传参
-            u8 base = R26;
+            base = R26;
             bool need_memory_pass=false;
             for(int i=0;i<type->numArgs;i++){
                 if(type->argTypes[i]==WASM_Type_i32){
@@ -136,10 +137,11 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ReadLEB_u32(&temp,start,end);
         log(emit,"[LOCAL.GET %d]",temp);
         log(emit,"Load R22... from local[%d]",temp*4);
-        emit_LDD(R22,Y,1+temp*4);
-        emit_LDD(R23,Y,2+temp*4);
-        emit_LDD(R24,Y,3+temp*4);
-        emit_LDD(R25,Y,4+temp*4);
+        base = temp*4;
+        emit_LDD(R22,Y,base+1);
+        emit_LDD(R23,Y,base+2);
+        emit_LDD(R24,Y,base+3);
+        emit_LDD(R25,Y,base+4);
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
         break;
@@ -150,10 +152,11 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "pop32 to R22...");
         emit_x_POP_32bit(R22);
         log(emit, "Store R22... to local[%d]",temp*4);
-        emit_STD(R22,Y,1+temp*4);
-        emit_STD(R23,Y,2+temp*4);
-        emit_STD(R24,Y,3+temp*4);
-        emit_STD(R25,Y,4+temp*4);
+        base = temp*4;
+        emit_STD(R22,Y,base+1);
+        emit_STD(R23,Y,base+2);
+        emit_STD(R24,Y,base+3);
+        emit_STD(R25,Y,base+4);
         break;
     case GlobalGet:
         //读取全局变量索引
