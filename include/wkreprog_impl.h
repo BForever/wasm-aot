@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "stdint.h"
+#include "utils.h"
 
 extern u16 wkreprog_impl_get_page_size();
 extern bool wkreprog_impl_open_app_archive(u16 start_write_position);
@@ -14,23 +15,7 @@ extern uint_farptr_t wkreprog_impl_get_raw_position();
 
 // extern u16 pc;
 // 烧写起始地址相关设置
-#define GET_FAR_ADDRESS(var)                          \
-({                                                    \
-	uint_farptr_t tmp;                                \
-                                                      \
-	__asm__ __volatile__(                             \
-                                                      \
-			"ldi	%A0, lo8(%1)"           "\n\t"    \
-			"ldi	%B0, hi8(%1)"           "\n\t"    \
-			"ldi	%C0, hh8(%1)"           "\n\t"    \
-			"clr	%D0"                    "\n\t"    \
-		:                                             \
-			"=d" (tmp)                                \
-		:                                             \
-			"p"  (&(var))                             \
-	);                                                \
-	tmp;                                              \
-})
+
 extern const unsigned char rtc_start_of_compiled_code_marker;
 #define RTC_START_OF_COMPILED_CODE_SPACE (GET_FAR_ADDRESS(rtc_start_of_compiled_code_marker))
 #define RTC_END_OF_COMPILED_CODE_SPACE ((u32)122880)

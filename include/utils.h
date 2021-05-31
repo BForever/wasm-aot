@@ -27,4 +27,23 @@ void hexdump_pgm(bytes buf, u32 buf_len);
 
 u32 mystrcmp(const char* S1,const char* S2);
 bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func);
+
+#define GET_FAR_ADDRESS(var)                          \
+({                                                    \
+	uint_farptr_t tmp;                                \
+                                                      \
+	__asm__ __volatile__(                             \
+                                                      \
+			"ldi	%A0, lo8(%1)"           "\n\t"    \
+			"ldi	%B0, hi8(%1)"           "\n\t"    \
+			"ldi	%C0, hh8(%1)"           "\n\t"    \
+			"clr	%D0"                    "\n\t"    \
+		:                                             \
+			"=d" (tmp)                                \
+		:                                             \
+			"p"  (&(var))                             \
+	);                                                \
+	tmp;                                              \
+})
+
 #endif

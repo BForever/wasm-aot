@@ -15,8 +15,7 @@ bool is_imported(wasm_function_ptr func)
     return !(func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL);
 }
 
-
-
+u16 jump_vector_start_addr;
 bytes wasm_globals_start;
 extern uint_farptr_t avr_flash_pageaddress;
 u16 *codebuffer;
@@ -26,21 +25,26 @@ void compile_init(wasm_module_ptr module)
     codebuffer = sys_malloc(RTC_CODEBUFFER_SIZE * 2);
     emit_init(codebuffer);
 
+    // 留空跳转向量表
+    compile_open();
+    jump_vector_start_addr = rtc_start_of_next_method;
+    wkreprog_skip((module->function_num - module->import_num) * 4);
+    compile_close();
+
     // call_target_list = sys_calloc(module->function_num-module->import_num,sizeof(u16));
     // hexdump_pgm((bytes)(((uint16_t)rtc_start_of_next_method)*2), 10);
 }
 void compile_deinit(wasm_module_ptr module)
 {
     // 烧写跳转向量表
-    RTC_SET_START_OF_NEXT_METHOD(jump_vector_start_addr);
+    RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
     compile_open();
-    jump_vector_start_addr = rtc_start_of_next_method;
     for (int i = 0; i < module->function_num - module->import_num; i++)
     {
         emit_2_JMP(module->function_list[module->import_num + i]->compiled * 2);
     }
     compile_close();
-    
+
     sys_free(codebuffer);
 }
 //为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
@@ -76,19 +80,19 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         // emit_x_call_save();
 
         // 加载全局变量区首地址
-        log(emit,"global space:%p",wasm_globals_start);
+        log(emit, "global space:%p", wasm_globals_start);
         // logif(emit,printf("set Z:Z+1 to %02X",(u8)wasm_globals_start);printf(":%02X",(u8)(((u16)wasm_globals_start)>>8)););
-        
-        emit_LDI(R30,(u8)wasm_globals_start);
-        emit_LDI(R31,((u8)((u16)wasm_globals_start>>8)));
 
+        emit_LDI(R30, (u8)wasm_globals_start);
+        emit_LDI(R31, ((u8)((u16)wasm_globals_start >> 8)));
     }
 
-    if(func->numLocals){
+    if (func->numLocals)
+    {
         // emit_save_Y();
         // emit_init_Y();
         // emit_SBIW(R28,func->numLocalBytes);
-        log(emit,"init %dB locals",func->numLocalBytes);
+        log(emit, "init %dB locals", func->numLocalBytes);
         emit_local_init(func->numLocalBytes);
     }
 
@@ -103,7 +107,7 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 }
 void wasm_compile_module(wasm_module_ptr module)
 {
-    
+    logif(wkreprog, printf("before flash\r\n"); hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE, 64););
     wasm_global_init(module);
 
     compile_init(module);
@@ -137,21 +141,22 @@ void wasm_compile_module(wasm_module_ptr module)
         {
             log(compile, "wasm\tfunc %s", func->name);
             wasm_compile_function(module, func);
-            
+
             if (is_entry_func(module, func))
             {
                 //TODO 暂时以第一个函数为入口函数
                 // module->entry_method = func->compiled;
-                
+
                 log(compile, "entry: %s", func->name);
             }
         }
     }
-    
-    compile_deinit(module);
-    module->entry_method = jump_vector_start_addr;
-}
 
+    compile_deinit(module);
+    module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE/2;
+    log(compile, "entry:%p", GET_FAR_ADDRESS(jump_vector_start_addr));
+    logif(wkreprog, printf("\r\n"); hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE, 64););
+}
 
 void wasm_global_init(wasm_module_ptr module)
 {
@@ -160,14 +165,14 @@ void wasm_global_init(wasm_module_ptr module)
     for (int i = 0; i < module->global_num; i++)
     {
         wasm_global_ptr g = &module->global_list[i];
-        
-        log(parse,"global's type = %d",g->type);
+
+        log(parse, "global's type = %d", g->type);
         switch (g->type)
         {
         case WASM_Type_i32:
             wasm_globals_start = sys_realloc(wasm_globals_start, offset + 4);
             bytes init_start = g->initExpr + 1;
-            bytes init_end = init_start + g->initExprSize -1;
+            bytes init_end = init_start + g->initExprSize - 1;
             logif(compile, printf("global %d's i_expr:", i); hexdump_pgm(init_start, init_end - init_start););
             ReadLEB_i32(((i32 *)(wasm_globals_start + offset)), &init_start, init_end);
             log(compile, "i_val: %d", *((i32 *)(wasm_globals_start + offset)));
@@ -181,5 +186,4 @@ void wasm_global_init(wasm_module_ptr module)
             break;
         }
     }
-    
 }

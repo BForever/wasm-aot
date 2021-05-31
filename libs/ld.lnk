@@ -167,9 +167,7 @@ SECTIONS
   }  > data AT> text
   .rtc_code_marker :
   {
-    . = ALIGN(256);
-    PROVIDE (jump_vector_start_addr = .) ;
-    . = . + 256
+    . = ALIGN(2);
     *(.rtc_code_marker)
   }  > text
   .bss  ADDR(.data) + SIZEOF (.data)   : AT (ADDR (.bss))

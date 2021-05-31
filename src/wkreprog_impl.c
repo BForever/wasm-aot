@@ -128,7 +128,7 @@ void wkreprog_impl_close() {
 	if (avr_flash_buf_len != 0) { // If there's any data remaining, write it to flash.
 		// Fill the remaining of the buffer with the old data currently in the file
 		for (int i=avr_flash_buf_len; i<SPM_PAGESIZE; i++)
-			avr_flash_pagebuffer[i] = pgm_read_byte_far(avr_flash_pagebuffer+i);
+			avr_flash_pagebuffer[i] = pgm_read_byte_far(avr_flash_pageaddress+i);
 
 		log(wkreprog, "Flashing page %p.", avr_flash_pageaddress);
 		avr_flash_program_page_if_not_modified(avr_flash_pageaddress, avr_flash_pagebuffer);

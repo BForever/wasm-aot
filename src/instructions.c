@@ -74,7 +74,8 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         else
         {
             log(emit,"call func %s",called_func->name);
-            int index = temp-module->import_num;
+            int index = temp - module->import_num;
+            log(emit,"real index %d",index);
             emit_2_CALL(jump_vector_start_addr+2*(index));
             // emit_2_CALL(called_func->compiled);
         }

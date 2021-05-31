@@ -23,8 +23,6 @@ apt install git build-essential wget curl unzip python3 gcc-multilib xxd cmake w
 apt install gcc-avr avr-libc avrdude gdb-avr openjdk-11-jdk
 ```
 
-2. [WABT工具下载](https://github.com/WebAssembly/wabt/releases)
-
 ## 使用说明
 
 1. 编译wasm代码[可选]
