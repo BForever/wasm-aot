@@ -355,7 +355,7 @@ void emit_local_deinit(u16 numLocalBytes);
 
 // STD                                  10q0 qq1r rrrr yqqq, with r=source register, q=offset from Y or Z, y=1 for Y 0 for Z
 #define OPCODE_STD                      0x8200
-#define emit_STD(reg, xy, offset)       emit_STD(reg, xy, offset)
+#define emit_STD(reg, yz, offset)       emit_STD(reg, yz, offset)
 
 // STS                                  1001 001d dddd 0000
 //                                      kkkk kkkk kkkk kkkk

@@ -2,7 +2,7 @@
 #define INSTRUCTIONS_H
 
 #include "types.h"
-
+extern char* __malloc_heap_start;
 void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func,bytes *start,bytes end);
 
 enum INSTRUCTION

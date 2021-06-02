@@ -1,6 +1,6 @@
 #!/bin/bash
 cc="../../libs/wasi-sdk-12.0/bin/clang"
-z_stack_size=2048
+z_stack_size=16
 index=0
 for filename in `find . -name "*.c"`
 do

@@ -3,7 +3,7 @@
 void printInt(u32 res)
 {
     // printf("hello, world!\r\n");
-    printf("res: %d\r\n",res);
+    printf("res: %ld\r\n",res);
 }
 u32 getA(){
     return 22;

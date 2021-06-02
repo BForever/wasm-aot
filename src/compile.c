@@ -16,8 +16,9 @@ bool is_imported(wasm_function_ptr func)
 }
 
 u16 jump_vector_start_addr;
-bytes wasm_globals_start;
-extern uint_farptr_t avr_flash_pageaddress;
+u16 wasm_globals_size;
+bytes wasm_global_temp_space;
+bytes wasm_mem_space;
 u16 *codebuffer;
 void compile_init(wasm_module_ptr module)
 {
@@ -45,7 +46,16 @@ void compile_deinit(wasm_module_ptr module)
     }
     compile_close();
 
-    sys_free(codebuffer);
+    //释放空间
+    sys_free(module->global_list);//全局变量列表
+    sys_free(module->data_segment_list);//数据段
+    for(int i=0;i<module->function_num;i++){
+        sys_free(module->function_list[i]);//函数列表
+    }
+    sys_free(module->function_list);//函数列表指针
+    sys_free(codebuffer);//指令生成缓存
+    //加载全局变量初始值
+    memcpy(wasm_mem_space,wasm_global_temp_space,wasm_globals_size);
 }
 //为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
 void compile_open()
@@ -80,11 +90,11 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         // emit_x_call_save();
 
         // 加载全局变量区首地址
-        log(emit, "global space:%p", wasm_globals_start);
+        log(emit, "global space:%p", wasm_mem_space);
         // logif(emit,printf("set Z:Z+1 to %02X",(u8)wasm_globals_start);printf(":%02X",(u8)(((u16)wasm_globals_start)>>8)););
 
-        emit_LDI(R30, (u8)wasm_globals_start);
-        emit_LDI(R31, ((u8)((u16)wasm_globals_start >> 8)));
+        emit_LDI(R30, (u8)wasm_mem_space);
+        emit_LDI(R31, ((u8)((u16)wasm_mem_space >> 8)));
     }
 
     if (func->numLocals)
@@ -108,6 +118,7 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 void wasm_compile_module(wasm_module_ptr module)
 {
     wasm_global_init(module);
+    wasm_memory_init(module);
 
     compile_init(module);
 
@@ -153,28 +164,29 @@ void wasm_compile_module(wasm_module_ptr module)
 
     compile_deinit(module);
     module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE/2;
-    log(compile, "entry:%p", GET_FAR_ADDRESS(jump_vector_start_addr));
+    log(compile, "entry:%p", jump_vector_start_addr*2);
 }
+
 
 void wasm_global_init(wasm_module_ptr module)
 {
+    wasm_global_temp_space = NULL;
     u16 offset = 0;
-    wasm_globals_start = sys_malloc(4);
     for (int i = 0; i < module->global_num; i++)
     {
         wasm_global_ptr g = &module->global_list[i];
-
+        
         log(parse, "global's type = %d", g->type);
         switch (g->type)
         {
         case WASM_Type_i32:
-            wasm_globals_start = sys_realloc(wasm_globals_start, offset + 4);
+            wasm_global_temp_space = sys_realloc(wasm_global_temp_space,offset+4);
             bytes init_start = g->initExpr + 1;
             bytes init_end = init_start + g->initExprSize - 1;
             logif(compile, printf("global %d's i_expr:", i); hexdump_pgm(init_start, init_end - init_start););
-            ReadLEB_i32(((i32 *)(wasm_globals_start + offset)), &init_start, init_end);
-            log(compile, "i_val: %d", *((i32 *)(wasm_globals_start + offset)));
-            // hexdump(wasm_globals_start,16);
+            ReadLEB_i32(((i32 *)(wasm_global_temp_space + offset)), &init_start, init_end);
+            log(compile, "i_val: %d", *((i32 *)(wasm_global_temp_space + offset)));
+            // hexdump(wasm_global_temp_space,16);
             g->offset = offset;
             offset += 4;
             break;
@@ -183,5 +195,17 @@ void wasm_global_init(wasm_module_ptr module)
             panicf("global type not supported");
             break;
         }
+    }
+    wasm_globals_size = offset;
+}
+
+void wasm_memory_init(wasm_module_ptr module){
+    if(module->memory_imported){
+        //TODO import memory
+    }else if(module->memory.init_page_num){
+        wasm_mem_space = sys_malloc(4);
+        *((u32*)wasm_mem_space) = 1111;//TODO 用于DEBUG的初始值
+        log(compile,"wasm_mem_space:%p",wasm_mem_space);
+        // wasm_memory_start = sys_malloc(1500);
     }
 }

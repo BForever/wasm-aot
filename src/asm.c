@@ -167,7 +167,6 @@ void emit_x_call_restore(){
             + (((offset) & 0x20) << 8))
 // LDD                                  10q0 qq0d dddd yqqq, with d=dest register, q=offset from Y or Z, y=1 for Y 0 for Z
 void emit_LDD(uint8_t reg, uint8_t yz, uint16_t offset) {
-    log(emit,"offset=%d",offset);
     emit (OPCODE_LDD
              + ((reg) << 4)
              + ((yz) << 3)
@@ -175,7 +174,6 @@ void emit_LDD(uint8_t reg, uint8_t yz, uint16_t offset) {
 }
 // STD                                  10q0 qq1r rrrr yqqq, with r=source register, q=offset from Y or Z, y=1 for Y 0 for Z
 void emit_STD(uint8_t reg, uint8_t yz, uint16_t offset) {
-    log(emit,"offset=%d",offset);
     emit ((OPCODE_STD
              + ((reg) << 4)
              + ((yz) << 3)

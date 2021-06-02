@@ -35,7 +35,6 @@ int main()
 	wasm_compile_module(module);
 
 	// 开始执行
-	log(temp,"heap:%p",__brkval);
 	log(temp,"SP:%p",STACK_POINTER());
 	wasm_call_method(module->entry_method);
 
