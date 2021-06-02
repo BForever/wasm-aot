@@ -117,33 +117,19 @@ void AllocFuncType(func_type_ptr *o_functionType, u32 i_numArgs)
 
     *o_functionType = sys_malloc(funcTypeSize);
 }
-int NormalizeType(u8 *o_type, i8 i_convolutedWasmType)
-{
-    int result = 0;
 
-    u8 type = -i_convolutedWasmType;
-
-    if (type == 0x40)
-        type = WASM_Type_none;
-    else if (type < WASM_Type_i32 || type > WASM_Type_f64)
-        result = 1;
-
-    *o_type = type;
-
-    return result;
-}
 void PrintFuncTypeSignature(func_type_ptr functype)
 {
     printf("(");
-    for (int i = 0; i < functype->numArgs; i++)
+    for (int i = 0; i < functype->args_num; i++)
     {
         if (i == 0)
         {
-            printf("%s", wasm_types_names[functype->argTypes[i]]);
+            printf("%s", wasm_types_names[functype->args_type_list[i]]);
         }
         else
         {
-            printf(", %s", wasm_types_names[functype->argTypes[i]]);
+            printf(", %s", wasm_types_names[functype->args_type_list[i]]);
         }
     }
     printf(") -> %s", wasm_types_names[functype->returnType]);
@@ -176,7 +162,7 @@ void ParseSection_Type(wasm_module_ptr module, bytes start, bytes end)
             AllocFuncType(&module->func_type_list[i], numArgs);
 
             func_type_ptr ftype = module->func_type_list[i];
-            ftype->numArgs = numArgs;
+            ftype->args_num = numArgs;
 
             for (u32 a = 0; a < numArgs; ++a)
             {
@@ -185,7 +171,7 @@ void ParseSection_Type(wasm_module_ptr module, bytes start, bytes end)
                 ReadLEB_i7(&wasmType, &start, end);
                 NormalizeType(&argType, wasmType);
 
-                ftype->argTypes[a] = argType;
+                ftype->args_type_list[a] = argType;
             }
 
             u8 returnCount;

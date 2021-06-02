@@ -4,7 +4,7 @@
 
 void wasm_compile_module(wasm_module_ptr module);
 
-extern u16 jump_vector_start_addr;
-extern u16 wasm_globals_size;
+extern translation_state ts;
+extern wasm_block_ct blct;
 
 #endif

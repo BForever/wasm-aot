@@ -27,6 +27,7 @@ void hexdump_pgm(bytes buf, u32 buf_len);
 
 u32 mystrcmp(const char* S1,const char* S2);
 bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func);
+int NormalizeType(u8 *o_type, i8 i_convolutedWasmType);
 
 #define GET_FAR_ADDRESS(var)                          \
 ({                                                    \

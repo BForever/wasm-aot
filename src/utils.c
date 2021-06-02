@@ -278,6 +278,21 @@ bool is_entry_func(wasm_module_ptr module, wasm_function_ptr func){
     // return func==module->function_list[module->function_num-1];
     return func==module->function_list[module->import_num];
 }
+int NormalizeType(u8 *o_type, i8 i_convolutedWasmType)
+{
+    int result = 0;
+
+    u8 type = -i_convolutedWasmType;
+
+    if (type == 0x40)
+        type = WASM_Type_none;
+    else if (type < WASM_Type_i32 || type > WASM_Type_f64)
+        result = 1;
+
+    *o_type = type;
+
+    return result;
+}
 
 void* sys_malloc(u16 size){
     void* ret = malloc(size);

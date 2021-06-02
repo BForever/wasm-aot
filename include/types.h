@@ -44,10 +44,10 @@ typedef struct FUNC_TYPE
 {
     struct FUNC_TYPE *     next;
 
-    u32                     numArgs;
+    u32                     args_num;
     u8                      returnType;
-    u8  need_memory_pass;
-    u8                      argTypes        [2];    // 用于32位对齐
+    u8                      need_memory_pass;
+    u8                      args_type_list        [2];    // 用于32位对齐
 }func_type;
 typedef func_type* func_type_ptr;
 
@@ -152,7 +152,26 @@ typedef struct WASM_CODE
 
 typedef wasm_code* wasm_code_ptr;
 
+typedef struct TRANSLATION_STATE
+{
+  u16 jump_vector_start_addr;
+  u16 wasm_globals_size;
+  bytes wasm_global_temp_space;
+  bytes wasm_mem_space;
+  u16 *codebuffer;
+  u16 pc;
+  
+}translation_state;
 
+#define MAX_BLOCKS_NESTED 16
+#define MAX_JUMP_INSTRUCTION_NUM 128
+typedef struct BLOCK_CT
+{
+    u16 next_id;
+    u16 block_label[MAX_BLOCKS_NESTED];
+    u16 block_pc[MAX_JUMP_INSTRUCTION_NUM];
+    u16 top;
+}wasm_block_ct;
 
 static const char * const wasm_types_names []          = { "nil", "i32", "i64", "f32", "f64", "void", "void *" };
 static const char * const wasm_types_names_compact []   = { "0", "i", "I", "f", "F", "v", "*" };
