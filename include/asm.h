@@ -101,6 +101,9 @@ void emit_local_deinit(u16 numLocalBytes);
                ((address) & 0x0F) \
             + (((address) & 0x30) << 5))
 
+// Define of basic Branch
+void emit_BRANCH(uint16_t opcode, uint8_t offset);
+
 // ADC                                  0001 11rd dddd rrrr, with d=dest register, r=source register
 #define OPCODE_ADC                      0x1C00
 #define emit_ADC(destreg, srcreg)       emit_opcodeWithSrcAndDestRegOperand(OPCODE_ADC, destreg, srcreg)
@@ -152,6 +155,14 @@ void emit_local_deinit(u16 numLocalBytes);
 // BRSH                                 1111 01kk kkkk k000
 #define OPCODE_BRSH                     0xF400
 #define emit_BRSH(offset)               emit_BRANCH(OPCODE_BRSH, offset)
+
+//BRCS                                  1111 00kk kkkk k000
+#define OPCODE_BRCS                     0xF000
+#define emit_BRCS(offset)               emit_BRANCH(OPCODE_BRCS, offset)
+
+//BRCC                                  1111 01kk kkkk k000
+#define OPCODE_BRCC                     0xF400
+#define emit_BRCC(offset)               emit_BRANCH(OPCODE_BRCC, offset)
 
 // CALL                                 1001 010k kkkk 111k
 //                                      kkkk kkkk kkkk kkkk
