@@ -8,6 +8,7 @@
 #include "utils.h"
 #include "wkreprog.h"
 #include "user_import.h"
+#include "asm.h"
 #include <avr/pgmspace.h>
 #include <string.h>
 bool is_imported(wasm_function_ptr func)
@@ -18,19 +19,53 @@ bool is_imported(wasm_function_ptr func)
 translation_state ts;
 wasm_block_ct blct;
 
+
+
+void branch_pc_refill(wasm_module_ptr module)
+{
+    RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
+    logif(compile,printf("before refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
+    compile_open();
+    u16 pc=0;
+    wkreprog_skip(pc);
+    while(pc<ts.pc){
+        // log(compile,"pc:%d",pc);
+        u16 opcode = pgm_read_word_far(RTC_START_OF_COMPILED_CODE_SPACE+pc);
+        if(opcode==OPCODE_JMP){
+            u16 label_id = pgm_read_word_far(RTC_START_OF_COMPILED_CODE_SPACE+pc+2);
+            logif(compile,printf("label %d",label_id);printf(",jmp %p",RTC_START_OF_COMPILED_CODE_SPACE+blct.block_pc[label_id]););
+            emit_2_JMP((RTC_START_OF_COMPILED_CODE_SPACE+blct.block_pc[label_id]));
+            emit_flush_to_flash();
+            pc+=4;
+        }else if(opcode==OPCODE_CALL){
+            u16 func_id = pgm_read_word_far(RTC_START_OF_COMPILED_CODE_SPACE+pc+2);
+            logif(compile,printf("func %d",func_id);printf(",call %p",module->function_list[func_id]->compiled*2););
+            emit_2_CALL(module->function_list[func_id]->compiled);
+            emit_flush_to_flash();
+            pc+=4;
+        }else{
+            wkreprog_skip(2);
+            pc+=2;
+        }
+    }
+    compile_close();
+    logif(compile,printf("after refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
+
+}
 void compile_init(wasm_module_ptr module)
 {
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
     ts.codebuffer = sys_malloc(RTC_CODEBUFFER_SIZE * 2);
     emit_init(ts.codebuffer);
     ts.pc = 0;
+    ts.stack_top = 0;
 
     // 留空跳转向量表
-    compile_open();
-    ts.jump_vector_start_addr = rtc_start_of_next_method;
-    wkreprog_skip((module->function_num - module->import_num) * 4);
-    ts.pc += (module->function_num - module->import_num) * 4;
-    compile_close();
+    // compile_open();
+    // ts.jump_vector_start_addr = rtc_start_of_next_method;
+    // wkreprog_skip((module->function_num - module->import_num) * 4);
+    // ts.pc += (module->function_num - module->import_num) * 4;
+    // compile_close();
 
     // call_target_list = sys_calloc(module->function_num-module->import_num,sizeof(u16));
     // hexdump_pgm((bytes)(((uint16_t)rtc_start_of_next_method)*2), 10);
@@ -38,13 +73,16 @@ void compile_init(wasm_module_ptr module)
 void compile_deinit(wasm_module_ptr module)
 {
     // 烧写跳转向量表
-    RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
-    compile_open();
-    for (int i = 0; i < module->function_num - module->import_num; i++)
-    {
-        emit_2_JMP(module->function_list[module->import_num + i]->compiled * 2);
-    }
-    compile_close();
+    // RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
+    // compile_open();
+    // for (int i = 0; i < module->function_num - module->import_num; i++)
+    // {
+    //     emit_2_JMP(module->function_list[module->import_num + i]->compiled * 2);
+    // }
+    // compile_close();
+
+    // 烧写跳转指令
+    branch_pc_refill(module);
 
     //释放空间
     sys_free(module->global_list);       //全局变量列表
@@ -56,7 +94,9 @@ void compile_deinit(wasm_module_ptr module)
     sys_free(module->function_list); //函数列表指针
     sys_free(ts.codebuffer);         //指令生成缓存
     //加载全局变量初始值
+    // ts.wasm_mem_space = sys_malloc(ts.wasm_globals_size);
     memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
+    sys_free(ts.wasm_global_temp_space);
 }
 //为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
 void compile_open()
@@ -84,16 +124,17 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 
     log(compile, "code contained:");
     logif(compile, printf("\r\n"); hexdump_pgm(start, end - start););
-
+    
     if (is_entry_func(module, func))
     { //TODO 在入口函数的前部保存状态
         // log(emit, "push for call save");
         // emit_x_call_save();
+        
 
         // 加载全局变量区首地址
-        log(emit, "global space:%p", ts.wasm_mem_space);
+        log(compile, "global space:%p", ts.wasm_mem_space);
         // logif(emit,printf("set Z:Z+1 to %02X",(u8)wasm_globals_start);printf(":%02X",(u8)(((u16)wasm_globals_start)>>8)););
-
+        
         emit_LDI(R30, (u8)ts.wasm_mem_space);
         emit_LDI(R31, ((u8)((u16)ts.wasm_mem_space >> 8)));
         ts.pc += 4;
@@ -101,10 +142,12 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 
     if (func->numLocals)
     {
+        
         // emit_save_Y();
         // emit_init_Y();
         // emit_SBIW(R28,func->numLocalBytes);
-        log(emit, "init %dB locals", func->numLocalBytes);
+        log(compile, "init %dB locals", func->numLocalBytes);
+        
         emit_local_init(func->numLocalBytes);
         ts.pc += 20;
     }
@@ -139,7 +182,7 @@ void wasm_compile_module(wasm_module_ptr module)
             {
                 if (0 == mystrcmp(func->name, imports_name[j]))
                 {
-                    func->native = imports[j];
+                    func->compiled = imports[j];
                     found = true;
                     // log(compile, "found func \"%s\"", imports_name[j]);
                 }
@@ -167,7 +210,6 @@ void wasm_compile_module(wasm_module_ptr module)
 
     compile_deinit(module);
     module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE / 2;
-    log(compile, "entry:%p", ts.jump_vector_start_addr * 2);
 }
 
 void wasm_global_init(wasm_module_ptr module)
@@ -207,7 +249,7 @@ void wasm_memory_init(wasm_module_ptr module)
     {
         //TODO import memory
     }
-    else if (module->memory.init_page_num)
+    else 
     {
         ts.wasm_mem_space = sys_malloc(4);
         *((u32 *)ts.wasm_mem_space) = 1111; //TODO 用于DEBUG的初始值

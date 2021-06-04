@@ -85,7 +85,7 @@ typedef struct WASM_FUNCTION
     struct FUNC_TYPE*      funcType;
 
     u16                    compiled;
-    normal_function         native;
+    // normal_function         native;
 
 
     u16                     maxStackSlots;
@@ -131,7 +131,7 @@ typedef struct WASM_MODULE
   struct WASM_FUNCTION** function_list;
 
   u32 startFunction;
-  normal_function entry_method;
+  u16 entry_method;
 
   struct FUNC_TYPE** func_type_list;
   u32 func_type_num;
@@ -160,6 +160,7 @@ typedef struct TRANSLATION_STATE
   bytes wasm_mem_space;
   u16 *codebuffer;
   u16 pc;
+  u16 stack_top;
   
 }translation_state;
 
@@ -169,6 +170,8 @@ typedef struct BLOCK_CT
 {
     u16 next_id;
     u16 block_label[MAX_BLOCKS_NESTED];
+    u8 block_stack[MAX_BLOCKS_NESTED];
+    u8 block_type[MAX_BLOCKS_NESTED];
     u16 block_pc[MAX_JUMP_INSTRUCTION_NUM];
     u16 top;
 }wasm_block_ct;

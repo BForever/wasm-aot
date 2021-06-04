@@ -1,15 +1,24 @@
 (module
   (type (;0;) (func (param i32)))
-  (type (;1;) (func (result i32)))
-  (type (;2;) (func))
+  (type (;1;) (func))
   (import "env" "printInt" (func (;0;) (type 0)))
-  (import "env" "getA" (func (;1;) (type 1)))
-  (import "env" "getB" (func (;2;) (type 1)))
-  (func (;3;) (type 2)
-    i32.const 0
-    i32.const 2147483647
-    i32.store
-    i32.const 0
-    i32.load
-    call 0)
-  (memory (;0;) 1 1))
+  (func (;1;) (type 1)
+    (local i32 i32)
+    call 2)
+  (func (;2;) (type 1)
+    i32.const 100
+    block (result i32)  ;; label = @1
+      i32.const 200
+      block (result i32)  ;; label = @2
+        i32.const 300
+        block (result i32)  ;; label = @3
+          i32.const 123
+          i32.const 0
+          br_if 2 (;@1;)
+        end
+        i32.add
+      end
+      i32.add
+    end
+    i32.add
+    call 0))

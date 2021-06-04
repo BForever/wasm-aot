@@ -8,9 +8,11 @@
 #include "parse.h"
 #include "compile.h"
 #include "utils.h"
-void wasm_call_method(normal_function method) {
+
+
+void wasm_call_method(u16 method) {
 	log(temp,"start exec");
-	method();
+	((normal_function)method)();
 }
 
 // extern char* __data_start;
