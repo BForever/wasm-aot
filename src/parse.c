@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "debug.h"
 #include "utils.h"
+#include <avr/pgmspace.h>
 
 void ParseSection_Type(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Import(wasm_module_ptr module, bytes start, bytes end);
@@ -360,11 +361,11 @@ void Module_AddGlobal(wasm_module_ptr module, u32 index, wasm_global_ptr *o_glob
 //TODO 目前直接略过，在编译时替换为编译过程
 void Parse_InitExpr(wasm_module_ptr module, bytes *start, bytes end)
 {
-    while (**start != 0x0B && *start < end)
+    while (pgm_read_byte_far(*start) != 0x0B && *start < end)
     {
         (*start)++;
     }
-    if (**start == 0x0B)
+    if (pgm_read_byte_far(*start) == 0x0B)
     {
         (*start)++;
     }

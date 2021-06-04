@@ -3,6 +3,7 @@
 // #include "client.wasm.h"
 #include "test.wasm.h"
 #include "test-cal.wasm.h"
+#include "binsrch.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"
@@ -31,8 +32,10 @@ int main()
 	// code->length = client_wasm_len;
 	// code->ptr = test_wasm;
 	// code->length  = test_wasm_len;
-    code->ptr = test_cal_wasm;
-	code->length  = test_cal_wasm_len;
+    // code->ptr = test_cal_wasm;
+	// code->length  = test_cal_wasm_len;
+	code->ptr = binsrch_wasm;
+	code->length  = binsrch_wasm_len;
 
 	// 读取WASM字节码
 	wasm_module_ptr module = wasm_load_module(code);
@@ -41,6 +44,7 @@ int main()
 
 	// 开始执行
 	log(temp,"SP:%p",STACK_POINTER());
+	wasm_memory_init(module);
 	wasm_call_method(module->entry_method);
 
 	log(temp,"wasm func returned.");

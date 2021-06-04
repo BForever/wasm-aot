@@ -3,3 +3,4 @@ rtc_startBenchmarkMeasurement_Native
 rtc_stopBenchmarkMeasurement
 PrintInt32
 PrintStr
+printInt

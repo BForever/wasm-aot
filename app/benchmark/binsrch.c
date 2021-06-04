@@ -10,7 +10,10 @@ void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t 
         uint16_t low = 0;
         uint16_t high = NUMNUMBERS - 1;
         while (low <= high) {
+            printInt(low);
+            printInt(high);
             mid = ((uint16_t)(low + high)) >> 1;
+            // printInt(mid);
             int32_t number_mid;
             if ((number_mid=numbers[mid]) < toFind) {
                 low = mid + 1;
@@ -27,11 +30,11 @@ void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t 
 }
 void javax_rtcbench_RTCBenchmark_void_test_native() {
     uint16_t NUMNUMBERS = 100;
+    
     int32_t *numbers = malloc(NUMNUMBERS*sizeof(int32_t));
 
     for (uint8_t loop = 0; loop < NUMNUMBERS; loop++) {
         numbers[loop] = (loop - 30);
     }
-
     rtcbenchmark_measure_native_performance(NUMNUMBERS, numbers);
 }

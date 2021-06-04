@@ -22,6 +22,7 @@ endif()
 INCLUDE_DIRECTORIES(
 include
 app
+app/benchmark
 )
 #source directory
 AUX_SOURCE_DIRECTORY(src DIR_SRCS)

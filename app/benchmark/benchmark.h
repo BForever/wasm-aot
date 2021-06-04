@@ -14,6 +14,7 @@ extern void* malloc(uint16_t size);
 extern void rtc_startBenchmarkMeasurement_Native();
 extern void rtc_stopBenchmarkMeasurement();
 
+void printInt(uint32_t value);
 void PrintInt32(uint32_t value);
 void PrintStr(uint8_t* str);
 #endif

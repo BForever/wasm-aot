@@ -15,6 +15,17 @@ u32 getB(){
 u32 shift(u32 input, u32 move){
     return input != move;
 }
-normal_function imports[4]={printInt,getA,getB,shift};
-char* imports_name[3]={"printInt","getA","getB"};
-u32 imports_num=3;
+
+void rtc_startBenchmarkMeasurement_Native(){
+    printf("benchmark start.\r\n");
+}
+void rtc_stopBenchmarkMeasurement(){
+    printf("benchmark stop.\r\n");
+}
+u32 import_malloc(u32 size){
+    return 0;
+}
+
+normal_function imports[6]={printInt,getA,getB,rtc_startBenchmarkMeasurement_Native,rtc_stopBenchmarkMeasurement,import_malloc};
+char* imports_name[6]={"printInt","getA","getB","rtc_startBenchmarkMeasurement_Native","rtc_stopBenchmarkMeasurement","malloc"};
+u32 imports_num=6;

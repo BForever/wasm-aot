@@ -74,7 +74,7 @@ void compile_deinit(wasm_module_ptr module)
     sys_free(ts.codebuffer);         //指令生成缓存
     //加载全局变量初始值
     // ts.wasm_mem_space = sys_malloc(ts.wasm_globals_size);
-    memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
+    
     sys_free(ts.wasm_global_temp_space);
 }
 //为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
@@ -144,7 +144,6 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 void wasm_compile_module(wasm_module_ptr module)
 {
     wasm_global_init(module);
-    wasm_memory_init(module);
 
     compile_init(module);
 
@@ -181,7 +180,7 @@ void wasm_compile_module(wasm_module_ptr module)
             if (is_entry_func(module, func))
             {
                 //TODO 暂时以第一个函数为入口函数
-                // module->entry_method = func->compiled;
+                module->entry_method = func->compiled;
 
                 log(compile, "entry: %s", func->name);
             }
@@ -189,7 +188,7 @@ void wasm_compile_module(wasm_module_ptr module)
     }
 
     compile_deinit(module);
-    module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE / 2;
+    // module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE / 2;
 }
 
 void wasm_global_init(wasm_module_ptr module)
@@ -200,7 +199,7 @@ void wasm_global_init(wasm_module_ptr module)
     {
         wasm_global_ptr g = &module->global_list[i];
 
-        log(parse, "global's type = %d", g->type);
+        log(compile, "g type = %s", wasm_types_names[g->type]);
         switch (g->type)
         {
         case WASM_Type_i32:
@@ -231,9 +230,10 @@ void wasm_memory_init(wasm_module_ptr module)
     }
     else 
     {
-        ts.wasm_mem_space = sys_malloc(4);
-        *((u32 *)ts.wasm_mem_space) = 1111; //TODO 用于DEBUG的初始值
-        log(compile, "ts.wasm_mem_space:%p", ts.wasm_mem_space);
-        // wasm_memory_start = sys_malloc(1500);
+        ts.wasm_mem_space = 0x100;
+        // *((u32 *)ts.wasm_mem_space) = 1111; //TODO 用于DEBUG的初始值
+        memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
+        log(temp, "copy %d B globals", ts.wasm_globals_size);
+        log(temp, "mem_start:%p", ts.wasm_mem_space);
     }
 }

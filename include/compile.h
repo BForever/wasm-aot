@@ -3,7 +3,7 @@
 #include"types.h"
 
 void wasm_compile_module(wasm_module_ptr module);
-
+void wasm_memory_init(wasm_module_ptr module);
 extern translation_state ts;
 extern wasm_block_ct blct;
 
