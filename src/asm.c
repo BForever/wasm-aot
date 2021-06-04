@@ -200,6 +200,10 @@ void emit_SBIW(uint8_t reg, uint8_t constant) {
              + ((constant) & 0x0F)
              + (((constant) & 0x30) << 2)));
 }
+//                                      0000 00kk kkkk k000, with k the signed offset to jump to, in WORDS, not bytes. If taken: PC <- PC + k + 1, if not taken: PC <- PC + 1
+void emit_BRANCH(uint16_t opcode, uint8_t offset) {
+    emit (opcode + makeBranchOffset(((offset)/2)));
+}
 //                                      0000 000d dddd 0000
 uint16_t asm_opcodeWithSingleRegOperand(uint16_t opcode, uint8_t reg) {
 	return (((opcode) + ((reg) << 4)));

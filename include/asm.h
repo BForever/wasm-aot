@@ -18,6 +18,8 @@ void emit_x_PUSH_32bit(uint8_t base);
 void emit_x_PUSH_16bit(uint8_t base);
 void emit_x_PUSH_REF(uint8_t base);
 
+void emit_BRANCH(uint16_t opcode, uint8_t offset);
+
 void emit_x_avroraBeep(uint8_t beep);
 void emit_x_avroraPrintPC();
 void emit_x_avroraPrintRegs();
