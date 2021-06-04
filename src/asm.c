@@ -245,6 +245,10 @@ void emit_local_deinit(u16 numLocalBytes){
     emit_POP(R28);
 }
 
+void emit_BRANCH(uint16_t opcode, uint8_t offset) {
+    emit (opcode + makeBranchOffset(((offset)/2)));
+}
+
 // void emit_set_SP(){
 //     emit_OUT()
 // }

@@ -6,6 +6,18 @@
 #include <stdlib.h>
 #include <avr/pgmspace.h>
 
+// NOTE: Function pointers are a "PC address", so already divided by 2 since the PC counts in words, not bytes.
+// avr-libgcc functions used by translation
+// qi = quarter of integer (8 bits)
+// hi = half integer (16 bits)
+// si = single integer (32 bits)
+// di = double integer (64 bits)
+// https://github.com/gcc-mirror/gcc/blob/master/libgcc/config/avr/lib1funcs.S
+// extern void __divmodhi4(void);
+// extern void __mulsi3(void);
+// extern void __mulhisi3(void);
+// extern void __divmodsi4(void);
+
 void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, bytes *start, bytes end)
 {
     u8 op = pgm_read_byte_far(*start);
@@ -292,6 +304,111 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_SUB(RZ, R18);
         emit_SBC(RZ + 1, R19);
         ts.pc += 32;
+        break;
+    case I32Shl:
+    case I32ShrS:
+    case I32ShrU:
+        log(emit, "[I32.Shl | I32ShrS | I32ShrU]");
+        //先pop要移动的位数
+        emit_x_POP_32bit(R18);
+        //现在的实现是，如果左移的位数>32的话就会全部变成0，wasmer的实现是循环左移，感觉不太对，需要找其他资料验证。
+        // emit_LDI(R26, 0B00011111);
+        // emit_AND(R18, R26);
+        //再pop要移动的数
+        emit_x_POP_32bit(R22);
+        //思路1：将移动位数一直减，减到0为止
+        emit_RJMP(8);
+        if (op == I32Shl){
+            // emit_ADD(R22, R22);
+            // emit_ADC(R23, R23);
+            // emit_ADC(R24, R24);
+            // emit_ADC(R25, R25);
+            emit_LSL(R22);
+            emit_ROL(R23);
+            emit_ROL(R24);
+            emit_ROL(R25);
+        } else if (op == I32ShrU){
+            emit_LSR(R25);
+            emit_ROR(R24);
+            emit_ROR(R23);
+            emit_ROR(R22);
+        } else if (op = I32ShrS){   //TODO ShrS仍然有问题！！！-10移1位算的不对！！
+            emit_ASR(R25);
+            emit_ROR(R24);
+            emit_ROR(R23);
+            emit_ROR(R22);
+        }
+        emit_DEC(R18);
+        emit_BRPL(-12);
+        emit_x_PUSH_32bit(R22);
+        ts.pc += 10;//__attribute__ ((section (".rtc_code_marker"))) 
+      
+        //思路2：取模的方式，可能在移位多的时候有优化空间，移位少的时候可能不如以上解法
+        // emit_LDI(R18, 32);
+        // emit_LDI(R19, 0);
+        // emit_LDI(R20, 0);
+        // emit_LDI(R21, 0);
+        // emit_x_CALL((uint32_t)&__divmodsi4);
+        break;
+    case I32LtS:
+    case I32LtU:
+    case I32LeS:
+    case I32LeU:
+    case I32GtS:
+    case I32GtU:
+    case I32GeS:
+    case I32GeU:
+    case I32Eq:
+    case I32Ne:
+        log(emit, "[I32.GtS]");
+        //Second operand
+        emit_x_POP_32bit(R18);
+        //First operand
+        emit_x_POP_32bit(R22);
+        //Compare per register
+        if (op == I32LtS || op == I32LtU || op == I32GeS || op == I32GeU || op == I32Eq || op == I32Ne){
+            emit_CP(R22, R18);
+            emit_CPC(R23, R19);
+            emit_CPC(R24, R20);
+            emit_CPC(R25, R21);
+        }
+        else if (op == I32LeS || op == I32LeU || op == I32GtS || op == I32GtU){
+            emit_CP(R18, R22);
+            emit_CPC(R19, R23);
+            emit_CPC(R20, R24);
+            emit_CPC(R21, R25);
+        }
+        // if (op == I32GtS || op == I32LeS){
+        //     emit_LDI(R22, 0);
+        //     emit_LDI(R23, 0);
+        //     emit_LDI(R24, 0);
+        //     emit_LDI(R25, 0);
+        // }
+        // if (op == I32GtS || op == I32LtU || op == I32LeS || op == I32LeU){
+        emit_LDI(R22, 1);
+        emit_LDI(R23, 0);
+        emit_LDI(R24, 0);
+        emit_LDI(R25, 0);
+        // }
+        //BRSH = Branch if Same or Higher (Unsigned)
+        //BRLO = Branch if Lower (Unsigned)
+        //BRGE = Branch if Greater or Equal (Signed)
+        //BRLT = Branch if Less Than (Signed)
+        if (op == I32LtS || op == I32GtS)
+            {emit_BRLT(2);}
+        else if (op == I32LtU || op == I32GtU)
+            {emit_BRCS(2);}
+        else if (op == I32LeS || op == I32GeS)
+            {emit_BRGE(2);}
+        else if (op == I32LeU || op == I32GeU)
+            {emit_BRCC(2);}
+        else if (op == I32Eq)
+            {emit_BREQ(2);}
+        else if (op == I32Ne)
+            {emit_BRNE(2);}
+        
+        emit_LDI(R22, 0);
+        emit_x_PUSH_32bit(R22);
         break;
     default:
         panicf("unsupported instructions: %02X ", op);

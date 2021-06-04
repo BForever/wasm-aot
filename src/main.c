@@ -2,6 +2,7 @@
 // #include "hello.wasm.h"
 // #include "client.wasm.h"
 #include "test.wasm.h"
+#include "test-cal.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"
@@ -26,8 +27,10 @@ int main()
 	// code->length = hello_wasm_len;
 	// code->ptr = client_wasm;
 	// code->length = client_wasm_len;
-	code->ptr = test_wasm;
-	code->length  = test_wasm_len;
+	// code->ptr = test_wasm;
+	// code->length  = test_wasm_len;
+    code->ptr = test_cal_wasm;
+	code->length  = test_cal_wasm_len;
 
 	// 读取WASM字节码
 	wasm_module_ptr module = wasm_load_module(code);
