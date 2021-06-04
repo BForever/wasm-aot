@@ -2,27 +2,37 @@
     (import "env" "printInt" (func $printInt(param i32)))
     ;; (import "env" "getA" (func $getA (result i32)))
     ;; (import "env" "getB" (func $getB (result i32)))
-    (func $main (local i32 i32)
-        call $test_br_if
+    (func $main
+        i32.const 100
+        call $test_param
+        call $printInt
+        ;; call $test_br_if
         ;; call $test_loop
     )
-    (func $test_br_if
-        i32.const 100
-        (block (result i32)
-            i32.const 200
-            (block (result i32)
-                i32.const 300
-                (block (result i32)
-                    i32.const 123
-                    (br_if 2 (i32.const 0))
-                ) 
-                i32.add
-            )
-            i32.add
-        )
-        i32.add
+    (func $test_param (param i32)(result i32)
+        local.get 0
         call $printInt
+        local.get 0
+        i32.const 1
+        i32.add
     )
+    ;; (func $test_br_if (param i32)
+    ;;     i32.const 100
+    ;;     (block (result i32)
+    ;;         i32.const 200
+    ;;         (block (result i32)
+    ;;             i32.const 300
+    ;;             (block (result i32)
+    ;;                 i32.const 123
+    ;;                 (br_if 2 (i32.const 1))
+    ;;             ) 
+    ;;             i32.add
+    ;;         )
+    ;;         i32.add
+    ;;     )
+    ;;     i32.add
+    ;;     call $printInt
+    ;; )
     ;; (func $test_loop (local i32 i32)
     ;;     i32.const 0x5
     ;;     local.set 0

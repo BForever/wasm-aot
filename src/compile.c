@@ -19,12 +19,10 @@ bool is_imported(wasm_function_ptr func)
 translation_state ts;
 wasm_block_ct blct;
 
-
-
 void branch_pc_refill(wasm_module_ptr module)
 {
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
-    logif(compile,printf("before refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
+    // logif(compile,printf("before refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
     compile_open();
     u16 pc=0;
     wkreprog_skip(pc);
@@ -49,7 +47,7 @@ void branch_pc_refill(wasm_module_ptr module)
         }
     }
     compile_close();
-    logif(compile,printf("after refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
+    // logif(compile,printf("after refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
 
 }
 void compile_init(wasm_module_ptr module)
@@ -59,28 +57,9 @@ void compile_init(wasm_module_ptr module)
     emit_init(ts.codebuffer);
     ts.pc = 0;
     ts.stack_top = 0;
-
-    // 留空跳转向量表
-    // compile_open();
-    // ts.jump_vector_start_addr = rtc_start_of_next_method;
-    // wkreprog_skip((module->function_num - module->import_num) * 4);
-    // ts.pc += (module->function_num - module->import_num) * 4;
-    // compile_close();
-
-    // call_target_list = sys_calloc(module->function_num-module->import_num,sizeof(u16));
-    // hexdump_pgm((bytes)(((uint16_t)rtc_start_of_next_method)*2), 10);
 }
 void compile_deinit(wasm_module_ptr module)
 {
-    // 烧写跳转向量表
-    // RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
-    // compile_open();
-    // for (int i = 0; i < module->function_num - module->import_num; i++)
-    // {
-    //     emit_2_JMP(module->function_list[module->import_num + i]->compiled * 2);
-    // }
-    // compile_close();
-
     // 烧写跳转指令
     branch_pc_refill(module);
 
@@ -113,6 +92,7 @@ void compile_close()
 
 void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 {
+    ts.current_func = func;
     compile_open();
     bytes start = func->wasm;
     bytes end = func->wasmEnd;
@@ -140,7 +120,7 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         ts.pc += 4;
     }
 
-    if (func->numLocals)
+    if (func->numLocals||func->funcType->args_num)
     {
         
         // emit_save_Y();

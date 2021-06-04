@@ -161,6 +161,7 @@ typedef struct TRANSLATION_STATE
   u16 *codebuffer;
   u16 pc;
   u16 stack_top;
+  wasm_function_ptr current_func;
   
 }translation_state;
 
