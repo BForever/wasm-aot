@@ -290,7 +290,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             log(emit, "s: %d", ts.stack_top);
         }
         break;
-
+    }
     // 0x11 CallIndirect
     // 0x1A Drop
     case Drop:
@@ -301,6 +301,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ts.pc += 8;
         ts.stack_top--;
         break;
+    }
     // case I32Add:
     //     log(emit, "[I32.ADD]");
     //     log(emit, "pop32 to R22.");
@@ -615,7 +616,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_POP_32bit(R18);
         //First operand
         emit_x_POP_32bit(R22);
-        ts.pc+=16;
+        ts.pc += 16;
         //Compare per register
         if (op == I32LtS || op == I32LtU || op == I32GeS || op == I32GeU || op == I32Eq || op == I32Ne)
         {
@@ -623,7 +624,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_CPC(R23, R19);
             emit_CPC(R24, R20);
             emit_CPC(R25, R21);
-            ts.pc+=8;
+            ts.pc += 8;
         }
         else if (op == I32LeS || op == I32LeU || op == I32GtS || op == I32GtU)
         {
@@ -631,7 +632,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_CPC(R19, R23);
             emit_CPC(R20, R24);
             emit_CPC(R21, R25);
-            ts.pc+=8;
+            ts.pc += 8;
         }
         // if (op == I32GtS || op == I32LeS){
         //     emit_LDI(R22, 0);
@@ -644,7 +645,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_LDI(R23, 0);
         emit_LDI(R24, 0);
         emit_LDI(R25, 0);
-        ts.pc+=8;
+        ts.pc += 8;
         // }
         //BRSH = Branch if Same or Higher (Unsigned)
         //BRLO = Branch if Lower (Unsigned)
@@ -653,37 +654,37 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         if (op == I32LtS || op == I32GtS)
         {
             emit_BRLT(2);
-            ts.pc+=2;
+            ts.pc += 2;
         }
         else if (op == I32LtU || op == I32GtU)
         {
             emit_BRCS(2);
-            ts.pc+=2;
+            ts.pc += 2;
         }
         else if (op == I32LeS || op == I32GeS)
         {
             emit_BRGE(2);
-            ts.pc+=2;
+            ts.pc += 2;
         }
         else if (op == I32LeU || op == I32GeU)
         {
             emit_BRCC(2);
-            ts.pc+=2;
+            ts.pc += 2;
         }
         else if (op == I32Eq)
         {
             emit_BREQ(2);
-            ts.pc+=2;
+            ts.pc += 2;
         }
         else if (op == I32Ne)
         {
             emit_BRNE(2);
-            ts.pc+=2;
+            ts.pc += 2;
         }
 
         emit_LDI(R22, 0);
         emit_x_PUSH_32bit(R22);
-        ts.pc+=10;
+        ts.pc += 10;
         ts.stack_top--;
         break;
     }
@@ -916,7 +917,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 0xFC <i32|64>.trunc_sat_<f32|64>_<s|u>
 
     default:
+    {
         panicf("unsupported instructions: %02X ", op);
         break;
     }
     }
+}
