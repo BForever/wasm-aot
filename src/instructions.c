@@ -35,7 +35,149 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     u16 base;
     switch (op)
     {
+    // 0x02 Block
+    case Block:
+    {
+        // 读取返回值类型
+        ReadLEB_i7(&operand, start, end);
+        NormalizeType(&operand.num8[1], operand.num8[0]);
+        log(emit, "[BLOCK %s]",wasm_types_names[operand.num8[1]]);
+        // 生成标签ID并入栈
+        blct.block_label[blct.top++] = blct.next_id++;
+        blct.block_stack[blct.top-1] = ts.stack_top;
+        blct.block_type[blct.top-1] = operand.num8[1];
+        blct.block_pc[blct.next_id - 1] = 0; //表示非loop
+        break;
+    }
+    // 0x03 Loop
+    case Loop:
+    {
+        // 读取返回值类型
+        ReadLEB_i7(&operand, start, end);
+        NormalizeType(&operand.num8[1], operand.num8[0]);
+        log(emit, "[LOOP %s]",wasm_types_names[operand.num8[1]]);
+        // 生成标签ID并入栈
+        blct.block_label[blct.top++] = blct.next_id++;
+        blct.block_stack[blct.top-1] = ts.stack_top;
+        blct.block_type[blct.top-1] = operand.num8[1];
+        blct.block_pc[blct.next_id - 1] = ts.pc; //loop的跳转目标为loop起始
+        break;
+    }
+    // 0x04 If
+    // 0x05 Else_
+    // 0x0B End_
+    case End_:
+    {
+        log(emit, "[END]:%p",RTC_START_OF_COMPILED_CODE_SPACE + ts.pc);
+        if (blct.top) // 还在block内部
+        {
+            log(emit,"of block %d",blct.top);
+            
+            // 结束前恢复栈平衡
+            int count = ts.stack_top-blct.block_stack[--blct.top];
+            for(int i=0;i<count;i++){
+                log(emit,"pop stack");
+                if(i==0){
+                    emit_x_POP_32bit(R22);
+                }else{
+                    emit_x_POP_32bit(R18);
+                }
+                ts.stack_top--;
+                ts.pc+=8;
+            }
+            if (!blct.block_pc[blct.block_label[blct.top]])
+            {
+                blct.block_pc[blct.block_label[blct.top]] = ts.pc; //没有填充PC（非loop）则填充END的PC
+            }
+            if(blct.block_type[blct.top]!=WASM_Type_none){
+                log(emit,"push res %s",wasm_types_names[blct.block_type[blct.top]]);
+                emit_x_PUSH_32bit(R22);
+                ts.pc+=8;
+                ts.stack_top++;
+                log(emit,"s: %d",ts.stack_top);
+            }
+            
+        }
+        else // 到达函数尾部的END
+        {
+            log(emit,"func end");
+            if (is_entry_func(module, func))
+            { //在入口函数的尾部恢复状态
+                // log(emit,"pop for call restore");
+                // emit_x_call_restore();
+            }
+            // 如果函数有局部变量，则恢复Y指针
+            if (func->numLocals)
+            {
+                // emit_restore_Y();
+                log(emit, "deinit %dB locals", func->numLocalBytes);
+                emit_local_deinit(func->numLocalBytes);
+                ts.pc += 16;
+            }
+
+            log(emit, "ret");
+            emit_RET();
+            ts.pc += 2;
+        }
+        break;
+    }
+    // 0x0C Br
+    case Br:
+    {
+        ReadLEB_u32(&operand, start, end);
+        log(emit, "[BR %d]",operand.num32);
+        log(emit, "%d",ts.pc);
+        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]])*2); //填充对应Block的ID(emit宏会将地址除以2)
+        ts.pc += 4;
+        break;
+    }
+    // 0x0D BrIf
+    case BrIf: //TODO
+    {
+        ReadLEB_u32(&operand, start, end);
+        log(emit, "[BR_IF %d]",operand.num32);
+        
+        // 获取操作数
+        emit_x_POP_32bit(R22);
+        ts.stack_top--;
+        log(emit,"s: %d",ts.stack_top);
+        // 获取0
+        emit_MOV(R18,R1);
+        emit_MOV(R19,R1);
+        emit_MOV(R20,R1);
+        emit_MOV(R21,R1);
+        // 与0比较
+        emit_CP(R22,R18);
+        emit_CPC(R23,R19);
+        emit_CPC(R24,R20);
+        emit_CPC(R25,R21);
+        // 非0则跳转
+        log(emit, "br %d",4+8*(ts.stack_top-blct.block_stack[blct.top-1-operand.num16[0]]));
+        emit_BREQ(4+8*(ts.stack_top-blct.block_stack[blct.top-1-operand.num16[0]])); 
+        ts.pc += 26;
+        // 跳转前恢复栈平衡
+        for(int i=ts.stack_top;i>blct.block_stack[blct.top-1-operand.num16[0]];i--){
+            log(emit,"pop stack");
+            if(i==ts.stack_top){
+                emit_x_POP_32bit(R22);
+            }else{
+                emit_x_POP_32bit(R18);
+            }
+            ts.pc+=8;
+        }
+        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]])*2);//填充对应Block的ID(emit宏会将地址除以2)
+        ts.pc += 4;
+        break;
+    }
+    // 0x0E BrTable
+    case BrTable: //TODO
+    {
+        break;
+    }
+    // 0x0E Return
+    // 0x10 Call
     case Call:
+    {
         // log(emit, "emiting CALL instruction...");
         ReadLEB_u32(&operand, start, end);
         log(emit, "[CALL %d]", operand.num32);
@@ -113,194 +255,22 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             // emit_2_CALL(called_func->compiled);
         }
         break;
-    case Br:
-        ReadLEB_u32(&operand, start, end);
-        log(emit, "[BR %d]",operand.num32);
-        log(emit, "%d",ts.pc);
-        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]])*2); //填充对应Block的ID(emit宏会将地址除以2)
-        ts.pc += 4;
-        break;
-    case BrIf: //TODO
-        ReadLEB_u32(&operand, start, end);
-        log(emit, "[BR_IF %d]",operand.num32);
-        
-        // 获取操作数
-        emit_x_POP_32bit(R22);
-        ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
-        // 获取0
-        emit_MOV(R18,R1);
-        emit_MOV(R19,R1);
-        emit_MOV(R20,R1);
-        emit_MOV(R21,R1);
-        // 与0比较
-        emit_CP(R22,R18);
-        emit_CPC(R23,R19);
-        emit_CPC(R24,R20);
-        emit_CPC(R25,R21);
-        // 非0则跳转
-        log(emit, "br %d",4+8*(ts.stack_top-blct.block_stack[blct.top-1-operand.num16[0]]));
-        emit_BREQ(4+8*(ts.stack_top-blct.block_stack[blct.top-1-operand.num16[0]])); 
-        ts.pc += 26;
-        // 跳转前恢复栈平衡
-        for(int i=ts.stack_top;i>blct.block_stack[blct.top-1-operand.num16[0]];i--){
-            log(emit,"pop stack");
-            if(i==ts.stack_top){
-                emit_x_POP_32bit(R22);
-            }else{
-                emit_x_POP_32bit(R18);
-            }
-            ts.pc+=8;
-        }
-        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]])*2);//填充对应Block的ID(emit宏会将地址除以2)
-        ts.pc += 4;
-        break;
-    case BrTable: //TODO
-        break;
-    case Block :
-        // 读取返回值类型
-        ReadLEB_i7(&operand, start, end);
-        NormalizeType(&operand.num8[1], operand.num8[0]);
-        log(emit, "[BLOCK %s]",wasm_types_names[operand.num8[1]]);
-        // 生成标签ID并入栈
-        blct.block_label[blct.top++] = blct.next_id++;
-        blct.block_stack[blct.top-1] = ts.stack_top;
-        blct.block_type[blct.top-1] = operand.num8[1];
-        blct.block_pc[blct.next_id - 1] = 0; //表示非loop
-        break;
-    case Loop:
-        // 读取返回值类型
-        ReadLEB_i7(&operand, start, end);
-        NormalizeType(&operand.num8[1], operand.num8[0]);
-        log(emit, "[LOOP %s]",wasm_types_names[operand.num8[1]]);
-        // 生成标签ID并入栈
-        blct.block_label[blct.top++] = blct.next_id++;
-        blct.block_stack[blct.top-1] = ts.stack_top;
-        blct.block_type[blct.top-1] = operand.num8[1];
-        blct.block_pc[blct.next_id - 1] = ts.pc; //loop的跳转目标为loop起始
-        break;
-    case End_:
-        log(emit, "[END]:%p",RTC_START_OF_COMPILED_CODE_SPACE + ts.pc);
-        if (blct.top) // 还在block内部
-        {
-            log(emit,"of block %d",blct.top);
-            
-            // 结束前恢复栈平衡
-            int count = ts.stack_top-blct.block_stack[--blct.top];
-            for(int i=0;i<count;i++){
-                log(emit,"pop stack");
-                if(i==0){
-                    emit_x_POP_32bit(R22);
-                }else{
-                    emit_x_POP_32bit(R18);
-                }
-                ts.stack_top--;
-                ts.pc+=8;
-            }
-            if (!blct.block_pc[blct.block_label[blct.top]])
-            {
-                blct.block_pc[blct.block_label[blct.top]] = ts.pc; //没有填充PC（非loop）则填充END的PC
-            }
-            if(blct.block_type[blct.top]!=WASM_Type_none){
-                log(emit,"push res %s",wasm_types_names[blct.block_type[blct.top]]);
-                emit_x_PUSH_32bit(R22);
-                ts.pc+=8;
-                ts.stack_top++;
-                log(emit,"s: %d",ts.stack_top);
-            }
-            
-        }
-        else // 到达函数尾部的END
-        {
-            log(emit,"func end");
-            if (is_entry_func(module, func))
-            { //在入口函数的尾部恢复状态
-                // log(emit,"pop for call restore");
-                // emit_x_call_restore();
-            }
-            // 如果函数有局部变量，则恢复Y指针
-            if (func->numLocals)
-            {
-                // emit_restore_Y();
-                log(emit, "deinit %dB locals", func->numLocalBytes);
-                emit_local_deinit(func->numLocalBytes);
-                ts.pc += 16;
-            }
-
-            log(emit, "ret");
-            emit_RET();
-            ts.pc += 2;
-        }
-        break;
-    case I32Const:
-        ReadLEB_u32(&operand, start, end);
-        log(emit, "[I32.CONST %ld]", operand.num32);
-        log(emit, "load %ld to R22.", operand.num32);
-        emit_LDI(R22, operand.num8[0]);
-        emit_LDI(R23, operand.num8[1]);
-        emit_LDI(R24, operand.num8[2]);
-        emit_LDI(R25, operand.num8[3]);
-        log(emit, "push32");
-        emit_x_PUSH_32bit(R22);
-        ts.pc += 16;
-        ts.stack_top++;
-        log(emit,"s: %d",ts.stack_top);
-        break;
+    }
+    // 0x11 CallIndirect
+    // 0x1A Drop
     case Drop:
+    {
         log(emit, "[DROP]");
         log(emit, "pop32");
         emit_x_POP_32bit(R22);
         ts.pc += 8;
         ts.stack_top--;
         break;
-    case I32Add:
-        log(emit, "[I32.ADD]");
-        log(emit, "pop32 to R22.");
-        emit_x_POP_32bit(R22);
-        log(emit, "pop32 to R18.");
-        emit_x_POP_32bit(R18);
-        log(emit, "add32 R22. = R22. + R18.");
-        emit_ADD(R22, R18);
-        emit_ADC(R23, R19);
-        emit_ADC(R24, R20);
-        emit_ADC(R25, R21);
-        log(emit, "push32");
-        emit_x_PUSH_32bit(R22);
-        ts.pc += 32;
-        ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
-        break;
-    case I32Sub:
-        log(emit, "[I32.SUB]");
-        // log(emit, "pop32 to R22.");
-        emit_x_POP_32bit(R18);
-        // log(emit, "pop32 to R18.");
-        emit_x_POP_32bit(R22);
-        // log(emit, "add32 R22. = R22. + R18.");
-        emit_SUB(R22, R18);
-        emit_SBC(R23, R19);
-        emit_SBC(R24, R20);
-        emit_SBC(R25, R21);
-        // log(emit, "push32");
-        emit_x_PUSH_32bit(R22);
-        ts.pc += 32;
-        ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
-        break;
-    case I32And:
-        log(emit, "[I32.AND]");
-        emit_x_POP_32bit(R22);
-        emit_x_POP_32bit(R18);
-        emit_AND(R22, R18);
-        emit_AND(R23, R19);
-        emit_AND(R24, R20);
-        emit_AND(R25, R21);
-        emit_x_PUSH_32bit(R22);
-        ts.pc += 32;
-        ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
-        break;
+    }
+    // 0x1B Select
+    // 0x20 LocalGet
     case LocalGet:
+    {
         //读取局部变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[LOCAL.GET %d]", operand.num32);
@@ -316,7 +286,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ts.stack_top++;
         log(emit,"s: %d",ts.stack_top);
         break;
+    }
+    // 0x21 LocalSet
     case LocalSet:
+    {
         //读取局部变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[LOCAL.SET %d]", operand.num32);
@@ -332,7 +305,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ts.stack_top--;
         log(emit,"s: %d",ts.stack_top);
         break;
+    }
+    // 0x22 LocalTee
     case LocalTee:
+    {
         //读取局部变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[LOCAL.TEE %d]", operand.num32);
@@ -349,7 +325,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 24;
         break;
+    }
+    // 0x23 GlobalGet
     case GlobalGet:
+    {
         //读取全局变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[GLOBAL.GET %d]", operand.num32);
@@ -364,7 +343,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ts.stack_top++;
         log(emit,"s: %d",ts.stack_top);
         break;
+    }
+    // 0x24 GlobalSet
     case GlobalSet:
+    {
         ReadLEB_u32(&operand, start, end);
         log(emit, "[GLOBAL.SET %d]", operand.num32);
         log(emit, "pop32 to R22.");
@@ -378,7 +360,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ts.stack_top--;
         log(emit,"s: %d",ts.stack_top);
         break;
+    }
+    // 0x28 I32Load
     case I32Load:
+    {
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
@@ -407,7 +392,23 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 32;
         break;
+    }
+    // 0x29 i64.load
+    // 0x2A f32.load
+    // 0x2B f64.load
+    // 0x2C i32.load8_s
+    // 0x2D i32.load8_u
+    // 0x2E i32.load16_s
+    // 0x2F i32.load16_u
+    // 0x30 i64.load8_s
+    // 0x31 i64.load8_u m
+    // 0x32 i64.load16_s m
+    // 0x33 i64.load16_u m
+    // 0x34 i64.load32_s m
+    // 0x35 i64.load32_u m
+    // 0x36 i32.store m
     case I32Store:
+    {
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
@@ -438,62 +439,60 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ts.stack_top-=2;
         log(emit,"s: %d",ts.stack_top);
         break;
-    case I32Shl:
-    case I32ShrS:
-    case I32ShrU:
-        log(emit, "[I32.Shl | I32ShrS | I32ShrU]");
-        //先pop要移动的位数
-        emit_x_POP_32bit(R18);
-        //现在的实现是，如果左移的位数>32的话就会全部变成0，wasmer的实现是循环左移，感觉不太对，需要找其他资料验证。
-        // emit_LDI(R26, 0B00011111);
-        // emit_AND(R18, R26);
-        //再pop要移动的数
-        emit_x_POP_32bit(R22);
-        //思路1：将移动位数一直减，减到0为止
-        emit_RJMP(8);
-        if (op == I32Shl){
-            // emit_ADD(R22, R22);
-            // emit_ADC(R23, R23);
-            // emit_ADC(R24, R24);
-            // emit_ADC(R25, R25);
-            emit_LSL(R22);
-            emit_ROL(R23);
-            emit_ROL(R24);
-            emit_ROL(R25);
-        } else if (op == I32ShrU){
-            emit_LSR(R25);
-            emit_ROR(R24);
-            emit_ROR(R23);
-            emit_ROR(R22);
-        } else if (op = I32ShrS){   //TODO ShrS仍然有问题！！！-10移1位算的不对！！
-            emit_ASR(R25);
-            emit_ROR(R24);
-            emit_ROR(R23);
-            emit_ROR(R22);
-        }
-        emit_DEC(R18);
-        emit_BRPL(-12);
+    }
+    // 0x37 i64.store m
+    // 0x38 f32.store m
+    // 0x39 f64.store m
+    // 0x3A i32.store8 m
+    // 0x3B i32.store16 m
+    // 0x3C i64.store8 m
+    // 0x3D i64.store16 m
+    // 0x3E i64.store32 m
+    // 0x3F memory.size
+    // 0x40 memory.grow
+    // 0x41 i32.const
+    case I32Const:
+    {
+        ReadLEB_u32(&operand, start, end);
+        log(emit, "[I32.CONST %ld]", operand.num32);
+        log(emit, "load %ld to R22.", operand.num32);
+        emit_LDI(R22, operand.num8[0]);
+        emit_LDI(R23, operand.num8[1]);
+        emit_LDI(R24, operand.num8[2]);
+        emit_LDI(R25, operand.num8[3]);
+        log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 10;//__attribute__ ((section (".rtc_code_marker"))) 
-      
-        //思路2：取模的方式，可能在移位多的时候有优化空间，移位少的时候可能不如以上解法
-        // emit_LDI(R18, 32);
-        // emit_LDI(R19, 0);
-        // emit_LDI(R20, 0);
-        // emit_LDI(R21, 0);
-        // emit_x_CALL((uint32_t)&__divmodsi4);
+        ts.pc += 16;
+        ts.stack_top++;
+        log(emit,"s: %d",ts.stack_top);
         break;
-    case I32LtS:
-    case I32LtU:
-    case I32LeS:
-    case I32LeU:
-    case I32GtS:
-    case I32GtU:
-    case I32GeS:
-    case I32GeU:
+    }
+    // 0x42 i64.const
+    // 0x43 f32.const
+    // 0x44 f64.const
+    // 0x45 i32.eqz
+    // 0x46 i32.eq
     case I32Eq:
+    // 0x47 i32.ne
     case I32Ne:
-        log(emit, "[I32.GtS]");
+    // 0x48 i32.lt_s
+    case I32LtS:
+    // 0x49 i32.lt_u
+    case I32LtU:
+    // 0x4A i32.gt_s
+    case I32GtS:
+    // 0x4B i32.gt_u
+    case I32GtU:
+    // 0x4C i32.le_s
+    case I32LeS:
+    // 0x4D i32.le_u
+    case I32LeU:
+    // 0x4E i32.ge_s
+    case I32GeS:
+    // 0x4F i32.ge_u
+    case I32GeU: 
+    {
+        log(emit, "[I32.(ComparisonInstruction)]");
         //Second operand
         emit_x_POP_32bit(R18);
         //First operand
@@ -543,6 +542,226 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_LDI(R22, 0);
         emit_x_PUSH_32bit(R22);
         break;
+    }
+    // 0x50 i64.eqz
+    // 0x51 i64.eq
+    // 0x52 i64.ne
+    // 0x53 i64.lt_s
+    // 0x54 i64.lt_u
+    // 0x55 i64.gt_s
+    // 0x56 i64.gt_u
+    // 0x57 i64.le_s
+    // 0x58 i64.le_u
+    // 0x59 i64.ge_s
+    // 0x5A i64.ge_u
+    // 0x5B f32.eq
+    // 0x5C f32.ne
+    // 0x5D f32.lt
+    // 0x5E f32.gt
+    // 0x5F f32.le
+    // 0x60 f32.ge
+    // 0x61 f64.eq
+    // 0x62 f64.ne
+    // 0x63 f64.lt
+    // 0x64 f64.gt
+    // 0x65 f64.le
+    // 0x66 f64.ge
+    // 0x67 i32.clz
+    // 0x68 i32.ctz
+    // 0x69 i32.popcnt
+    // 0x6A i32.add
+    case I32Add:
+    {
+        log(emit, "[I32.ADD]");
+        log(emit, "pop32 to R22.");
+        emit_x_POP_32bit(R22);
+        log(emit, "pop32 to R18.");
+        emit_x_POP_32bit(R18);
+        log(emit, "add32 R22. = R22. + R18.");
+        emit_ADD(R22, R18);
+        emit_ADC(R23, R19);
+        emit_ADC(R24, R20);
+        emit_ADC(R25, R21);
+        log(emit, "push32");
+        emit_x_PUSH_32bit(R22);
+        ts.pc += 32;
+        ts.stack_top--;
+        log(emit,"s: %d",ts.stack_top);
+        break;
+    }
+    // 0x6B i32.sub
+    case I32Sub:
+    {
+        log(emit, "[I32.SUB]");
+        // log(emit, "pop32 to R22.");
+        emit_x_POP_32bit(R18);
+        // log(emit, "pop32 to R18.");
+        emit_x_POP_32bit(R22);
+        // log(emit, "add32 R22. = R22. + R18.");
+        emit_SUB(R22, R18);
+        emit_SBC(R23, R19);
+        emit_SBC(R24, R20);
+        emit_SBC(R25, R21);
+        // log(emit, "push32");
+        emit_x_PUSH_32bit(R22);
+        ts.pc += 32;
+        ts.stack_top--;
+        log(emit,"s: %d",ts.stack_top);
+        break;
+    }
+    // 0x6C i32.mul
+    // 0x6D i32.div_s
+    // 0x6E i32.div_u
+    // 0x6F i32.rem_s
+    // 0x70 i32.rem_u
+    // 0x71 i32.and
+    case I32And:
+    {
+        log(emit, "[I32.AND]");
+        emit_x_POP_32bit(R22);
+        emit_x_POP_32bit(R18);
+        emit_AND(R22, R18);
+        emit_AND(R23, R19);
+        emit_AND(R24, R20);
+        emit_AND(R25, R21);
+        emit_x_PUSH_32bit(R22);
+        ts.pc += 32;
+        ts.stack_top--;
+        log(emit,"s: %d",ts.stack_top);
+        break;
+    }
+    // 0x72 i32.or
+    // 0x73 i32.xor
+    // 0x74 i32.shl
+    case I32Shl:
+    // 0x75 i32.shr_s
+    case I32ShrS:
+    // 0x76 i32.shr_u
+    case I32ShrU:
+    {
+        log(emit, "[I32.Shl | I32ShrS | I32ShrU]");
+        //先pop要移动的位数
+        emit_x_POP_32bit(R18);
+        //现在的实现是，如果左移的位数>32的话就会全部变成0，wasmer的实现是循环左移，感觉不太对，需要找其他资料验证。
+        // emit_LDI(R26, 0B00011111);
+        // emit_AND(R18, R26);
+        //再pop要移动的数
+        emit_x_POP_32bit(R22);
+        //思路1：将移动位数一直减，减到0为止
+        emit_RJMP(8);
+        if (op == I32Shl){
+            // emit_ADD(R22, R22);
+            // emit_ADC(R23, R23);
+            // emit_ADC(R24, R24);
+            // emit_ADC(R25, R25);
+            emit_LSL(R22);
+            emit_ROL(R23);
+            emit_ROL(R24);
+            emit_ROL(R25);
+        } else if (op == I32ShrU){
+            emit_LSR(R25);
+            emit_ROR(R24);
+            emit_ROR(R23);
+            emit_ROR(R22);
+        } else if (op = I32ShrS){   //TODO ShrS仍然有问题！！！-10移1位算的不对！！
+            emit_ASR(R25);
+            emit_ROR(R24);
+            emit_ROR(R23);
+            emit_ROR(R22);
+        }
+        emit_DEC(R18);
+        emit_BRPL(-12);
+        emit_x_PUSH_32bit(R22);
+        ts.pc += 10;//__attribute__ ((section (".rtc_code_marker"))) 
+      
+        //思路2：取模的方式，可能在移位多的时候有优化空间，移位少的时候可能不如以上解法
+        // emit_LDI(R18, 32);
+        // emit_LDI(R19, 0);
+        // emit_LDI(R20, 0);
+        // emit_LDI(R21, 0);
+        // emit_x_CALL((uint32_t)&__divmodsi4);
+        break;
+    }
+    // 0x77 i32.rotl
+    // 0x78 i32.rotr
+    // 0x79 i64.clz
+    // 0x7A i64.ctz
+    // 0x7B i64.popcnt
+    // 0x7C i64.add
+    // 0x7D i64.sub
+    // 0x7E i64.mul
+    // 0x7F i64.div_s
+    // 0x80 i64.div_u
+    // 0x81 i64.rem_s
+    // 0x82 i64.rem_u
+    // 0x83 i64.and
+    // 0x84 i64.or
+    // 0x85 i64.xor
+    // 0x86 i64.shl
+    // 0x87 i64.shr_s
+    // 0x88 i64.shr_u
+    // 0x89 i64.rotl
+    // 0x8A i64.rotr
+    // 0x8B f32.abs
+    // 0x8C f32.neg
+    // 0x8D f32.ceil
+    // 0x8E f32.floor
+    // 0x8F f32.trunc
+    // 0x90 f32.nearest
+    // 0x91 f32.sqrt
+    // 0x92 f32.add
+    // 0x93 f32.sub
+    // 0x94 f32.mul
+    // 0x95 f32.div
+    // 0x96 f32.min
+    // 0x97 f32.max
+    // 0x98 f32.copysign
+    // 0x99 f64.abs
+    // 0x9A f64.neg
+    // 0x9B f64.ceil
+    // 0x9C f64.floor
+    // 0x9D f64.trunc
+    // 0x9E f64.nearest
+    // 0x9F f64.sqrt
+    // 0xA0 f64.add
+    // 0xA1 f64.sub
+    // 0xA2 f64.mul
+    // 0xA3 f64.div
+    // 0xA4 f64.min
+    // 0xA5 f64.max
+    // 0xA6 f64.copysign
+    // 0xA7 i32.wrap_i64
+    // 0xA8 i32.trunc_f32_s
+    // 0xA9 i32.trunc_f32_u
+    // 0xAA i32.trunc_f64_s
+    // 0xAB i32.trunc_f64_u
+    // 0xAC i64.extend_i32_s
+    // 0xAD i64.extend_i32_u
+    // 0xAE i64.trunc_f32_s
+    // 0xAF i64.trunc_f32_u
+    // 0xB0 i64.trunc_f64_s
+    // 0xB1 i64.trunc_f64_u
+    // 0xB2 f32.convert_i32_s
+    // 0xB3 f32.convert_i32_u
+    // 0xB4 f32.convert_i64_s
+    // 0xB5 f32.convert_i64_u
+    // 0xB6 f32.demote_f64
+    // 0xB7 f64.convert_i32_s
+    // 0xB8 f64.convert_i32_u
+    // 0xB9 f64.convert_i64_s
+    // 0xBA f64.convert_i64_u
+    // 0xBB f64.promote_f32
+    // 0xBC i32.reinterpret_f32
+    // 0xBD i64.reinterpret_f64
+    // 0xBE f32.reinterpret_i32
+    // 0xBF f64.reinterpret_i64
+    // 0xC0 i32.extend8_s
+    // 0xC1 i32.extend16_s
+    // 0xC2 i64.extend8_s
+    // 0xC3 i64.extend16_s
+    // 0xC4 i64.extend32_s
+    // 0xFC <i32|64>.trunc_sat_<f32|64>_<s|u>
+
     default:
         panicf("unsupported instructions: %02X ", op);
         break;

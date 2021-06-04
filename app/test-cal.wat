@@ -20,6 +20,14 @@
         i32.lt_s
         call $printInt
         i32.const 10
+        i32.const 10
+        i32.lt_s
+        call $printInt
+        i32.const 100
+        i32.const 50
+        i32.lt_s
+        call $printInt
+        i32.const 10
         i32.const 50
         i32.lt_u
         call $printInt
