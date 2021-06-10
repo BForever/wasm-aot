@@ -1,0 +1,6 @@
+[submodule "benchmark/polybenchc"]
+	path = benchmark/polybenchc
+	url = git@gitee.com:emnets/polybenchc.git
+[submodule "benchmark/polybenchc-webassembly"]
+	path = benchmark/polybenchc-webassembly
+	url = git@gitee.com:emnets/polybenchc-webassembly.git

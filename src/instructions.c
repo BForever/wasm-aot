@@ -401,12 +401,12 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x2E i32.load16_s
     // 0x2F i32.load16_u
     // 0x30 i64.load8_s
-    // 0x31 i64.load8_u m
-    // 0x32 i64.load16_s m
-    // 0x33 i64.load16_u m
-    // 0x34 i64.load32_s m
-    // 0x35 i64.load32_u m
-    // 0x36 i32.store m
+    // 0x31 i64.load8_u
+    // 0x32 i64.load16_s
+    // 0x33 i64.load16_u
+    // 0x34 i64.load32_s
+    // 0x35 i64.load32_u
+    // 0x36 i32.store
     case I32Store:
     {
         // 读取对齐标签，丢弃
@@ -440,14 +440,14 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit,"s: %d",ts.stack_top);
         break;
     }
-    // 0x37 i64.store m
-    // 0x38 f32.store m
-    // 0x39 f64.store m
-    // 0x3A i32.store8 m
-    // 0x3B i32.store16 m
-    // 0x3C i64.store8 m
-    // 0x3D i64.store16 m
-    // 0x3E i64.store32 m
+    // 0x37 i64.store
+    // 0x38 f32.store
+    // 0x39 f64.store
+    // 0x3A i32.store8
+    // 0x3B i32.store16
+    // 0x3C i64.store8
+    // 0x3D i64.store16
+    // 0x3E i64.store32
     // 0x3F memory.size
     // 0x40 memory.grow
     // 0x41 i32.const
