@@ -41,11 +41,11 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 读取返回值类型
         ReadLEB_i7(&operand, start, end);
         NormalizeType(&operand.num8[1], operand.num8[0]);
-        log(emit, "[BLOCK %s]",wasm_types_names[operand.num8[1]]);
+        log(emit, "[BLOCK %s]", wasm_types_names[operand.num8[1]]);
         // 生成标签ID并入栈
         blct.block_label[blct.top++] = blct.next_id++;
-        blct.block_stack[blct.top-1] = ts.stack_top;
-        blct.block_type[blct.top-1] = operand.num8[1];
+        blct.block_stack[blct.top - 1] = ts.stack_top;
+        blct.block_type[blct.top - 1] = operand.num8[1];
         blct.block_pc[blct.next_id - 1] = 0; //表示非loop
         break;
     }
@@ -55,11 +55,11 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 读取返回值类型
         ReadLEB_i7(&operand, start, end);
         NormalizeType(&operand.num8[1], operand.num8[0]);
-        log(emit, "[LOOP %s]",wasm_types_names[operand.num8[1]]);
+        log(emit, "[LOOP %s]", wasm_types_names[operand.num8[1]]);
         // 生成标签ID并入栈
         blct.block_label[blct.top++] = blct.next_id++;
-        blct.block_stack[blct.top-1] = ts.stack_top;
-        blct.block_type[blct.top-1] = operand.num8[1];
+        blct.block_stack[blct.top - 1] = ts.stack_top;
+        blct.block_type[blct.top - 1] = operand.num8[1];
         blct.block_pc[blct.next_id - 1] = ts.pc; //loop的跳转目标为loop起始
         break;
     }
@@ -68,47 +68,58 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x0B End_
     case End_:
     {
-        log(emit, "[END]:%p",RTC_START_OF_COMPILED_CODE_SPACE + ts.pc);
+        log(emit, "[END]:%p", RTC_START_OF_COMPILED_CODE_SPACE + ts.pc);
         if (blct.top) // 还在block内部
         {
-            log(emit,"of block %d",blct.top);
-            
+            log(emit, "of block %d", blct.top);
+
             // 结束前恢复栈平衡
-            int count = ts.stack_top-blct.block_stack[--blct.top];
-            for(int i=0;i<count;i++){
-                log(emit,"pop stack");
-                if(i==0){
+            int count = ts.stack_top - blct.block_stack[--blct.top];
+            for (int i = 0; i < count; i++)
+            {
+                log(emit, "pop stack");
+                if (i == 0)
+                {
                     emit_x_POP_32bit(R22);
-                }else{
+                }
+                else
+                {
                     emit_x_POP_32bit(R18);
                 }
                 ts.stack_top--;
-                ts.pc+=8;
+                ts.pc += 8;
             }
             if (!blct.block_pc[blct.block_label[blct.top]])
             {
                 blct.block_pc[blct.block_label[blct.top]] = ts.pc; //没有填充PC（非loop）则填充END的PC
             }
-            if(blct.block_type[blct.top]!=WASM_Type_none){
-                log(emit,"push res %s",wasm_types_names[blct.block_type[blct.top]]);
+            if (blct.block_type[blct.top] != WASM_Type_none)
+            {
+                log(emit, "push res %s", wasm_types_names[blct.block_type[blct.top]]);
                 emit_x_PUSH_32bit(R22);
-                ts.pc+=8;
+                ts.pc += 8;
                 ts.stack_top++;
-                log(emit,"s: %d",ts.stack_top);
+                log(emit, "s: %d", ts.stack_top);
             }
-            
         }
         else // 到达函数尾部的END
         {
-            log(emit,"func end");
+            log(emit, "func end");
             if (is_entry_func(module, func))
             { //在入口函数的尾部恢复状态
                 // log(emit,"pop for call restore");
                 // emit_x_call_restore();
             }
             // 如果函数有局部变量，则恢复Y指针
-            if (func->numLocals)
+            if (func->numLocals || func->funcType->args_num)
             {
+                if (func->funcType->returnType == WASM_Type_i32)
+                {
+                    log(emit, "pop32 for result %s", func->funcType->returnType);
+                    emit_x_POP_32bit(R22);
+                    ts.pc += 8;
+                    ts.stack_top--;
+                }
                 // emit_restore_Y();
                 log(emit, "deinit %dB locals", func->numLocalBytes);
                 emit_local_deinit(func->numLocalBytes);
@@ -125,9 +136,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     case Br:
     {
         ReadLEB_u32(&operand, start, end);
-        log(emit, "[BR %d]",operand.num32);
-        log(emit, "%d",ts.pc);
-        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]])*2); //填充对应Block的ID(emit宏会将地址除以2)
+        log(emit, "[BR %d]", operand.num32);
+        log(emit, "%d", ts.pc);
+        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]]) * 2); //填充对应Block的ID(emit宏会将地址除以2)
         ts.pc += 4;
         break;
     }
@@ -135,37 +146,41 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     case BrIf: //TODO
     {
         ReadLEB_u32(&operand, start, end);
-        log(emit, "[BR_IF %d]",operand.num32);
-        
+        log(emit, "[BR_IF %d]", operand.num32);
+
         // 获取操作数
         emit_x_POP_32bit(R22);
         ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         // 获取0
-        emit_MOV(R18,R1);
-        emit_MOV(R19,R1);
-        emit_MOV(R20,R1);
-        emit_MOV(R21,R1);
+        emit_MOV(R18, R1);
+        emit_MOV(R19, R1);
+        emit_MOV(R20, R1);
+        emit_MOV(R21, R1);
         // 与0比较
-        emit_CP(R22,R18);
-        emit_CPC(R23,R19);
-        emit_CPC(R24,R20);
-        emit_CPC(R25,R21);
+        emit_CP(R22, R18);
+        emit_CPC(R23, R19);
+        emit_CPC(R24, R20);
+        emit_CPC(R25, R21);
         // 非0则跳转
-        log(emit, "br %d",4+8*(ts.stack_top-blct.block_stack[blct.top-1-operand.num16[0]]));
-        emit_BREQ(4+8*(ts.stack_top-blct.block_stack[blct.top-1-operand.num16[0]])); 
+        log(emit, "br %d", 4 + 8 * (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]]));
+        emit_BREQ(4 + 8 * (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]]));
         ts.pc += 26;
         // 跳转前恢复栈平衡
-        for(int i=ts.stack_top;i>blct.block_stack[blct.top-1-operand.num16[0]];i--){
-            log(emit,"pop stack");
-            if(i==ts.stack_top){
+        for (int i = ts.stack_top; i > blct.block_stack[blct.top - 1 - operand.num16[0]]; i--)
+        {
+            log(emit, "pop stack");
+            if (i == ts.stack_top)
+            {
                 emit_x_POP_32bit(R22);
-            }else{
+            }
+            else
+            {
                 emit_x_POP_32bit(R18);
             }
-            ts.pc+=8;
+            ts.pc += 8;
         }
-        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]])*2);//填充对应Block的ID(emit宏会将地址除以2)
+        emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]]) * 2); //填充对应Block的ID(emit宏会将地址除以2)
         ts.pc += 4;
         break;
     }
@@ -225,7 +240,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                     {
                         logif(emit, printf("pop32 for param %d at", i); printf(" R%d.", base););
                         emit_x_POP_32bit(base);
-                        ts.pc+=8;
+                        ts.pc += 8;
                     }
                 }
             }
@@ -237,6 +252,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_2_CALL(operand.num16[0]); //TODO 不同签名类型的函数应当有不同的局部变量预处理
             ts.pc += 4;
 
+            //TODO 抛弃栈传递的参数
+
+            //返回值压栈
             if (type->returnType != WASM_Type_none)
             {
                 if (type->returnType == WASM_Type_i32)
@@ -249,10 +267,27 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         }
         else
         {
+            func_type_ptr type = called_func->funcType;
             log(emit, "call func %s", called_func->name);
             emit_2_CALL(operand.num16[0]);
             ts.pc += 4;
-            // emit_2_CALL(called_func->compiled);
+            //drop参数
+            for (int i = 0; i < type->args_num; i++)
+            {
+                log(emit, "drop32");
+                emit_x_POP_32bit(R18);
+                ts.pc += 8;
+                ts.stack_top--;
+            }
+            // 结果压栈
+            if (type->returnType == WASM_Type_i32)
+            {
+                log(emit, "push32 for return type %s", wasm_types_names[WASM_Type_i32]);
+                emit_x_PUSH_32bit(R22);
+                ts.stack_top++;
+                ts.pc += 8;
+            }
+            log(emit, "s: %d", ts.stack_top);
         }
         break;
     }
@@ -267,6 +302,54 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ts.stack_top--;
         break;
     }
+    // case I32Add:
+    //     log(emit, "[I32.ADD]");
+    //     log(emit, "pop32 to R22.");
+    //     emit_x_POP_32bit(R22);
+    //     log(emit, "pop32 to R18.");
+    //     emit_x_POP_32bit(R18);
+    //     log(emit, "add32 R22. = R22. + R18.");
+    //     emit_ADD(R22, R18);
+    //     emit_ADC(R23, R19);
+    //     emit_ADC(R24, R20);
+    //     emit_ADC(R25, R21);
+    //     log(emit, "push32");
+    //     emit_x_PUSH_32bit(R22);
+    //     ts.pc += 32;
+    //     ts.stack_top--;
+    //     log(emit, "s: %d", ts.stack_top);
+    //     break;
+    // case I32Sub:
+    //     log(emit, "[I32.SUB]");
+    //     // log(emit, "pop32 to R22.");
+    //     emit_x_POP_32bit(R18);
+    //     // log(emit, "pop32 to R18.");
+    //     emit_x_POP_32bit(R22);
+    //     // log(emit, "add32 R22. = R22. + R18.");
+    //     emit_SUB(R22, R18);
+    //     emit_SBC(R23, R19);
+    //     emit_SBC(R24, R20);
+    //     emit_SBC(R25, R21);
+    //     // log(emit, "push32");
+    //     emit_x_PUSH_32bit(R22);
+    //     ts.pc += 32;
+    //     ts.stack_top--;
+    //     log(emit, "s: %d", ts.stack_top);
+    //     break;
+    // case I32And:
+    //     log(emit, "[I32.AND]");
+    //     emit_x_POP_32bit(R22);
+    //     emit_x_POP_32bit(R18);
+    //     emit_AND(R22, R18);
+    //     emit_AND(R23, R19);
+    //     emit_AND(R24, R20);
+    //     emit_AND(R25, R21);
+    //     emit_x_PUSH_32bit(R22);
+    //     ts.pc += 32;
+    //     ts.stack_top--;
+    //     log(emit, "s: %d", ts.stack_top);
+    //     break;
+    // }
     // 0x1B Select
     // 0x20 LocalGet
     case LocalGet:
@@ -274,8 +357,21 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         //读取局部变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[LOCAL.GET %d]", operand.num32);
-        log(emit, "Load R22... from local[%d]", operand.num32 * 4);
-        base = operand.num32 * 4; //这里有奇怪的bug，u32 无法参与加法计算，因此用u16的base变量来
+
+        if (operand.num16[0] >= ts.current_func->funcType->args_num)
+        { //本地变量
+            //这里有奇怪的bug，u32 无法参与加法计算，因此用u16的base变量来计算
+            base = operand.num16[0] - ts.current_func->funcType->args_num;
+            base *= 4;
+            log(emit, "Ld R22. from local[%d]", base);
+        }
+        else
+        { //参数
+            base = ts.current_func->funcType->args_num - 1 - operand.num16[0];
+            base = ts.current_func->numLocalBytes + 4 + base * 4;
+            log(emit, "Ld R22. from param[%d]", base);
+        }
+
         emit_LDD(R22, Y, base + 1);
         emit_LDD(R23, Y, base + 2);
         emit_LDD(R24, Y, base + 3);
@@ -284,7 +380,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 16;
         ts.stack_top++;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x21 LocalSet
@@ -295,15 +391,27 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "[LOCAL.SET %d]", operand.num32);
         log(emit, "pop32 to R22...");
         emit_x_POP_32bit(R22);
-        log(emit, "Store R22... to local[%d]", operand.num32 * 4);
-        base = operand.num32 * 4; //这里有奇怪的bug，u32 无法参与加法计算，因此用u16的base变量来
+
+        if (operand.num16[0] >= ts.current_func->funcType->args_num)
+        { //本地变量
+            //这里有奇怪的bug，u32 无法参与加法计算，因此用u16的base变量来计算
+            base = operand.num16[0] - ts.current_func->funcType->args_num;
+            base *= 4;
+            log(emit, "Store R22... to local[%d]", base);
+        }
+        else
+        {
+            base = ts.current_func->funcType->args_num - 1 - operand.num16[0];
+            base = ts.current_func->numLocalBytes + 4 + base * 4;
+            log(emit, "Store R22... to param[%d]", base);
+        }
         emit_STD(R22, Y, base + 1);
         emit_STD(R23, Y, base + 2);
         emit_STD(R24, Y, base + 3);
         emit_STD(R25, Y, base + 4);
         ts.pc += 16;
         ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x22 LocalTee
@@ -314,8 +422,19 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "[LOCAL.TEE %d]", operand.num32);
         log(emit, "pop32 to R22...");
         emit_x_POP_32bit(R22);
-        log(emit, "Store R22... to local[%d]", operand.num32 * 4);
-        base = operand.num32 * 4; //这里有奇怪的bug，u32 无法参与加法计算，因此用u16的base变量来
+        if (operand.num16[0] >= ts.current_func->funcType->args_num)
+        { //本地变量
+            //这里有奇怪的bug，u32 无法参与加法计算，因此用u16的base变量来计算
+            base = operand.num16[0] - ts.current_func->funcType->args_num;
+            base *= 4;
+            log(emit, "Store R22... to local[%d]", base);
+        }
+        else
+        {
+            base = ts.current_func->funcType->args_num - 1 - operand.num16[0];
+            base = ts.current_func->numLocalBytes + 4 + base * 4;
+            log(emit, "Store R22... to param[%d]", base);
+        }
         emit_STD(R22, Y, base + 1);
         emit_STD(R23, Y, base + 2);
         emit_STD(R24, Y, base + 3);
@@ -341,7 +460,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 16;
         ts.stack_top++;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x24 GlobalSet
@@ -358,7 +477,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_STD(R25, Z, module->global_list[operand.num16[0]].offset + 3);
         ts.pc += 16;
         ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x28 I32Load
@@ -436,8 +555,8 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_SUB(RZ, R18);
         emit_SBC(RZ + 1, R19);
         ts.pc += 32;
-        ts.stack_top-=2;
-        log(emit,"s: %d",ts.stack_top);
+        ts.stack_top -= 2;
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x37 i64.store
@@ -464,7 +583,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 16;
         ts.stack_top++;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x42 i64.const
@@ -490,25 +609,30 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x4E i32.ge_s
     case I32GeS:
     // 0x4F i32.ge_u
-    case I32GeU: 
+    case I32GeU:
     {
         log(emit, "[I32.(ComparisonInstruction)]");
         //Second operand
         emit_x_POP_32bit(R18);
         //First operand
         emit_x_POP_32bit(R22);
+        ts.pc += 16;
         //Compare per register
-        if (op == I32LtS || op == I32LtU || op == I32GeS || op == I32GeU || op == I32Eq || op == I32Ne){
+        if (op == I32LtS || op == I32LtU || op == I32GeS || op == I32GeU || op == I32Eq || op == I32Ne)
+        {
             emit_CP(R22, R18);
             emit_CPC(R23, R19);
             emit_CPC(R24, R20);
             emit_CPC(R25, R21);
+            ts.pc += 8;
         }
-        else if (op == I32LeS || op == I32LeU || op == I32GtS || op == I32GtU){
+        else if (op == I32LeS || op == I32LeU || op == I32GtS || op == I32GtU)
+        {
             emit_CP(R18, R22);
             emit_CPC(R19, R23);
             emit_CPC(R20, R24);
             emit_CPC(R21, R25);
+            ts.pc += 8;
         }
         // if (op == I32GtS || op == I32LeS){
         //     emit_LDI(R22, 0);
@@ -521,26 +645,47 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_LDI(R23, 0);
         emit_LDI(R24, 0);
         emit_LDI(R25, 0);
+        ts.pc += 8;
         // }
         //BRSH = Branch if Same or Higher (Unsigned)
         //BRLO = Branch if Lower (Unsigned)
         //BRGE = Branch if Greater or Equal (Signed)
         //BRLT = Branch if Less Than (Signed)
         if (op == I32LtS || op == I32GtS)
-            {emit_BRLT(2);}
+        {
+            emit_BRLT(2);
+            ts.pc += 2;
+        }
         else if (op == I32LtU || op == I32GtU)
-            {emit_BRCS(2);}
+        {
+            emit_BRCS(2);
+            ts.pc += 2;
+        }
         else if (op == I32LeS || op == I32GeS)
-            {emit_BRGE(2);}
+        {
+            emit_BRGE(2);
+            ts.pc += 2;
+        }
         else if (op == I32LeU || op == I32GeU)
-            {emit_BRCC(2);}
+        {
+            emit_BRCC(2);
+            ts.pc += 2;
+        }
         else if (op == I32Eq)
-            {emit_BREQ(2);}
+        {
+            emit_BREQ(2);
+            ts.pc += 2;
+        }
         else if (op == I32Ne)
-            {emit_BRNE(2);}
-        
+        {
+            emit_BRNE(2);
+            ts.pc += 2;
+        }
+
         emit_LDI(R22, 0);
         emit_x_PUSH_32bit(R22);
+        ts.pc += 10;
+        ts.stack_top--;
         break;
     }
     // 0x50 i64.eqz
@@ -586,7 +731,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 32;
         ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x6B i32.sub
@@ -606,7 +751,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 32;
         ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x6C i32.mul
@@ -627,7 +772,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_PUSH_32bit(R22);
         ts.pc += 32;
         ts.stack_top--;
-        log(emit,"s: %d",ts.stack_top);
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
     // 0x72 i32.or
@@ -649,7 +794,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_POP_32bit(R22);
         //思路1：将移动位数一直减，减到0为止
         emit_RJMP(8);
-        if (op == I32Shl){
+        ts.pc += 18;
+        if (op == I32Shl)
+        {
             // emit_ADD(R22, R22);
             // emit_ADC(R23, R23);
             // emit_ADC(R24, R24);
@@ -658,22 +805,29 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_ROL(R23);
             emit_ROL(R24);
             emit_ROL(R25);
-        } else if (op == I32ShrU){
+            ts.pc += 8;
+        }
+        else if (op == I32ShrU)
+        {
             emit_LSR(R25);
             emit_ROR(R24);
             emit_ROR(R23);
             emit_ROR(R22);
-        } else if (op = I32ShrS){   //TODO ShrS仍然有问题！！！-10移1位算的不对！！
+            ts.pc += 8;
+        }
+        else if (op = I32ShrS)
+        { //TODO ShrS仍然有问题！！！-10移1位算的不对！！
             emit_ASR(R25);
             emit_ROR(R24);
             emit_ROR(R23);
             emit_ROR(R22);
+            ts.pc += 8;
         }
         emit_DEC(R18);
         emit_BRPL(-12);
         emit_x_PUSH_32bit(R22);
-        ts.pc += 10;//__attribute__ ((section (".rtc_code_marker"))) 
-      
+        ts.pc += 12; //__attribute__ ((section (".rtc_code_marker")))
+
         //思路2：取模的方式，可能在移位多的时候有优化空间，移位少的时候可能不如以上解法
         // emit_LDI(R18, 32);
         // emit_LDI(R19, 0);
@@ -682,88 +836,90 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // emit_x_CALL((uint32_t)&__divmodsi4);
         break;
     }
-    // 0x77 i32.rotl
-    // 0x78 i32.rotr
-    // 0x79 i64.clz
-    // 0x7A i64.ctz
-    // 0x7B i64.popcnt
-    // 0x7C i64.add
-    // 0x7D i64.sub
-    // 0x7E i64.mul
-    // 0x7F i64.div_s
-    // 0x80 i64.div_u
-    // 0x81 i64.rem_s
-    // 0x82 i64.rem_u
-    // 0x83 i64.and
-    // 0x84 i64.or
-    // 0x85 i64.xor
-    // 0x86 i64.shl
-    // 0x87 i64.shr_s
-    // 0x88 i64.shr_u
-    // 0x89 i64.rotl
-    // 0x8A i64.rotr
-    // 0x8B f32.abs
-    // 0x8C f32.neg
-    // 0x8D f32.ceil
-    // 0x8E f32.floor
-    // 0x8F f32.trunc
-    // 0x90 f32.nearest
-    // 0x91 f32.sqrt
-    // 0x92 f32.add
-    // 0x93 f32.sub
-    // 0x94 f32.mul
-    // 0x95 f32.div
-    // 0x96 f32.min
-    // 0x97 f32.max
-    // 0x98 f32.copysign
-    // 0x99 f64.abs
-    // 0x9A f64.neg
-    // 0x9B f64.ceil
-    // 0x9C f64.floor
-    // 0x9D f64.trunc
-    // 0x9E f64.nearest
-    // 0x9F f64.sqrt
-    // 0xA0 f64.add
-    // 0xA1 f64.sub
-    // 0xA2 f64.mul
-    // 0xA3 f64.div
-    // 0xA4 f64.min
-    // 0xA5 f64.max
-    // 0xA6 f64.copysign
-    // 0xA7 i32.wrap_i64
-    // 0xA8 i32.trunc_f32_s
-    // 0xA9 i32.trunc_f32_u
-    // 0xAA i32.trunc_f64_s
-    // 0xAB i32.trunc_f64_u
-    // 0xAC i64.extend_i32_s
-    // 0xAD i64.extend_i32_u
-    // 0xAE i64.trunc_f32_s
-    // 0xAF i64.trunc_f32_u
-    // 0xB0 i64.trunc_f64_s
-    // 0xB1 i64.trunc_f64_u
-    // 0xB2 f32.convert_i32_s
-    // 0xB3 f32.convert_i32_u
-    // 0xB4 f32.convert_i64_s
-    // 0xB5 f32.convert_i64_u
-    // 0xB6 f32.demote_f64
-    // 0xB7 f64.convert_i32_s
-    // 0xB8 f64.convert_i32_u
-    // 0xB9 f64.convert_i64_s
-    // 0xBA f64.convert_i64_u
-    // 0xBB f64.promote_f32
-    // 0xBC i32.reinterpret_f32
-    // 0xBD i64.reinterpret_f64
-    // 0xBE f32.reinterpret_i32
-    // 0xBF f64.reinterpret_i64
-    // 0xC0 i32.extend8_s
-    // 0xC1 i32.extend16_s
-    // 0xC2 i64.extend8_s
-    // 0xC3 i64.extend16_s
-    // 0xC4 i64.extend32_s
-    // 0xFC <i32|64>.trunc_sat_<f32|64>_<s|u>
+        // 0x77 i32.rotl
+        // 0x78 i32.rotr
+        // 0x79 i64.clz
+        // 0x7A i64.ctz
+        // 0x7B i64.popcnt
+        // 0x7C i64.add
+        // 0x7D i64.sub
+        // 0x7E i64.mul
+        // 0x7F i64.div_s
+        // 0x80 i64.div_u
+        // 0x81 i64.rem_s
+        // 0x82 i64.rem_u
+        // 0x83 i64.and
+        // 0x84 i64.or
+        // 0x85 i64.xor
+        // 0x86 i64.shl
+        // 0x87 i64.shr_s
+        // 0x88 i64.shr_u
+        // 0x89 i64.rotl
+        // 0x8A i64.rotr
+        // 0x8B f32.abs
+        // 0x8C f32.neg
+        // 0x8D f32.ceil
+        // 0x8E f32.floor
+        // 0x8F f32.trunc
+        // 0x90 f32.nearest
+        // 0x91 f32.sqrt
+        // 0x92 f32.add
+        // 0x93 f32.sub
+        // 0x94 f32.mul
+        // 0x95 f32.div
+        // 0x96 f32.min
+        // 0x97 f32.max
+        // 0x98 f32.copysign
+        // 0x99 f64.abs
+        // 0x9A f64.neg
+        // 0x9B f64.ceil
+        // 0x9C f64.floor
+        // 0x9D f64.trunc
+        // 0x9E f64.nearest
+        // 0x9F f64.sqrt
+        // 0xA0 f64.add
+        // 0xA1 f64.sub
+        // 0xA2 f64.mul
+        // 0xA3 f64.div
+        // 0xA4 f64.min
+        // 0xA5 f64.max
+        // 0xA6 f64.copysign
+        // 0xA7 i32.wrap_i64
+        // 0xA8 i32.trunc_f32_s
+        // 0xA9 i32.trunc_f32_u
+        // 0xAA i32.trunc_f64_s
+        // 0xAB i32.trunc_f64_u
+        // 0xAC i64.extend_i32_s
+        // 0xAD i64.extend_i32_u
+        // 0xAE i64.trunc_f32_s
+        // 0xAF i64.trunc_f32_u
+        // 0xB0 i64.trunc_f64_s
+        // 0xB1 i64.trunc_f64_u
+        // 0xB2 f32.convert_i32_s
+        // 0xB3 f32.convert_i32_u
+        // 0xB4 f32.convert_i64_s
+        // 0xB5 f32.convert_i64_u
+        // 0xB6 f32.demote_f64
+        // 0xB7 f64.convert_i32_s
+        // 0xB8 f64.convert_i32_u
+        // 0xB9 f64.convert_i64_s
+        // 0xBA f64.convert_i64_u
+        // 0xBB f64.promote_f32
+        // 0xBC i32.reinterpret_f32
+        // 0xBD i64.reinterpret_f64
+        // 0xBE f32.reinterpret_i32
+        // 0xBF f64.reinterpret_i64
+        // 0xC0 i32.extend8_s
+        // 0xC1 i32.extend16_s
+        // 0xC2 i64.extend8_s
+        // 0xC3 i64.extend16_s
+        // 0xC4 i64.extend32_s
+        // 0xFC <i32|64>.trunc_sat_<f32|64>_<s|u>
 
     default:
+    {
         panicf("unsupported instructions: %02X ", op);
         break;
+    }
     }
 }
