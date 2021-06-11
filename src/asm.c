@@ -48,6 +48,15 @@ void emit_x_POP_REF(uint8_t base) {
     emit_x_POPREF8(base+1);
     emit_x_POPREF8(base+0);
 }
+
+u32 udiv(u32 input1,u32 input2){
+    return input1/input2;
+}
+
+i32 idiv(i32 input1,i32 input2){
+    return input1/input2;
+}
+
 // void emit_x_avroraBeep(uint8_t beep) {
 //     emit_PUSH(R24);
 //     emit_LDI(R24, beep);
@@ -145,16 +154,8 @@ void emit_x_call_save(){
     for(int i=2;i<18;i++){
         emit_PUSH(R0+i);  
     }
-    emit_PUSH(R30);
-    emit_PUSH(R31);
-    emit_PUSH(R28);
-    emit_PUSH(R29);
 }
 void emit_x_call_restore(){
-    emit_POP(R29);
-    emit_POP(R28);
-    emit_POP(R31);
-    emit_POP(R30);
     for(int i=17;i>=2;i--){
         emit_POP(R0+i);  
     }
@@ -248,7 +249,9 @@ void emit_local_deinit(u16 numLocalBytes){
     emit_POP(R29);
     emit_POP(R28);
 }
-
+void emit_MOVW(uint8_t destreg, uint8_t srcreg) {
+    emit_opcodeWithSrcAndDestRegOperand(OPCODE_MOVW, (destreg/2), (srcreg/2));
+}
 // void emit_set_SP(){
 //     emit_OUT()
 // }

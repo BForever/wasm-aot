@@ -4,6 +4,12 @@
 // #include "asm_functions.h"
 #include "rtc_emit.h"
 
+enum embed_func{
+   embed_func_idiv = 0xFFFF,
+   embed_func_udiv = 0xFFFE
+};
+u32 udiv(u32 input1,u32 input2);
+i32 idiv(i32 input1,i32 input2);
 
 // PUSHREF
 #define emit_x_PUSHREF8(reg)                     emit_ST_XINC(reg)
@@ -19,6 +25,7 @@ void emit_x_PUSH_16bit(uint8_t base);
 void emit_x_PUSH_REF(uint8_t base);
 
 void emit_BRANCH(uint16_t opcode, uint8_t offset);
+void emit_MOVW(uint8_t destreg, uint8_t srcreg);
 
 void emit_x_avroraBeep(uint8_t beep);
 void emit_x_avroraPrintPC();

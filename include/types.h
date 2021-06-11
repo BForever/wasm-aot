@@ -122,11 +122,11 @@ typedef struct WASM_MODULE
   struct MEMORY_INFO memory;
   bool memory_imported;
 
-  u32 global_num;
+  u16 global_num;
   struct WASM_GLOBAL*  global_list;
 
-  u32 function_num;
-  u32 import_num;
+  u16 function_num;
+  u16 import_num;
 
   struct WASM_FUNCTION** function_list;
 
@@ -134,13 +134,10 @@ typedef struct WASM_MODULE
   u16 entry_method;
 
   struct FUNC_TYPE** func_type_list;
-  u32 func_type_num;
+  u16 func_type_num;
 
   struct DATA_SEGMENT* data_segment_list;
-  u32 data_segment_num;
-
-
-
+  u16 data_segment_num;
 }wasm_module;
 typedef wasm_module* wasm_module_ptr;
 

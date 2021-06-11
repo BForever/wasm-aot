@@ -26,6 +26,12 @@ u32 import_malloc(u32 size){
     return 0;
 }
 
-normal_function imports[6]={printInt,getA,getB,rtc_startBenchmarkMeasurement_Native,rtc_stopBenchmarkMeasurement,import_malloc};
+u32 test(u32 input1,u32 input2,u32 input3){
+    return input3==0?input2:input1;
+}
+
+
+
+normal_function imports[7]={printInt,getA,getB,rtc_startBenchmarkMeasurement_Native,rtc_stopBenchmarkMeasurement,import_malloc,test};
 char* imports_name[6]={"printInt","getA","getB","rtc_startBenchmarkMeasurement_Native","rtc_stopBenchmarkMeasurement","malloc"};
 u32 imports_num=6;

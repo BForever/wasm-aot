@@ -90,10 +90,12 @@ void wkreprog_impl_write(u16 size, u8* data, bool skip) {
 	// TODONR: Check if the size fits in the allocated space for app archive
 	if (avr_flash_pageaddress == 0)
 		return;
-	log(wkreprog, "Recv %d B to flash to page 0x%x.", size, avr_flash_pageaddress);
-	log(wkreprog, "Buffer has %d B.", avr_flash_buf_len);
-	log(wkreprog, "Writing to 0x%x: ", avr_flash_pageaddress+avr_flash_buf_len);
-	logif(wkreprog,printf("\r\n");hexdump(data,size););
+	if(size!=2){
+		log(wkreprog, "Recv %d B to flash to page 0x%x.", size, avr_flash_pageaddress);
+		log(wkreprog, "Buffer has %d B.", avr_flash_buf_len);
+		log(wkreprog, "Writing to 0x%x: ", avr_flash_pageaddress+avr_flash_buf_len);
+		logif(wkreprog,printf("\r\n");hexdump(data,size););
+	}
 
 	if ((avr_flash_pageaddress + avr_flash_buf_len + size) > avr_flash_end_of_safe_region) {
 		panicf("PANIC_REPROGRAM_OUTSIDE_REGION");

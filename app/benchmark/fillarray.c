@@ -2,9 +2,17 @@
 void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t NUMNUMBERS, int32_t numbers[]) {
 	rtc_startBenchmarkMeasurement_Native();
 
+	// for (uint16_t i=0; i<NUMNUMBERS; i++) {
+	// 	printInt(numbers[i]);
+	// }
+
 	for (uint16_t i=0; i<NUMNUMBERS; i++) {
 		numbers[i] = 1;
 	}
+
+	// for (uint16_t i=0; i<NUMNUMBERS; i++) {
+	// 	printInt(numbers[i]);
+	// }
 
 	rtc_stopBenchmarkMeasurement();
 }

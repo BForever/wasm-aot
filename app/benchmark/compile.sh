@@ -12,6 +12,6 @@ done
 for filename in ${filelist[*]}
 do 
     echo $filename
-    $cc $filename -o "$filename".wasm -O2 -DNDEBUG -nostdlib -Wl,--no-entry -Wl,--export-all -Wl,-s -Wl,--allow-undefined-file=stubs.txt -Wl,-z,stack-size=$z_stack_size
+    $cc $filename -o "$filename".wasm -O3 -DNDEBUG -nostdlib -Wl,--no-entry -Wl,--export-all -Wl,-s -Wl,--allow-undefined-file=stubs.txt -Wl,-z,stack-size=$z_stack_size
     wasm2wat "$filename".wasm -o "$filename".wat
 done
