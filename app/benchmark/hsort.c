@@ -35,13 +35,14 @@ void __attribute__((noinline)) siftDown( int32_t *a, int start, int end)
 
 void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t count, int32_t a[]) {
 	rtc_startBenchmarkMeasurement_Native();
+    
 
 	// Then sort it
     int start, end;
 
-    // for(int i=0;i<count;i++){
-    //     printInt(a[i]);
-    // }
+    for(int i=0;i<count;i++){
+        printInt(a[i]);
+    }
 
     /* heapify */
     for (start = (count-2)/2; start >=0; start--) {
@@ -60,7 +61,7 @@ void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t 
 	rtc_stopBenchmarkMeasurement();
 }
 
-void javax_rtcbench_RTCBenchmark_void_test_native() {
+void main() {
 	uint16_t NUMNUMBERS = 100;
     int32_t *numbers = malloc(NUMNUMBERS*sizeof(int32_t));
 

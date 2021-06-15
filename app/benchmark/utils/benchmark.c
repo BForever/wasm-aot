@@ -1,7 +1,7 @@
 #include "benchmark.h"
 #include "AvroraPrint.h"
 #include <stdarg.h>
-
+#include <stdio.h>
 void avr_Print(char * str)
 {
 	int i;

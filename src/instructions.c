@@ -681,12 +681,12 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_ADD(RZL, R14);
         emit_ADC(RZH, R15);
         ts.pc += 30;
-        if (operand.num8[0] >= 56)
+        if (operand.num8[0] >= 30)
         {
-            emit_LDI(R12, operand.num8[0]);
-            emit_LDI(R13, operand.num8[1]);
-            emit_ADD(RZL, R12);
-            emit_ADC(RZH, R13);
+            emit_LDI(R16, operand.num8[0]);
+            emit_LDI(R17, operand.num8[1]);
+            emit_ADD(RZL, R16);
+            emit_ADC(RZH, R17);
             emit_STD(R18, Z, 0);
             emit_STD(R19, Z, 1);
             emit_STD(R20, Z, 2);

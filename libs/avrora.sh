@@ -16,13 +16,13 @@ xxd -i test.wasm > test.wasm.h
 sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# test.wasm.h
 cd ..
 
-# bench="hsort"
-# cd app/benchmark
-# ./compile.sh
-# wat2wasm $bench.c.wat -o $bench.wasm --enable-annotations -v
-# xxd -i $bench.wasm > $bench.wasm.h
-# sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# $bench.wasm.h
-# cd ../..
+bench="hsort"
+cd app/benchmark
+./compile.sh
+wat2wasm $bench.c.wat -o $bench.wasm --enable-annotations -v
+xxd -i $bench.wasm > $bench.wasm.h
+sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# $bench.wasm.h
+cd ../..
 
 cd build
 make 

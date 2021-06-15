@@ -2,11 +2,11 @@
 // #include "hello.wasm.h"
 // #include "client.wasm.h"
 #include "test.wasm.h"
-#include "test-cal.wasm.h"
-#include "binsrch.wasm.h"
-#include "bsort.wasm.h"
-#include "funcall.wasm.h"
-#include "fillarray.wasm.h"
+// #include "test-cal.wasm.h"
+// #include "binsrch.wasm.h"
+// #include "bsort.wasm.h"
+// #include "funcall.wasm.h"
+// #include "fillarray.wasm.h"
 #include "hsort.wasm.h"
 #include "debug.h"
 #include "types.h"
@@ -37,8 +37,8 @@ int main()
 	// code->length = hello_wasm_len;
 	// code->ptr = client_wasm;
 	// code->length = client_wasm_len;
-	code->ptr = test_wasm;
-	code->length  = test_wasm_len;
+	// code->ptr = test_wasm;
+	// code->length  = test_wasm_len;
     // code->ptr = test_cal_wasm;
 	// code->length  = test_cal_wasm_len;
 	// code->ptr = binsrch_wasm;
@@ -47,8 +47,8 @@ int main()
 	// code->length  = funcall_wasm_len;
 	// code->ptr = fillarray_wasm;
 	// code->length  = fillarray_wasm_len;
-	// code->ptr = hsort_wasm;
-	// code->length  = hsort_wasm_len;
+	code->ptr = hsort_wasm;
+	code->length  = hsort_wasm_len;
 	// code->ptr = bsort_wasm;
 	// code->length  = bsort_wasm_len;
 	

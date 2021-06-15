@@ -232,7 +232,7 @@ void wasm_global_init(wasm_module_ptr module)
             ts.wasm_global_temp_space = sys_realloc(ts.wasm_global_temp_space, offset + 4);
             bytes init_start = g->initExpr + 1;
             bytes init_end = init_start + g->initExprSize - 1;
-            logif(compile, printf("global %d's i_expr:", i); hexdump_pgm(init_start, init_end - init_start););
+            logif(compile, printf("global %d's i_expr:\r\n", i); hexdump_pgm(init_start, init_end - init_start););
             ReadLEB_i32(((i32 *)(ts.wasm_global_temp_space + offset)), &init_start, init_end);
             log(compile, "i_val: %d", *((i32 *)(ts.wasm_global_temp_space + offset)));
             // hexdump(ts.wasm_global_temp_space,16);
