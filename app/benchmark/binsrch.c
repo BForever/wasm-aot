@@ -6,12 +6,12 @@ void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t 
     int32_t toFind = numbers[NUMNUMBERS-1];
 
     uint16_t mid=0;
-    for (uint16_t i=0; i<1000; i++) {
+    for (uint16_t i=0; i<10; i++) {
         uint16_t low = 0;
         uint16_t high = NUMNUMBERS - 1;
         while (low <= high) {
             mid = ((uint16_t)(low + high)) >> 1;
-            // printInt(mid);
+            printInt(mid);
             int32_t number_mid;
             if ((number_mid=numbers[mid]) < toFind) {
                 low = mid + 1;

@@ -51,7 +51,7 @@ void rtc_stopBenchmarkMeasurement(){
 }
 
 void printInt(uint32_t value){
-    avr_Printf("res: %ld",value);
+    avr_Printf("res: %ld\r\n",value);
 }
 void PrintInt32(uint32_t value){}
 void PrintStr(uint8_t* str){}

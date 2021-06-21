@@ -119,14 +119,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         else // 到达函数尾部的END
         {
             log(emit, "func end");
-            if (is_entry_func(module, func))
-            { //在入口函数的尾部恢复状态
-                // log(emit,"pop for call restore");
-                // emit_x_call_restore();
-                // ts.pc+=32;
-                emit_x_POP_16bit(R2);
-                ts.pc+=4;
-            }
+            
             // 如果函数有局部变量，则恢复Y指针
             if (func->numLocals || func->funcType->args_num)
             {
@@ -141,6 +134,14 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                 log(emit, "deinit %dB locals", func->numLocalBytes);
                 emit_local_deinit(func->numLocalBytes);
                 ts.pc += 16;
+            }
+            if (is_entry_func(module, func))
+            { //在入口函数的尾部恢复状态
+                // log(emit,"pop for call restore");
+                // emit_x_call_restore();
+                // ts.pc+=32;
+                emit_x_POP_16bit(R2);
+                ts.pc+=4;
             }
 
             log(emit, "ret");

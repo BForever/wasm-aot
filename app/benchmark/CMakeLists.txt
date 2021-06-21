@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 PROJECT(benchnative)
 
-
+add_definitions(-DAVRORA)
 set (CMAKE_C_COMPILER "avr-gcc")
 set (CMAKE_CXX_COMPILER "avr-g++")
 #-Werror
@@ -34,12 +34,17 @@ SET(fillarray
 benchmark.c
 fillarray.c
 )
+SET(hsort
+benchmark.c
+hsort.c
+)
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
 ADD_EXECUTABLE(binsrch.elf ${binsrch})
 ADD_EXECUTABLE(bsort.elf ${bsort})
 ADD_EXECUTABLE(fillarray.elf ${fillarray})
+ADD_EXECUTABLE(hsort.elf ${hsort})
 add_custom_command(
     TARGET binsrch.elf
     POST_BUILD
