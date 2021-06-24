@@ -1,0 +1,11 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../bin/aot.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0          2212  [avrora.c-print] 1 0000
+   0       1325280  [avrora.c-print] 11 benchmark start.
+   0       1385414  [avrora.c-print] 11 benchmark stop.
+==============================================================================
+Simulated time: 1385519 cycles

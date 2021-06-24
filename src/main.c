@@ -1,13 +1,4 @@
-// #include "app.wasm.h"
-// #include "hello.wasm.h"
-// #include "client.wasm.h"
-#include "test.wasm.h"
-// #include "test-cal.wasm.h"
-#include "binsrch.wasm.h"
-// #include "bsort.wasm.h"
-// #include "funcall.wasm.h"
-// #include "fillarray.wasm.h"
-// #include "hsort.wasm.h"
+#include "lec.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"
@@ -31,27 +22,8 @@ int main()
 {
 	// WASM 代码数组
 	wasm_code_ptr code = sys_malloc(sizeof(wasm_code));
-	// code->ptr = app_wasm;
-	// code->length = app_wasm_len;
-	// code->ptr = hello_wasm;
-	// code->length = hello_wasm_len;
-	// code->ptr = client_wasm;
-	// code->length = client_wasm_len;
 	code->ptr = test_wasm;
 	code->length  = test_wasm_len;
-    // code->ptr = test_cal_wasm;
-	// code->length  = test_cal_wasm_len;
-	code->ptr = binsrch_wasm;
-	code->length  = binsrch_wasm_len;
-	// code->ptr = funcall_wasm;
-	// code->length  = funcall_wasm_len;
-	// code->ptr = fillarray_wasm;
-	// code->length  = fillarray_wasm_len;
-	// code->ptr = hsort_wasm;
-	// code->length  = hsort_wasm_len;
-	// code->ptr = bsort_wasm;
-	// code->length  = bsort_wasm_len;
-	
 
 	// 读取WASM字节码
 	wasm_module_ptr module = wasm_load_module(code);
@@ -64,4 +36,7 @@ int main()
 	wasm_call_method(module->entry_method);
 
 	log(temp,"wasm func returned.");
+
+	asm volatile ("break");
+	return 0;
 }

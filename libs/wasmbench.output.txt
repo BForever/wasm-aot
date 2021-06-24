@@ -1,0 +1,18 @@
+in ./lec.wasmoutput.txt :
+7117940
+8509275
+in ./fillarray.wasmoutput.txt :
+1325280
+1385414
+in ./binsrch.wasmoutput.txt :
+2186879
+6495095
+in ./funcall.wasmoutput.txt :
+425930
+427895
+in ./hsort.wasmoutput.txt :
+3300243
+4016765
+in ./bsort.wasmoutput.txt :
+2365610
+27185924

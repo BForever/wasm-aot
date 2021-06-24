@@ -21,6 +21,9 @@ void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t 
 		}
 	}
 
+	// for (uint16_t i=0; i<NUMNUMBERS; i++)
+	// 	printInt(numbers[i]);
+
 	rtc_stopBenchmarkMeasurement();
 }
 void javax_rtcbench_RTCBenchmark_void_test_native() {
@@ -30,6 +33,9 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
 	// Fill the array
 	for (uint16_t i=0; i<NUMNUMBERS; i++)
 		numbers[i] = (NUMNUMBERS - 1 - i);
+
+	// for (uint16_t i=0; i<NUMNUMBERS; i++)
+	// 	printInt(numbers[i]);
 
 	rtcbenchmark_measure_native_performance(NUMNUMBERS, numbers);
 }

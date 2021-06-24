@@ -34,6 +34,11 @@ void avr_Printf(char * format, ...)
 // extern void* malloc(uint16_t size);
 void rtc_startBenchmarkMeasurement_Native(){
     // avr_Print("start");
+    avroraWriteCharBuffer('b');
+    avroraWriteCharBuffer('e');
+    avroraWriteCharBuffer('n');
+    avroraWriteCharBuffer('c');
+    avroraWriteCharBuffer('h');
     avroraWriteCharBuffer('s');
     avroraWriteCharBuffer('t');
     avroraWriteCharBuffer('a');
@@ -43,6 +48,11 @@ void rtc_startBenchmarkMeasurement_Native(){
 }
 void rtc_stopBenchmarkMeasurement(){
     // avr_Print("stop");
+    avroraWriteCharBuffer('b');
+    avroraWriteCharBuffer('e');
+    avroraWriteCharBuffer('n');
+    avroraWriteCharBuffer('c');
+    avroraWriteCharBuffer('h');
     avroraWriteCharBuffer('s');
     avroraWriteCharBuffer('t');
     avroraWriteCharBuffer('o');
@@ -53,9 +63,17 @@ void rtc_stopBenchmarkMeasurement(){
 void printInt(uint32_t value){
     avr_Printf("res: %ld\r\n",value);
 }
-void PrintInt32(uint32_t value){}
-void PrintStr(uint8_t* str){}
+void PrintInt32(uint32_t value){
+    avroraPrintInt32(value);
+}
+void PrintInt16(uint16_t value){
+    avroraPrintInt16(value);
+}
+void PrintStr(uint8_t* str){
+    avroraPrintStr(str);
+}
 
 int main(){
     javax_rtcbench_RTCBenchmark_void_test_native();
+    asm volatile ("break");
 }

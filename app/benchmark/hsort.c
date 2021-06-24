@@ -18,8 +18,8 @@ void __attribute__((noinline)) siftDown( int32_t *a, int start, int end)
         }
         int32_t a_root = a[root];
         int32_t a_child = a[child];
-        printInt(a_root);
-        printInt(a_child);
+        // printInt(a_root);
+        // printInt(a_child);
         if (a[root] < a[child]) {
             // SWAP( a[child], a[root] );
             a[root] = a_child;
@@ -34,7 +34,7 @@ void __attribute__((noinline)) siftDown( int32_t *a, int start, int end)
 }
 
 void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t count, int32_t a[]) {
-	// rtc_startBenchmarkMeasurement_Native();
+	rtc_startBenchmarkMeasurement_Native();
     
 
 	// Then sort it
@@ -45,24 +45,24 @@ void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t 
     // }
     // rtc_startBenchmarkMeasurement_Native();
 
-    // /* heapify */
-    // for (start = (count-2)/2; start >=0; start--) {
-    //     siftDown( a, start, count);
-    // }
+    /* heapify */
+    for (start = (count-2)/2; start >=0; start--) {
+        siftDown( a, start, count);
+    }
     // rtc_startBenchmarkMeasurement_Native();
     
     // for(int i=0;i<count;i++){
     //     printInt(a[i]);
     // }
-    rtc_startBenchmarkMeasurement_Native();
+    // rtc_startBenchmarkMeasurement_Native();
     for (end=count-1; end > 0; end--) {
         SWAP(a[end],a[0]);
         siftDown(a, 0, end);
     }
-    rtc_startBenchmarkMeasurement_Native();
-    for(int i=0;i<count;i++){
-        printInt(a[i]);
-    }
+    // rtc_startBenchmarkMeasurement_Native();
+    // for(int i=0;i<count;i++){
+    //     printInt(a[i]);
+    // }
 
 	rtc_stopBenchmarkMeasurement();
 }

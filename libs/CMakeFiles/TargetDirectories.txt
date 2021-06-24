@@ -1,0 +1,3 @@
+/home/fanhc/wasm-aot/libs/CMakeFiles/rebuild_cache.dir
+/home/fanhc/wasm-aot/libs/CMakeFiles/edit_cache.dir
+/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir

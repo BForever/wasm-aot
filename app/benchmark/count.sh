@@ -8,7 +8,7 @@ do
 done
 echo "-----------"
 echo "instructions used in these files:"
-cat ${filelist[*]} |grep "[A-Za-z][A-Za-z0-9]*\.[a-zA-Z][a-zA-Z]*" -o|sort|uniq
+cat ${filelist[*]} |grep "[A-Za-z][A-Za-z0-9]*\.[a-zA-Z][a-zA-Z0-9_]*" -o|sort|uniq
 echo "-----------"
 echo "files with i64 instructions:"
 for filename in ${filelist[*]}

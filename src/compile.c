@@ -56,6 +56,12 @@ void branch_pc_refill(wasm_module_ptr module)
                 emit_2_CALL(udiv);
                 break;
             }
+            case embed_func_clz32:
+            {
+                logif(compile, printf("func %d clz32", func_id); printf(",call %p", ((u16)udiv)*2););
+                emit_2_CALL(LeadingZeros_32);
+                break;
+            }
             default:
             {
                 logif(compile, printf("func %d", func_id); printf(",call %p", module->function_list[func_id]->compiled * 2););
@@ -130,19 +136,19 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
     if (is_entry_func(module, func))
     { //TODO 在入口函数的前部保存状态
         // log(emit, "push for call save");
-        // emit_x_call_save();
-        // ts.pc+=32;
+        emit_x_call_save();
+        ts.pc+=32;
 
         // 加载全局变量区首地址
         ts.wasm_mem_space = GET_FAR_ADDRESS(g_module) + sizeof(wasm_module) + 64;
         // ts.wasm_mem_space = malloc(8);
         log(compile, "global space:%p", ts.wasm_mem_space);
         // logif(emit,printf("set Z:Z+1 to %02X",(u8)wasm_globals_start);printf(":%02X",(u8)(((u16)wasm_globals_start)>>8)););
-        emit_x_PUSH_16bit(R2);
+        // emit_x_PUSH_16bit(R2);
         emit_LDI(R22, (u8)ts.wasm_mem_space);
         emit_LDI(R23, ((u8)((u16)ts.wasm_mem_space >> 8)));
         emit_MOVW(R2,R22);
-        ts.pc += 10;
+        ts.pc += 6;
     }
 
     if (func->numLocals || func->funcType->args_num)

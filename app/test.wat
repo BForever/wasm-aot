@@ -125,6 +125,7 @@
     ;;     i32.div_s
     ;;     call $printInt
     ;; )
+    (func $__wasm_call_ctors)
     (func $siftDown (param i32 i32 i32)
     (local i32 i32 i32 i32)
     block  ;; label = @1
@@ -285,31 +286,26 @@
     end
     call 2)
     (func $main
-    (local i32 i32 i32)
-    i32.const 99
-    local.set 0
-    i32.const 400
+    (local i32)
+    i32.const 40
     call 3
-    local.tee 1
-    local.set 2
-    loop  ;; label = @1
-      local.get 2
-      local.get 0
-      i32.store
-      local.get 2
-      i32.const 4
-      i32.add
-      local.set 2
-      local.get 0
-      i32.const -1
-      i32.add
-      local.tee 0
-      i32.const -1
-      i32.ne
-      br_if 0 (;@1;)
-    end
-    i32.const 100
-    local.get 1
+    local.tee 0
+    i64.const 1
+    i64.store offset=32 align=4
+    local.get 0
+    i64.const 8589934595
+    i64.store offset=24 align=4
+    local.get 0
+    i64.const 17179869189
+    i64.store offset=16 align=4
+    local.get 0
+    i64.const 25769803783
+    i64.store offset=8 align=4
+    local.get 0
+    i64.const 34359738377
+    i64.store align=4
+    i32.const 10
+    local.get 0
     call $debug
         ;; i32.const 100
         ;; call $test_param
@@ -329,9 +325,11 @@
   (global (;4;) i32 (i32.const 1040))
   (global (;5;) i32 (i32.const 0))
   (global (;6;) i32 (i32.const 1))
-  (export "siftDown" (func 4))
-  (export "rtcbenchmark_measure_native_performance" (func 5))
-  (export "javax_rtcbench_RTCBenchmark_void_test_native" (func 6))
+  (export "memory" (memory 0))
+  (export "__wasm_call_ctors" (func 4))
+  (export "siftDown" (func 5))
+  (export "rtcbenchmark_measure_native_performance" (func 6))
+  (export "javax_rtcbench_RTCBenchmark_void_test_native" (func 7))
   (export "__dso_handle" (global 1))
   (export "__data_end" (global 2))
   (export "__global_base" (global 3))

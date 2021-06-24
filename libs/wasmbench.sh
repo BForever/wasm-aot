@@ -14,21 +14,22 @@
 # wasm2wat test.wasm -o testi.wat
 # xxd -i test.wasm > test.wasm.h
 # sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# test.wasm.h
-# cd ..
+# cd ../libs
 
-bench="binsrch"
-cd ../app/benchmark
-./compile.sh
-wat2wasm $bench.c.wat -o $bench.wasm --enable-annotations -v
-xxd -i $bench.wasm > $bench.wasm.h
-sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# $bench.wasm.h
-cd ../..
 
-cd build
-make 
+benchlist=(binsrch bsort fillarray funcall hsort lec)
 
-cd ../libs
-java -jar avrora.jar \
--single -monitors=c-print \
--mcu=atmega128 \
-../bin/aot.elf
+
+for bench in ${benchlist[*]}
+do 
+    echo "start benchmark: $bench"
+    cd ../src
+    sed -i "s#\#include\ \"[a-zA-Z]*.wasm.h\"#\#include\ \"$bench.wasm.h\""# main.c
+    cd ../libs
+
+    cd ../build
+    make
+    cd ../libs
+
+    java -jar avrora.jar -single -monitors=c-print -colors=false -mcu=atmega128 ../bin/aot.elf | tee $bench.wasmoutput.txt 
+done

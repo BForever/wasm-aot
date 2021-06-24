@@ -6,10 +6,12 @@
 
 enum embed_func{
    embed_func_idiv = 0xFFFF,
-   embed_func_udiv = 0xFFFE
+   embed_func_udiv = 0xFFFE,
+   embed_func_clz32 = 0xFFFD,
 };
 u32 udiv(u32 input1,u32 input2);
 i32 idiv(i32 input1,i32 input2);
+u32 LeadingZeros_32(u32 x);
 
 // PUSHREF
 #define emit_x_PUSHREF8(reg)                     emit_ST_XINC(reg)
