@@ -5,7 +5,7 @@ Loading ../bin/aot.elf...OK
 Node          Time   Event
 ------------------------------------------------------------------------------
    0          2212  [avrora.c-print] 1 0000
-   0       2186879  [avrora.c-print] 11 benchmark start.
-   0       6495095  [avrora.c-print] 11 benchmark stop.
+   0       1759338  [avrora.c-print] 11 benchmark start.
+   0       4899474  [avrora.c-print] 11 benchmark stop.
 ==============================================================================
-Simulated time: 6495259 cycles
+Simulated time: 4899638 cycles

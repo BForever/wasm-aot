@@ -1,0 +1,115 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../bin/aot.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0         18691  [avrora.c-print] 1 0000
+   0         57020  [avrora.c-print] 11  wkreprog | Open flash at 0x65c6.
+   0         71500  [avrora.c-print] 11      emit | [BLOCK nil]
+   0         75098  [avrora.c-print] 11      emit | [BLOCK nil]
+   0         79013  [avrora.c-print] 11      emit | [I32.CONST 1]
+   0         82526  [avrora.c-print] 11      emit | load 1 to R22.
+   0         85218  [avrora.c-print] 11      emit | push32
+   0         87959  [avrora.c-print] 11      emit | s: 1
+   0         91816  [avrora.c-print] 11      emit | [I32.CONST 7]
+   0         95329  [avrora.c-print] 11      emit | load 7 to R22.
+   0         98021  [avrora.c-print] 11      emit | push32
+   0        100762  [avrora.c-print] 11      emit | s: 2
+   0        105607  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0        110394  [avrora.c-print] 11      emit | [BR_IF 0]
+   0        113135  [avrora.c-print] 11      emit | s: 0
+   0        116263  [avrora.c-print] 11      emit | br 4
+   0        119696  [avrora.c-print] 11      emit | [CALL 2]
+   0        125622  [avrora.c-print] 11      emit | call func rtc_stopBenchmarkMeasurement
+   0        128751  [avrora.c-print] 11      emit | [BR 1]
+   0        131430  [avrora.c-print] 11      emit | 148
+   0        135057  [avrora.c-print] 11      emit | [END]:0x665e
+   0        138156  [avrora.c-print] 11      emit | of block 2
+   0        142323  [avrora.c-print] 11      emit | [I32.CONST 11]
+   0        146076  [avrora.c-print] 11      emit | load 11 to R22.
+   0        148768  [avrora.c-print] 11      emit | push32
+   0        151509  [avrora.c-print] 11      emit | s: 1
+   0        155366  [avrora.c-print] 11      emit | [I32.CONST 3]
+   0        158879  [avrora.c-print] 11      emit | load 3 to R22.
+   0        161571  [avrora.c-print] 11      emit | push32
+   0        164312  [avrora.c-print] 11      emit | s: 2
+   0        168169  [avrora.c-print] 11      emit | [I32.CONST 0]
+   0        171682  [avrora.c-print] 11      emit | load 0 to R22.
+   0        177436  [avrora.c-print] 11      emit | push/pop optimized
+   0        182067  [avrora.c-print] 11      emit | push/pop optimized
+   0        189027  [avrora.c-print] 11  wkreprog | Recv 160 B to flash to page 0x6500.
+   0        193148  [avrora.c-print] 11  wkreprog | Buffer has 198 B.
+   0        197255  [avrora.c-print] 11  wkreprog | Writing to 0x65c6: 
+   0        199387  [avrora.c-print] 11  wkreprog | 
+   0        224582  [avrora.c-print] 11 0x08000d41:	2F 92 3F 92 4F 92 5F 92 6F 92 7F 92 8F 92 9F 92 	/.?.O._. o.......
+   0        249107  [avrora.c-print] 11 0x08000d51:	AF 92 BF 92 CF 92 DF 92 EF 92 FF 92 0F 93 1F 93 	........ ........
+   0        274024  [avrora.c-print] 11 0x08000d61:	62 E8 79 E0 1B 01 61 E0 70 E0 80 E0 90 E0 9F 93 	b.y...a. p.......
+   0        298994  [avrora.c-print] 11 0x08000d71:	8F 93 7F 93 6F 93 67 E0 70 E0 80 E0 90 E0 2F 91 	....o.g. p...../.
+   0        324201  [avrora.c-print] 11 0x08000d81:	3F 91 4F 91 5F 91 26 17 37 07 48 07 59 07 61 E0 	?.O._.&. 7.H.Y.a.
+   0        349524  [avrora.c-print] 11 0x08000d91:	70 E0 80 E0 90 E0 0C F0 60 E0 21 2D 31 2D 41 2D 	p....... `.!-1-A-
+   0        374168  [avrora.c-print] 11 0x08000da1:	51 2D 62 17 73 07 84 07 95 07 11 F0 0C 94 01 00 	Q-b.s... ........
+   0        398618  [avrora.c-print] 11 0x08000db1:	0E 94 02 00 0C 94 00 00 6B E0 70 E0 80 E0 90 E0 	........ k.p.....
+   0        423489  [avrora.c-print] 11 0x08000dc1:	9F 93 8F 93 7F 93 6F 93 63 E0 70 E0 80 E0 90 E0 	......o. c.p.....
+   0        458058  [avrora.c-print] 11 0x08000dd1:	9F 93 8F 93 7F 93 6F 93 60 E0 70 E0 80 E0 90 E0 	......o. `.p.....                                                	
+   0        458575  [avrora.c-print] 11 
+   0        463737  [avrora.c-print] 11  wkreprog | Flashing page at 0x6500.
+   0        555783  [avrora.c-print] 11      emit | push32
+   0        558524  [avrora.c-print] 11      emit | s: 3
+   0        563154  [avrora.c-print] 11      emit | [CALL 0]
+   0        569095  [avrora.c-print] 11      emit | pop32 for param 0 at R22.
+   0        573140  [avrora.c-print] 11      emit | call func printInt
+   0        576765  [avrora.c-print] 11      emit | [END]:0x66a2
+   0        579864  [avrora.c-print] 11      emit | of block 1
+   0        583443  [avrora.c-print] 11      emit | [END]:0x66a2
+   0        586052  [avrora.c-print] 11      emit | func end
+   0        589221  [avrora.c-print] 11      emit | ret
+   0        593825  [avrora.c-print] 11      emit | push/pop optimized
+   0        600586  [avrora.c-print] 11  wkreprog | Recv 78 B to flash to page 0x6600.
+   0        604707  [avrora.c-print] 11  wkreprog | Buffer has 102 B.
+   0        608812  [avrora.c-print] 11  wkreprog | Writing to 0x6666: 
+   0        610944  [avrora.c-print] 11  wkreprog | 
+   0        636745  [avrora.c-print] 11 0x08000d41:	2F 91 3F 91 4F 91 5F 91 67 2B 68 2B 69 2B 41 F4 	/.?.O._. g+h+i+A.
+   0        661816  [avrora.c-print] 11 0x08000d51:	6F 91 7F 91 8F 91 9F 91 5F 93 4F 93 3F 93 2F 93 	o....... _.O.?./.
+   0        686269  [avrora.c-print] 11 0x08000d61:	6F 91 7F 91 8F 91 9F 91 0E 94 00 00 1F 91 0F 91 	o....... ........
+   0        710847  [avrora.c-print] 11 0x08000d71:	FF 90 EF 90 DF 90 CF 90 BF 90 AF 90 9F 90 8F 90 	........ ........
+   0        734574  [avrora.c-print] 11 0x08000d81:	7F 90 6F 90 5F 90 4F 90 3F 90 2F 90 08 95       	..o._.O. ?./...
+   0        735091  [avrora.c-print] 11 
+   0        739064  [avrora.c-print] 11  wkreprog | Closing flash
+   0        746104  [avrora.c-print] 11  wkreprog | Flashing page 0x6600.
+   0        826894  [avrora.c-print] 11  wkreprog | Open flash at 0x65c6.
+   0        847100  [avrora.c-print] 11  wkreprog | Flashing page at 0x6500.
+   0        872071  [avrora.c-print] 11  wkreprog | Recv 4 B to flash to page 0x6600.
+   0        875952  [avrora.c-print] 11  wkreprog | Buffer has 50 B.
+   0        880057  [avrora.c-print] 11  wkreprog | Writing to 0x6632: 
+   0        882189  [avrora.c-print] 11  wkreprog | 
+   0        897442  [avrora.c-print] 11 0x08000d41:	0C 94 1F 33                                     	...3
+   0        897959  [avrora.c-print] 11 
+   0        904284  [avrora.c-print] 11  wkreprog | Recv 4 B to flash to page 0x6600.
+   0        908165  [avrora.c-print] 11  wkreprog | Buffer has 54 B.
+   0        912270  [avrora.c-print] 11  wkreprog | Writing to 0x6636: 
+   0        914402  [avrora.c-print] 11  wkreprog | 
+   0        929655  [avrora.c-print] 11 0x08000d41:	0E 94 F2 20                                     	... 
+   0        930172  [avrora.c-print] 11 
+   0        936481  [avrora.c-print] 11  wkreprog | Recv 4 B to flash to page 0x6600.
+   0        940362  [avrora.c-print] 11  wkreprog | Buffer has 58 B.
+   0        944469  [avrora.c-print] 11  wkreprog | Writing to 0x663a: 
+   0        946601  [avrora.c-print] 11  wkreprog | 
+   0        961955  [avrora.c-print] 11 0x08000d41:	0C 94 49 33                                     	..I3
+   0        962472  [avrora.c-print] 11 
+   0        977037  [avrora.c-print] 11  wkreprog | Recv 4 B to flash to page 0x6600.
+   0        981158  [avrora.c-print] 11  wkreprog | Buffer has 142 B.
+   0        985265  [avrora.c-print] 11  wkreprog | Writing to 0x668e: 
+   0        987397  [avrora.c-print] 11  wkreprog | 
+   0       1002650  [avrora.c-print] 11 0x08000d41:	0E 94 D8 20                                     	... 
+   0       1003167  [avrora.c-print] 11 
+   0       1011741  [avrora.c-print] 11  wkreprog | Closing flash
+   0       1018205  [avrora.c-print] 11  wkreprog | Flashing page 0x6600.
+   0       1100428  [avrora.c-print] 11      temp | SP:0x10f9
+   0       1104619  [avrora.c-print] 11      temp | copy 28 B globals
+   0       1108195  [avrora.c-print] 11      temp | mem_start:0x982
+   0       1111009  [avrora.c-print] 11      temp | start exec
+   0       1112522  [avrora.c-print] 11 res: 3
+   0       1116257  [avrora.c-print] 11      temp | wasm func returned.
+==============================================================================
+Simulated time: 1116276 cycles

@@ -185,231 +185,71 @@
     end
     call 1)
   (func (;6;) (type 0)
-    (local i32 i32 i32)
-    i32.const 80
-    call 2
+    (local i32 i32 i32 i32 i32)
+    i32.const 0
     local.set 0
-    i32.const 1600
+    i32.const 80
     call 2
     local.set 1
-    i32.const 80
+    i32.const 1600
     call 2
     local.set 2
-    local.get 0
-    i64.const 81604378642
-    i64.store offset=72 align=4
-    local.get 0
-    i64.const 73014444048
-    i64.store offset=64 align=4
-    local.get 0
-    i64.const 64424509454
-    i64.store offset=56 align=4
-    local.get 0
-    i64.const 55834574860
-    i64.store offset=48 align=4
-    local.get 0
-    i64.const 38654705672
-    i64.store offset=32 align=4
-    local.get 0
-    i64.const 30064771078
-    i64.store offset=24 align=4
-    local.get 0
-    i64.const 21474836484
-    i64.store offset=16 align=4
-    local.get 0
-    i64.const 4294967296
-    i64.store align=4
-    local.get 0
-    i64.const -4294967295990
-    i64.store offset=40 align=4
-    local.get 0
-    i64.const 12884902888
-    i64.store offset=8 align=4
-    i32.const 20
-    local.get 0
+    i32.const 80
+    call 2
+    local.set 3
     local.get 1
-    i32.const 500
-    local.get 2
-    call 5
-    block  ;; label = @1
-      local.get 2
-      i32.load
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 0
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=4
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 1
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=8
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 2
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=12
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 3
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=16
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
+    local.set 4
+    loop  ;; label = @1
+      local.get 4
+      local.get 0
+      i32.store
+      local.get 4
       i32.const 4
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=20
+      i32.add
+      local.set 4
+      local.get 0
       i32.const 1
+      i32.add
+      local.tee 0
+      i32.const 20
       i32.ne
       br_if 0 (;@1;)
-      i32.const 5
-      call 3
     end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=24
+    local.get 1
+    i32.const -1000
+    i32.store offset=44
+    local.get 1
+    i32.const 1000
+    i32.store offset=8
+    i32.const 20
+    local.get 1
+    local.get 2
+    i32.const 500
+    local.get 3
+    call 5
+    i32.const 0
+    local.set 0
+    loop  ;; label = @1
+      block  ;; label = @2
+        local.get 3
+        i32.load
+        i32.const 1
+        i32.ne
+        br_if 0 (;@2;)
+        local.get 0
+        call 3
+      end
+      local.get 3
+      i32.const 4
+      i32.add
+      local.set 3
+      local.get 0
       i32.const 1
+      i32.add
+      local.tee 0
+      i32.const 20
       i32.ne
       br_if 0 (;@1;)
-      i32.const 6
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=28
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 7
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=32
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 8
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=36
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 9
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=40
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 10
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=44
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 11
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=48
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 12
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=52
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 13
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=56
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 14
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=60
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 15
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=64
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 16
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=68
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 17
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=72
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 18
-      call 3
-    end
-    block  ;; label = @1
-      local.get 2
-      i32.load offset=76
-      i32.const 1
-      i32.ne
-      br_if 0 (;@1;)
-      i32.const 19
-      call 3
     end)
   (table (;0;) 1 1 funcref)
   (memory (;0;) 1)

@@ -41,7 +41,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     {
         emit_CLI();
         emit_RJMP(-2);
-        ts.pc += 4;
+        // ts.pc += 4;
         break;
     }
     // 0x01 Nop
@@ -101,7 +101,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                     emit_x_POP_32bit(R18);
                 }
                 ts.stack_top--;
-                ts.pc += 8;
+                // ts.pc += 8;
             }
             if (!blct.block_pc[blct.block_label[blct.top]])
             {
@@ -111,7 +111,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             {
                 log(emit, "push res %s", wasm_types_names[blct.block_type[blct.top]]);
                 emit_x_PUSH_32bit(R22);
-                ts.pc += 8;
+                // ts.pc += 8;
                 ts.stack_top++;
                 log(emit, "s: %d", ts.stack_top);
             }
@@ -127,26 +127,26 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                 {
                     log(emit, "pop32 for result %s", func->funcType->returnType);
                     emit_x_POP_32bit(R22);
-                    ts.pc += 8;
+                    // ts.pc += 8;
                     ts.stack_top--;
                 }
                 // emit_restore_Y();
                 log(emit, "deinit %dB locals", func->numLocalBytes);
                 emit_local_deinit(func->numLocalBytes);
-                ts.pc += 16;
+                // ts.pc += 16;
             }
             if (is_entry_func(module, func))
             { //在入口函数的尾部恢复状态
                 // log(emit,"pop for call restore");
                 emit_x_call_restore();
-                ts.pc += 32;
+                // ts.pc += 32;
                 // emit_x_POP_16bit(R2);
                 // ts.pc+=4;
             }
 
             log(emit, "ret");
             emit_RET();
-            ts.pc += 2;
+            // ts.pc += 2;
         }
         break;
     }
@@ -157,7 +157,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "[BR %d]", operand.num32[0]);
         log(emit, "%d", ts.pc);
         emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]]) * 2); //填充对应Block的ID(emit宏会将地址除以2)
-        ts.pc += 4;
+        // ts.pc += 4;
         break;
     }
     // 0x0D BrIf
@@ -183,7 +183,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 非0则跳转
         log(emit, "br %d", 4 + 8 * (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]]));
         emit_BREQ(4 + 8 * (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]]));
-        ts.pc += 26;
+        // ts.pc += 26;
         // 跳转前恢复栈平衡
         for (int i = ts.stack_top; i > blct.block_stack[blct.top - 1 - operand.num16[0]]; i--)
         {
@@ -196,10 +196,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             {
                 emit_x_POP_32bit(R18);
             }
-            ts.pc += 8;
+            // ts.pc += 8;
         }
         emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]]) * 2); //填充对应Block的ID(emit宏会将地址除以2)
-        ts.pc += 4;
+        // ts.pc += 4;
         break;
     }
     // 0x0E BrTable
@@ -217,7 +217,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             // emit_x_call_restore();
             // ts.pc+=32;
             emit_x_POP_16bit(R2);
-            ts.pc += 4;
+            // ts.pc += 4;
         }
         // 如果函数有局部变量，则恢复Y指针
         if (func->numLocals || func->funcType->args_num)
@@ -226,18 +226,18 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             {
                 log(emit, "pop32 for result %s", func->funcType->returnType);
                 emit_x_POP_32bit(R22);
-                ts.pc += 8;
+                // ts.pc += 8;
                 ts.stack_top--;
             }
             // emit_restore_Y();
             log(emit, "deinit %dB locals", func->numLocalBytes);
             emit_local_deinit(func->numLocalBytes);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
 
         log(emit, "ret");
         emit_RET();
-        ts.pc += 2;
+        // ts.pc += 2;
         break;
     }
     // 0x10 Call
@@ -291,7 +291,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                     {
                         logif(emit, printf("pop32 for param %d at", i); printf(" R%d.", base););
                         emit_x_POP_32bit(base);
-                        ts.pc += 8;
+                        // ts.pc += 8;
                         ts.stack_top--;
                     }
                 }
@@ -303,7 +303,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
 
             log(emit, "call func %s", called_func->name);
             emit_2_CALL(operand.num16[0]);
-            ts.pc += 4;
+            // ts.pc += 4;
 
             //TODO 抛弃栈传递的参数
             if (need_memory_pass)
@@ -317,7 +317,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                 {
                     log(emit, "push32 for return type %s", wasm_types_names[WASM_Type_i32]);
                     emit_x_PUSH_32bit(R22);
-                    ts.pc += 8;
+                    // ts.pc += 8;
                     ts.stack_top++;
                 }
             }
@@ -327,13 +327,13 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             func_type_ptr type = called_func->funcType;
             log(emit, "call func %s", called_func->name);
             emit_2_CALL(operand.num16[0]);
-            ts.pc += 4;
+            // ts.pc += 4;
             //drop参数
             for (int i = 0; i < type->args_num; i++)
             {
                 log(emit, "drop32");
                 emit_x_POP_32bit(R18);
-                ts.pc += 8;
+                // ts.pc += 8;
                 ts.stack_top--;
             }
             // 结果压栈
@@ -342,7 +342,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                 log(emit, "push32 for return type %s", wasm_types_names[WASM_Type_i32]);
                 emit_x_PUSH_32bit(R22);
                 ts.stack_top++;
-                ts.pc += 8;
+                // ts.pc += 8;
             }
             log(emit, "s: %d", ts.stack_top);
         }
@@ -355,24 +355,26 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "[DROP]");
         log(emit, "pop32");
         emit_x_POP_32bit(R22);
-        ts.pc += 8;
+        // ts.pc += 8;
         ts.stack_top--;
         break;
     }
     // 0x1B Select
     case Select:
     {
-        emit_x_POP_32bit(R18);
+        // 比较数
         emit_x_POP_32bit(R22);
-        emit_OR(R18, R19);
-        emit_OR(R18, R20);
-        emit_OR(R18, R21);
-        emit_BRNE(16);
-        //=0 pop两个，push第一个
+        // pop第一个数
         emit_x_POP_32bit(R18);
-        emit_x_PUSH_32bit(R22);
+        emit_OR(R22, R23);
+        emit_OR(R22, R24);
+        emit_OR(R22, R25);
+        emit_BRNE(16);
+        //=0 pop第二个数，并push第一个
+        emit_x_POP_32bit(R22);
+        emit_x_PUSH_32bit(R18);
         //!=0 pop一个，不push
-        ts.pc += 40;
+        // ts.pc += 40;
         ts.stack_top -= 2;
         break;
     }
@@ -403,7 +405,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_LDD(R25, Y, base + 4);
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 16;
+        // ts.pc += 16;
         ts.stack_top++;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -434,7 +436,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_STD(R23, Y, base + 2);
         emit_STD(R24, Y, base + 3);
         emit_STD(R25, Y, base + 4);
-        ts.pc += 16;
+        // ts.pc += 16;
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -467,7 +469,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 比Set多一个Push操作
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 24;
+        // ts.pc += 24;
         break;
     }
     // 0x23 GlobalGet
@@ -479,7 +481,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "[GLOBAL.GET %d]", operand.num32[0]);
         log(emit, "Load R22. from global[%d]", module->global_list[operand.num16[0]].offset);
         emit_MOVW(RZ, R2);
-        ts.pc += 2;
+        // ts.pc += 2;
         // 由于LDD的偏移量只支持[-64，63]范围内寻址，因此需要进行Z指针的运算
         if (module->global_list[operand.num16[0]].offset >= 60)
         {
@@ -491,7 +493,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_LDD(R23, Z, 1);
             emit_LDD(R24, Z, 2);
             emit_LDD(R25, Z, 3);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
         else
         {
@@ -499,12 +501,12 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_LDD(R23, Z, module->global_list[operand.num16[0]].offset + 1);
             emit_LDD(R24, Z, module->global_list[operand.num16[0]].offset + 2);
             emit_LDD(R25, Z, module->global_list[operand.num16[0]].offset + 3);
-            ts.pc += 8;
+            // ts.pc += 8;
         }
 
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 8;
+        // ts.pc += 8;
         ts.stack_top++;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -517,10 +519,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "[GLOBAL.SET %d]", operand.num32[0]);
         log(emit, "pop32 to R22.");
         emit_x_POP_32bit(R22);
-        ts.pc += 8;
+        // ts.pc += 8;
         log(emit, "Store R22. to global[%d]", module->global_list[operand.num16[0]].offset);
         emit_MOVW(RZ, R2);
-        ts.pc += 2;
+        // ts.pc += 2;
 
         // 由于STD的偏移量只支持[-64，63]范围内寻址，因此需要进行Z指针的运算
         if (module->global_list[operand.num16[0]].offset >= 60)
@@ -533,7 +535,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R23, Z, 1);
             emit_STD(R24, Z, 2);
             emit_STD(R25, Z, 3);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
         else
         {
@@ -541,7 +543,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R23, Z, module->global_list[operand.num16[0]].offset + 1);
             emit_STD(R24, Z, module->global_list[operand.num16[0]].offset + 2);
             emit_STD(R25, Z, module->global_list[operand.num16[0]].offset + 3);
-            ts.pc += 8;
+            // ts.pc += 8;
         }
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
@@ -564,7 +566,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_MOVW(RZ, R2);
         emit_ADD(RZL, R18);
         emit_ADC(RZH, R19);
-        ts.pc += 14;
+        // ts.pc += 14;
         // if (operand.num8[0] >= 60)
         {
             emit_LDI(R20, operand.num8[0]);
@@ -585,7 +587,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_LDD(R23, Z, 1);
             emit_LDD(R24, Z, 2);
             emit_LDD(R25, Z, 3);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
         // else
         // {
@@ -597,7 +599,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // }
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 8;
+        // ts.pc += 8;
         break;
     }
     // 0x29 i64.load
@@ -621,7 +623,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_MOVW(RZ, R2);
         emit_ADD(RZL, R18);
         emit_ADC(RZH, R19);
-        ts.pc += 14;
+        // ts.pc += 14;
         // if (operand.num8[0] >= 60)
         {
             emit_LDI(R20, operand.num8[0]);
@@ -633,12 +635,12 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_EOR(R23, R23);
             emit_EOR(R24, R24);
             emit_EOR(R25, R25);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
 
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 8;
+        // ts.pc += 8;
         break;
     }
     // 0x2E i32.load16_s
@@ -659,7 +661,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_MOVW(RZ, R2);
         emit_ADD(RZL, R18);
         emit_ADC(RZH, R19);
-        ts.pc += 14;
+        // ts.pc += 14;
         // if (operand.num8[0] >= 60)
         {
             emit_LDI(R20, operand.num8[0]);
@@ -671,12 +673,12 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_LDD(R23, Z, 1);
             emit_EOR(R24, R24);
             emit_EOR(R25, R25);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
 
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 8;
+        // ts.pc += 8;
         break;
     }
     // 0x30 i64.load8_s
@@ -705,7 +707,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_MOVW(RZ, R2);
         emit_ADD(RZL, R18);
         emit_ADC(RZH, R19);
-        ts.pc += 22;
+        // ts.pc += 22;
 
         // 储存到Z + offset2 + global_size + offset1
         if (operand.num8[0] >= 60)
@@ -718,7 +720,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R23, Z, 1);
             emit_STD(R24, Z, 2);
             emit_STD(R25, Z, 3);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
         else
         {
@@ -726,7 +728,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R23, Z, operand.num8[0] + 1);
             emit_STD(R24, Z, operand.num8[0] + 2);
             emit_STD(R25, Z, operand.num8[0] + 3);
-            ts.pc += 8;
+            // ts.pc += 8;
         }
         ts.stack_top -= 2;
         log(emit, "s: %d", ts.stack_top);
@@ -753,7 +755,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_MOVW(RZ, R2);
         emit_ADD(RZL, R14);
         emit_ADC(RZH, R15);
-        ts.pc += 30;
+        // ts.pc += 30;
         if (operand.num8[0] >= 30)
         {
             emit_LDI(R16, operand.num8[0]);
@@ -768,7 +770,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R23, Z, 5);
             emit_STD(R24, Z, 6);
             emit_STD(R25, Z, 7);
-            ts.pc += 24;
+            // ts.pc += 24;
         }
         else
         {
@@ -780,7 +782,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R23, Z, operand.num8[0] + 5);
             emit_STD(R24, Z, operand.num8[0] + 6);
             emit_STD(R25, Z, operand.num8[0] + 7);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
         ts.stack_top -= 3;
         log(emit, "s: %d", ts.stack_top);
@@ -808,7 +810,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_MOVW(RZ, R2);
         emit_ADD(RZL, R18);
         emit_ADC(RZH, R19);
-        ts.pc += 22;
+        // ts.pc += 22;
 
         // 储存到Z + offset2 + global_size + offset1
         if (operand.num8[0] >= 60)
@@ -821,7 +823,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R1, Z, 1);
             emit_STD(R1, Z, 2);
             emit_STD(R1, Z, 3);
-            ts.pc += 16;
+            // ts.pc += 16;
         }
         else
         {
@@ -829,7 +831,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R1, Z, operand.num8[0] + 1);
             emit_STD(R1, Z, operand.num8[0] + 2);
             emit_STD(R1, Z, operand.num8[0] + 3);
-            ts.pc += 8;
+            // ts.pc += 8;
         }
         ts.stack_top -= 2;
         log(emit, "s: %d", ts.stack_top);
@@ -853,7 +855,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_LDI(R25, operand.num8[3]);
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 16;
+        // ts.pc += 16;
         ts.stack_top++;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -875,7 +877,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
         emit_x_PUSH_32bit(R18);
-        ts.pc += 32;
+        // ts.pc += 32;
         ts.stack_top += 2; //暂时当做两个32位
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -896,7 +898,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_BREQ(2);
         emit_LDI(R22, 0);
         emit_x_PUSH_32bit(R22);
-        ts.pc += 34;
+        // ts.pc += 34;
         break;
     }
     // 0x46 i32.eq
@@ -922,26 +924,26 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     {
         log(emit, "[I32.(ComparisonInstruction)]");
         //Second operand
-        emit_x_POP_32bit(R18);
-        //First operand
         emit_x_POP_32bit(R22);
-        ts.pc += 16;
-        //Compare per register
+        //First operand
+        emit_x_POP_32bit(R18);
+        // ts.pc += 16;
+        // Compare per register
         if (op == I32LtS || op == I32LtU || op == I32GeS || op == I32GeU || op == I32Eq || op == I32Ne)
-        {
-            emit_CP(R22, R18);
-            emit_CPC(R23, R19);
-            emit_CPC(R24, R20);
-            emit_CPC(R25, R21);
-            ts.pc += 8;
-        }
-        else if (op == I32LeS || op == I32LeU || op == I32GtS || op == I32GtU)
         {
             emit_CP(R18, R22);
             emit_CPC(R19, R23);
             emit_CPC(R20, R24);
             emit_CPC(R21, R25);
-            ts.pc += 8;
+            // ts.pc += 8;
+        }
+        else if (op == I32LeS || op == I32LeU || op == I32GtS || op == I32GtU)
+        {
+            emit_CP(R22, R18);
+            emit_CPC(R23, R19);
+            emit_CPC(R24, R20);
+            emit_CPC(R25, R21);
+            // ts.pc += 8;
         }
         // if (op == I32GtS || op == I32LeS){
         //     emit_LDI(R22, 0);
@@ -954,7 +956,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_LDI(R23, 0);
         emit_LDI(R24, 0);
         emit_LDI(R25, 0);
-        ts.pc += 8;
+        // ts.pc += 8;
         // }
         //BRSH = Branch if Same or Higher (Unsigned)
         //BRLO = Branch if Lower (Unsigned)
@@ -963,37 +965,37 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         if (op == I32LtS || op == I32GtS)
         {
             emit_BRLT(2);
-            ts.pc += 2;
+            // ts.pc += 2;
         }
         else if (op == I32LtU || op == I32GtU)
         {
             emit_BRCS(2);
-            ts.pc += 2;
+            // ts.pc += 2;
         }
         else if (op == I32LeS || op == I32GeS)
         {
             emit_BRGE(2);
-            ts.pc += 2;
+            // ts.pc += 2;
         }
         else if (op == I32LeU || op == I32GeU)
         {
             emit_BRCC(2);
-            ts.pc += 2;
+            // ts.pc += 2;
         }
         else if (op == I32Eq)
         {
             emit_BREQ(2);
-            ts.pc += 2;
+            // ts.pc += 2;
         }
         else if (op == I32Ne)
         {
             emit_BRNE(2);
-            ts.pc += 2;
+            // ts.pc += 2;
         }
 
         emit_LDI(R22, 0);
         emit_x_PUSH_32bit(R22);
-        ts.pc += 10;
+        // ts.pc += 10;
         ts.stack_top--;
         break;
     }
@@ -1027,7 +1029,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_POP_32bit(R22);
         emit_2_CALL(embed_func_clz32);
         emit_x_PUSH_32bit(R22);
-        ts.pc += 20;
+        // ts.pc += 20;
         break;
     }
     // 0x68 i32.ctz
@@ -1047,7 +1049,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_ADC(R25, R21);
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 32;
+        // ts.pc += 32;
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -1067,7 +1069,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_SBC(R25, R21);
         // log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        ts.pc += 32;
+        // ts.pc += 32;
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -1090,7 +1092,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_2_CALL(embed_func_udiv);
         }
         emit_x_PUSH_32bit(R22);
-        ts.pc += 28;
+        // ts.pc += 28;
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -1130,7 +1132,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         }
 
         emit_x_PUSH_32bit(R22);
-        ts.pc += 32;
+        // ts.pc += 32;
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -1152,7 +1154,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_POP_32bit(R22);
         //思路1：将移动位数一直减，减到0为止
         emit_RJMP(8);
-        ts.pc += 18;
+        // ts.pc += 18;
         if (op == I32Shl)
         {
             // emit_ADD(R22, R22);
@@ -1163,7 +1165,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_ROL(R23);
             emit_ROL(R24);
             emit_ROL(R25);
-            ts.pc += 8;
+            // ts.pc += 8;
         }
         else if (op == I32ShrU)
         {
@@ -1171,7 +1173,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_ROR(R24);
             emit_ROR(R23);
             emit_ROR(R22);
-            ts.pc += 8;
+            // ts.pc += 8;
         }
         else if (op = I32ShrS)
         { //TODO ShrS仍然有问题！！！-10移1位算的不对！！
@@ -1179,12 +1181,12 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_ROR(R24);
             emit_ROR(R23);
             emit_ROR(R22);
-            ts.pc += 8;
+            // ts.pc += 8;
         }
         emit_DEC(R18);
         emit_BRPL(-12);
         emit_x_PUSH_32bit(R22);
-        ts.pc += 12; //__attribute__ ((section (".rtc_code_marker")))
+        // ts.pc += 12; //__attribute__ ((section (".rtc_code_marker")))
         ts.stack_top--;
 
         //思路2：取模的方式，可能在移位多的时候有优化空间，移位少的时候可能不如以上解法

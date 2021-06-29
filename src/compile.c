@@ -26,7 +26,6 @@ void branch_pc_refill(wasm_module_ptr module)
     // logif(compile,printf("before refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
     compile_open();
     u16 pc = 0;
-    wkreprog_skip(pc);
     while (pc < ts.pc)
     {
         // log(compile,"pc:%d",pc);
@@ -82,6 +81,9 @@ void branch_pc_refill(wasm_module_ptr module)
     compile_close();
     // logif(compile,printf("after refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
 }
+void fill_data(wasm_module_ptr module){
+    
+}
 void compile_init(wasm_module_ptr module)
 {
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
@@ -94,6 +96,9 @@ void compile_deinit(wasm_module_ptr module)
 {
     // 烧写跳转指令
     branch_pc_refill(module);
+
+    // 烧写Data段
+    fill_data(module);
 
     //释放空间
     sys_free(module->global_list);       //全局变量列表
@@ -137,7 +142,6 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
     { //TODO 在入口函数的前部保存状态
         // log(emit, "push for call save");
         emit_x_call_save();
-        ts.pc+=32;
 
         // 加载全局变量区首地址
         ts.wasm_mem_space = GET_FAR_ADDRESS(g_module) + sizeof(wasm_module) + 64;
@@ -148,7 +152,6 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         emit_LDI(R22, (u8)ts.wasm_mem_space);
         emit_LDI(R23, ((u8)((u16)ts.wasm_mem_space >> 8)));
         emit_MOVW(R2,R22);
-        ts.pc += 6;
     }
 
     if (func->numLocals || func->funcType->args_num)
@@ -160,7 +163,7 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         log(compile, "init %dB locals", func->numLocalBytes);
 
         emit_local_init(func->numLocalBytes);
-        ts.pc += 20;
+        
     }
 
     while (start < end)

@@ -11,7 +11,7 @@ add_definitions(-DAVRORA)
 set (CMAKE_C_COMPILER "avr-gcc")
 set (CMAKE_CXX_COMPILER "avr-g++")
 #-Werror
-add_compile_options(-mmcu=atmega128 -O2 -finline-limit-0 -ggdb -Wall  -std=gnu99 -fdata-sections -ffunction-sections)
+add_compile_options(-mmcu=atmega128 -Os -finline-limit-0 -ggdb -Wall  -std=gnu99 -fdata-sections -ffunction-sections)
 set (CMAKE_EXE_LINKER_FLAGS "-mmcu=atmega128 -Wl,--gc-sections ")
 # -Wl,--defsym=__heap_start=0x802000,--defsym=__heap_end=0x803fff")
 
@@ -39,7 +39,7 @@ else()
 
 set (CMAKE_C_COMPILER "${PROJECT_SOURCE_DIR}/../../libs/wasi-sdk-12.0/bin/clang")
 set (z_stack_size 16)
-add_compile_options(-O3 -DNDEBUG)
+add_compile_options(-Os -DNDEBUG)
 set (CMAKE_EXE_LINKER_FLAGS "-nostdlib -Wl,--no-entry -Wl,--export-all -Wl,-s -Wl,--allow-undefined-file=${PROJECT_SOURCE_DIR}/stubs.txt -Wl,-z,stack-size=${z_stack_size}")
 SET(lec bm-lec/lec.c bm-lec/javax_rtcbench_RTCBenchmark.c)
 SET(outlier bm-outlier/outlier32u.c bm-outlier/javax_rtcbench_RTCBenchmark.c)

@@ -1,27 +1,29 @@
 
 in ./lec.wasmoutput.txt :
-1391335
+-
 in ./fillarray.wasmoutput.txt :
-60134
+39638
 in ./binsrch.wasmoutput.txt :
-4308216
+3140136
 in ./funcall.wasmoutput.txt :
 1965
 in ./hsort.wasmoutput.txt :
-716522
+525962
 in ./bsort.wasmoutput.txt :
-24820314
+16929322
+in ./test.wasmoutput.txt :
+16929322
 in ./fillarray.nativeoutput.txt :
-3152
+3917
 in ./outlier.nativeoutput.txt :
-22178
+32536
 in ./binsrch.nativeoutput.txt :
-239080
+255080
 in ./lec.nativeoutput.txt :
-95034
+106774
 in ./funcall.nativeoutput.txt :
 58
 in ./bsort.nativeoutput.txt :
-1569861
+1601995
 in ./hsort.nativeoutput.txt :
-56530
+224868

@@ -4,8 +4,109 @@
 =={ Simulation events }=======================================================
 [0;32mNode          Time   Event[1;00m
 ------------------------------------------------------------------------------
-   0            84  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:06 R27:01 R28:FF R29:10 R30:60 R31:05 
-   0          1830  [avrora.c-print] 11 benchstart
-   0         58360  [avrora.c-print] 11 benchstop
+   0           960  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:92 R27:01 R28:FF R29:10 R30:C4 R31:0B 
+   0          2710  [avrora.c-print] 11 benchstart
+   0         62418  [avrora.c-print] 11 benchstart
+   0         63818  [avrora.c-print] 11 res: 0
+   0         65251  [avrora.c-print] 11 res: 1
+   0         66684  [avrora.c-print] 11 res: 2
+   0         68117  [avrora.c-print] 11 res: 3
+   0         69550  [avrora.c-print] 11 res: 4
+   0         70983  [avrora.c-print] 11 res: 5
+   0         72416  [avrora.c-print] 11 res: 6
+   0         73849  [avrora.c-print] 11 res: 7
+   0         75282  [avrora.c-print] 11 res: 8
+   0         76715  [avrora.c-print] 11 res: 9
+   0         78390  [avrora.c-print] 11 res: 10
+   0         80065  [avrora.c-print] 11 res: 11
+   0         81740  [avrora.c-print] 11 res: 12
+   0         83415  [avrora.c-print] 11 res: 13
+   0         85090  [avrora.c-print] 11 res: 14
+   0         86765  [avrora.c-print] 11 res: 15
+   0         88440  [avrora.c-print] 11 res: 16
+   0         90115  [avrora.c-print] 11 res: 17
+   0         91790  [avrora.c-print] 11 res: 18
+   0         93465  [avrora.c-print] 11 res: 19
+   0         95140  [avrora.c-print] 11 res: 20
+   0         96815  [avrora.c-print] 11 res: 21
+   0         98490  [avrora.c-print] 11 res: 22
+   0        100165  [avrora.c-print] 11 res: 23
+   0        101840  [avrora.c-print] 11 res: 24
+   0        103515  [avrora.c-print] 11 res: 25
+   0        105190  [avrora.c-print] 11 res: 26
+   0        106865  [avrora.c-print] 11 res: 27
+   0        108540  [avrora.c-print] 11 res: 28
+   0        110215  [avrora.c-print] 11 res: 29
+   0        111890  [avrora.c-print] 11 res: 30
+   0        113565  [avrora.c-print] 11 res: 31
+   0        115240  [avrora.c-print] 11 res: 32
+   0        116915  [avrora.c-print] 11 res: 33
+   0        118590  [avrora.c-print] 11 res: 34
+   0        120265  [avrora.c-print] 11 res: 35
+   0        121940  [avrora.c-print] 11 res: 36
+   0        123615  [avrora.c-print] 11 res: 37
+   0        125290  [avrora.c-print] 11 res: 38
+   0        126965  [avrora.c-print] 11 res: 39
+   0        128640  [avrora.c-print] 11 res: 40
+   0        130315  [avrora.c-print] 11 res: 41
+   0        131990  [avrora.c-print] 11 res: 42
+   0        133665  [avrora.c-print] 11 res: 43
+   0        135340  [avrora.c-print] 11 res: 44
+   0        137015  [avrora.c-print] 11 res: 45
+   0        138690  [avrora.c-print] 11 res: 46
+   0        140365  [avrora.c-print] 11 res: 47
+   0        142040  [avrora.c-print] 11 res: 48
+   0        143715  [avrora.c-print] 11 res: 49
+   0        145390  [avrora.c-print] 11 res: 50
+   0        147065  [avrora.c-print] 11 res: 51
+   0        148740  [avrora.c-print] 11 res: 52
+   0        150415  [avrora.c-print] 11 res: 53
+   0        152090  [avrora.c-print] 11 res: 54
+   0        153765  [avrora.c-print] 11 res: 55
+   0        155440  [avrora.c-print] 11 res: 56
+   0        157115  [avrora.c-print] 11 res: 57
+   0        158790  [avrora.c-print] 11 res: 58
+   0        160465  [avrora.c-print] 11 res: 59
+   0        162140  [avrora.c-print] 11 res: 60
+   0        163815  [avrora.c-print] 11 res: 61
+   0        165490  [avrora.c-print] 11 res: 62
+   0        167165  [avrora.c-print] 11 res: 63
+   0        168840  [avrora.c-print] 11 res: 64
+   0        170515  [avrora.c-print] 11 res: 65
+   0        172190  [avrora.c-print] 11 res: 66
+   0        173865  [avrora.c-print] 11 res: 67
+   0        175540  [avrora.c-print] 11 res: 68
+   0        177215  [avrora.c-print] 11 res: 69
+   0        178890  [avrora.c-print] 11 res: 70
+   0        180565  [avrora.c-print] 11 res: 71
+   0        182240  [avrora.c-print] 11 res: 72
+   0        183915  [avrora.c-print] 11 res: 73
+   0        185590  [avrora.c-print] 11 res: 74
+   0        187265  [avrora.c-print] 11 res: 75
+   0        188940  [avrora.c-print] 11 res: 76
+   0        190615  [avrora.c-print] 11 res: 77
+   0        192290  [avrora.c-print] 11 res: 78
+   0        193965  [avrora.c-print] 11 res: 79
+   0        195640  [avrora.c-print] 11 res: 80
+   0        197315  [avrora.c-print] 11 res: 81
+   0        198990  [avrora.c-print] 11 res: 82
+   0        200665  [avrora.c-print] 11 res: 83
+   0        202340  [avrora.c-print] 11 res: 84
+   0        204015  [avrora.c-print] 11 res: 85
+   0        205690  [avrora.c-print] 11 res: 86
+   0        207365  [avrora.c-print] 11 res: 87
+   0        209040  [avrora.c-print] 11 res: 88
+   0        210715  [avrora.c-print] 11 res: 89
+   0        212390  [avrora.c-print] 11 res: 90
+   0        214065  [avrora.c-print] 11 res: 91
+   0        215740  [avrora.c-print] 11 res: 92
+   0        217415  [avrora.c-print] 11 res: 93
+   0        219090  [avrora.c-print] 11 res: 94
+   0        220765  [avrora.c-print] 11 res: 95
+   0        222440  [avrora.c-print] 11 res: 96
+   0        224115  [avrora.c-print] 11 res: 97
+   0        225790  [avrora.c-print] 11 res: 98
+   0        227465  [avrora.c-print] 11 res: 99
+   0        227578  [avrora.c-print] 11 benchstop
 ==============================================================================
-[0;32mSimulated time[1;00m: [1;36m58367[1;00m cycles
+[0;32mSimulated time[1;00m: [1;36m227585[1;00m cycles
