@@ -6,150 +6,358 @@ Node          Time   Event
 ------------------------------------------------------------------------------
    0          2473  [avrora.c-print] 1 0000
    0          2770  [avrora.trace]trace disabled --------------------------0
-   0         72288  [avrora.c-print] 11      temp | start of compiled code:   6b94
-   0       4140842  [avrora.c-print] 11      temp | table address: 35810
-   0       7039877  [avrora.c-print] 11      temp | end of compiled code:   8c6e
-   0       7043187  [avrora.c-print] 11      temp | SP:0x10f9
-   0       7046321  [avrora.c-print] 11      temp | start exec
-   0       7092447  [avrora.c-print] 11 0x08000652:	00 00 C9 00 92 01 5B 02 24 03 ED 03 B6 04 7E 05 	......[. $.....~.
-   0       7109229  [avrora.c-print] 11 0x08000662:	47 06 10 07                                     	G...
-   0       7113693  [avrora.c-print] 11      temp | mem size:3725
-   0       7113713  [avrora.c-print] 11 
-   0       7118112  [avrora.c-print] 11      temp | copy 32 B globals
-   0       7122064  [avrora.c-print] 11      temp | mem_start:0x232
-   0       7128761  [avrora.c-print] 11  |￢|}8}a}ﾉ}ﾰ}ￕ}￹}~>~^~~~ﾜ~ﾹ~ￔ~￯mpile.c | start exec
-   0       7132458  [avrora.c-print] 11 malloc from 0 to 256
-   0       7136605  [avrora.c-print] 11 malloc from 256 to 512
-   0       7155388  [avrora.c-print] 11 res: 0
-   0       7156931  [avrora.c-print] 11 res: 0
-   0       7158808  [avrora.c-print] 11 res: 16
-   0       7160351  [avrora.c-print] 11 res: 0
-   0       7162228  [avrora.c-print] 11 res: 32
-   0       7163771  [avrora.c-print] 11 res: 0
-   0       7165648  [avrora.c-print] 11 res: 48
-   0       7167191  [avrora.c-print] 11 res: 0
-   0       7169068  [avrora.c-print] 11 res: 64
-   0       7170611  [avrora.c-print] 11 res: 0
-   0       7172488  [avrora.c-print] 11 res: 80
-   0       7174031  [avrora.c-print] 11 res: 0
-   0       7175908  [avrora.c-print] 11 res: 96
-   0       7177451  [avrora.c-print] 11 res: 0
-   0       7179568  [avrora.c-print] 11 res: 112
-   0       7181111  [avrora.c-print] 11 res: 0
-   0       7183228  [avrora.c-print] 11 res: 128
-   0       7184771  [avrora.c-print] 11 res: 0
-   0       7186888  [avrora.c-print] 11 res: 144
-   0       7188431  [avrora.c-print] 11 res: 0
-   0       7190548  [avrora.c-print] 11 res: 160
-   0       7192091  [avrora.c-print] 11 res: 0
-   0       7194208  [avrora.c-print] 11 res: 176
-   0       7195751  [avrora.c-print] 11 res: 0
-   0       7197868  [avrora.c-print] 11 res: 192
-   0       7199411  [avrora.c-print] 11 res: 0
-   0       7201528  [avrora.c-print] 11 res: 208
-   0       7203071  [avrora.c-print] 11 res: 0
-   0       7205188  [avrora.c-print] 11 res: 224
-   0       7206731  [avrora.c-print] 11 res: 0
-   0       7208848  [avrora.c-print] 11 res: 240
-   0       7210391  [avrora.c-print] 11 res: 0
-   0       7212508  [avrora.c-print] 11 res: 256
-   0       7214051  [avrora.c-print] 11 res: 0
-   0       7216168  [avrora.c-print] 11 res: 272
-   0       7217711  [avrora.c-print] 11 res: 0
-   0       7219828  [avrora.c-print] 11 res: 288
-   0       7221371  [avrora.c-print] 11 res: 0
-   0       7223488  [avrora.c-print] 11 res: 304
-   0       7225031  [avrora.c-print] 11 res: 0
-   0       7227148  [avrora.c-print] 11 res: 320
-   0       7228691  [avrora.c-print] 11 res: 0
-   0       7230808  [avrora.c-print] 11 res: 336
-   0       7232351  [avrora.c-print] 11 res: 0
-   0       7234468  [avrora.c-print] 11 res: 352
-   0       7236011  [avrora.c-print] 11 res: 0
-   0       7238128  [avrora.c-print] 11 res: 368
-   0       7239671  [avrora.c-print] 11 res: 0
-   0       7241788  [avrora.c-print] 11 res: 384
-   0       7243331  [avrora.c-print] 11 res: 0
-   0       7245448  [avrora.c-print] 11 res: 400
-   0       7246991  [avrora.c-print] 11 res: 0
-   0       7249108  [avrora.c-print] 11 res: 416
-   0       7250651  [avrora.c-print] 11 res: 0
-   0       7252768  [avrora.c-print] 11 res: 432
-   0       7254311  [avrora.c-print] 11 res: 0
-   0       7256428  [avrora.c-print] 11 res: 448
-   0       7257971  [avrora.c-print] 11 res: 0
-   0       7260088  [avrora.c-print] 11 res: 464
-   0       7261631  [avrora.c-print] 11 res: 0
-   0       7263748  [avrora.c-print] 11 res: 480
-   0       7265291  [avrora.c-print] 11 res: 0
-   0       7267408  [avrora.c-print] 11 res: 496
-   0       7268951  [avrora.c-print] 11 res: 0
-   0       7271068  [avrora.c-print] 11 res: 512
-   0       7272611  [avrora.c-print] 11 res: 0
-   0       7274728  [avrora.c-print] 11 res: 528
-   0       7276271  [avrora.c-print] 11 res: 0
-   0       7278388  [avrora.c-print] 11 res: 544
-   0       7279931  [avrora.c-print] 11 res: 0
-   0       7282048  [avrora.c-print] 11 res: 560
-   0       7283591  [avrora.c-print] 11 res: 0
-   0       7285708  [avrora.c-print] 11 res: 576
-   0       7287251  [avrora.c-print] 11 res: 0
-   0       7289368  [avrora.c-print] 11 res: 592
-   0       7290911  [avrora.c-print] 11 res: 0
-   0       7293028  [avrora.c-print] 11 res: 608
-   0       7294571  [avrora.c-print] 11 res: 0
-   0       7296688  [avrora.c-print] 11 res: 624
-   0       7298231  [avrora.c-print] 11 res: 0
-   0       7300348  [avrora.c-print] 11 res: 640
-   0       7301891  [avrora.c-print] 11 res: 0
-   0       7304008  [avrora.c-print] 11 res: 656
-   0       7305551  [avrora.c-print] 11 res: 0
-   0       7307668  [avrora.c-print] 11 res: 672
-   0       7309211  [avrora.c-print] 11 res: 0
-   0       7311328  [avrora.c-print] 11 res: 688
-   0       7312871  [avrora.c-print] 11 res: 0
-   0       7314988  [avrora.c-print] 11 res: 704
-   0       7316531  [avrora.c-print] 11 res: 0
-   0       7318648  [avrora.c-print] 11 res: 720
-   0       7320191  [avrora.c-print] 11 res: 0
-   0       7322308  [avrora.c-print] 11 res: 736
-   0       7323851  [avrora.c-print] 11 res: 0
-   0       7325968  [avrora.c-print] 11 res: 752
-   0       7327511  [avrora.c-print] 11 res: 0
-   0       7329628  [avrora.c-print] 11 res: 768
-   0       7331171  [avrora.c-print] 11 res: 0
-   0       7333288  [avrora.c-print] 11 res: 784
-   0       7334831  [avrora.c-print] 11 res: 0
-   0       7336948  [avrora.c-print] 11 res: 800
-   0       7338491  [avrora.c-print] 11 res: 0
-   0       7340608  [avrora.c-print] 11 res: 816
-   0       7342151  [avrora.c-print] 11 res: 0
-   0       7344268  [avrora.c-print] 11 res: 832
-   0       7345811  [avrora.c-print] 11 res: 0
-   0       7347928  [avrora.c-print] 11 res: 848
-   0       7349471  [avrora.c-print] 11 res: 0
-   0       7351588  [avrora.c-print] 11 res: 864
-   0       7353131  [avrora.c-print] 11 res: 0
-   0       7355248  [avrora.c-print] 11 res: 880
-   0       7356791  [avrora.c-print] 11 res: 0
-   0       7358908  [avrora.c-print] 11 res: 896
-   0       7360451  [avrora.c-print] 11 res: 0
-   0       7362568  [avrora.c-print] 11 res: 912
-   0       7364111  [avrora.c-print] 11 res: 0
-   0       7366228  [avrora.c-print] 11 res: 928
-   0       7367771  [avrora.c-print] 11 res: 0
-   0       7369888  [avrora.c-print] 11 res: 944
-   0       7371431  [avrora.c-print] 11 res: 0
-   0       7373548  [avrora.c-print] 11 res: 960
-   0       7375091  [avrora.c-print] 11 res: 0
-   0       7377208  [avrora.c-print] 11 res: 976
-   0       7378751  [avrora.c-print] 11 res: 0
-   0       7380868  [avrora.c-print] 11 res: 992
-   0       7382411  [avrora.c-print] 11 res: 0
-   0       7384768  [avrora.c-print] 11 res: 1008
-   0       7386311  [avrora.c-print] 11 res: 0
-   0       7386531  [avrora.trace]trace enabled ---------------------------1
-   0       8771400  [avrora.trace]trace disabled --------------------------0
-   0       8774203  [avrora.c-print] 1 0130
-   0       8774500  [avrora.trace]trace disabled --------------------------0
-   0       8837768  [avrora.c-print] 11 panic! : global type not supported /home/fanhc/wasm-aot/src/compile.c :297
+   0         15687  [avrora.c-print] 11     parse | load module: 3591 bytes at 0x6488
+   0         20592  [avrora.c-print] 11     parse |  sectionType = 1
+   0         24533  [avrora.c-print] 11     parse | ** Type [6]
+   0         29503  [avrora.c-print] 11     parse |     type  0: 
+   0         33648  [avrora.c-print] 11     parse | () -> nil
+   0         39201  [avrora.c-print] 11     parse |     type  1: 
+   0         44177  [avrora.c-print] 11     parse | (i32) -> i32
+   0         50442  [avrora.c-print] 11     parse |     type  2: 
+   0         57516  [avrora.c-print] 11     parse | (i32, i32, i32) -> i32
+   0         62735  [avrora.c-print] 11     parse |     type  3: 
+   0         67711  [avrora.c-print] 11     parse | (i32) -> nil
+   0         73620  [avrora.c-print] 11     parse |     type  4: 
+   0         79645  [avrora.c-print] 11     parse | (i32, i32) -> i32
+   0         86266  [avrora.c-print] 11     parse |     type  5: 
+   0         94389  [avrora.c-print] 11     parse | (i32, i32, i32, i32) -> i32
+   0         99395  [avrora.c-print] 11     parse |  sectionType = 2
+   0        103573  [avrora.c-print] 11     parse | ** Import [6]
+   0        113745  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_startBenchmarkMeasurement_Native' 
+   0        125772  [avrora.c-print] 11     parse |    added function   0: rtc_startBenchmarkMeasurement_Native; sig: 0;
+   0        135040  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_stopBenchmarkMeasurement' 
+   0        139639  [avrora.c-print] 11     parse | bytes to alloc: 4
+   0        150775  [avrora.c-print] 11     parse |    added function   1: rtc_stopBenchmarkMeasurement; sig: 0;
+   0        157397  [avrora.c-print] 11     parse |     kind: 0 'env.malloc' 
+   0        161996  [avrora.c-print] 11     parse | bytes to alloc: 6
+   0        170985  [avrora.c-print] 11     parse |    added function   2: malloc; sig: 1;
+   0        177583  [avrora.c-print] 11     parse |     kind: 0 'env.memset' 
+   0        182182  [avrora.c-print] 11     parse | bytes to alloc: 8
+   0        191187  [avrora.c-print] 11     parse |    added function   3: memset; sig: 2;
+   0        198053  [avrora.c-print] 11     parse |     kind: 0 'env.printStr' 
+   0        202892  [avrora.c-print] 11     parse | bytes to alloc: 10
+   0        212121  [avrora.c-print] 11     parse |    added function   4: printStr; sig: 1;
+   0        219003  [avrora.c-print] 11     parse |     kind: 0 'env.printInt' 
+   0        223842  [avrora.c-print] 11     parse | bytes to alloc: 12
+   0        233182  [avrora.c-print] 11     parse |    added function   5: printInt; sig: 3;
+   0        238085  [avrora.c-print] 11     parse |  sectionType = 3
+   0        242471  [avrora.c-print] 11     parse | ** Function [4]
+   0        247316  [avrora.c-print] 11     parse | bytes to alloc: 14
+   0        256969  [avrora.c-print] 11     parse |    added function   6: f1; sig: 0;
+   0        261846  [avrora.c-print] 11     parse | bytes to alloc: 16
+   0        271568  [avrora.c-print] 11     parse |    added function   7: f2; sig: 4;
+   0        276445  [avrora.c-print] 11     parse | bytes to alloc: 18
+   0        286180  [avrora.c-print] 11     parse |    added function   8: f3; sig: 5;
+   0        291057  [avrora.c-print] 11     parse | bytes to alloc: 20
+   0        300922  [avrora.c-print] 11     parse |    added function   9: f4; sig: 0;
+   0        305752  [avrora.c-print] 11     parse |  sectionType = 4
+   0        310855  [avrora.c-print] 11     parse |  skipped section type: 4
+   0        315638  [avrora.c-print] 11     parse |  sectionType = 5
+   0        319786  [avrora.c-print] 11     parse | ** Memory [1]
+   0        325138  [avrora.c-print] 11     parse |  sectionType = 6
+   0        329308  [avrora.c-print] 11     parse | ** Global [8]
+   0        337418  [avrora.c-print] 11     parse |     global: [0] i32 mutable=1
+   0        345444  [avrora.c-print] 11     parse |     global: [1] i32 mutable=0
+   0        353470  [avrora.c-print] 11     parse |     global: [2] i32 mutable=0
+   0        361496  [avrora.c-print] 11     parse |     global: [3] i32 mutable=0
+   0        369522  [avrora.c-print] 11     parse |     global: [4] i32 mutable=0
+   0        377548  [avrora.c-print] 11     parse |     global: [5] i32 mutable=0
+   0        385574  [avrora.c-print] 11     parse |     global: [6] i32 mutable=0
+   0        393581  [avrora.c-print] 11     parse |     global: [7] i32 mutable=0
+   0        398685  [avrora.c-print] 11     parse |  sectionType = 7
+   0        403788  [avrora.c-print] 11     parse |  skipped section type: 7
+   0        408975  [avrora.c-print] 11     parse |  sectionType = 10
+   0        412913  [avrora.c-print] 11     parse | ** Code [4]
+   0        418006  [avrora.c-print] 11     parse |     code size: 2   
+   0        423324  [avrora.c-print] 11     parse |     code size: 13  
+   0        428958  [avrora.c-print] 11     parse |     code size: 792 
+   0        436383  [avrora.c-print] 11     parse |       19 locals; type: 'i32'
+   0        442020  [avrora.c-print] 11     parse |     code size: 216 
+   0        449292  [avrora.c-print] 11     parse |        4 locals; type: 'i32'
+   0        454587  [avrora.c-print] 11     parse |  sectionType = 11
+   0        458527  [avrora.c-print] 11     parse | ** Data [1]
+   0        470906  [avrora.c-print] 11     parse |     segment [0]  memory: 0;  expr-size: 4;  size: 2065
+   0        474515  [avrora.c-print] 11     parse | Parsing done.
+   0        486909  [avrora.c-print] 11      temp | start of compiled code:   7290
+   0       4662263  [avrora.c-print] 11      temp | table address: 37638
+   0       7566719  [avrora.c-print] 11      temp | end of compiled code:   939a
+   0       7570029  [avrora.c-print] 11      temp | SP:0x10f9
+   0       7573163  [avrora.c-print] 11      temp | start exec
+   0       7596708  [avrora.c-print] 11      temp | mem size:3725
+   0       7596728  [avrora.c-print] 11 
+   0       7601127  [avrora.c-print] 11      temp | copy 32 B globals
+   0       7605079  [avrora.c-print] 11      temp | mem_start:0x232
+   0       7611776  [avrora.c-print] 11  ￨￠ￗￍ￁ﾴﾦﾖﾆtaL7 ￯~mpile.c | start exec
+   0       7615473  [avrora.c-print] 11 malloc from 0 to 256
+   0       7619620  [avrora.c-print] 11 malloc from 256 to 512
+   0       7638487  [avrora.c-print] 11 BEFORE FFT
+   0       7639619  [avrora.c-print] 11 -----
+   0       7640567  [avrora.c-print] 11 0
+   0       7641546  [avrora.c-print] 11 0
+   0       7642759  [avrora.c-print] 11 -----
+   0       7643947  [avrora.c-print] 11 16
+   0       7644926  [avrora.c-print] 11 0
+   0       7646139  [avrora.c-print] 11 -----
+   0       7647327  [avrora.c-print] 11 32
+   0       7648306  [avrora.c-print] 11 0
+   0       7649519  [avrora.c-print] 11 -----
+   0       7650707  [avrora.c-print] 11 48
+   0       7651686  [avrora.c-print] 11 0
+   0       7652899  [avrora.c-print] 11 -----
+   0       7654087  [avrora.c-print] 11 64
+   0       7655066  [avrora.c-print] 11 0
+   0       7656279  [avrora.c-print] 11 -----
+   0       7657467  [avrora.c-print] 11 80
+   0       7658446  [avrora.c-print] 11 0
+   0       7659659  [avrora.c-print] 11 -----
+   0       7660847  [avrora.c-print] 11 96
+   0       7661826  [avrora.c-print] 11 0
+   0       7663039  [avrora.c-print] 11 -----
+   0       7664467  [avrora.c-print] 11 112
+   0       7665446  [avrora.c-print] 11 0
+   0       7666659  [avrora.c-print] 11 -----
+   0       7668087  [avrora.c-print] 11 128
+   0       7669066  [avrora.c-print] 11 0
+   0       7670279  [avrora.c-print] 11 -----
+   0       7671707  [avrora.c-print] 11 144
+   0       7672686  [avrora.c-print] 11 0
+   0       7673899  [avrora.c-print] 11 -----
+   0       7675327  [avrora.c-print] 11 160
+   0       7676306  [avrora.c-print] 11 0
+   0       7677519  [avrora.c-print] 11 -----
+   0       7678947  [avrora.c-print] 11 176
+   0       7679926  [avrora.c-print] 11 0
+   0       7681139  [avrora.c-print] 11 -----
+   0       7682567  [avrora.c-print] 11 192
+   0       7683546  [avrora.c-print] 11 0
+   0       7684759  [avrora.c-print] 11 -----
+   0       7686187  [avrora.c-print] 11 208
+   0       7687166  [avrora.c-print] 11 0
+   0       7688379  [avrora.c-print] 11 -----
+   0       7689807  [avrora.c-print] 11 224
+   0       7690786  [avrora.c-print] 11 0
+   0       7691999  [avrora.c-print] 11 -----
+   0       7693427  [avrora.c-print] 11 240
+   0       7694406  [avrora.c-print] 11 0
+   0       7695619  [avrora.c-print] 11 -----
+   0       7697047  [avrora.c-print] 11 256
+   0       7698026  [avrora.c-print] 11 0
+   0       7699239  [avrora.c-print] 11 -----
+   0       7700667  [avrora.c-print] 11 272
+   0       7701646  [avrora.c-print] 11 0
+   0       7702859  [avrora.c-print] 11 -----
+   0       7704287  [avrora.c-print] 11 288
+   0       7705266  [avrora.c-print] 11 0
+   0       7706479  [avrora.c-print] 11 -----
+   0       7707907  [avrora.c-print] 11 304
+   0       7708886  [avrora.c-print] 11 0
+   0       7710099  [avrora.c-print] 11 -----
+   0       7711527  [avrora.c-print] 11 320
+   0       7712506  [avrora.c-print] 11 0
+   0       7713719  [avrora.c-print] 11 -----
+   0       7715147  [avrora.c-print] 11 336
+   0       7716126  [avrora.c-print] 11 0
+   0       7717339  [avrora.c-print] 11 -----
+   0       7718767  [avrora.c-print] 11 352
+   0       7719746  [avrora.c-print] 11 0
+   0       7720959  [avrora.c-print] 11 -----
+   0       7722387  [avrora.c-print] 11 368
+   0       7723366  [avrora.c-print] 11 0
+   0       7724579  [avrora.c-print] 11 -----
+   0       7726007  [avrora.c-print] 11 384
+   0       7726986  [avrora.c-print] 11 0
+   0       7728199  [avrora.c-print] 11 -----
+   0       7729627  [avrora.c-print] 11 400
+   0       7730606  [avrora.c-print] 11 0
+   0       7731819  [avrora.c-print] 11 -----
+   0       7733247  [avrora.c-print] 11 416
+   0       7734226  [avrora.c-print] 11 0
+   0       7735439  [avrora.c-print] 11 -----
+   0       7736867  [avrora.c-print] 11 432
+   0       7737846  [avrora.c-print] 11 0
+   0       7739059  [avrora.c-print] 11 -----
+   0       7740487  [avrora.c-print] 11 448
+   0       7741466  [avrora.c-print] 11 0
+   0       7742679  [avrora.c-print] 11 -----
+   0       7744107  [avrora.c-print] 11 464
+   0       7745086  [avrora.c-print] 11 0
+   0       7746299  [avrora.c-print] 11 -----
+   0       7747727  [avrora.c-print] 11 480
+   0       7748706  [avrora.c-print] 11 0
+   0       7749919  [avrora.c-print] 11 -----
+   0       7751347  [avrora.c-print] 11 496
+   0       7752326  [avrora.c-print] 11 0
+   0       7753539  [avrora.c-print] 11 -----
+   0       7754967  [avrora.c-print] 11 512
+   0       7755946  [avrora.c-print] 11 0
+   0       7757159  [avrora.c-print] 11 -----
+   0       7758587  [avrora.c-print] 11 528
+   0       7759566  [avrora.c-print] 11 0
+   0       7760779  [avrora.c-print] 11 -----
+   0       7762207  [avrora.c-print] 11 544
+   0       7763186  [avrora.c-print] 11 0
+   0       7764399  [avrora.c-print] 11 -----
+   0       7765827  [avrora.c-print] 11 560
+   0       7766806  [avrora.c-print] 11 0
+   0       7768019  [avrora.c-print] 11 -----
+   0       7769447  [avrora.c-print] 11 576
+   0       7770426  [avrora.c-print] 11 0
+   0       7771639  [avrora.c-print] 11 -----
+   0       7773067  [avrora.c-print] 11 592
+   0       7774046  [avrora.c-print] 11 0
+   0       7775259  [avrora.c-print] 11 -----
+   0       7776687  [avrora.c-print] 11 608
+   0       7777666  [avrora.c-print] 11 0
+   0       7778879  [avrora.c-print] 11 -----
+   0       7780307  [avrora.c-print] 11 624
+   0       7781286  [avrora.c-print] 11 0
+   0       7782499  [avrora.c-print] 11 -----
+   0       7783927  [avrora.c-print] 11 640
+   0       7784906  [avrora.c-print] 11 0
+   0       7786119  [avrora.c-print] 11 -----
+   0       7787547  [avrora.c-print] 11 656
+   0       7788526  [avrora.c-print] 11 0
+   0       7789739  [avrora.c-print] 11 -----
+   0       7791167  [avrora.c-print] 11 672
+   0       7792146  [avrora.c-print] 11 0
+   0       7793359  [avrora.c-print] 11 -----
+   0       7794787  [avrora.c-print] 11 688
+   0       7795766  [avrora.c-print] 11 0
+   0       7796979  [avrora.c-print] 11 -----
+   0       7798407  [avrora.c-print] 11 704
+   0       7799386  [avrora.c-print] 11 0
+   0       7800599  [avrora.c-print] 11 -----
+   0       7802027  [avrora.c-print] 11 720
+   0       7803006  [avrora.c-print] 11 0
+   0       7804219  [avrora.c-print] 11 -----
+   0       7805647  [avrora.c-print] 11 736
+   0       7806626  [avrora.c-print] 11 0
+   0       7807839  [avrora.c-print] 11 -----
+   0       7809267  [avrora.c-print] 11 752
+   0       7810246  [avrora.c-print] 11 0
+   0       7811459  [avrora.c-print] 11 -----
+   0       7812887  [avrora.c-print] 11 768
+   0       7813866  [avrora.c-print] 11 0
+   0       7815079  [avrora.c-print] 11 -----
+   0       7816507  [avrora.c-print] 11 784
+   0       7817486  [avrora.c-print] 11 0
+   0       7818699  [avrora.c-print] 11 -----
+   0       7820127  [avrora.c-print] 11 800
+   0       7821106  [avrora.c-print] 11 0
+   0       7822319  [avrora.c-print] 11 -----
+   0       7823747  [avrora.c-print] 11 816
+   0       7824726  [avrora.c-print] 11 0
+   0       7825939  [avrora.c-print] 11 -----
+   0       7827367  [avrora.c-print] 11 832
+   0       7828346  [avrora.c-print] 11 0
+   0       7829559  [avrora.c-print] 11 -----
+   0       7830987  [avrora.c-print] 11 848
+   0       7831966  [avrora.c-print] 11 0
+   0       7833179  [avrora.c-print] 11 -----
+   0       7834607  [avrora.c-print] 11 864
+   0       7835586  [avrora.c-print] 11 0
+   0       7836799  [avrora.c-print] 11 -----
+   0       7838227  [avrora.c-print] 11 880
+   0       7839206  [avrora.c-print] 11 0
+   0       7840419  [avrora.c-print] 11 -----
+   0       7841847  [avrora.c-print] 11 896
+   0       7842826  [avrora.c-print] 11 0
+   0       7844039  [avrora.c-print] 11 -----
+   0       7845467  [avrora.c-print] 11 912
+   0       7846446  [avrora.c-print] 11 0
+   0       7847659  [avrora.c-print] 11 -----
+   0       7849087  [avrora.c-print] 11 928
+   0       7850066  [avrora.c-print] 11 0
+   0       7851279  [avrora.c-print] 11 -----
+   0       7852707  [avrora.c-print] 11 944
+   0       7853686  [avrora.c-print] 11 0
+   0       7854899  [avrora.c-print] 11 -----
+   0       7856327  [avrora.c-print] 11 960
+   0       7857306  [avrora.c-print] 11 0
+   0       7858519  [avrora.c-print] 11 -----
+   0       7859947  [avrora.c-print] 11 976
+   0       7860926  [avrora.c-print] 11 0
+   0       7862139  [avrora.c-print] 11 -----
+   0       7863567  [avrora.c-print] 11 992
+   0       7864546  [avrora.c-print] 11 0
+   0       7865759  [avrora.c-print] 11 -----
+   0       7867427  [avrora.c-print] 11 1008
+   0       7868406  [avrora.c-print] 11 0
+   0       7868642  [avrora.trace]trace enabled ---------------------------1
+   0       9253511  [avrora.trace]trace disabled --------------------------0
+   0       9256314  [avrora.c-print] 1 0130
+   0       9256611  [avrora.trace]trace disabled --------------------------0
+   0       9269528  [avrora.c-print] 11     parse | load module: 3591 bytes at 0x6488
+   0       9274433  [avrora.c-print] 11     parse |  sectionType = 1
+   0       9278374  [avrora.c-print] 11     parse | ** Type [6]
+   0       9283344  [avrora.c-print] 11     parse |     type  0: 
+   0       9287489  [avrora.c-print] 11     parse | () -> nil
+   0       9293042  [avrora.c-print] 11     parse |     type  1: 
+   0       9298018  [avrora.c-print] 11     parse | (i32) -> i32
+   0       9304283  [avrora.c-print] 11     parse |     type  2: 
+   0       9311357  [avrora.c-print] 11     parse | (i32, i32, i32) -> i32
+   0       9316576  [avrora.c-print] 11     parse |     type  3: 
+   0       9321552  [avrora.c-print] 11     parse | (i32) -> nil
+   0       9327461  [avrora.c-print] 11     parse |     type  4: 
+   0       9333486  [avrora.c-print] 11     parse | (i32, i32) -> i32
+   0       9340107  [avrora.c-print] 11     parse |     type  5: 
+   0       9348230  [avrora.c-print] 11     parse | (i32, i32, i32, i32) -> i32
+   0       9353236  [avrora.c-print] 11     parse |  sectionType = 2
+   0       9357414  [avrora.c-print] 11     parse | ** Import [6]
+   0       9367586  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_startBenchmarkMeasurement_Native' 
+   0       9372425  [avrora.c-print] 11     parse | bytes to alloc: 22
+   0       9380724  [avrora.c-print] 11     parse |    added function  10:  sig: 0;
+   0       9386762  [avrora.c-print] 11     parse |     kind: 0 '.' 
+   0       9391601  [avrora.c-print] 11     parse | bytes to alloc: 24
+   0       9399901  [avrora.c-print] 11     parse |    added function  11:  sig: 0;
+   0       9405543  [avrora.c-print] 11     parse |     kind: 0 '.' 
+   0       9410382  [avrora.c-print] 11     parse | bytes to alloc: 26
+   0       9418682  [avrora.c-print] 11     parse |    added function  12:  sig: 1;
+   0       9424324  [avrora.c-print] 11     parse |     kind: 0 '.' 
+   0       9429163  [avrora.c-print] 11     parse | bytes to alloc: 28
+   0       9437463  [avrora.c-print] 11     parse |    added function  13:  sig: 2;
+   0       9443141  [avrora.c-print] 11     parse |     kind: 0 '.' 
+   0       9447980  [avrora.c-print] 11     parse | bytes to alloc: 30
+   0       9456280  [avrora.c-print] 11     parse |    added function  14:  sig: 1;
+   0       9461958  [avrora.c-print] 11     parse |     kind: 0 '.' 
+   0       9466797  [avrora.c-print] 11     parse | bytes to alloc: 32
+   0       9475097  [avrora.c-print] 11     parse |    added function  15:  sig: 3;
+   0       9480000  [avrora.c-print] 11     parse |  sectionType = 3
+   0       9484386  [avrora.c-print] 11     parse | ** Function [4]
+   0       9489231  [avrora.c-print] 11     parse | bytes to alloc: 34
+   0       9498340  [avrora.c-print] 11     parse |    added function  16:  sig: 0;
+   0       9503217  [avrora.c-print] 11     parse | bytes to alloc: 36
+   0       9512326  [avrora.c-print] 11     parse |    added function  17:  sig: 4;
+   0       9517203  [avrora.c-print] 11     parse | bytes to alloc: 38
+   0       9526312  [avrora.c-print] 11     parse |    added function  18:  sig: 5;
+   0       9531189  [avrora.c-print] 11     parse | bytes to alloc: 40
+   0       9540298  [avrora.c-print] 11     parse |    added function  19:  sig: 0;
+   0       9545128  [avrora.c-print] 11     parse |  sectionType = 4
+   0       9550231  [avrora.c-print] 11     parse |  skipped section type: 4
+   0       9555014  [avrora.c-print] 11     parse |  sectionType = 5
+   0       9559162  [avrora.c-print] 11     parse | ** Memory [1]
+   0       9564514  [avrora.c-print] 11     parse |  sectionType = 6
+   0       9568684  [avrora.c-print] 11     parse | ** Global [8]
+   0       9576696  [avrora.c-print] 11     parse |     global: [0] i32 mutable=1
+   0       9584722  [avrora.c-print] 11     parse |     global: [1] i32 mutable=0
+   0       9592748  [avrora.c-print] 11     parse |     global: [2] i32 mutable=0
+   0       9600774  [avrora.c-print] 11     parse |     global: [3] i32 mutable=0
+   0       9608800  [avrora.c-print] 11     parse |     global: [4] i32 mutable=0
+   0       9616826  [avrora.c-print] 11     parse |     global: [5] i32 mutable=0
+   0       9624852  [avrora.c-print] 11     parse |     global: [6] i32 mutable=0
+   0       9632859  [avrora.c-print] 11     parse |     global: [7] i32 mutable=0
+   0       9637963  [avrora.c-print] 11     parse |  sectionType = 7
+   0       9643066  [avrora.c-print] 11     parse |  skipped section type: 7
+   0       9648253  [avrora.c-print] 11     parse |  sectionType = 10
+   0       9652191  [avrora.c-print] 11     parse | ** Code [4]
+   0       9657284  [avrora.c-print] 11     parse |     code size: 2   
+   0       9662602  [avrora.c-print] 11     parse |     code size: 13  
+   0       9668236  [avrora.c-print] 11     parse |     code size: 792 
+   0       9675661  [avrora.c-print] 11     parse |       19 locals; type: 'i32'
+   0       9681298  [avrora.c-print] 11     parse |     code size: 216 
+   0       9688570  [avrora.c-print] 11     parse |        4 locals; type: 'i32'
+   0       9693865  [avrora.c-print] 11     parse |  sectionType = 11
+   0       9697805  [avrora.c-print] 11     parse | ** Data [1]
+   0       9709388  [avrora.c-print] 11     parse |     segment [0]  memory: 0;  expr-size: 0;  size: 0
+   0       9712997  [avrora.c-print] 11     parse | Parsing done.
+   0       9722562  [avrora.c-print] 11 panic! : global type not supported /home/fanhc/wasm-aot/src/compile.c :297

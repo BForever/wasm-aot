@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include<avr/io.h>
 #define DEBUG 1
-#define d_log_parse     0
+#define d_log_parse     1
 #define d_log_compile   0
 #define d_log_wkreprog  0
 #define d_log_emit      0

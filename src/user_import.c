@@ -2,12 +2,21 @@
 #include "debug.h"
 #include "compile.h"
 #include "AvroraTrace.h"
+#include <avr/pgmspace.h>
 extern translation_state ts;
+
+#define addr_W2N(wasm_addr) (ts.wasm_mem_space+ts.wasm_globals_size+wasm_addr)
 i32 printInt(i32 res)
 {
     // printf("hello, world!\r\n");
-    printf("res: %ld\n",res);
+    printf("%ld\n",res);
     return res;
+}
+void printStr(u32 ptr)
+{
+    char* real_ptr = addr_W2N(ptr);
+    // printf("hello, world!\r\n");
+    printf("%s\n",real_ptr);
 }
 u32 getA(){
     return 22;
@@ -49,7 +58,7 @@ u32 test(u32 input1,u32 input2,u32 input3){
 
 
 
-#define IMPORTS_NUM 7
+#define IMPORTS_NUM 8
 normal_function imports[IMPORTS_NUM]={
     printInt,
     getA,
@@ -58,6 +67,7 @@ normal_function imports[IMPORTS_NUM]={
     rtc_stopBenchmarkMeasurement,
     import_malloc,
     import_memset,
+    printStr,
     };
 char* imports_name[IMPORTS_NUM]={
     "printInt",
@@ -67,5 +77,6 @@ char* imports_name[IMPORTS_NUM]={
     "rtc_stopBenchmarkMeasurement",
     "malloc",
     "memset",
+    "printStr",
     };
 u32 imports_num=IMPORTS_NUM;

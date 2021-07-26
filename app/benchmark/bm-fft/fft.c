@@ -187,6 +187,7 @@ int16_t __attribute__((noinline)) rtcbenchmark_measure_native_performance(int16_
 
 	l = 1;
 	k = LOG2_N_WAVE-1;
+	
 	while(l < n) {
 		if(inverse) {
 			/* variable scaling, depending upon data */

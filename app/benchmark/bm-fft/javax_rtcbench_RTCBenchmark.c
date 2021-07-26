@@ -16,9 +16,9 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
 		im[i] = 0;
 	}
 
-	// printStr("BEFORE FFT");
+	printStr("BEFORE FFT");
 	for (uint16_t i=0; i<NUMNUMBERS; i++) {
-		// printStr("-----");
+		printStr("-----");
 		printInt16(data[i]);
 		printInt16(im[i]);
 	}

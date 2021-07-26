@@ -28,15 +28,16 @@ extern void rtc_stopBenchmarkMeasurement();
 #define printInt16 avroraPrintInt16
 #define printInt32 avroraPrintInt32
 #define printInt avroraPrintInt
+#define printStr PrintStr
 #include<AvroraPrint.h>
 
 #else
 extern void printInt(uint32_t value);
+extern void PrintStr(uint8_t* str);
 
 #define printInt32 printInt
 #define printInt16 printInt
 
-// void PrintStr(uint8_t* str);
 
 #endif
 
