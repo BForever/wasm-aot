@@ -78,6 +78,15 @@ u32 LeadingZeros_32(u32 x)
     return 32 - (x & 0x0000003f); //subtract # of 1s from 32
 }
 
+void print_stack(){
+    u8* sp = STACK_POINTER();
+    printf("----stack----\n");
+    for(int i=20;i>=9;i--){
+        printf("%04p: %02x\n",(sp+i),*(sp+i));
+    }
+    printf("-------------\n");
+}
+
 // void emit_x_avroraBeep(uint8_t beep) {
 //     emit_PUSH(R24);
 //     emit_LDI(R24, beep);

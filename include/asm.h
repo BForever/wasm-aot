@@ -13,11 +13,13 @@ enum embed_func{
    embed_func_i32store = 0xFFFA,
    embed_func_i64store = 0xFFF9,
    embed_func_umul = 0xFFF8,
+   embed_func_print_stack = 0xFFF7,
 };
 u32 udiv(u32 input1,u32 input2);
 i32 idiv(i32 input1,i32 input2);
 u32 umul(u32 input1,u32 input2);
 u32 LeadingZeros_32(u32 x);
+void print_stack();
 
 // PUSHREF
 #define emit_x_PUSHREF8(reg)                     emit_ST_XINC(reg)

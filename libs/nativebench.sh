@@ -18,7 +18,7 @@
 
 
 # benchlist=(binsrch bsort fillarray funcall hsort lec outlier)
-benchlist=(bsort)
+benchlist=(fillarray)
 
 for bench in ${benchlist[*]}
 do 

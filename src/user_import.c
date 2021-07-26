@@ -48,6 +48,7 @@ u32 test(u32 input1,u32 input2,u32 input3){
 }
 
 
+
 #define IMPORTS_NUM 7
 normal_function imports[IMPORTS_NUM]={
     printInt,
@@ -57,7 +58,6 @@ normal_function imports[IMPORTS_NUM]={
     rtc_stopBenchmarkMeasurement,
     import_malloc,
     import_memset,
-    // test,
     };
 char* imports_name[IMPORTS_NUM]={
     "printInt",

@@ -89,6 +89,12 @@ void branch_pc_refill(wasm_module_ptr module)
                 emit_2_CALL(embed_i32store);
                 break;
             }
+            case embed_func_print_stack:
+            {
+                logif(compile, printf("func %d print_stack", func_id); printf(",call %p", ((u16)print_stack)*2););
+                emit_2_CALL(print_stack);
+                break;
+            }
             default:
             {
                 logif(compile, printf("func %d", func_id); printf(",call %p", module->function_list[func_id]->compiled * 2););

@@ -6,15 +6,57 @@ Node          Time   Event
 ------------------------------------------------------------------------------
    0          2473  [avrora.c-print] 1 0000
    0          2770  [avrora.trace]trace disabled --------------------------0
-   0         54539  [avrora.c-print] 11      temp | start of compiled code:   5cc6
-   0       1165628  [avrora.c-print] 11      temp | table address: 25500
-   0       2109164  [avrora.c-print] 11      temp | end of compiled code:   63c8
-   0       2112474  [avrora.c-print] 11      temp | SP:0x10f9
-   0       2115608  [avrora.c-print] 11      temp | start exec
-   0       2120066  [avrora.c-print] 11      temp | mem size:3725
-   0       2120086  [avrora.c-print] 11 
-   0       2124485  [avrora.c-print] 11      temp | copy 28 B globals
-   0       2128437  [avrora.c-print] 11      temp | mem_start:0x232
-   0       2131794  [avrora.c-print] 11         | start exec
-   0       2135731  [avrora.c-print] 11 malloc from 0 to 1020
-   0       2181481  [avrora.trace]trace enabled ---------------------------1
+   0         54539  [avrora.c-print] 11      temp | start of compiled code:   5ce6
+   0       1163266  [avrora.c-print] 11      temp | table address: 25532
+   0       2106762  [avrora.c-print] 11      temp | end of compiled code:   63f0
+   0       2110072  [avrora.c-print] 11      temp | SP:0x10f9
+   0       2113206  [avrora.c-print] 11      temp | start exec
+   0       2117664  [avrora.c-print] 11      temp | mem size:3725
+   0       2117684  [avrora.c-print] 11 
+   0       2122083  [avrora.c-print] 11      temp | copy 28 B globals
+   0       2126035  [avrora.c-print] 11      temp | mem_start:0x232
+   0       2129392  [avrora.c-print] 11         | start exec
+   0       2133329  [avrora.c-print] 11 malloc from 0 to 1024
+   0       2179258  [avrora.trace]trace enabled ---------------------------1
+   0      26489405  [avrora.trace]trace disabled --------------------------0
+   0      26493655  [avrora.c-print] 11         | wasm func returned.
+==============================================================================
+Simulated time: 26493674 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 15135565 
+Program throughput: 0.5712898 instrs/cycle
+Program throughput: 4.570318 mips
+sbci	195840
+sub	65281
+dec	195840
+eor	1024
+jmp	65281
+pop	2100240
+movw	261120
+breq	131330
+mov	195840
+and	3072
+cpc	916995
+cpi	130560
+subi	195840
+ret	65281
+add	653313
+adc	1176579
+st	65280
+std	853764
+brpl	195840
+or	65283
+brne	163200
+ldd	2487816
+cp	523265
+push	2100240
+rjmp	130560
+brcs	391936
+ldi	1184780
+call	65281
+sts	1
+sbc	65283
+brlt	32640
+ld	261120
+adiw	195840
+

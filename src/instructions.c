@@ -36,6 +36,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     } operand;
 
     u16 base;
+    
     switch (op)
     {
     // 0x00 Unreachable
@@ -273,6 +274,8 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x10 Call
     case Call:
     {
+        // DEBUG
+        // emit_2_CALL(embed_func_print_stack);
         // log(emit, "emiting CALL instruction...");
         ReadLEB_u32(&operand, start, end);
         log(emit, "[CALL %d]", operand.num32[0]);
@@ -574,6 +577,8 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ReadLEB_u32(&operand, start, end);
         log(emit, "[I32.Load %d]", operand.num32[0]);
 
+        // DEBUG
+        // emit_2_CALL(embed_func_print_stack);
         // emit_LDI(R24,1);
         // emit_2_STS(0x215,R24);
 #if check_memory_bound
@@ -671,7 +676,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         }
 #endif
         // emit_2_STS(0x215,R1);
-        // emit_x_PUSH_32bit(R22);
+        emit_x_PUSH_32bit(R22);
         break;
     }
     // 0x29 i64.load

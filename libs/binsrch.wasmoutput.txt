@@ -6,50 +6,57 @@ Node          Time   Event
 ------------------------------------------------------------------------------
    0          2473  [avrora.c-print] 1 0000
    0          2770  [avrora.trace]trace disabled --------------------------0
-   0         54541  [avrora.c-print] 11      temp | start of compiled code:   5cac
-   0       1056969  [avrora.c-print] 11      temp | table address: 25322
-   0       1848765  [avrora.c-print] 11      temp | end of compiled code:   6316
-   0       1852075  [avrora.c-print] 11      temp | SP:0x10f9
-   0       1855209  [avrora.c-print] 11      temp | start exec
-   0       1859667  [avrora.c-print] 11      temp | mem size:3725
-   0       1859687  [avrora.c-print] 11 
-   0       1864086  [avrora.c-print] 11      temp | copy 28 B globals
-   0       1868038  [avrora.c-print] 11      temp | mem_start:0x232
-   0       1871395  [avrora.c-print] 11         | start exec
-   0       1875092  [avrora.c-print] 11 malloc from 0 to 400
-   0       1893097  [avrora.trace]trace enabled ---------------------------1
-   0       1895225  [avrora.trace]trace disabled --------------------------0
-   0       1899520  [avrora.c-print] 11         | wasm func returned.
+   0         54541  [avrora.c-print] 11      temp | start of compiled code:   5ccc
+   0       1149101  [avrora.c-print] 11      temp | table address: 25354
+   0       2020613  [avrora.c-print] 11      temp | end of compiled code:   633e
+   0       2023923  [avrora.c-print] 11      temp | SP:0x10f9
+   0       2027057  [avrora.c-print] 11      temp | start exec
+   0       2031515  [avrora.c-print] 11      temp | mem size:3725
+   0       2031535  [avrora.c-print] 11 
+   0       2035934  [avrora.c-print] 11      temp | copy 28 B globals
+   0       2039886  [avrora.c-print] 11      temp | mem_start:0x232
+   0       2043243  [avrora.c-print] 11         | start exec
+   0       2046940  [avrora.c-print] 11 malloc from 0 to 400
+   0       2064945  [avrora.trace]trace enabled ---------------------------1
+   0       5788241  [avrora.trace]trace disabled --------------------------0
+   0       5792536  [avrora.c-print] 11         | wasm func returned.
 ==============================================================================
-Simulated time: 1899539 cycles
+Simulated time: 5792555 cycles
 =={ Trace results for node 0 }================================================
-Instructions executed: 1303 
-Program throughput: 6.859559E-4 instrs/cycle
-Program throughput: 0.0054876474 mips
-brge	7
-dec	23
-lsr	4
-jmp	9
-pop	248
-movw	5
-breq	12
-ror	12
-and	40
-cpc	72
-brcc	1
-ret	1
-add	30
-adc	80
-std	100
-brpl	23
-ldd	179
-cp	24
-push	228
-rjmp	9
-brcs	4
-ldi	180
-call	1
+Instructions executed: 2336187 
+Program throughput: 0.40330857 instrs/cycle
+Program throughput: 3.2264686 mips
+sbci	21003
+brge	8000
+sub	7001
+dec	35003
+lsr	7000
+jmp	8999
+pop	392024
+movw	21003
+breq	22001
+ror	21000
+mov	21003
+and	56000
+cpc	146008
+cpi	14002
+subi	21003
+ret	7002
+add	70009
+adc	140017
+std	96012
+brpl	35003
+or	7001
+brne	14002
+ldd	320024
+cp	72006
+push	392024
+rjmp	21002
+brcs	49006
+ldi	256019
+call	7002
 sts	1
-ld	5
-adiw	5
+sbc	7001
+ld	28004
+adiw	14002
 
