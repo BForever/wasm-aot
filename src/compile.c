@@ -315,10 +315,13 @@ void wasm_call_entry_method(wasm_module_ptr module)
             u32 start;
             // hexdump_pgm(initexpr,4);
             ReadLEB_u32(&start,&initexpr,end);
-            mem_areas[i].start = start;
-            mem_areas[i].end = start + module->data_segment_list[i].size;
-            mem_areas[i].flash = 1;
-            mem_areas[i].target = module->data_segment_list[i].data;
+            // mem_areas[i].start = start;
+            // mem_areas[i].end = start + module->data_segment_list[i].size;
+            // mem_areas[i].flash = 1;
+            // mem_areas[i].target = module->data_segment_list[i].data;
+
+            memcpy_P(ts.wasm_mem_space+ts.wasm_globals_size+start,module->data_segment_list[i].data,module->data_segment_list[i].size);
+            hexdump(ts.wasm_mem_space+ts.wasm_globals_size+start,20);
             // printf("i%p,",module->data_segment_list[i].initExpr);
             // printf("d%p,",module->data_segment_list[i].data);
             // printf("s%d,",mem_areas[i].start);

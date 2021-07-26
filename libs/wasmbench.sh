@@ -17,8 +17,8 @@
 # cd ../libs
 
 # benchlist=(binsrch bsort fillarray funcall hsort lec fft outlier)
-benchlist=(binsrch bsort fillarray funcall)
-# benchlist=(fft)
+# benchlist=(binsrch bsort fillarray funcall)
+benchlist=(fft)
 
 for bench in ${benchlist[*]}
 do 
