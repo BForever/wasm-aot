@@ -1,15 +1,17 @@
 (module
   (type (;0;) (func))
-  (type (;1;) (func (param i32 i32 i32) (result i32)))
-  (type (;2;) (func (param i32)))
-  (type (;3;) (func (param i32 i32) (result i32)))
-  (type (;4;) (func (param i32 i32 i32 i32) (result i32)))
+  (type (;1;) (func (param i32) (result i32)))
+  (type (;2;) (func (param i32 i32 i32) (result i32)))
+  (type (;3;) (func (param i32)))
+  (type (;4;) (func (param i32 i32) (result i32)))
+  (type (;5;) (func (param i32 i32 i32 i32) (result i32)))
   (import "env" "rtc_startBenchmarkMeasurement_Native" (func (;0;) (type 0)))
   (import "env" "rtc_stopBenchmarkMeasurement" (func (;1;) (type 0)))
-  (import "env" "memset" (func (;2;) (type 1)))
-  (import "env" "printInt" (func (;3;) (type 2)))
-  (func (;4;) (type 0))
-  (func (;5;) (type 3) (param i32 i32) (result i32)
+  (import "env" "malloc" (func (;2;) (type 1)))
+  (import "env" "memset" (func (;3;) (type 2)))
+  (import "env" "printInt" (func (;4;) (type 3)))
+  (func (;5;) (type 0))
+  (func (;6;) (type 4) (param i32 i32) (result i32)
     local.get 1
     local.get 0
     i32.mul
@@ -17,7 +19,7 @@
     i32.shl
     i32.const 16
     i32.shr_s)
-  (func (;6;) (type 4) (param i32 i32 i32 i32) (result i32)
+  (func (;7;) (type 5) (param i32 i32 i32 i32) (result i32)
     (local i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32 i32)
     i32.const 65535
     local.set 4
@@ -447,99 +449,87 @@
     i32.shl
     i32.const 16
     i32.shr_s)
-  (func (;7;) (type 0)
-    (local i32 i32 i32)
-    global.get 0
+  (func (;8;) (type 0)
+    (local i32 i32 i32 i32)
+    i32.const 0
+    local.set 0
     i32.const 256
-    i32.sub
-    local.tee 0
-    global.set 0
-    i32.const 0
-    local.set 1
-    local.get 0
-    i32.const 0
-    i32.const 128
     call 2
-    local.tee 0
-    i32.const 128
-    i32.add
+    local.set 1
+    i32.const 256
+    call 2
     local.set 2
+    local.get 1
+    i32.const 0
+    i32.const 256
+    call 3
+    local.set 3
+    local.get 2
+    local.set 1
     loop  ;; label = @1
-      local.get 2
+      local.get 1
+      local.get 0
+      i32.store
       local.get 1
       i32.const 4
-      i32.shl
-      i32.store16
-      local.get 2
-      i32.const 2
       i32.add
-      local.set 2
-      local.get 1
-      i32.const 1
+      local.set 1
+      local.get 0
+      i32.const 16
       i32.add
-      local.tee 1
-      i32.const 64
+      local.tee 0
+      i32.const 1024
       i32.ne
       br_if 0 (;@1;)
     end
     i32.const 0
-    local.set 1
+    local.set 0
     loop  ;; label = @1
+      local.get 2
       local.get 0
-      i32.const 128
       i32.add
-      local.get 1
-      i32.add
-      i32.load16_s
-      call 3
+      i32.load
+      call 4
+      local.get 3
       local.get 0
-      local.get 1
       i32.add
-      i32.load16_s
-      call 3
-      local.get 1
-      i32.const 2
+      i32.load
+      call 4
+      local.get 0
+      i32.const 4
       i32.add
-      local.tee 1
-      i32.const 128
+      local.tee 0
+      i32.const 256
       i32.ne
       br_if 0 (;@1;)
     end
     i32.const 0
-    local.set 1
-    local.get 0
-    i32.const 128
-    i32.add
-    local.get 0
+    local.set 0
+    local.get 2
+    local.get 3
     i32.const 6
     i32.const 0
-    call 6
+    call 7
     drop
     loop  ;; label = @1
+      local.get 2
       local.get 0
-      i32.const 128
       i32.add
-      local.get 1
-      i32.add
-      i32.load16_s
-      call 3
+      i32.load
+      call 4
+      local.get 3
       local.get 0
-      local.get 1
       i32.add
-      i32.load16_s
-      call 3
-      local.get 1
-      i32.const 2
+      i32.load
+      call 4
+      local.get 0
+      i32.const 4
       i32.add
-      local.tee 1
-      i32.const 128
+      local.tee 0
+      i32.const 256
       i32.ne
       br_if 0 (;@1;)
-    end
-    local.get 0
-    i32.const 256
-    i32.add
-    global.set 0)
+    end)
   (table (;0;) 1 1 funcref)
   (memory (;0;) 1)
   (global (;0;) (mut i32) (i32.const 3088))
@@ -551,11 +541,11 @@
   (global (;6;) i32 (i32.const 0))
   (global (;7;) i32 (i32.const 1))
   (export "memory" (memory 0))
-  (export "__wasm_call_ctors" (func 4))
-  (export "fix_mpy" (func 5))
-  (export "rtcbenchmark_measure_native_performance" (func 6))
+  (export "__wasm_call_ctors" (func 5))
+  (export "fix_mpy" (func 6))
+  (export "rtcbenchmark_measure_native_performance" (func 7))
   (export "Sinewave" (global 1))
-  (export "javax_rtcbench_RTCBenchmark_void_test_native" (func 7))
+  (export "javax_rtcbench_RTCBenchmark_void_test_native" (func 8))
   (export "__dso_handle" (global 2))
   (export "__data_end" (global 3))
   (export "__global_base" (global 4))

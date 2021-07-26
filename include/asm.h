@@ -8,9 +8,15 @@ enum embed_func{
    embed_func_idiv = 0xFFFF,
    embed_func_udiv = 0xFFFE,
    embed_func_clz32 = 0xFFFD,
+   embed_func_i32load = 0xFFFC,
+   embed_func_i64load = 0xFFFB,
+   embed_func_i32store = 0xFFFA,
+   embed_func_i64store = 0xFFF9,
+   embed_func_umul = 0xFFF8,
 };
 u32 udiv(u32 input1,u32 input2);
 i32 idiv(i32 input1,i32 input2);
+u32 umul(u32 input1,u32 input2);
 u32 LeadingZeros_32(u32 x);
 
 // PUSHREF
@@ -172,6 +178,10 @@ void emit_BRANCH(uint16_t opcode, uint8_t offset);
 //BRCC                                  1111 01kk kkkk k000
 #define OPCODE_BRCC                     0xF400
 #define emit_BRCC(offset)               emit_BRANCH(OPCODE_BRCC, offset)
+
+//BRMI                                  1111 00kk kkkk k010
+#define OPCODE_BRMI                     0xF002
+#define emit_BRMI(offset)               emit_BRANCH(OPCODE_BRMI, offset)
 
 // CALL                                 1001 010k kkkk 111k
 //                                      kkkk kkkk kkkk kkkk

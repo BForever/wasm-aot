@@ -4,8 +4,28 @@ Loading ../bin/aot.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0          2212  [avrora.c-print] 1 0000
-   0        427863  [avrora.c-print] 11 benchmark start.
-   0        429828  [avrora.c-print] 11 benchmark stop.
+   0          2473  [avrora.c-print] 1 0000
+   0          2770  [avrora.trace]trace disabled --------------------------0
+   0         46878  [avrora.c-print] 11      temp | start of compiled code:   5bc2
+   0        440128  [avrora.c-print] 11      temp | table address: 23578
+   0        650973  [avrora.c-print] 11      temp | end of compiled code:   5c26
+   0        654283  [avrora.c-print] 11      temp | SP:0x10f9
+   0        657417  [avrora.c-print] 11      temp | start exec
+   0        661875  [avrora.c-print] 11      temp | mem size:3725
+   0        661895  [avrora.c-print] 11 
+   0        666294  [avrora.c-print] 11      temp | copy 28 B globals
+   0        670246  [avrora.c-print] 11      temp | mem_start:0x232
+   0        673603  [avrora.c-print] 11         | start exec
+   0        673672  [avrora.trace]trace enabled ---------------------------1
+   0        673682  [avrora.trace]trace disabled --------------------------0
+   0        677900  [avrora.c-print] 11         | wasm func returned.
 ==============================================================================
-Simulated time: 429895 cycles
+Simulated time: 677919 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 3 
+Program throughput: 4.4253075E-6 instrs/cycle
+Program throughput: 3.540246E-5 mips
+ret	1
+call	1
+sts	1
+

@@ -1,0 +1,313 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../app/benchmark/fft.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0         18462  [avrora.c-print] 0 R0:FF R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:09 R18:09 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:00 R27:09 R28:FF R29:10 R30:34 R31:0E 
+   0         18492  [avrora.trace]trace disabled --------------------------0
+   0         19530  [avrora.c-print] 8 0
+   0         19553  [avrora.c-print] 8 0
+   0         19580  [avrora.c-print] 8 16
+   0         19603  [avrora.c-print] 8 0
+   0         19630  [avrora.c-print] 8 32
+   0         19653  [avrora.c-print] 8 0
+   0         19680  [avrora.c-print] 8 48
+   0         19703  [avrora.c-print] 8 0
+   0         19730  [avrora.c-print] 8 64
+   0         19753  [avrora.c-print] 8 0
+   0         19780  [avrora.c-print] 8 80
+   0         19803  [avrora.c-print] 8 0
+   0         19830  [avrora.c-print] 8 96
+   0         19853  [avrora.c-print] 8 0
+   0         19880  [avrora.c-print] 8 112
+   0         19903  [avrora.c-print] 8 0
+   0         19930  [avrora.c-print] 8 128
+   0         19953  [avrora.c-print] 8 0
+   0         19980  [avrora.c-print] 8 144
+   0         20003  [avrora.c-print] 8 0
+   0         20030  [avrora.c-print] 8 160
+   0         20053  [avrora.c-print] 8 0
+   0         20080  [avrora.c-print] 8 176
+   0         20103  [avrora.c-print] 8 0
+   0         20130  [avrora.c-print] 8 192
+   0         20153  [avrora.c-print] 8 0
+   0         20180  [avrora.c-print] 8 208
+   0         20203  [avrora.c-print] 8 0
+   0         20230  [avrora.c-print] 8 224
+   0         20253  [avrora.c-print] 8 0
+   0         20280  [avrora.c-print] 8 240
+   0         20303  [avrora.c-print] 8 0
+   0         20330  [avrora.c-print] 8 256
+   0         20353  [avrora.c-print] 8 0
+   0         20380  [avrora.c-print] 8 272
+   0         20403  [avrora.c-print] 8 0
+   0         20430  [avrora.c-print] 8 288
+   0         20453  [avrora.c-print] 8 0
+   0         20480  [avrora.c-print] 8 304
+   0         20503  [avrora.c-print] 8 0
+   0         20530  [avrora.c-print] 8 320
+   0         20553  [avrora.c-print] 8 0
+   0         20580  [avrora.c-print] 8 336
+   0         20603  [avrora.c-print] 8 0
+   0         20630  [avrora.c-print] 8 352
+   0         20653  [avrora.c-print] 8 0
+   0         20680  [avrora.c-print] 8 368
+   0         20703  [avrora.c-print] 8 0
+   0         20730  [avrora.c-print] 8 384
+   0         20753  [avrora.c-print] 8 0
+   0         20780  [avrora.c-print] 8 400
+   0         20803  [avrora.c-print] 8 0
+   0         20830  [avrora.c-print] 8 416
+   0         20853  [avrora.c-print] 8 0
+   0         20880  [avrora.c-print] 8 432
+   0         20903  [avrora.c-print] 8 0
+   0         20930  [avrora.c-print] 8 448
+   0         20953  [avrora.c-print] 8 0
+   0         20980  [avrora.c-print] 8 464
+   0         21003  [avrora.c-print] 8 0
+   0         21030  [avrora.c-print] 8 480
+   0         21053  [avrora.c-print] 8 0
+   0         21080  [avrora.c-print] 8 496
+   0         21103  [avrora.c-print] 8 0
+   0         21130  [avrora.c-print] 8 512
+   0         21153  [avrora.c-print] 8 0
+   0         21180  [avrora.c-print] 8 528
+   0         21203  [avrora.c-print] 8 0
+   0         21230  [avrora.c-print] 8 544
+   0         21253  [avrora.c-print] 8 0
+   0         21280  [avrora.c-print] 8 560
+   0         21303  [avrora.c-print] 8 0
+   0         21330  [avrora.c-print] 8 576
+   0         21353  [avrora.c-print] 8 0
+   0         21380  [avrora.c-print] 8 592
+   0         21403  [avrora.c-print] 8 0
+   0         21430  [avrora.c-print] 8 608
+   0         21453  [avrora.c-print] 8 0
+   0         21480  [avrora.c-print] 8 624
+   0         21503  [avrora.c-print] 8 0
+   0         21530  [avrora.c-print] 8 640
+   0         21553  [avrora.c-print] 8 0
+   0         21580  [avrora.c-print] 8 656
+   0         21603  [avrora.c-print] 8 0
+   0         21630  [avrora.c-print] 8 672
+   0         21653  [avrora.c-print] 8 0
+   0         21680  [avrora.c-print] 8 688
+   0         21703  [avrora.c-print] 8 0
+   0         21730  [avrora.c-print] 8 704
+   0         21753  [avrora.c-print] 8 0
+   0         21780  [avrora.c-print] 8 720
+   0         21803  [avrora.c-print] 8 0
+   0         21830  [avrora.c-print] 8 736
+   0         21853  [avrora.c-print] 8 0
+   0         21880  [avrora.c-print] 8 752
+   0         21903  [avrora.c-print] 8 0
+   0         21930  [avrora.c-print] 8 768
+   0         21953  [avrora.c-print] 8 0
+   0         21980  [avrora.c-print] 8 784
+   0         22003  [avrora.c-print] 8 0
+   0         22030  [avrora.c-print] 8 800
+   0         22053  [avrora.c-print] 8 0
+   0         22080  [avrora.c-print] 8 816
+   0         22103  [avrora.c-print] 8 0
+   0         22130  [avrora.c-print] 8 832
+   0         22153  [avrora.c-print] 8 0
+   0         22180  [avrora.c-print] 8 848
+   0         22203  [avrora.c-print] 8 0
+   0         22230  [avrora.c-print] 8 864
+   0         22253  [avrora.c-print] 8 0
+   0         22280  [avrora.c-print] 8 880
+   0         22303  [avrora.c-print] 8 0
+   0         22330  [avrora.c-print] 8 896
+   0         22353  [avrora.c-print] 8 0
+   0         22380  [avrora.c-print] 8 912
+   0         22403  [avrora.c-print] 8 0
+   0         22430  [avrora.c-print] 8 928
+   0         22453  [avrora.c-print] 8 0
+   0         22480  [avrora.c-print] 8 944
+   0         22503  [avrora.c-print] 8 0
+   0         22530  [avrora.c-print] 8 960
+   0         22553  [avrora.c-print] 8 0
+   0         22580  [avrora.c-print] 8 976
+   0         22603  [avrora.c-print] 8 0
+   0         22630  [avrora.c-print] 8 992
+   0         22653  [avrora.c-print] 8 0
+   0         22680  [avrora.c-print] 8 1008
+   0         22703  [avrora.c-print] 8 0
+   0         22832  [avrora.c-print] 11 benchstart
+   0         22835  [avrora.trace]trace enabled ---------------------------1
+   0        187642  [avrora.trace]trace disabled --------------------------0
+   0        187693  [avrora.c-print] 11 benchstop
+   0        187769  [avrora.c-print] 8 498
+   0        187792  [avrora.c-print] 8 0
+   0        187819  [avrora.c-print] 8 -10
+   0        187842  [avrora.c-print] 8 158
+   0        187869  [avrora.c-print] 8 -8
+   0        187892  [avrora.c-print] 8 78
+   0        187919  [avrora.c-print] 8 -10
+   0        187942  [avrora.c-print] 8 49
+   0        187969  [avrora.c-print] 8 -10
+   0        187992  [avrora.c-print] 8 37
+   0        188019  [avrora.c-print] 8 -9
+   0        188042  [avrora.c-print] 8 29
+   0        188069  [avrora.c-print] 8 -10
+   0        188092  [avrora.c-print] 8 24
+   0        188119  [avrora.c-print] 8 -10
+   0        188142  [avrora.c-print] 8 19
+   0        188169  [avrora.c-print] 8 -8
+   0        188192  [avrora.c-print] 8 18
+   0        188219  [avrora.c-print] 8 -8
+   0        188242  [avrora.c-print] 8 14
+   0        188269  [avrora.c-print] 8 -8
+   0        188292  [avrora.c-print] 8 13
+   0        188319  [avrora.c-print] 8 -9
+   0        188342  [avrora.c-print] 8 11
+   0        188369  [avrora.c-print] 8 -8
+   0        188392  [avrora.c-print] 8 8
+   0        188419  [avrora.c-print] 8 -9
+   0        188442  [avrora.c-print] 8 9
+   0        188469  [avrora.c-print] 8 -8
+   0        188492  [avrora.c-print] 8 8
+   0        188519  [avrora.c-print] 8 -9
+   0        188542  [avrora.c-print] 8 7
+   0        188569  [avrora.c-print] 8 -8
+   0        188592  [avrora.c-print] 8 7
+   0        188619  [avrora.c-print] 8 -8
+   0        188642  [avrora.c-print] 8 6
+   0        188669  [avrora.c-print] 8 -8
+   0        188692  [avrora.c-print] 8 5
+   0        188719  [avrora.c-print] 8 -8
+   0        188742  [avrora.c-print] 8 4
+   0        188769  [avrora.c-print] 8 -8
+   0        188792  [avrora.c-print] 8 4
+   0        188819  [avrora.c-print] 8 -8
+   0        188842  [avrora.c-print] 8 4
+   0        188869  [avrora.c-print] 8 -8
+   0        188892  [avrora.c-print] 8 3
+   0        188919  [avrora.c-print] 8 -9
+   0        188942  [avrora.c-print] 8 2
+   0        188969  [avrora.c-print] 8 -8
+   0        188992  [avrora.c-print] 8 2
+   0        189019  [avrora.c-print] 8 -8
+   0        189042  [avrora.c-print] 8 2
+   0        189069  [avrora.c-print] 8 -8
+   0        189092  [avrora.c-print] 8 2
+   0        189119  [avrora.c-print] 8 -7
+   0        189142  [avrora.c-print] 8 1
+   0        189169  [avrora.c-print] 8 -9
+   0        189192  [avrora.c-print] 8 1
+   0        189219  [avrora.c-print] 8 -8
+   0        189242  [avrora.c-print] 8 0
+   0        189269  [avrora.c-print] 8 -8
+   0        189292  [avrora.c-print] 8 -1
+   0        189319  [avrora.c-print] 8 -8
+   0        189342  [avrora.c-print] 8 -1
+   0        189369  [avrora.c-print] 8 -8
+   0        189392  [avrora.c-print] 8 0
+   0        189419  [avrora.c-print] 8 -8
+   0        189442  [avrora.c-print] 8 0
+   0        189469  [avrora.c-print] 8 -8
+   0        189492  [avrora.c-print] 8 0
+   0        189519  [avrora.c-print] 8 -8
+   0        189542  [avrora.c-print] 8 -1
+   0        189569  [avrora.c-print] 8 -8
+   0        189592  [avrora.c-print] 8 -1
+   0        189619  [avrora.c-print] 8 -7
+   0        189642  [avrora.c-print] 8 -1
+   0        189669  [avrora.c-print] 8 -8
+   0        189692  [avrora.c-print] 8 -2
+   0        189719  [avrora.c-print] 8 -8
+   0        189742  [avrora.c-print] 8 -3
+   0        189769  [avrora.c-print] 8 -8
+   0        189792  [avrora.c-print] 8 -2
+   0        189819  [avrora.c-print] 8 -8
+   0        189842  [avrora.c-print] 8 -2
+   0        189869  [avrora.c-print] 8 -8
+   0        189892  [avrora.c-print] 8 -3
+   0        189919  [avrora.c-print] 8 -7
+   0        189942  [avrora.c-print] 8 -5
+   0        189969  [avrora.c-print] 8 -8
+   0        189992  [avrora.c-print] 8 -4
+   0        190019  [avrora.c-print] 8 -7
+   0        190042  [avrora.c-print] 8 -5
+   0        190069  [avrora.c-print] 8 -8
+   0        190092  [avrora.c-print] 8 -6
+   0        190119  [avrora.c-print] 8 -7
+   0        190142  [avrora.c-print] 8 -7
+   0        190169  [avrora.c-print] 8 -8
+   0        190192  [avrora.c-print] 8 -7
+   0        190219  [avrora.c-print] 8 -8
+   0        190242  [avrora.c-print] 8 -8
+   0        190269  [avrora.c-print] 8 -8
+   0        190292  [avrora.c-print] 8 -9
+   0        190319  [avrora.c-print] 8 -8
+   0        190342  [avrora.c-print] 8 -10
+   0        190369  [avrora.c-print] 8 -8
+   0        190392  [avrora.c-print] 8 -10
+   0        190419  [avrora.c-print] 8 -8
+   0        190442  [avrora.c-print] 8 -12
+   0        190469  [avrora.c-print] 8 -8
+   0        190492  [avrora.c-print] 8 -13
+   0        190519  [avrora.c-print] 8 -7
+   0        190542  [avrora.c-print] 8 -16
+   0        190569  [avrora.c-print] 8 -8
+   0        190592  [avrora.c-print] 8 -18
+   0        190619  [avrora.c-print] 8 -10
+   0        190642  [avrora.c-print] 8 -20
+   0        190669  [avrora.c-print] 8 -10
+   0        190692  [avrora.c-print] 8 -24
+   0        190719  [avrora.c-print] 8 -9
+   0        190742  [avrora.c-print] 8 -29
+   0        190769  [avrora.c-print] 8 -9
+   0        190792  [avrora.c-print] 8 -39
+   0        190819  [avrora.c-print] 8 -10
+   0        190842  [avrora.c-print] 8 -50
+   0        190869  [avrora.c-print] 8 -8
+   0        190892  [avrora.c-print] 8 -79
+   0        190919  [avrora.c-print] 8 -10
+   0        190942  [avrora.c-print] 8 -159
+==============================================================================
+Simulated time: 190986 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 121310 
+Program throughput: 0.63517743 instrs/cycle
+Program throughput: 5.0814195 mips
+brge	63
+sbci	189
+sub	1352
+asr	630
+dec	11899
+mul	3072
+sbiw	62
+eor	1536
+lsr	11520
+jmp	768
+movw	4810
+neg	126
+breq	324
+ror	35190
+mov	396
+and	894
+cpc	573
+cpi	1
+subi	252
+ret	1537
+add	4107
+adc	5643
+st	1456
+brpl	1147
+std	4306
+or	324
+sbrs	768
+brne	11583
+ldd	9172
+cp	572
+rjmp	446
+ldi	1044
+call	1537
+sts	1
+sbc	1478
+brlt	447
+ld	1774
+adiw	311
+

@@ -1,0 +1,288 @@
+BENCHMARK x             bsort32  binsrch32                      
+Test                     PASSED     PASSED                      
+                                                                
+PERF OVERHEAD          cyc (%C)   cyc (%C)                      
+   total                  500.3      401.6                 451.0
+   push/pop               183.5      175.9                 179.7
+   load/store             200.1      166.0                 183.1
+   mov(w)                  14.5        0.4                   7.5
+   vm+other               102.2       59.3                  80.8
+                                                                
+   vm                       0.0        0.0                   0.0
+   other                  102.2       59.3                  80.8
+                                                                
+   stopwatch              500.3      401.6                 451.0
+                                                                
+SIZE OVERHEAD          byt (%C)   byt (%C)                      
+   total                  221.1      150.9                 186.0
+   push/pop                57.9       45.3                  51.6
+   load/store              89.5       66.0                  77.8
+   mov(w)                   3.9        0.9                   2.4
+   other                   69.7       38.7                  54.2
+                                                                
+STOPWATCHES                                                     
+Native C                1569817     241041              905429.0
+AOT                     9424180    1209164             5316672.0
+AOT/C                      6.00       5.02                   5.5
+AOT overhead (%C)          500%       402%                 451.0
+AOT overhead (%AOT)         83%        80%                  81.5
+                                                                
+CYCLE COUNTS                                                    
+Native C total          1569825     241049              905437.0
+         push/pop            16          0                   8.0
+         load/store     1044480      56008              550244.0
+         mov(w)           98431      29002               63716.5
+         others          426898     156039              291468.5
+                                                                
+         stopw/count       1.00       1.00                   1.0
+                                                                
+AOT      total          9424180    1209164             5316672.0
+         push/pop       2880520     424040             1652280.0
+         load/store     4186128     456060             2321094.0
+         mov(w)          326656      30002              178329.0
+         vm                 -12        -12                 -12.0
+         others         2030888     299074             1164981.0
+                                                                
+         stopw/count       1.00       1.00                   1.0
+                                                                
+STOPW/(COUNT+TIMER)                                             
+Native C                   1.00       1.00                   1.0
+AOT                        1.00       1.00                   1.0
+                                                                
+MEMORY TRAFFIC                                                  
+Bytes LD/ST AOT         1046532     114015              580273.5
+Bytes LD/ST C            261120      14002              137561.0
+                                                                
+STACK                                                           
+max                          10          8                   9.0
+avg/executed jvm         003.23     002.78                   3.0
+avg change/exec jvm      003.03     002.47                   2.8
+                                                                
+CODE SIZE                                                       
+Native C                    152        212                 182.0
+AOT                         488        532                 510.0
+Java (AOT)                  105        124                 114.5
+   branch overhead           16         20                  18.0
+   markloop overhead         15         17                  16.0
+   Java ex. overhead         74         87                  80.5
+Java (interpreter)           74         87                  80.5
+AOT/C                      3.21       2.51                   2.9
+AOT/Java                   4.65       4.29                   4.5
+                                                                
+JVM exec (not cyc)                                              
+ Load/Store                68.8       55.6                  62.2
+ Constant load              0.1       10.5                   5.3
+ Processing                 6.9       14.2                  10.6
+     math                   6.9        9.9                   8.4
+     bit shift              0.0        4.3                   2.2
+     bit logic              0.0        0.0                   0.0
+ Branches                  10.4       14.8                  12.6
+ Invoke                     0.0        0.0                   0.0
+ Others                    13.7        4.9                   9.3
+ Total                    100.0      100.0                 100.0
+                                                                
+ Number of invokes            0          0                   0.0
+                                                                
+MEM SAFETY COST EST                                             
+ arr/obj write exec       65280          0               32640.0
+ arr/obj write cnt            2          0                   1.0
+                                                                
+ total AOT cycles       9424180    1209164             5316672.0
+ total AOT bytes            488        532                 510.0
+                                                                
+ original perf overh      500.3      401.6                 451.0
+ original size overh      221.1      150.9                 186.0
+                                                                
+ best: mcn                                                      
+ saf.ck. cycles         1436160          0              718080.0
+ saf.ck. bytes                8          0                   4.0
+ perf overh AOT             15%         0%                   7.5
+ size overh AOT              2%         0%                   1.0
+ perf overh C              592%       402%                 497.0
+ size overh C              226%       151%                 188.5
+                                                                
+ rin                                                            
+ saf.ck. cycles          456960          0              228480.0
+ saf.ck. bytes               32          0                  16.0
+ perf overh AOT              5%         0%                   2.5
+ size overh AOT              7%         0%                   3.5
+ perf overh C              529%       402%                 465.5
+ size overh C              242%       151%                 196.5
+                                                                
+ ria                                                            
+ saf.ck. cycles          326400          0              163200.0
+ saf.ck. bytes               24          0                  12.0
+ perf overh AOT              3%         0%                   1.5
+ size overh AOT              5%         0%                   2.5
+ perf overh C              521%       402%                 461.5
+ size overh C              237%       151%                 194.0
+                                                                
+ min                                                            
+ saf.ck. cycles          979200          0              489600.0
+ saf.ck. bytes               64          0                  32.0
+ perf overh AOT             10%         0%                   5.0
+ size overh AOT             13%         0%                   6.5
+ perf overh C              563%       402%                 482.5
+ size overh C              263%       151%                 207.0
+                                                                
+ mia                                                            
+ saf.ck. cycles          587520          0              293760.0
+ saf.ck. bytes               40          0                  20.0
+ perf overh AOT              6%         0%                   3.0
+ size overh AOT              8%         0%                   4.0
+ perf overh C              538%       402%                 470.0
+ size overh C              247%       151%                 199.0
+                                                                
+ rcn                                                            
+ saf.ck. cycles          913920          0              456960.0
+ saf.ck. bytes                8          0                   4.0
+ perf overh AOT             10%         0%                   5.0
+ size overh AOT              2%         0%                   1.0
+ perf overh C              559%       402%                 480.5
+ size overh C              226%       151%                 188.5
+                                                                
+ rca                                                            
+ saf.ck. cycles          783360          0              391680.0
+ saf.ck. bytes                8          0                   4.0
+ perf overh AOT              8%         0%                   4.0
+ size overh AOT              2%         0%                   1.0
+ perf overh C              550%       402%                 476.0
+ size overh C              226%       151%                 188.5
+                                                                
+ mcn                                                            
+ saf.ck. cycles         1436160          0              718080.0
+ saf.ck. bytes                8          0                   4.0
+ perf overh AOT             15%         0%                   7.5
+ size overh AOT              2%         0%                   1.0
+ perf overh C              592%       402%                 497.0
+ size overh C              226%       151%                 188.5
+                                                                
+ mca                                                            
+ saf.ck. cycles         1044480          0              522240.0
+ saf.ck. bytes                8          0                   4.0
+ perf overh AOT             11%         0%                   5.5
+ size overh AOT              2%         0%                   1.0
+ perf overh C              567%       402%                 484.5
+ size overh C              226%       151%                 188.5
+                                                                
+JVM instr count             cnt        cnt                      
+01) Loc/sta ld/st          38.6       38.5                  38.6
+02) Obj/arr ld              3.5        3.1                   3.3
+03) Obj/arr st              3.5        0.0                   1.8
+04) Constant load          10.5       15.4                  13.0
+05) Branches               17.5       18.5                  18.0
+06) Math                    8.8        9.2                   9.0
+07) Bit shifts              0.0        1.5                   0.8
+08) Bit logic               0.0        0.0                   0.0
+09) Conversions             7.0        1.5                   4.3
+10) Markloop                3.5        3.1                   3.3
+11) Invoke                  0.0        0.0                   0.0
+12) Others                  7.0        7.7                   7.4
+13) Stack dup/pop           0.0        1.5                   0.8
+14) VM                      0.0        0.0                   0.0
+                                                                
+JVM instr exec              exe        exe                      
+01) Loc/sta ld/st          55.1       51.2                  53.2
+02) Obj/arr ld              6.9        4.3                   5.6
+03) Obj/arr st              6.9        0.0                   3.5
+04) Constant load           0.1       10.5                   5.3
+05) Branches               10.4       14.8                  12.6
+06) Math                    6.9        9.9                   8.4
+07) Bit shifts              0.0        4.3                   2.2
+08) Bit logic               0.0        0.0                   0.0
+09) Conversions            13.7        4.3                   9.0
+10) Markloop                0.0        0.0                   0.0
+11) Invoke                  0.0        0.0                   0.0
+12) Others                  0.0        0.6                   0.3
+13) Stack dup/pop           0.0        0.0                   0.0
+14) VM                      0.0        0.0                   0.0
+                                                                
+PERF AOT per JVM       cyc (%C)   cyc (%C)                      
+01) Loc/sta ld/st         250.1      217.4                 233.8
+02) Obj/arr ld             83.2       81.3                  82.3
+03) Obj/arr st            116.4        0.0                  58.2
+04) Constant load           0.2       17.8                   9.0
+05) Branches               50.2       77.2                  63.7
+06) Math                   29.5       52.3                  40.9
+07) Bit shifts              0.0       37.8                  18.9
+08) Bit logic               0.0        0.0                   0.0
+09) Conversions            70.7       14.5                  42.6
+10) Markloop                0.0        0.0                   0.0
+11) Invoke                  0.0        0.0                   0.0
+12) Others                  0.0        3.3                   1.7
+13) Stack dup/pop           0.0        0.0                   0.0
+14) VM                      0.0        0.0                   0.0
+                                                                
+PERF AOT per AVR       cyc (%C)   cyc (%C)                      
+01) LD/ST rel to X         66.5       23.2                  44.9
+02) LD/ST rel to Y        200.1      164.3                 182.2
+03) LD/ST rel to Z         66.5       24.9                  45.7
+04) Stack push/pop        117.0      152.7                 134.9
+05) Register moves         20.8       12.4                  16.6
+06) Constant load           0.2       14.9                   7.6
+07) Comp./branches         45.9       45.2                  45.6
+08) Math                   70.8       41.9                  56.4
+09) Bit shifts              0.0        5.8                   2.9
+10) Bit logic               8.3        2.9                   5.6
+11) Subroutines             0.0        0.0                   0.0
+12) Others                  4.2       13.3                   8.8
+14) VM                      0.0        0.0                   0.0
+                                                                
+PERF Native C          cyc (%C)   cyc (%C)                      
+01) LD/ST rel to X          0.0        0.0                   0.0
+02) LD/ST rel to Y         16.6        0.0                   8.3
+03) LD/ST rel to Z         49.9       23.2                  36.6
+04) Stack push/pop          0.0        0.0                   0.0
+05) Register moves          6.3       12.0                   9.2
+06) Constant load           0.0        0.8                   0.4
+07) Comp./branches         18.8       27.4                  23.1
+08) Math                    8.3       29.9                  19.1
+09) Bit shifts              0.0        5.8                   2.9
+10) Bit logic               0.0        0.0                   0.0
+11) Subroutines             0.0        0.0                   0.0
+12) Others                  0.0        0.8                   0.4
+                                                                
+SIZE AOT per JVM       byt (%C)   byt (%C)                      
+01) Loc/sta ld/st         100.0       82.1                  91.1
+02) Obj/arr ld             34.2       32.1                  33.2
+03) Obj/arr st             44.7        0.0                  22.4
+04) Constant load          18.4       28.3                  23.4
+05) Branches               31.6       34.9                  33.3
+06) Math                   42.1       40.6                  41.4
+07) Bit shifts              0.0        6.6                   3.3
+08) Bit logic               0.0        0.0                   0.0
+09) Conversions            34.2        4.7                  19.5
+10) Markloop                0.0        0.0                   0.0
+11) Invoke                  0.0        0.0                   0.0
+12) Others                 15.8       21.7                  18.8
+13) Stack dup/pop           0.0        0.0                   0.0
+14) VM                      0.0        0.0                   0.0
+                                                                
+SIZE AOT per AVR       byt (%C)   byt (%C)                      
+01) LD/ST rel to X         21.1        7.5                  14.3
+02) LD/ST rel to Y         89.5       66.0                  77.8
+03) LD/ST rel to Z         21.1       11.3                  16.2
+04) Stack push/pop         57.9       60.4                  59.2
+05) Register moves         17.1       11.3                  14.2
+06) Constant load          15.8       28.3                  22.1
+07) Comp./branches         23.7       21.7                  22.7
+08) Math                   50.0       29.2                  39.6
+09) Bit shifts              0.0        1.9                   1.0
+10) Bit logic               5.3        0.9                   3.1
+11) Subroutines             5.3        3.8                   4.6
+12) Others                 14.5        8.5                  11.5
+14) VM                      0.0        0.0                   0.0
+                                                                
+SIZE Native C          byt (%C)   byt (%C)                      
+01) LD/ST rel to X          0.0        0.0                   0.0
+02) LD/ST rel to Y          5.3        3.8                   4.6
+03) LD/ST rel to Z         15.8        7.5                  11.7
+04) Stack push/pop         21.1       22.6                  21.9
+05) Register moves         13.2       10.4                  11.8
+06) Constant load           5.3        6.6                   6.0
+07) Comp./branches         18.4       16.0                  17.2
+08) Math                   14.5       25.5                  20.0
+09) Bit shifts              0.0        1.9                   1.0
+10) Bit logic               0.0        0.0                   0.0
+11) Subroutines             2.6        3.8                   3.2
+12) Others                  3.9        1.9                   2.9

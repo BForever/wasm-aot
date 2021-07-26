@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "compile.h"
 #include "wkreprog_impl.h"
+#include "safety_check.h"
 #include <stdlib.h>
 #include <avr/pgmspace.h>
 
@@ -20,6 +21,7 @@
 // extern void __divmodsi4(void);
 
 extern u16 __brkval;
+extern u16 malloc_record;
 void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, bytes *start, bytes end)
 {
     u8 op = pgm_read_byte_far(*start);
@@ -119,34 +121,31 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         else // 到达函数尾部的END
         {
             log(emit, "func end");
-
+            // 将返回值弹出到对应寄存器
+            if (func->funcType->returnType == WASM_Type_i32)
+            {
+                log(emit, "pop32 for result %s", func->funcType->returnType);
+                emit_x_POP_32bit(R22);
+                ts.stack_top--;
+            }
             // 如果函数有局部变量，则恢复Y指针
             if (func->numLocals || func->funcType->args_num)
             {
-                if (func->funcType->returnType == WASM_Type_i32)
-                {
-                    log(emit, "pop32 for result %s", func->funcType->returnType);
-                    emit_x_POP_32bit(R22);
-                    // ts.pc += 8;
-                    ts.stack_top--;
-                }
-                // emit_restore_Y();
                 log(emit, "deinit %dB locals", func->numLocalBytes);
                 emit_local_deinit(func->numLocalBytes);
-                // ts.pc += 16;
             }
             if (is_entry_func(module, func))
             { //在入口函数的尾部恢复状态
-                // log(emit,"pop for call restore");
                 emit_x_call_restore();
-                // ts.pc += 32;
-                // emit_x_POP_16bit(R2);
-                // ts.pc+=4;
             }
-
             log(emit, "ret");
+            //DEBUG RET前返回地址打印
+            // emit_x_POP_16bit(R22);
+            // emit_x_PUSH_16bit(R22);
+            // emit_EOR(R24,R24);
+            // emit_EOR(R25,R25);
+            // emit_2_CALL(4);//需要替换为当前wasm的print函数序号
             emit_RET();
-            // ts.pc += 2;
         }
         break;
     }
@@ -156,8 +155,26 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ReadLEB_u32(&operand, start, end);
         log(emit, "[BR %d]", operand.num32[0]);
         log(emit, "%d", ts.pc);
+        // 跳转前恢复栈平衡
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] == 1)
+        {
+            emit_x_POP_32bit(R22);
+        }
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] == 2)
+        {
+            emit_x_POP_32bit(R22);
+            emit_x_POP_32bit(R18);
+        }
+        else if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] > 2)
+        {
+            emit_x_POP_32bit(R22);
+            emit_IN(R26, 0x3d);
+            emit_IN(R27, 0x3e);
+            emit_ADIW(R26, (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] - 1) * 4);
+            emit_OUT(0x3e, R27);
+            emit_OUT(0x3d, R26);
+        }
         emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]]) * 2); //填充对应Block的ID(emit宏会将地址除以2)
-        // ts.pc += 4;
         break;
     }
     // 0x0D BrIf
@@ -170,74 +187,87 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_x_POP_32bit(R22);
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
-        // 获取0
-        emit_MOV(R18, R1);
-        emit_MOV(R19, R1);
-        emit_MOV(R20, R1);
-        emit_MOV(R21, R1);
         // 与0比较
-        emit_CP(R22, R18);
-        emit_CPC(R23, R19);
-        emit_CPC(R24, R20);
-        emit_CPC(R25, R21);
+        emit_CP(R22, R1);
+        emit_CPC(R23, R1);
+        emit_CPC(R24, R1);
+        emit_CPC(R25, R1);
         // 非0则跳转
-        log(emit, "br %d", 4 + 8 * (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]]));
-        emit_BREQ(4 + 8 * (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]]));
-        // ts.pc += 26;
-        // 跳转前恢复栈平衡
-        for (int i = ts.stack_top; i > blct.block_stack[blct.top - 1 - operand.num16[0]]; i--)
+
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] == 0)
         {
-            log(emit, "pop stack");
-            if (i == ts.stack_top)
-            {
-                emit_x_POP_32bit(R22);
-            }
-            else
-            {
-                emit_x_POP_32bit(R18);
-            }
-            // ts.pc += 8;
+            base = 4;
+        }
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] == 1)
+        {
+            base = 4 + 8; //12
+        }
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] == 2)
+        {
+            base = 4 + 8 * 2; //20
+        }
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] > 2)
+        {
+            base = 4 + 8 + 10; //22
+        }
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] < 0)
+        {
+            panicf("stack not balanced!");
+        }
+        log(emit, "br %d", 4 + 8 * (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]]));
+        emit_BREQ(base);
+
+        // 跳转前恢复栈平衡
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] == 1)
+        {
+            emit_x_POP_32bit(R22);
+        }
+        if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] == 2)
+        {
+            emit_x_POP_32bit(R22);
+            emit_x_POP_32bit(R18);
+        }
+        else if (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] > 2)
+        {
+            emit_x_POP_32bit(R22);
+            emit_IN(R26, 0x3d);
+            emit_IN(R27, 0x3e);
+            emit_ADIW(R26, (ts.stack_top - blct.block_stack[blct.top - 1 - operand.num16[0]] - 1) * 4);
+            emit_OUT(0x3e, R27);
+            emit_OUT(0x3d, R26);
         }
         emit_2_JMP((blct.block_label[blct.top - 1 - operand.num16[0]]) * 2); //填充对应Block的ID(emit宏会将地址除以2)
         // ts.pc += 4;
         break;
     }
     // 0x0E BrTable
-    case BrTable: //TODO
-    {
-        break;
-    }
+    // case BrTable: //TODO
+    // {
+    //     break;
+    // }
     // 0x0E Return
     case Return:
     {
         log(emit, "[RET]");
-        if (is_entry_func(module, func))
-        { //在入口函数的尾部恢复状态
-            // log(emit,"pop for call restore");
-            // emit_x_call_restore();
-            // ts.pc+=32;
-            emit_x_POP_16bit(R2);
-            // ts.pc += 4;
+        // 将返回值弹出到对应寄存器
+        if (func->funcType->returnType == WASM_Type_i32)
+        {
+            log(emit, "pop32 for result %s", func->funcType->returnType);
+            emit_x_POP_32bit(R22);
+            ts.stack_top--;
         }
         // 如果函数有局部变量，则恢复Y指针
         if (func->numLocals || func->funcType->args_num)
         {
-            if (func->funcType->returnType == WASM_Type_i32)
-            {
-                log(emit, "pop32 for result %s", func->funcType->returnType);
-                emit_x_POP_32bit(R22);
-                // ts.pc += 8;
-                ts.stack_top--;
-            }
-            // emit_restore_Y();
             log(emit, "deinit %dB locals", func->numLocalBytes);
             emit_local_deinit(func->numLocalBytes);
-            // ts.pc += 16;
         }
-
+        if (is_entry_func(module, func))
+        { //在入口函数的尾部恢复状态
+            emit_x_call_restore();
+        }
         log(emit, "ret");
         emit_RET();
-        // ts.pc += 2;
         break;
     }
     // 0x10 Call
@@ -253,9 +283,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         wasm_function_ptr called_func = module->function_list[operand.num16[0]];
         if (is_imported(called_func))
         {
-
             func_type_ptr type = called_func->funcType;
-
             //先检查是否需要通过内存（栈）传参
             base = R26;
             bool need_memory_pass = false;
@@ -277,23 +305,15 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             }
 
             //开始放置参数 TODO只做了32位参数，后续增加64位
-            base = R26;
             for (int i = 0; i < type->args_num; i++)
             {
                 if (type->args_type_list[i] == WASM_Type_i32)
                 {
-                    base -= 4;
-                    if (base < R8)
-                    {
-                        //TODO栈传值
-                    }
-                    else
-                    {
-                        logif(emit, printf("pop32 for param %d at", i); printf(" R%d.", base););
-                        emit_x_POP_32bit(base);
-                        // ts.pc += 8;
-                        ts.stack_top--;
-                    }
+                    logif(emit, printf("pop32 for param %d at", i); printf(" R%d.", base););
+                    emit_x_POP_32bit(base);
+                    base += 4;
+                    // ts.pc += 8;
+                    ts.stack_top--;
                 }
             }
             //TODO 恢复R2345
@@ -317,7 +337,6 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
                 {
                     log(emit, "push32 for return type %s", wasm_types_names[WASM_Type_i32]);
                     emit_x_PUSH_32bit(R22);
-                    // ts.pc += 8;
                     ts.stack_top++;
                 }
             }
@@ -387,7 +406,6 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
 
         if (operand.num16[0] >= ts.current_func->funcType->args_num)
         { //本地变量
-            //这里有奇怪的bug，u32 无法参与加法计算，因此用u16的base变量来计算
             base = operand.num16[0] - ts.current_func->funcType->args_num;
             base *= 4;
             log(emit, "Ld R22. from local[%d]", base);
@@ -405,6 +423,15 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_LDD(R25, Y, base + 4);
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
+
+        // DEBUG 打印返回地址
+        // base = ts.current_func->numLocalBytes+2;
+        // emit_LDD(R22, Y, base + 1);
+        // emit_LDD(R23, Y, base + 2);
+        // emit_LDD(R24, Y, base + 3);
+        // emit_LDD(R25, Y, base + 4);
+        // emit_2_CALL(4);
+
         // ts.pc += 16;
         ts.stack_top++;
         log(emit, "s: %d", ts.stack_top);
@@ -475,34 +502,17 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x23 GlobalGet
     case GlobalGet:
     {
-
         //读取全局变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[GLOBAL.GET %d]", operand.num32[0]);
         log(emit, "Load R22. from global[%d]", module->global_list[operand.num16[0]].offset);
         emit_MOVW(RZ, R2);
-        // ts.pc += 2;
-        // 由于LDD的偏移量只支持[-64，63]范围内寻址，因此需要进行Z指针的运算
-        if (module->global_list[operand.num16[0]].offset >= 60)
-        {
-            emit_LDI(R18, ((u8)module->global_list[operand.num16[0]].offset));
-            emit_LDI(R19, ((u8)module->global_list[operand.num16[0]].offset >> 8));
-            emit_ADD(RZL, R18);
-            emit_ADC(RZH, R19);
-            emit_LDD(R22, Z, 0);
-            emit_LDD(R23, Z, 1);
-            emit_LDD(R24, Z, 2);
-            emit_LDD(R25, Z, 3);
-            // ts.pc += 16;
-        }
-        else
-        {
-            emit_LDD(R22, Z, module->global_list[operand.num16[0]].offset);
-            emit_LDD(R23, Z, module->global_list[operand.num16[0]].offset + 1);
-            emit_LDD(R24, Z, module->global_list[operand.num16[0]].offset + 2);
-            emit_LDD(R25, Z, module->global_list[operand.num16[0]].offset + 3);
-            // ts.pc += 8;
-        }
+        emit_ADIW(RZ, module->global_list[operand.num16[0]].offset);
+
+        emit_LDD(R22, Z, 0);
+        emit_LDD(R23, Z, 1);
+        emit_LDD(R24, Z, 2);
+        emit_LDD(R25, Z, 3);
 
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
@@ -527,10 +537,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 由于STD的偏移量只支持[-64，63]范围内寻址，因此需要进行Z指针的运算
         if (module->global_list[operand.num16[0]].offset >= 60)
         {
-            emit_LDI(R18, ((u8)module->global_list[operand.num16[0]].offset));
-            emit_LDI(R19, ((u8)module->global_list[operand.num16[0]].offset >> 8));
-            emit_ADD(RZL, R18);
-            emit_ADC(RZH, R19);
+            emit_ADIW(RZ, module->global_list[operand.num16[0]].offset);
             emit_STD(R22, Z, 0);
             emit_STD(R23, Z, 1);
             emit_STD(R24, Z, 2);
@@ -549,138 +556,145 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "s: %d", ts.stack_top);
         break;
     }
+
     // 0x28 I32Load
+    // 0x2C i32.load8_s
+    // 0x2D i32.load8_u
+    // 0x2E i32.load16_s
+    // 0x2F i32.load16_u
     case I32Load:
+    case I32Load8U:
+    case I32Load16U:
+    case I32Load8S:
+    case I32Load16S:
     {
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
         ReadLEB_u32(&operand, start, end);
-        log(emit, "[I32.LOAD %d]", operand.num32[0]);
-        // temp = global_size + offset1 越过全局变量区域
+        log(emit, "[I32.Load %d]", operand.num32[0]);
+
+        // emit_LDI(R24,1);
+        // emit_2_STS(0x215,R24);
+#if check_memory_bound
+        emit_LDI(R24, operand.num8[0]);
+        emit_LDI(R25, operand.num8[1]);
+        emit_x_POP_32bit(R20);
+        emit_2_CALL(embed_func_i32load);
+        if (op == I32Load8U || op == I32Load16U)
+        {
+            if (op == I32Load8U)
+                emit_EOR(R23, R23);
+            emit_EOR(R24, R24);
+            emit_EOR(R25, R25);
+        }
+        else if (op == I32Load8S || op == I32Load16S)
+        {
+            if (op == I32Load8S)
+            {
+                emit_SUBI(R22, 0);
+                emit_BRMI(8);
+                emit_LDI(R23, 0x00);
+                emit_LDI(R24, 0x00);
+                emit_LDI(R25, 0x00);
+                emit_RJMP(6);
+                emit_LDI(R23, 0xFF);
+                emit_LDI(R24, 0xFF);
+                emit_LDI(R25, 0xFF);
+            }
+            else
+            {
+                emit_CP(R22, R1);
+                emit_CPC(R23, R1);
+                emit_BRMI(6);
+                emit_LDI(R24, 0x00);
+                emit_LDI(R25, 0x00);
+                emit_RJMP(4);
+                emit_LDI(R24, 0xFF);
+                emit_LDI(R25, 0xFF);
+            }
+        }
+
+#else
         operand.num16[0] += ts.wasm_globals_size;
-        //读取offset2
-        log(emit, "pop32 offset to R18.");
-        emit_x_POP_32bit(R18);
+        //读取offset2到R22.
+        log(emit, "pop32 offset to R22.");
+        emit_x_POP_32bit(R22);
         // Z = Z + offset2 由于AVR地址为16位，因此可以略去高16位偏移的计算
         emit_MOVW(RZ, R2);
-        emit_ADD(RZL, R18);
-        emit_ADC(RZH, R19);
-        // ts.pc += 14;
-        // if (operand.num8[0] >= 60)
+        emit_ADD(RZL, R22);
+        emit_ADC(RZH, R23);
+        emit_ADIW(RZ, operand.num16[0]);
+
+        emit_LDD(R22, Z, 0);
+        if (op == I32Load)
         {
-            emit_LDI(R20, operand.num8[0]);
-            emit_LDI(R21, operand.num8[1]);
-            emit_ADD(RZL, R20);
-            emit_ADC(RZH, R21);
-
-            // Debug
-            // emit_x_PUSH_16bit(RZ);
-            // emit_MOVW(R22,RZ);
-            // emit_EOR(R24,R24);
-            // emit_EOR(R25,R25);
-            // emit_2_CALL(0);
-            // emit_x_POP_16bit(RZ);
-            // ts.pc+=18;
-
-            emit_LDD(R22, Z, 0);
             emit_LDD(R23, Z, 1);
             emit_LDD(R24, Z, 2);
             emit_LDD(R25, Z, 3);
-            // ts.pc += 16;
         }
-        // else
-        // {
-        //     emit_LDD(R22, Z, operand.num8[0]);
-        //     emit_LDD(R23, Z, operand.num8[0] + 1);
-        //     emit_LDD(R24, Z, operand.num8[0] + 2);
-        //     emit_LDD(R25, Z, operand.num8[0] + 3);
-        //     ts.pc += 8;
-        // }
-        log(emit, "push32");
-        emit_x_PUSH_32bit(R22);
-        // ts.pc += 8;
-        break;
-    }
-    // 0x29 i64.load
-    // 0x2A f32.load
-    // 0x2B f64.load
-    // 0x2C i32.load8_s
-    // 0x2D i32.load8_u
-    case I32Load8U:
-    {
-        // 读取对齐标签，丢弃
-        ReadLEB_u32(&operand, start, end);
-        // 读取offset1
-        ReadLEB_u32(&operand, start, end);
-        log(emit, "[I32.LOAD8U %d]", operand.num32[0]);
-        // temp = global_size + offset1 越过全局变量区域
-        operand.num16[0] += ts.wasm_globals_size;
-        //读取offset2
-        log(emit, "pop32 offset to R18.");
-        emit_x_POP_32bit(R18);
-        // Z = Z + offset2 由于AVR地址为16位，因此可以略去高16位偏移的计算
-        emit_MOVW(RZ, R2);
-        emit_ADD(RZL, R18);
-        emit_ADC(RZH, R19);
-        // ts.pc += 14;
-        // if (operand.num8[0] >= 60)
+        if (op == I32Load8U)
         {
-            emit_LDI(R20, operand.num8[0]);
-            emit_LDI(R21, operand.num8[1]);
-            emit_ADD(RZL, R20);
-            emit_ADC(RZH, R21);
-
-            emit_LDD(R22, Z, 0);
             emit_EOR(R23, R23);
             emit_EOR(R24, R24);
             emit_EOR(R25, R25);
-            // ts.pc += 16;
         }
-
-        log(emit, "push32");
-        emit_x_PUSH_32bit(R22);
-        // ts.pc += 8;
+        if (op == I32Load8S)
+        {
+            emit_SUBI(R22, 0);
+            emit_BRMI(8);
+            emit_LDI(R23, 0x00);
+            emit_LDI(R24, 0x00);
+            emit_LDI(R25, 0x00);
+            emit_RJMP(6);
+            emit_LDI(R23, 0xFF);
+            emit_LDI(R24, 0xFF);
+            emit_LDI(R25, 0xFF);
+        }
+        if (op == I32Load16U)
+        {
+            emit_LDD(R23, Z, 1);
+            emit_EOR(R24, R24);
+            emit_EOR(R25, R25);
+        }
+        if (op == I32Load16S)
+        {
+            emit_LDD(R23, Z, 1);
+            emit_CP(R22, R1);
+            emit_CPC(R23, R1);
+            emit_BRMI(6);
+            emit_LDI(R24, 0x00);
+            emit_LDI(R25, 0x00);
+            emit_RJMP(4);
+            emit_LDI(R24, 0xFF);
+            emit_LDI(R25, 0xFF);
+        }
+#endif
+        // emit_2_STS(0x215,R1);
+        // emit_x_PUSH_32bit(R22);
         break;
     }
-    // 0x2E i32.load16_s
-    // 0x2F i32.load16_u
-    case I32Load16U:
+    // 0x29 i64.load
+    case I64Load:
     {
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
         ReadLEB_u32(&operand, start, end);
-        log(emit, "[I32.LOAD16U %d]", operand.num32[0]);
-        // temp = global_size + offset1 越过全局变量区域
-        operand.num16[0] += ts.wasm_globals_size;
-        //读取offset2
-        log(emit, "pop32 offset to R18.");
-        emit_x_POP_32bit(R18);
-        // Z = Z + offset2 由于AVR地址为16位，因此可以略去高16位偏移的计算
-        emit_MOVW(RZ, R2);
-        emit_ADD(RZL, R18);
-        emit_ADC(RZH, R19);
-        // ts.pc += 14;
-        // if (operand.num8[0] >= 60)
-        {
-            emit_LDI(R20, operand.num8[0]);
-            emit_LDI(R21, operand.num8[1]);
-            emit_ADD(RZL, R20);
-            emit_ADC(RZH, R21);
+        log(emit, "[I32.Load %d]", operand.num32[0]);
 
-            emit_LDD(R22, Z, 0);
-            emit_LDD(R23, Z, 1);
-            emit_EOR(R24, R24);
-            emit_EOR(R25, R25);
-            // ts.pc += 16;
-        }
-
-        log(emit, "push32");
+        emit_LDI(R24, operand.num8[0]);
+        emit_LDI(R25, operand.num8[1]);
+        emit_x_POP_32bit(R20);
+        emit_2_CALL(embed_func_i64load);
+        emit_x_PUSH_32bit(R18);
         emit_x_PUSH_32bit(R22);
-        // ts.pc += 8;
+        ts.stack_top += 1;
+        log(emit, "s: %d", ts.stack_top);
         break;
     }
+    // 0x2A f32.load
+    // 0x2B f64.load
     // 0x30 i64.load8_s
     // 0x31 i64.load8_u
     // 0x32 i64.load16_s
@@ -688,7 +702,11 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x34 i64.load32_s
     // 0x35 i64.load32_u
     // 0x36 i32.store
+    // 0x3A i32.store8
+    // 0x3B i32.store16
     case I32Store:
+    case I32Store8:
+    case I32Store16:
     {
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
@@ -707,29 +725,20 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         emit_MOVW(RZ, R2);
         emit_ADD(RZL, R18);
         emit_ADC(RZH, R19);
-        // ts.pc += 22;
 
-        // 储存到Z + offset2 + global_size + offset1
-        if (operand.num8[0] >= 60)
+        emit_ADIW(RZ, operand.num16[0]);
+        emit_STD(R22, Z, 0);
+        if (op == I32Store16)
         {
-            emit_LDI(R20, operand.num8[0]);
-            emit_LDI(R21, operand.num8[1]);
-            emit_ADD(RZL, R20);
-            emit_ADC(RZH, R21);
-            emit_STD(R22, Z, 0);
+            emit_STD(R23, Z, 1);
+        }
+        else if (op == I32Store)
+        {
             emit_STD(R23, Z, 1);
             emit_STD(R24, Z, 2);
             emit_STD(R25, Z, 3);
-            // ts.pc += 16;
         }
-        else
-        {
-            emit_STD(R22, Z, operand.num8[0]);
-            emit_STD(R23, Z, operand.num8[0] + 1);
-            emit_STD(R24, Z, operand.num8[0] + 2);
-            emit_STD(R25, Z, operand.num8[0] + 3);
-            // ts.pc += 8;
-        }
+
         ts.stack_top -= 2;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -790,54 +799,6 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     }
     // 0x38 f32.store
     // 0x39 f64.store
-    // 0x3A i32.store8
-    case I32Store8:
-    {
-        // 读取对齐标签，丢弃
-        ReadLEB_u32(&operand, start, end);
-        // 读取offset1
-        ReadLEB_u32(&operand, start, end);
-        log(emit, "[I32.STORE8 %d]", operand.num32[0]);
-        // temp = global_size + offset1 越过全局变量区域
-        operand.num16[0] += ts.wasm_globals_size;
-        //读取要储存的值到R22...
-        log(emit, "pop32 val to R22.");
-        emit_x_POP_32bit(R22);
-        //读取offset2到R18.
-        log(emit, "pop32 offset to R18.");
-        emit_x_POP_32bit(R18);
-        // Z = Z + offset2 由于AVR地址为16位，因此可以略去高16位偏移的计算
-        emit_MOVW(RZ, R2);
-        emit_ADD(RZL, R18);
-        emit_ADC(RZH, R19);
-        // ts.pc += 22;
-
-        // 储存到Z + offset2 + global_size + offset1
-        if (operand.num8[0] >= 60)
-        {
-            emit_LDI(R20, operand.num8[0]);
-            emit_LDI(R21, operand.num8[1]);
-            emit_ADD(RZL, R20);
-            emit_ADC(RZH, R21);
-            emit_STD(R22, Z, 0);
-            emit_STD(R1, Z, 1);
-            emit_STD(R1, Z, 2);
-            emit_STD(R1, Z, 3);
-            // ts.pc += 16;
-        }
-        else
-        {
-            emit_STD(R22, Z, operand.num8[0]);
-            emit_STD(R1, Z, operand.num8[0] + 1);
-            emit_STD(R1, Z, operand.num8[0] + 2);
-            emit_STD(R1, Z, operand.num8[0] + 3);
-            // ts.pc += 8;
-        }
-        ts.stack_top -= 2;
-        log(emit, "s: %d", ts.stack_top);
-        break;
-    }
-    // 0x3B i32.store16
     // 0x3C i64.store8
     // 0x3D i64.store16
     // 0x3E i64.store32
@@ -849,12 +810,37 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         ReadLEB_i32(&operand, start, end);
         log(emit, "[I32.CONST %ld]", operand.num32[0]);
         log(emit, "load %ld to R22.", operand.num32[0]);
+
+        // emit_LDI(R26,1);
+        // emit_2_STS(0x215,R26);
+#if check_stack_overflow
+
+        emit_IN(R24, 0x3d);
+        emit_IN(R25, 0x3e);
+
+        emit_2_STS(&malloc_record, R24);
+        emit_2_STS(((u8 *)&malloc_record + 1), R25);
+
+        emit_ADIW(R26, ts.wasm_mem_space + ts.wasm_globals_size + 12);
+        emit_CP(R24, R26);
+        emit_CPC(R25, R27);
+        emit_BRGE(2);
+        emit_BREAK();
+#endif
+
         emit_LDI(R22, operand.num8[0]);
         emit_LDI(R23, operand.num8[1]);
         emit_LDI(R24, operand.num8[2]);
         emit_LDI(R25, operand.num8[3]);
         log(emit, "push32");
+
+        // emit_2_STS(0x215,R1);
+
+#if check_stack_overflow
+        emit_2_STS(0x215, R1);
+#endif
         emit_x_PUSH_32bit(R22);
+
         // ts.pc += 16;
         ts.stack_top++;
         log(emit, "s: %d", ts.stack_top);
@@ -1075,9 +1061,21 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         break;
     }
     // 0x6C i32.mul
+    case I32Mul:
+    {
+        log(emit, "[I32.MUL]");
+        emit_x_POP_32bit(R18);
+        emit_x_POP_32bit(R22);
+        emit_2_CALL(embed_func_umul);
+        emit_x_PUSH_32bit(R22);
+        // ts.pc += 28;
+        ts.stack_top--;
+        log(emit, "s: %d", ts.stack_top);
+        break;
+    }
     // 0x6D i32.div_s
-    case I32DivS:
     // 0x6E i32.div_u
+    case I32DivS:
     case I32DivU:
     {
         log(emit, "[I32.DIV]");
@@ -1283,4 +1281,5 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         break;
     }
     }
+    log(emit, "------------------------------");
 }

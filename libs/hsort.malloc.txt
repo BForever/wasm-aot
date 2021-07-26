@@ -1,0 +1,53 @@
+cycle func size addr
+12641 malloc  4 52c
+17012 malloc  35 532
+22137 malloc  8 557
+26834 malloc  8 561
+31830 malloc  9 56b
+37768 malloc  11 576
+44096 malloc  10 583
+50463 malloc  4 58f
+55169 malloc  37 595
+60321 malloc  2 5bc
+64656 malloc  28 5c0
+69206 malloc  4 5de
+73914 malloc  29 5e4
+80018 realloc  4 5bc 603
+84384 malloc  28 609
+88945 malloc  4 627
+93432 malloc  7 62d
+99258 realloc  6 603 636
+103645 malloc  28 63e
+110450 realloc  8 636 65c
+114854 malloc  28 666
+119299 malloc  10 684
+126114 realloc  10 65c 690
+130539 malloc  28 69c
+135007 malloc  10 6ba
+141914 realloc  12 690 6c6
+146358 malloc  28 6d4
+150798 malloc  10 690
+157723 realloc  14 6c6 6f2
+162165 malloc  28 702
+166631 malloc  10 6c6
+174982 malloc  105 720
+191762 realloc  4 0 603
+197671 realloc  8 603 65c
+203916 realloc  12 65c 78b
+209808 realloc  16 78b 78b
+215700 realloc  20 78b 78b
+221592 realloc  24 78b 78b
+227299 realloc  28 78b 78b
+232330 malloc  192 7a9
+239980 malloc  256 86b
+346852 free  86b
+351701 malloc  256 86b
+2040802 free  86b
+2045651 malloc  256 86b
+3653493 free  86b
+3658342 malloc  256 86b
+4374474 free  86b
+4379313 malloc  256 86b
+4482192 free  86b
+4486909 malloc  256 86b
+5573805 free  86b

@@ -9,14 +9,18 @@
 #include "wkreprog.h"
 #include "user_import.h"
 #include "asm.h"
+#include "memory.h"
 #include <avr/pgmspace.h>
 #include <string.h>
+extern char __wait_end;
+
+
 bool is_imported(wasm_function_ptr func)
 {
     return !(func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL);
 }
-
-translation_state ts;
+u16 __attribute__((section (".wait"))) entry_method;
+translation_state  __attribute__((section (".wait"))) ts;
 wasm_block_ct blct;
 extern wasm_module g_module;
 
@@ -55,10 +59,34 @@ void branch_pc_refill(wasm_module_ptr module)
                 emit_2_CALL(udiv);
                 break;
             }
+            case embed_func_umul:
+            {
+                logif(compile, printf("func %d umul", func_id); printf(",call %p", ((u16)umul)*2););
+                emit_2_CALL(umul);
+                break;
+            }
             case embed_func_clz32:
             {
                 logif(compile, printf("func %d clz32", func_id); printf(",call %p", ((u16)udiv)*2););
                 emit_2_CALL(LeadingZeros_32);
+                break;
+            }
+            case embed_func_i32load:
+            {
+                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv)*2););
+                emit_2_CALL(embed_i32load);
+                break;
+            }
+            case embed_func_i64load:
+            {
+                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv)*2););
+                emit_2_CALL(embed_i64load);
+                break;
+            }
+            case embed_func_i32store:
+            {
+                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv)*2););
+                emit_2_CALL(embed_i32store);
                 break;
             }
             default:
@@ -81,34 +109,31 @@ void branch_pc_refill(wasm_module_ptr module)
     compile_close();
     // logif(compile,printf("after refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
 }
-void fill_data(wasm_module_ptr module){
-    
-}
+
 void compile_init(wasm_module_ptr module)
 {
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
+    log(temp,"start of compiled code: %6x",rtc_start_of_next_method*2);
     ts.codebuffer = sys_malloc(RTC_CODEBUFFER_SIZE * 2);
     emit_init(ts.codebuffer);
     ts.pc = 0;
     ts.stack_top = 0;
 }
+extern void empty_function();
+extern u32 table_address;
 void compile_deinit(wasm_module_ptr module)
 {
+    compile_open();
+    table_address = wkreprog_get_raw_position();
+    log(temp,"table address: %ld",table_address);
+    normal_function p=empty_function;
+    wkreprog_write(2,&p);
+    compile_close();
+    
+
     // 烧写跳转指令
     branch_pc_refill(module);
-
-    // 烧写Data段
-    fill_data(module);
-
-    //释放空间
-    sys_free(module->global_list);       //全局变量列表
-    sys_free(module->data_segment_list); //数据段
-    for (int i = 0; i < module->function_num; i++)
-    {
-        sys_free(module->function_list[i]); //函数列表
-    }
-    sys_free(module->function_list); //函数列表指针
-    sys_free(ts.codebuffer);         //指令生成缓存
+    log(temp,"end of compiled code: %6x",rtc_start_of_next_method*2);
 }
 //为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
 void compile_open()
@@ -143,8 +168,7 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         // log(emit, "push for call save");
         emit_x_call_save();
 
-        // 加载全局变量区首地址
-        ts.wasm_mem_space = GET_FAR_ADDRESS(g_module) + sizeof(wasm_module) + 64;
+        
         // ts.wasm_mem_space = malloc(8);
         log(compile, "global space:%p", ts.wasm_mem_space);
         // logif(emit,printf("set Z:Z+1 to %02X",(u8)wasm_globals_start);printf(":%02X",(u8)(((u16)wasm_globals_start)>>8)););
@@ -178,9 +202,22 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 }
 void wasm_compile_module(wasm_module_ptr module)
 {
+
     wasm_global_init(module);
+    
+    // 加载全局变量区首地址
+    // ts.wasm_mem_space = GET_FAR_ADDRESS(g_module) + sizeof(wasm_module) + 64;
+    //TODO 暂时减小用于调试
+    // ts.wasm_mem_space = sys_malloc(256);
+    ts.wasm_mem_space = &__wait_end;
+    if(!ts.wasm_mem_space){
+        panicf("no space!!\n");
+        asm volatile("break");
+    }
+    // wasm_memory_init(module);
 
     compile_init(module);
+    
 
     wasm_function_ptr func;
     for (int i = 0; i < module->function_num; i++)
@@ -215,12 +252,13 @@ void wasm_compile_module(wasm_module_ptr module)
             if (is_entry_func(module, func))
             {
                 //TODO 暂时以第一个函数为入口函数
-                module->entry_method = func->compiled;
+                entry_method = func->compiled;
 
                 log(compile, "entry: %s", func->name);
             }
         }
     }
+
 
     compile_deinit(module);
     // module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE / 2;
@@ -257,7 +295,7 @@ void wasm_global_init(wasm_module_ptr module)
     ts.wasm_globals_size = offset;
 }
 
-void wasm_memory_init(wasm_module_ptr module)
+void wasm_call_entry_method(wasm_module_ptr module)
 {
     if (module->memory_imported)
     {
@@ -265,9 +303,42 @@ void wasm_memory_init(wasm_module_ptr module)
     }
     else
     {
+        for(int i=0;i<module->data_segment_num;i++){
+            bytes initexpr = module->data_segment_list[i].initExpr+1;
+            bytes end = initexpr+module->data_segment_list[i].initExprSize;
+            u32 start;
+            // hexdump_pgm(initexpr,4);
+            ReadLEB_u32(&start,&initexpr,end);
+            mem_areas[i].start = start;
+            mem_areas[i].end = start + module->data_segment_list[i].size;
+            mem_areas[i].flash = 1;
+            mem_areas[i].target = module->data_segment_list[i].data;
+            // printf("i%p,",module->data_segment_list[i].initExpr);
+            // printf("d%p,",module->data_segment_list[i].data);
+            // printf("s%d,",mem_areas[i].start);
+            // printf("e%d,",mem_areas[i].end);
+            // printf("t%p\r\n",mem_areas[i].target);
+        }
         // *((u32 *)ts.wasm_mem_space) = 1111; //TODO 用于DEBUG的初始值
-        memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
+        
+        mem_areas[WASM_MEM_AREA_NUM-1].start = 0;
+        mem_areas[WASM_MEM_AREA_NUM-1].end = (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
+        log(temp, "mem size:%d\r\n",mem_areas[WASM_MEM_AREA_NUM-1].end);
+        mem_areas[WASM_MEM_AREA_NUM-1].flash = 0;
+        mem_areas[WASM_MEM_AREA_NUM-1].target = ts.wasm_mem_space + ts.wasm_globals_size;
         log(temp, "copy %d B globals", ts.wasm_globals_size);
         log(temp, "mem_start:%p", ts.wasm_mem_space);
+        memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
+        log(temp,"start exec");
+	    ((normal_function)entry_method)();
     }
+    //释放空间
+    // sys_free(module->global_list);       //全局变量列表
+    // sys_free(module->data_segment_list); //数据段
+    // for (int i = 0; i < module->function_num; i++)
+    // {
+    //     sys_free(module->function_list[i]); //函数列表
+    // }
+    // sys_free(module->function_list); //函数列表指针
+    // sys_free(ts.codebuffer);         //指令生成缓存
 }

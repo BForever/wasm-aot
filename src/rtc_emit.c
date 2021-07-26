@@ -111,6 +111,11 @@ void emit_flush_to_flash() {
         u8 *instructiondata = (u8 *)code_buffer;
         u16 count = codebuffer_position - code_buffer;
 
+        // for (int i=0; i<count; i++) {
+        //     log(temp, "[instruction] %04X",code_buffer[i]);
+        // }
+
+
         // Write to flash buffer
         wkreprog_write(2*count, instructiondata);
         // Buffer is now empty

@@ -228,14 +228,14 @@ void hexdump_pgm(bytes buf, u32 buf_len) {
             }
 			printf("0x%08x:\t",buf+i);
 		}
-        c =  pgm_read_byte(&buf[i]);
+        c =  pgm_read_byte_far(&buf[i]);
 		printf("%02X ", c);
 		if ((i + 1) % 16 == 0)
 		{
 			printf("\t");
 			for (j = i - 15; j <= i; j++)
 			{
-                c =  pgm_read_byte(&buf[j]);
+                c =  pgm_read_byte_far(&buf[j]);
 				if (j == i - 7)
 					printf(" ");
 				if (c >= 32 && c < 127)
@@ -250,7 +250,7 @@ void hexdump_pgm(bytes buf, u32 buf_len) {
 	printf("\t");
 	for (i = buf_len - mod; i < buf_len; i++)
 	{
-        c =  pgm_read_byte(&buf[i]);
+        c =  pgm_read_byte_far(&buf[i]);
 		if (i == buf_len - mod + 8)
 			printf(" ");
 		if (c >= 32 && c < 127)
@@ -296,20 +296,23 @@ int NormalizeType(u8 *o_type, i8 i_convolutedWasmType)
 
 void* sys_malloc(u16 size){
     void* ret = malloc(size);
-    logif(sys,printf("malloc %d b at ",size);printf("%p",ret););
+    // logif(sys,printf("malloc %d ",size);printf("%d",ret););
+    log(sys,"malloc %d %x",size,ret);
     return ret;
 }
 void* sys_calloc(u16 numBlocks,u16 size){
     void* ret = calloc(numBlocks,size);
-    logif(sys,printf("calloc %d b at ",size*numBlocks);printf("%p",ret););
+    // logif(sys,printf("calloc %d ",size*numBlocks);printf("%d",ret););
+    log(sys,"calloc %d %x",size,ret);
     return ret;
 }
 void* sys_realloc(void* ptr,u16 size){
     void* ret = realloc(ptr,size);
-    logif(sys,printf("realloc %d b at ",size);printf("%p",ret););
+    // logif(sys,printf("realloc %d",size);printf("%d",ret););
+    log(sys,"realloc %d %x %x",size,ptr,ret);
     return ret;
 }
 void sys_free(void* ptr){
     free(ptr);
-    log(sys,"free %p",ptr);
+    log(sys,"free %x",ptr);
 }

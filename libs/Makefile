@@ -258,6 +258,33 @@ src/main.c.s:
 	$(MAKE) -f CMakeFiles/aot.elf.dir/build.make CMakeFiles/aot.elf.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/memory.o: src/memory.c.o
+
+.PHONY : src/memory.o
+
+# target to build an object file
+src/memory.c.o:
+	$(MAKE) -f CMakeFiles/aot.elf.dir/build.make CMakeFiles/aot.elf.dir/src/memory.c.o
+.PHONY : src/memory.c.o
+
+src/memory.i: src/memory.c.i
+
+.PHONY : src/memory.i
+
+# target to preprocess a source file
+src/memory.c.i:
+	$(MAKE) -f CMakeFiles/aot.elf.dir/build.make CMakeFiles/aot.elf.dir/src/memory.c.i
+.PHONY : src/memory.c.i
+
+src/memory.s: src/memory.c.s
+
+.PHONY : src/memory.s
+
+# target to generate assembly for a file
+src/memory.c.s:
+	$(MAKE) -f CMakeFiles/aot.elf.dir/build.make CMakeFiles/aot.elf.dir/src/memory.c.s
+.PHONY : src/memory.c.s
+
 src/parse.o: src/parse.c.o
 
 .PHONY : src/parse.o
@@ -417,6 +444,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/memory.o"
+	@echo "... src/memory.i"
+	@echo "... src/memory.s"
 	@echo "... src/parse.o"
 	@echo "... src/parse.i"
 	@echo "... src/parse.s"

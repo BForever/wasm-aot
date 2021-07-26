@@ -16,9 +16,9 @@
 # sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# test.wasm.h
 # cd ../libs
 
-
-benchlist=(binsrch bsort fillarray funcall hsort lec)
-
+# benchlist=(binsrch bsort fillarray funcall hsort lec fft outlier)
+benchlist=(binsrch bsort fillarray funcall)
+# benchlist=(fft)
 
 for bench in ${benchlist[*]}
 do 
@@ -31,5 +31,5 @@ do
     make
     cd ../libs
 
-    java -jar avrora.jar -single -monitors=c-print -colors=false -mcu=atmega128 ../bin/aot.elf | tee $bench.wasmoutput.txt 
+    java -jar avrora.jar -single -monitors=c-print,trace -trace-only-when-enabled=true -colors=false -mcu=atmega128 ../bin/aot.elf | tee $bench.wasmoutput.txt 
 done

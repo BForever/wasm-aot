@@ -1,0 +1,944 @@
+================== binsrch32: AOT PASSED=============================== ============================ CODE SIZE ===============================
+--- STACK max                                            8             --- CODE SIZE   Native C                               212
+          avg/executed jvm                          002.78                             AOT                                    532
+          avg change/exec jvm                       002.47                             Java for AOT                           124
+============================ STOPWATCHES =============================                       branch count                       7
+--- STOPWATCHES Native C                            241041                                   branch target count                6
+                AOT                                1209164                                   markloop count                     2
+                AOT/C                                5.016                                   markloop size                     17
+                                                                                             total-branch overhead            104
+                                                                                             total-br/mloop overh.             87
+                                                                                       Java (for interpreter)                  87
+                                                                                       AOT/C                                2.509
+                                                                                       AOT/Java                             6.115
+=============================================================== MAIN COUNTERS ===============================================================
+--- NAT.C    Bytes                                212 (address range 212, ratio 1.000)
+                                             cycles                      exec   avg |  cnt bytes
+             Total                           241049 100.0% 100.0%C     203023   1.2 |  104   212 100.0% 100.0%C
+              push/pop int                        0   0.0%   0.0%C          0   0.0 |   24    48  22.6%  22.6%C
+              load/store                      56008  23.2%  23.2%C      28004   2.0 |   12    24  11.3%  11.3%C
+              mov(w)                          29002  12.0%  12.0%C      29002   1.0 |   11    22  10.4%  10.4%C
+              others                         156039  64.7%  64.7%C     146017   1.1 |   57   118  55.7%  55.7%C
+
+--- AOT      Bytes                                532 (methodImpl.AvrMethodSize 532, ratio 1.000)
+                                             cycles                      exec   avg |  cnt bytes
+             Total                          1209164 100.0% 501.6%C     723094   1.7 |  264   532 100.0% 250.9%C
+              push/pop int                   368032  30.4% 152.7%C     184016   2.0 |   64   128  24.1%  60.4%C
+              push/pop ref                    56008   4.6%  23.2%C      28004   2.0 |    8    16   3.0%   7.5%C
+              load/store                     456060  37.7% 189.2%C     228030   2.0 |   82   164  30.8%  77.4%C
+              mov(w)                          30002   2.5%  12.4%C      30002   1.0 |   12    24   4.5%  11.3%C
+              spent in vm                       -12   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+              others                         299074  24.7% 124.1%C     253042   1.2 |   98   200  37.6%  94.3%C
+
+                                             cycles                      exec   avg |  cnt bytes
+--- OVERHEAD Total                           968115 100.0% 401.6%C     520071   1.9 |  160   320 100.0% 150.9%C
+              pushpop                        424040  43.8% 175.9%C     212020   2.0 |   48    96  30.0%  45.3%C
+              load/store                     400052  41.3% 166.0%C     200026   2.0 |   70   140  43.8%  66.0%C
+              mov(w)                           1000   0.1%   0.4%C       1000   1.0 |    1     2   0.6%   0.9%C
+              spent in vm                       -12   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+              others                         143035  14.8%  59.3%C     107025   1.3 |   41    82  25.6%  38.7%C
+
+--- STOPWATCH / COUNTERS RATIO
+              C   stopwatch                      241041
+              C   total counters + timer         241049 (=        241049+             0)
+              C   ratio                           1.000
+
+              AOT stopwatch                     1209164
+              AOT total counters + timer        1209164 (=       1209164+             0)
+              AOT ratio                           1.000
+
+--- EXECUTED JVM INSTRUCTIONS (executions, not cycles)
+ Load/Store                    90008       55.6%
+ Constant load                 17005       10.5%
+ Processing                    23001       14.2%
+     math                      16001        9.9%
+     bit shift                  7000        4.3%
+     bit logic                     0        0.0%
+ Branches                      24001       14.8%
+ Others                         8001        4.9%
+ Total                        162016      100.0%
+
+=============================================================== DETAILED COUNTERS ===========================================================
+--- SUMMED: PER JVM CATEGORY                 cycles                      exec   avg |  cnt bytes
+01) Loc/sta ld/st                            524053  43.3% 217.4%C      83007   6.3 |   25   174  32.7%  82.1%C
+02) Obj/arr ld                               196028  16.2%  81.3%C       7001  28.0 |    2    68  12.8%  32.1%C
+03) Obj/arr st                                    0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+04) Constant load                             43019   3.6%  17.8%C      17005   2.5 |   10    60  11.3%  28.3%C
+05) Branches                                 186015  15.4%  77.2%C      24001   7.8 |   12    74  13.9%  34.9%C
+06) Math                                     126030  10.4%  52.3%C      16001   7.9 |    6    86  16.2%  40.6%C
+07) Bit shifts                                91000   7.5%  37.8%C       7000  13.0 |    1    14   2.6%   6.6%C
+08) Bit logic                                     0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+09) Conversions                               35000   2.9%  14.5%C       7000   5.0 |    1    10   1.9%   4.7%C
+10) Markloop                                      0   0.0%   0.0%C          0   0.0 |    2     0   0.0%   0.0%C
+11) Invoke                                        0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+12) Others                                     8031   0.7%   3.3%C       1001   8.0 |    5    46   8.6%  21.7%C
+13) Stack dup/pop                                 0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+14) VM                                          -12   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+
+--- SUMMED: PER AVR CATEGORY (Java AOT)      cycles                      exec   avg |  cnt bytes
+01) LD/ST rel to X                            56008   4.6%  23.2%C      28004   2.0 |    8    16   3.0%   7.5%C
+02) LD/ST rel to Y                           396048  32.8% 164.3%C     198024   2.0 |   70   140  26.3%  66.0%C
+03) LD/ST rel to Z                            60012   5.0%  24.9%C      30006   2.0 |   12    24   4.5%  11.3%C
+04) Stack push/pop                           368032  30.4% 152.7%C     184016   2.0 |   64   128  24.1%  60.4%C
+05) Register moves                            30002   2.5%  12.4%C      30002   1.0 |   12    24   4.5%  11.3%C
+06) Constant load                             36018   3.0%  14.9%C      36018   1.0 |   30    60  11.3%  28.3%C
+07) Comp./branches                           109008   9.0%  45.2%C      86008   1.3 |   23    46   8.6%  21.7%C
+08) Math                                     101015   8.4%  41.9%C      94014   1.1 |   31    62  11.7%  29.2%C
+09) Bit shifts                                14000   1.2%   5.8%C      14000   1.0 |    2     4   0.8%   1.9%C
+10) Bit logic                                  7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+11) Subroutines                                  31   0.0%   0.0%C          1  31.0 |    2     8   1.5%   3.8%C
+12) Others                                    32002   2.6%  13.3%C      16001   2.0 |    9    18   3.4%   8.5%C
+14) VM                                          -12   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+
+--- SUMMED: PER AVR CATEGORY (NATIVE C)      cycles                      exec   avg |  cnt bytes
+01) LD/ST rel to X                                0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+02) LD/ST rel to Y                                0   0.0%   0.0%C          0   0.0 |    4     8   3.8%   3.8%C
+03) LD/ST rel to Z                            56008  23.2%  23.2%C      28004   2.0 |    8    16   7.5%   7.5%C
+04) Stack push/pop                                0   0.0%   0.0%C          0   0.0 |   24    48  22.6%  22.6%C
+05) Register moves                            29002  12.0%  12.0%C      29002   1.0 |   11    22  10.4%  10.4%C
+06) Constant load                              2003   0.8%   0.8%C       2003   1.0 |    7    14   6.6%   6.6%C
+07) Comp./branches                            65999  27.4%  27.4%C      57000   1.2 |   17    34  16.0%  16.0%C
+08) Math                                      72014  29.9%  29.9%C      72013   1.0 |   27    54  25.5%  25.5%C
+09) Bit shifts                                14000   5.8%   5.8%C      14000   1.0 |    2     4   1.9%   1.9%C
+10) Bit logic                                     0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+11) Subroutines                                  23   0.0%   0.0%C          1  23.0 |    2     8   3.8%   3.8%C
+12) Others                                     2000   0.8%   0.8%C       1000   2.0 |    2     4   1.9%   1.9%C
+
+--- SUMMED: PER JVM OPCODE                   cycles                      exec   avg |  cnt bytes
+01) Loc/sta ld/st   JVM_ALOAD_0               61008   5.0%  25.3%C       8001   7.6 |    3    22   4.1%  10.4%C
+01) Loc/sta ld/st   JVM_ILOAD                     0   0.0%   0.0%C          0   0.0 |    1    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_ILOAD_0               56000   4.6%  23.2%C       7000   8.0 |    2    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_ILOAD_3               16016   1.3%   6.6%C       1001  16.0 |    1    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_ISTORE                56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C
+01) Loc/sta ld/st   JVM_ISTORE_0                  8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C
+01) Loc/sta ld/st   JVM_ISTORE_3                  8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C
+01) Loc/sta ld/st   JVM_PUTSTATIC_S               4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C
+01) Loc/sta ld/st   JVM_SLOAD                180000  14.9%  74.7%C      30000   6.0 |    4    24   4.5%  11.3%C
+01) Loc/sta ld/st   JVM_SLOAD_2               91005   7.5%  37.8%C      14001   6.5 |    4    28   5.3%  13.2%C
+01) Loc/sta ld/st   JVM_SSTORE                36000   3.0%  14.9%C       9000   4.0 |    4    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_SSTORE_2              28004   2.3%  11.6%C       7001   4.0 |    2     8   1.5%   3.8%C
+02) Obj/arr ld      JVM_GETARRAY_I           196028  16.2%  81.3%C       7001  28.0 |    2    68  12.8%  32.1%C
+04) Constant load   JVM_BIPUSH                    5   0.0%   0.0%C          1   5.0 |    1    10   1.9%   4.7%C
+04) Constant load   JVM_ICONST_0                  4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C
+04) Constant load   JVM_ICONST_1                  4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C
+04) Constant load   JVM_SCONST_0               2002   0.2%   0.8%C       1001   2.0 |    2     8   1.5%   3.8%C
+04) Constant load   JVM_SCONST_1              37000   3.1%  15.4%C      15000   2.5 |    4    18   3.4%   8.5%C
+04) Constant load   JVM_SIPUSH                 4004   0.3%   1.7%C       1001   4.0 |    1     8   1.5%   3.8%C
+05) Branches        JVM_BRTARGET                  0   0.0%   0.0%C          0   0.0 |    5     0   0.0%   0.0%C
+05) Branches        JVM_GOTO                  16000   1.3%   6.6%C       8000   2.0 |    3     6   1.1%   2.8%C
+05) Branches        JVM_IF_ICMPGE            105015   8.7%  43.6%C       8001  13.1 |    2    38   7.1%  17.9%C
+05) Branches        JVM_IF_ICMPLE                 0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C
+05) Branches        JVM_IF_SCMPGT             65000   5.4%  27.0%C       8000   8.1 |    1    12   2.3%   5.7%C
+06) Math            JVM_IADD                     12   0.0%   0.0%C          1  12.0 |    1    16   3.0%   7.5%C
+06) Math            JVM_IINC                   7018   0.6%   2.9%C       1000   7.0 |    1    30   5.6%  14.2%C
+06) Math            JVM_SADD                 112000   9.3%  46.5%C      14000   8.0 |    2    20   3.8%   9.4%C
+06) Math            JVM_SSUB                   7000   0.6%   2.9%C       1000   7.0 |    2    20   3.8%   9.4%C
+07) Bit shifts      JVM_SUSHR                 91000   7.5%  37.8%C       7000  13.0 |    1    14   2.6%   6.6%C
+09) Conversions     JVM_S2I                   35000   2.9%  14.5%C       7000   5.0 |    1    10   1.9%   4.7%C
+10) Markloop        JVM_MARKLOOP_END              0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+10) Markloop        JVM_MARKLOOP_START            0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+12) Others          JVM_ARRAYLENGTH            8000   0.7%   3.3%C       1000   8.0 |    1     8   1.5%   3.8%C
+12) Others          JVM_RETURN                    0   0.0%   0.0%C          0   0.0 |    1    12   2.3%   5.7%C
+12) Others          JVM_START_AOT_BM             27   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C
+12) Others          JVM_STOP_AOT_BM               4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C
+12) Others          MethodPreamble                0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C
+13) Stack dup/pop   JVM_IDUP2                     0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+14) VM                                          -12   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+
+--- SUMMED: PER AVR OPCODE (Java AOT)        cycles                      exec   avg |  cnt bytes
+01) LD/ST rel to X  LD_DECX                   28004   2.3%  11.6%C      14002   2.0 |    4     8   1.5%   3.8%C
+01) LD/ST rel to X  ST_XINC                   28004   2.3%  11.6%C      14002   2.0 |    4     8   1.5%   3.8%C
+02) LD/ST rel to Y  LDD_Y                    258020  21.3% 107.0%C     129010   2.0 |   39    78  14.7%  36.8%C
+02) LD/ST rel to Y  LD_Y                      16002   1.3%   6.6%C       8001   2.0 |    3     6   1.1%   2.8%C
+02) LD/ST rel to Y  STD_Y                    122026  10.1%  50.6%C      61013   2.0 |   28    56  10.5%  26.4%C
+03) LD/ST rel to Z  LD_Z                       2000   0.2%   0.8%C       1000   2.0 |    1     2   0.4%   0.9%C
+03) LD/ST rel to Z  LD_ZINC                   58008   4.8%  24.1%C      29004   2.0 |    9    18   3.4%   8.5%C
+03) LD/ST rel to Z  STD_Z                         4   0.0%   0.0%C          2   2.0 |    2     4   0.8%   1.9%C
+04) Stack push/pop  POP                      184016  15.2%  76.3%C      92008   2.0 |   32    64  12.0%  30.2%C
+04) Stack push/pop  PUSH                     184016  15.2%  76.3%C      92008   2.0 |   32    64  12.0%  30.2%C
+05) Register moves  MOV                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+05) Register moves  MOVW                      23002   1.9%   9.5%C      23002   1.0 |   11    22   4.1%  10.4%C
+06) Constant load   LDI                       36018   3.0%  14.9%C      36018   1.0 |   30    60  11.3%  28.3%C
+07) Comp./branches  BRGE                      22000   1.8%   9.1%C      15000   1.5 |    3     6   1.1%   2.8%C
+07) Comp./branches  BRLT                       2001   0.2%   0.8%C       1001   2.0 |    1     2   0.4%   0.9%C
+07) Comp./branches  BRNE                       2003   0.2%   0.8%C       1003   2.0 |    3     6   1.1%   2.8%C
+07) Comp./branches  BRPL                      21000   1.7%   8.7%C      14000   1.5 |    1     2   0.4%   0.9%C
+07) Comp./branches  CP                        16001   1.3%   6.6%C      16001   1.0 |    4     8   1.5%   3.8%C
+07) Comp./branches  CPC                       32003   2.6%  13.3%C      32003   1.0 |   10    20   3.8%   9.4%C
+07) Comp./branches  SBRC                      14000   1.2%   5.8%C       7000   2.0 |    1     2   0.4%   0.9%C
+08) Math            ADC                       35006   2.9%  14.5%C      35006   1.0 |   11    22   4.1%  10.4%C
+08) Math            ADD                       35004   2.9%  14.5%C      35004   1.0 |    9    18   3.4%   8.5%C
+08) Math            ADIW                      14002   1.2%   5.8%C       7001   2.0 |    2     4   0.8%   1.9%C
+08) Math            DEC                       14000   1.2%   5.8%C      14000   1.0 |    1     2   0.4%   0.9%C
+08) Math            INC                        1003   0.1%   0.4%C       1003   1.0 |    4     8   1.5%   3.8%C
+08) Math            SBC                        1000   0.1%   0.4%C       1000   1.0 |    2     4   0.8%   1.9%C
+08) Math            SUB                        1000   0.1%   0.4%C       1000   1.0 |    2     4   0.8%   1.9%C
+09) Bit shifts      LSR                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+09) Bit shifts      ROR                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+10) Bit logic       EOR                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+11) Subroutines     CALL                         31   0.0%   0.0%C          1  31.0 |    2     8   1.5%   3.8%C
+12) Others          COM                           0   0.0%   0.0%C          0   0.0 |    1     2   0.4%   0.9%C
+12) Others          RET                           0   0.0%   0.0%C          0   0.0 |    1     2   0.4%   0.9%C
+12) Others          RJMP                      32002   2.6%  13.3%C      16001   2.0 |    7    14   2.6%   6.6%C
+14) VM                                          -12   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+
+--- SUMMED: PER AVR OPCODE (NATIVE C)        cycles                      exec   avg |  cnt bytes
+02) LD/ST rel to Y  STD_Y                         0   0.0%   0.0%C          0   0.0 |    3     6   2.8%   2.8%C
+02) LD/ST rel to Y  ST_YINC                       0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+03) LD/ST rel to Z  LDD_Z                     42006  17.4%  17.4%C      21003   2.0 |    6    12   5.7%   5.7%C
+03) LD/ST rel to Z  LD_Z                      14002   5.8%   5.8%C       7001   2.0 |    2     4   1.9%   1.9%C
+04) Stack push/pop  POP                           0   0.0%   0.0%C          0   0.0 |   12    24  11.3%  11.3%C
+04) Stack push/pop  PUSH                          0   0.0%   0.0%C          0   0.0 |   12    24  11.3%  11.3%C
+05) Register moves  MOVW                      29002  12.0%  12.0%C      29002   1.0 |   11    22  10.4%  10.4%C
+06) Constant load   LDI                        2003   0.8%   0.8%C       2003   1.0 |    7    14   6.6%   6.6%C
+07) Comp./branches  BRCC                          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRCS                       8000   3.3%   3.3%C       7000   1.1 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRGE                          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRLT                      14000   5.8%   5.8%C       7000   2.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRNE                       1999   0.8%   0.8%C       1000   2.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  CP                        14000   5.8%   5.8%C      14000   1.0 |    4     8   3.8%   3.8%C
+07) Comp./branches  CPC                       28000  11.6%  11.6%C      28000   1.0 |    8    16   7.5%   7.5%C
+08) Math            ADC                       28003  11.6%  11.6%C      28003   1.0 |    7    14   6.6%   6.6%C
+08) Math            ADD                       28003  11.6%  11.6%C      28003   1.0 |    7    14   6.6%   6.6%C
+08) Math            SBC                        1003   0.4%   0.4%C       1003   1.0 |    5    10   4.7%   4.7%C
+08) Math            SBCI                       7001   2.9%   2.9%C       7001   1.0 |    2     4   1.9%   1.9%C
+08) Math            SBIW                          2   0.0%   0.0%C          1   2.0 |    1     2   0.9%   0.9%C
+08) Math            SUB                           1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C
+08) Math            SUBI                       8001   3.3%   3.3%C       8001   1.0 |    4     8   3.8%   3.8%C
+09) Bit shifts      LSR                        7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C
+09) Bit shifts      ROR                        7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C
+11) Subroutines     CALL                         23   0.0%   0.0%C          1  23.0 |    2     8   3.8%   3.8%C
+12) Others          RET                           0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+12) Others          RJMP                       2000   0.8%   0.8%C       1000   2.0 |    1     2   0.9%   0.9%C
+
+===================================================== METHOD/FUNCTION SHORT SUMMARY =========================================================
+------------------------------------------------------------------ JAVA ---------------------------------------------------------------------
+         cycles            size
+        1209176             532 RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+
+------------------------------------------------------------------- C -----------------------------------------------------------------------
+         cycles            size
+         241049             212 rtcbenchmark_measure_native_performance
+
+============================================================= JVM LISTINGS ==================================================================
+
+------------------------------------------------------------ INVOKE OVERVIEW ----------------------------------------------------------------
+
+RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+  1,209,176 100.0%         0       0.0 |   532 100.0% : ---total---
+  1,209,176 100.0%         0       0.0 |   532 100.0% : ----own----
+
+
+--------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM -----------
+                                                              RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+--------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM ----------- JVM -----------
+
+RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+  1,209,176 100.0%         0       0.0 |   532 100.0% : ---total---
+  1,209,176 100.0%         0       0.0 |   532 100.0% : ----own----
+
+--- SUMMED: PER JVM CATEGORY               RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+                                             cycles                      exec   avg |  cnt bytes
+01) Loc/sta ld/st                            524053  43.3% 217.4%C      83007   6.3 |   25   174  32.7%  82.1%C
+02) Obj/arr ld                               196028  16.2%  81.3%C       7001  28.0 |    2    68  12.8%  32.1%C
+03) Obj/arr st                                    0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+04) Constant load                             43019   3.6%  17.8%C      17005   2.5 |   10    60  11.3%  28.3%C
+05) Branches                                 186015  15.4%  77.2%C      24001   7.8 |   12    74  13.9%  34.9%C
+06) Math                                     126030  10.4%  52.3%C      16001   7.9 |    6    86  16.2%  40.6%C
+07) Bit shifts                                91000   7.5%  37.8%C       7000  13.0 |    1    14   2.6%   6.6%C
+08) Bit logic                                     0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+09) Conversions                               35000   2.9%  14.5%C       7000   5.0 |    1    10   1.9%   4.7%C
+10) Markloop                                      0   0.0%   0.0%C          0   0.0 |    2     0   0.0%   0.0%C
+11) Invoke                                        0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+12) Others                                     8031   0.7%   3.3%C       1001   8.0 |    5    46   8.6%  21.7%C
+13) Stack dup/pop                                 0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+
+--- SUMMED: PER AVR CATEGORY (Java AOT)    RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+                                             cycles                      exec   avg |  cnt bytes
+01) LD/ST rel to X                            56008   4.6%  23.2%C      28004   2.0 |    8    16   3.0%   7.5%C
+02) LD/ST rel to Y                           396048  32.8% 164.3%C     198024   2.0 |   70   140  26.3%  66.0%C
+03) LD/ST rel to Z                            60012   5.0%  24.9%C      30006   2.0 |   12    24   4.5%  11.3%C
+04) Stack push/pop                           368032  30.4% 152.7%C     184016   2.0 |   64   128  24.1%  60.4%C
+05) Register moves                            30002   2.5%  12.4%C      30002   1.0 |   12    24   4.5%  11.3%C
+06) Constant load                             36018   3.0%  14.9%C      36018   1.0 |   30    60  11.3%  28.3%C
+07) Comp./branches                           109008   9.0%  45.2%C      86008   1.3 |   23    46   8.6%  21.7%C
+08) Math                                     101015   8.4%  41.9%C      94014   1.1 |   31    62  11.7%  29.2%C
+09) Bit shifts                                14000   1.2%   5.8%C      14000   1.0 |    2     4   0.8%   1.9%C
+10) Bit logic                                  7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+11) Subroutines                                  31   0.0%   0.0%C          1  31.0 |    2     8   1.5%   3.8%C
+12) Others                                    32002   2.6%  13.3%C      16001   2.0 |    9    18   3.4%   8.5%C
+
+--- SUMMED: PER JVM OPCODE                 RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+                                             cycles                      exec   avg |  cnt bytes
+01) Loc/sta ld/st   JVM_ALOAD_0               61008   5.0%  25.3%C       8001   7.6 |    3    22   4.1%  10.4%C
+01) Loc/sta ld/st   JVM_ILOAD                     0   0.0%   0.0%C          0   0.0 |    1    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_ILOAD_0               56000   4.6%  23.2%C       7000   8.0 |    2    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_ILOAD_3               16016   1.3%   6.6%C       1001  16.0 |    1    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_ISTORE                56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C
+01) Loc/sta ld/st   JVM_ISTORE_0                  8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C
+01) Loc/sta ld/st   JVM_ISTORE_3                  8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C
+01) Loc/sta ld/st   JVM_PUTSTATIC_S               4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C
+01) Loc/sta ld/st   JVM_SLOAD                180000  14.9%  74.7%C      30000   6.0 |    4    24   4.5%  11.3%C
+01) Loc/sta ld/st   JVM_SLOAD_2               91005   7.5%  37.8%C      14001   6.5 |    4    28   5.3%  13.2%C
+01) Loc/sta ld/st   JVM_SSTORE                36000   3.0%  14.9%C       9000   4.0 |    4    16   3.0%   7.5%C
+01) Loc/sta ld/st   JVM_SSTORE_2              28004   2.3%  11.6%C       7001   4.0 |    2     8   1.5%   3.8%C
+02) Obj/arr ld      JVM_GETARRAY_I           196028  16.2%  81.3%C       7001  28.0 |    2    68  12.8%  32.1%C
+04) Constant load   JVM_BIPUSH                    5   0.0%   0.0%C          1   5.0 |    1    10   1.9%   4.7%C
+04) Constant load   JVM_ICONST_0                  4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C
+04) Constant load   JVM_ICONST_1                  4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C
+04) Constant load   JVM_SCONST_0               2002   0.2%   0.8%C       1001   2.0 |    2     8   1.5%   3.8%C
+04) Constant load   JVM_SCONST_1              37000   3.1%  15.4%C      15000   2.5 |    4    18   3.4%   8.5%C
+04) Constant load   JVM_SIPUSH                 4004   0.3%   1.7%C       1001   4.0 |    1     8   1.5%   3.8%C
+05) Branches        JVM_BRTARGET                  0   0.0%   0.0%C          0   0.0 |    5     0   0.0%   0.0%C
+05) Branches        JVM_GOTO                  16000   1.3%   6.6%C       8000   2.0 |    3     6   1.1%   2.8%C
+05) Branches        JVM_IF_ICMPGE            105015   8.7%  43.6%C       8001  13.1 |    2    38   7.1%  17.9%C
+05) Branches        JVM_IF_ICMPLE                 0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C
+05) Branches        JVM_IF_SCMPGT             65000   5.4%  27.0%C       8000   8.1 |    1    12   2.3%   5.7%C
+06) Math            JVM_IADD                     12   0.0%   0.0%C          1  12.0 |    1    16   3.0%   7.5%C
+06) Math            JVM_IINC                   7018   0.6%   2.9%C       1000   7.0 |    1    30   5.6%  14.2%C
+06) Math            JVM_SADD                 112000   9.3%  46.5%C      14000   8.0 |    2    20   3.8%   9.4%C
+06) Math            JVM_SSUB                   7000   0.6%   2.9%C       1000   7.0 |    2    20   3.8%   9.4%C
+07) Bit shifts      JVM_SUSHR                 91000   7.5%  37.8%C       7000  13.0 |    1    14   2.6%   6.6%C
+09) Conversions     JVM_S2I                   35000   2.9%  14.5%C       7000   5.0 |    1    10   1.9%   4.7%C
+10) Markloop        JVM_MARKLOOP_END              0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+10) Markloop        JVM_MARKLOOP_START            0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+12) Others          JVM_ARRAYLENGTH            8000   0.7%   3.3%C       1000   8.0 |    1     8   1.5%   3.8%C
+12) Others          JVM_RETURN                    0   0.0%   0.0%C          0   0.0 |    1    12   2.3%   5.7%C
+12) Others          JVM_START_AOT_BM             27   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C
+12) Others          JVM_STOP_AOT_BM               4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C
+12) Others          MethodPreamble                0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C
+13) Stack dup/pop   JVM_IDUP2                     0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C
+
+--- SUMMED: PER AVR OPCODE (Java AOT)      RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+                                             cycles                      exec   avg |  cnt bytes
+01) LD/ST rel to X  LD_DECX                   28004   2.3%  11.6%C      14002   2.0 |    4     8   1.5%   3.8%C
+01) LD/ST rel to X  ST_XINC                   28004   2.3%  11.6%C      14002   2.0 |    4     8   1.5%   3.8%C
+02) LD/ST rel to Y  LDD_Y                    258020  21.3% 107.0%C     129010   2.0 |   39    78  14.7%  36.8%C
+02) LD/ST rel to Y  LD_Y                      16002   1.3%   6.6%C       8001   2.0 |    3     6   1.1%   2.8%C
+02) LD/ST rel to Y  STD_Y                    122026  10.1%  50.6%C      61013   2.0 |   28    56  10.5%  26.4%C
+03) LD/ST rel to Z  LD_Z                       2000   0.2%   0.8%C       1000   2.0 |    1     2   0.4%   0.9%C
+03) LD/ST rel to Z  LD_ZINC                   58008   4.8%  24.1%C      29004   2.0 |    9    18   3.4%   8.5%C
+03) LD/ST rel to Z  STD_Z                         4   0.0%   0.0%C          2   2.0 |    2     4   0.8%   1.9%C
+04) Stack push/pop  POP                      184016  15.2%  76.3%C      92008   2.0 |   32    64  12.0%  30.2%C
+04) Stack push/pop  PUSH                     184016  15.2%  76.3%C      92008   2.0 |   32    64  12.0%  30.2%C
+05) Register moves  MOV                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+05) Register moves  MOVW                      23002   1.9%   9.5%C      23002   1.0 |   11    22   4.1%  10.4%C
+06) Constant load   LDI                       36018   3.0%  14.9%C      36018   1.0 |   30    60  11.3%  28.3%C
+07) Comp./branches  BRGE                      22000   1.8%   9.1%C      15000   1.5 |    3     6   1.1%   2.8%C
+07) Comp./branches  BRLT                       2001   0.2%   0.8%C       1001   2.0 |    1     2   0.4%   0.9%C
+07) Comp./branches  BRNE                       2003   0.2%   0.8%C       1003   2.0 |    3     6   1.1%   2.8%C
+07) Comp./branches  BRPL                      21000   1.7%   8.7%C      14000   1.5 |    1     2   0.4%   0.9%C
+07) Comp./branches  CP                        16001   1.3%   6.6%C      16001   1.0 |    4     8   1.5%   3.8%C
+07) Comp./branches  CPC                       32003   2.6%  13.3%C      32003   1.0 |   10    20   3.8%   9.4%C
+07) Comp./branches  SBRC                      14000   1.2%   5.8%C       7000   2.0 |    1     2   0.4%   0.9%C
+08) Math            ADC                       35006   2.9%  14.5%C      35006   1.0 |   11    22   4.1%  10.4%C
+08) Math            ADD                       35004   2.9%  14.5%C      35004   1.0 |    9    18   3.4%   8.5%C
+08) Math            ADIW                      14002   1.2%   5.8%C       7001   2.0 |    2     4   0.8%   1.9%C
+08) Math            DEC                       14000   1.2%   5.8%C      14000   1.0 |    1     2   0.4%   0.9%C
+08) Math            INC                        1003   0.1%   0.4%C       1003   1.0 |    4     8   1.5%   3.8%C
+08) Math            SBC                        1000   0.1%   0.4%C       1000   1.0 |    2     4   0.8%   1.9%C
+08) Math            SUB                        1000   0.1%   0.4%C       1000   1.0 |    2     4   0.8%   1.9%C
+09) Bit shifts      LSR                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+09) Bit shifts      ROR                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+10) Bit logic       EOR                        7000   0.6%   2.9%C       7000   1.0 |    1     2   0.4%   0.9%C
+11) Subroutines     CALL                         31   0.0%   0.0%C          1  31.0 |    2     8   1.5%   3.8%C
+12) Others          COM                           0   0.0%   0.0%C          0   0.0 |    1     2   0.4%   0.9%C
+12) Others          RET                           0   0.0%   0.0%C          0   0.0 |    1     2   0.4%   0.9%C
+12) Others          RJMP                      32002   2.6%  13.3%C      16001   2.0 |    7    14   2.6%   6.6%C
+
+--- LISTING: JVM LOOPS RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+12 JVM_BRTARGET     0
+23 JVM_MARKLOOP_START
+24 JVM_BRTARGET     1
+47 JVM_BRTARGET     2
+56 JVM_BRTARGET     3
+57 JVM_MARKLOOP_END
+60 JVM_BRTARGET     4
+
+--- LISTING: ONLY JVM                                         RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+                                                                cycles                      exec   avg |  cnt bytes
+MethodPreamble                                                       0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C 0->0: 
+JVM_START_AOT_BM                                                    27   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C 0->0: 
+JVM_ALOAD_0                                                          8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C 0->2:Ref 
+JVM_BIPUSH         99                                                5   0.0%   0.0%C          1   5.0 |    1    10   1.9%   4.7%C 2->6:Ref,Int 
+JVM_GETARRAY_I                                                      28   0.0%   0.0%C          1  28.0 |    1    34   6.4%  16.0%C 6->4:Int 
+JVM_ICONST_1                                                         4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+JVM_IADD                                                            12   0.0%   0.0%C          1  12.0 |    1    16   3.0%   7.5%C 8->4:Int 
+JVM_ISTORE_0                                                         8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C 4->0: 
+JVM_SCONST_0                                                         2   0.0%   0.0%C          1   2.0 |    1     4   0.8%   1.9%C 0->2:Short 
+JVM_SSTORE_2                                                         4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C 2->0: 
+JVM_ICONST_0                                                         4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C 0->4:Int 
+JVM_ISTORE_3                                                         8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C 4->0: 
+JVM_BRTARGET     0                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_ILOAD_3                                                      16016   1.3%   6.6%C       1001  16.0 |    1    16   3.0%   7.5%C 0->4:Int 
+JVM_SIPUSH         1000                                           4004   0.3%   1.7%C       1001   4.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+JVM_IF_ICMPGE    Offset:100 Br.target: 4                         14015   1.2%   5.8%C       1001  14.0 |    1    20   3.8%   9.4%C 8->0: 
+JVM_SCONST_0                                                      2000   0.2%   0.8%C       1000   2.0 |    1     4   0.8%   1.9%C 0->2:Short 
+JVM_SSTORE         5                                              4000   0.3%   1.7%C       1000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+JVM_ALOAD_0                                                       5000   0.4%   2.1%C       1000   5.0 |    1     6   1.1%   2.8%C 0->2:Ref 
+JVM_ARRAYLENGTH                                                   8000   0.7%   3.3%C       1000   8.0 |    1     8   1.5%   3.8%C 2->2:Short 
+JVM_SCONST_1                                                      2000   0.2%   0.8%C       1000   2.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+JVM_SSUB                                                          7000   0.6%   2.9%C       1000   7.0 |    1    10   1.9%   4.7%C 4->2:Short 
+JVM_SSTORE         6                                              4000   0.3%   1.7%C       1000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+JVM_MARKLOOP_START                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_BRTARGET     1                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_SLOAD           5                                            64000   5.3%  26.6%C       8000   8.0 |    1     8   1.5%   3.8%C 0->2:Short 
+JVM_SLOAD           6                                            32000   2.6%  13.3%C       8000   4.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+JVM_IF_SCMPGT    Offset:55 Br.target: 3                          65000   5.4%  27.0%C       8000   8.1 |    1    12   2.3%   5.7%C 4->0: 
+JVM_SLOAD           5                                            56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 0->2:Short 
+JVM_SLOAD           6                                            28000   2.3%  11.6%C       7000   4.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+JVM_SADD                                                         70000   5.8%  29.0%C       7000  10.0 |    1    12   2.3%   5.7%C 4->2:Short 
+JVM_SCONST_1                                                     21000   1.7%   8.7%C       7000   3.0 |    1     6   1.1%   2.8%C 2->4:Short,Short 
+JVM_SUSHR                                                        91000   7.5%  37.8%C       7000  13.0 |    1    14   2.6%   6.6%C 4->2:Short 
+JVM_SSTORE_2                                                     28000   2.3%  11.6%C       7000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+JVM_ALOAD_0                                                      56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 0->2:Ref 
+JVM_SLOAD_2                                                      35000   2.9%  14.5%C       7000   5.0 |    1     6   1.1%   2.8%C 2->4:Ref,Short 
+JVM_S2I                                                          35000   2.9%  14.5%C       7000   5.0 |    1    10   1.9%   4.7%C 4->6:Ref,Int 
+JVM_GETARRAY_I                                                  196000  16.2%  81.3%C       7000  28.0 |    1    34   6.4%  16.0%C 6->4:Int 
+JVM_IDUP2                                                            0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 4->8:Int,Int 
+JVM_ISTORE         7                                             56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 8->4:Int 
+JVM_ILOAD_0                                                      56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+JVM_IF_ICMPGE    Offset:15 Br.target: 2                          91000   7.5%  37.8%C       7000  13.0 |    1    18   3.4%   8.5%C 8->0: 
+JVM_SLOAD_2                                                      56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 0->2:Short 
+JVM_SCONST_1                                                     14000   1.2%   5.8%C       7000   2.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+JVM_SADD                                                         42000   3.5%  17.4%C       7000   6.0 |    1     8   1.5%   3.8%C 4->2:Short 
+JVM_SSTORE         5                                             28000   2.3%  11.6%C       7000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+JVM_GOTO         Offset:-36 Br.target: 1                         14000   1.2%   5.8%C       7000   2.0 |    1     2   0.4%   0.9%C 0->0: 
+JVM_BRTARGET     2                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_ILOAD           7                                                0   0.0%   0.0%C          0   0.0 |    1    16   3.0%   7.5%C 0->4:Int 
+JVM_ILOAD_0                                                          0   0.0%   0.0%C          0   0.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+JVM_IF_ICMPLE    Offset:15 Br.target: 3                              0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C 8->0: 
+JVM_SLOAD_2                                                          0   0.0%   0.0%C          0   0.0 |    1     8   1.5%   3.8%C 0->2:Short 
+JVM_SCONST_1                                                         0   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+JVM_SSUB                                                             0   0.0%   0.0%C          0   0.0 |    1    10   1.9%   4.7%C 4->2:Short 
+JVM_SSTORE         6                                                 0   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C 2->0: 
+JVM_GOTO         Offset:-55 Br.target: 1                             0   0.0%   0.0%C          0   0.0 |    1     2   0.4%   0.9%C 0->0: 
+JVM_BRTARGET     3                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_MARKLOOP_END                                                     0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_IINC         Local:3 Increment:1                              7018   0.6%   2.9%C       1000   7.0 |    1    30   5.6%  14.2%C 0->0: 
+JVM_GOTO         Offset:-100 Br.target: 0                         2000   0.2%   0.8%C       1000   2.0 |    1     2   0.4%   0.9%C 0->0: 
+JVM_BRTARGET     4                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_SLOAD_2                                                          5   0.0%   0.0%C          1   5.0 |    1     6   1.1%   2.8%C 0->2:Short 
+JVM_PUTSTATIC_S bm_binsrch32.0                                       4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C 2->0: 
+JVM_STOP_AOT_BM                                                      4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C 0->0: 
+JVM_RETURN                                                           0   0.0%   0.0%C          0   0.0 |    1    12   2.3%   5.7%C 0->0: 
+
+--- LISTING: ONLY OPTIMISED AVR                                 cycles                      exec   avg |  cnt bytes
+MethodPreamble                                                       0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C 0->0: 
+        push r2         -> 0x00FD1A: push r2                         0                         0
+        push r3         -> 0x00FD1C: push r3                         0                         0
+        ldi r20, 242    -> 0x00FD1E: ldi r20, 242                    0                         0
+        ldi r21, 2      -> 0x00FD20: ldi r21, 2                      0                         0
+        movw r2, r20    -> 0x00FD22: movw r2, r20                    0                         0
+        push r28        -> 0x00FD24: push r28                        0                         0
+        push r29        -> 0x00FD26: push r29                        0                         0
+        movw r28, r24   -> 0x00FD28: movw r28, r24                   0                         0
+        movw r26, r22   -> 0x00FD2A: movw r26, r22                   0                         0
+JVM_START_AOT_BM                                                    27   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C 0->0: 
+        call 6031       -> 0x00FD2C: call 6031                      27                         0
+JVM_ALOAD_0                                                          8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C 0->2:Ref 
+        ld r24, Y       -> 0x00FD30: ld r24, Y                       2                         1
+        ldd r25, Y+1    -> 0x00FD32: ldd r25, Y+1                    2                         1
+        stpi X, r24     -> 0x00FD34: stpi X, r24                     2                         1
+        stpi X, r25     -> 0x00FD36: stpi X, r25                     2                         1
+JVM_BIPUSH         99                                                5   0.0%   0.0%C          1   5.0 |    1    10   1.9%   4.7%C 2->6:Ref,Int 
+        ldi r22, 99     -> 0x00FD38: ldi r22, 99                     1                         1
+        ldi r23, 0      -> 0x00FD3A: ldi r23, 0                      1                         1
+        ldi r24, 0      -> 0x00FD3C: ldi r24, 0                      1                         1
+        ldi r25, 0      -> 0x00FD3E: ldi r25, 0                      1                         1
+        push r25        -> 0x00FD40: movw r30, r22                   1                         1
+JVM_GETARRAY_I                                                      28   0.0%   0.0%C          1  28.0 |    1    34   6.4%  16.0%C 6->4:Int 
+        ldpd r21, X     -> 0x00FD42: ldpd r21, X                     2                         1
+        ldpd r20, X     -> 0x00FD44: ldpd r20, X                     2                         1
+        add r30, r30    -> 0x00FD46: add r30, r30                    1                         1
+        adc r31, r31    -> 0x00FD48: adc r31, r31                    1                         1
+        add r30, r30    -> 0x00FD4A: add r30, r30                    1                         1
+        adc r31, r31    -> 0x00FD4C: adc r31, r31                    1                         1
+        add r30, r20    -> 0x00FD4E: add r30, r20                    1                         1
+        adc r31, r21    -> 0x00FD50: adc r31, r21                    1                         1
+        adiw r30, 3     -> 0x00FD52: adiw r30, 3                     2                         1
+        ldpi r22, Z     -> 0x00FD54: ldpi r22, Z                     2                         1
+        ldpi r23, Z     -> 0x00FD56: ldpi r23, Z                     2                         1
+        ldpi r24, Z     -> 0x00FD58: ldpi r24, Z                     2                         1
+        ldpi r25, Z     -> 0x00FD5A: ldpi r25, Z                     2                         1
+        push r25        -> 0x00FD5C: push r25                        2                         1
+        push r24        -> 0x00FD5E: push r24                        2                         1
+        push r23        -> 0x00FD60: push r23                        2                         1
+        push r22        -> 0x00FD62: push r22                        2                         1
+JVM_ICONST_1                                                         4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+        ldi r22, 1      -> 0x00FD64: ldi r22, 1                      1                         1
+        ldi r23, 0      -> 0x00FD66: ldi r23, 0                      1                         1
+        ldi r24, 0      -> 0x00FD68: ldi r24, 0                      1                         1
+        ldi r25, 0      -> 0x00FD6A: ldi r25, 0                      1                         1
+JVM_IADD                                                            12   0.0%   0.0%C          1  12.0 |    1    16   3.0%   7.5%C 8->4:Int 
+        pop r18         -> 0x00FD6C: pop r18                         2                         1
+        pop r19         -> 0x00FD6E: pop r19                         2                         1
+        pop r20         -> 0x00FD70: pop r20                         2                         1
+        pop r21         -> 0x00FD72: pop r21                         2                         1
+        add r22, r18    -> 0x00FD74: add r22, r18                    1                         1
+        adc r23, r19    -> 0x00FD76: adc r23, r19                    1                         1
+        adc r24, r20    -> 0x00FD78: adc r24, r20                    1                         1
+        adc r25, r21    -> 0x00FD7A: adc r25, r21                    1                         1
+JVM_ISTORE_0                                                         8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C 4->0: 
+        std Y+16, r22   -> 0x00FD7C: std Y+16, r22                   2                         1
+        std Y+17, r23   -> 0x00FD7E: std Y+17, r23                   2                         1
+        std Y+18, r24   -> 0x00FD80: std Y+18, r24                   2                         1
+        std Y+19, r25   -> 0x00FD82: std Y+19, r25                   2                         1
+JVM_SCONST_0                                                         2   0.0%   0.0%C          1   2.0 |    1     4   0.8%   1.9%C 0->2:Short 
+        ldi r24, 0      -> 0x00FD84: ldi r24, 0                      1                         1
+        ldi r25, 0      -> 0x00FD86: ldi r25, 0                      1                         1
+JVM_SSTORE_2                                                         4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C 2->0: 
+        std Y+14, r24   -> 0x00FD88: std Y+14, r24                   2                         1
+        std Y+15, r25   -> 0x00FD8A: std Y+15, r25                   2                         1
+JVM_ICONST_0                                                         4   0.0%   0.0%C          1   4.0 |    1     8   1.5%   3.8%C 0->4:Int 
+        ldi r22, 0      -> 0x00FD8C: ldi r22, 0                      1                         1
+        ldi r23, 0      -> 0x00FD8E: ldi r23, 0                      1                         1
+        ldi r24, 0      -> 0x00FD90: ldi r24, 0                      1                         1
+        ldi r25, 0      -> 0x00FD92: ldi r25, 0                      1                         1
+JVM_ISTORE_3                                                         8   0.0%   0.0%C          1   8.0 |    1     8   1.5%   3.8%C 4->0: 
+        std Y+10, r22   -> 0x00FD94: std Y+10, r22                   2                         1
+        std Y+11, r23   -> 0x00FD96: std Y+11, r23                   2                         1
+        std Y+12, r24   -> 0x00FD98: std Y+12, r24                   2                         1
+        std Y+13, r25   -> 0x00FD9A: std Y+13, r25                   2                         1
+JVM_BRTARGET     0                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_ILOAD_3                                                      16016   1.3%   6.6%C       1001  16.0 |    1    16   3.0%   7.5%C 0->4:Int 
+        ldd r22, Y+10   -> 0x00FD9C: ldd r22, Y+10                2002                      1001
+        ldd r23, Y+11   -> 0x00FD9E: ldd r23, Y+11                2002                      1001
+        ldd r24, Y+12   -> 0x00FDA0: ldd r24, Y+12                2002                      1001
+        ldd r25, Y+13   -> 0x00FDA2: ldd r25, Y+13                2002                      1001
+        push r25        -> 0x00FDA4: push r25                     2002                      1001
+        push r24        -> 0x00FDA6: push r24                     2002                      1001
+        push r23        -> 0x00FDA8: push r23                     2002                      1001
+        push r22        -> 0x00FDAA: push r22                     2002                      1001
+JVM_SIPUSH         1000                                           4004   0.3%   1.7%C       1001   4.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+        ldi r22, 232    -> 0x00FDAC: ldi r22, 232                 1001                      1001
+        ldi r23, 3      -> 0x00FDAE: ldi r23, 3                   1001                      1001
+        ldi r24, 0      -> 0x00FDB0: ldi r24, 0                   1001                      1001
+        ldi r25, 0      -> 0x00FDB2: ldi r25, 0                   1001                      1001
+JVM_IF_ICMPGE    Offset:100 Br.target: 4                         14015   1.2%   5.8%C       1001  14.0 |    1    20   3.8%   9.4%C 8->0: 
+        pop r18         -> 0x00FDB4: pop r18                      2002                      1001
+        pop r19         -> 0x00FDB6: pop r19                      2002                      1001
+        pop r20         -> 0x00FDB8: pop r20                      2002                      1001
+        pop r21         -> 0x00FDBA: pop r21                      2002                      1001
+        cp r18, r22     -> 0x00FDBC: cp r18, r22                  1001                      1001
+        cpc r19, r23    -> 0x00FDBE: cpc r19, r23                 1001                      1001
+        cpc r20, r24    -> 0x00FDC0: cpc r20, r24                 1001                      1001
+        cpc r21, r25    -> 0x00FDC2: cpc r21, r25                 1001                      1001
+        break           -> 0x00FDC6: rjmp 166                        2                         1
+        break           -> 0x00FDC4: brlt 1                       2001                      1001
+JVM_SCONST_0                                                      2000   0.2%   0.8%C       1000   2.0 |    1     4   0.8%   1.9%C 0->2:Short 
+        ldi r24, 0      -> 0x00FDC8: ldi r24, 0                   1000                      1000
+        ldi r25, 0      -> 0x00FDCA: ldi r25, 0                   1000                      1000
+JVM_SSTORE         5                                              4000   0.3%   1.7%C       1000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+        std Y+8, r24    -> 0x00FDCC: std Y+8, r24                 2000                      1000
+        std Y+9, r25    -> 0x00FDCE: std Y+9, r25                 2000                      1000
+JVM_ALOAD_0                                                       5000   0.4%   2.1%C       1000   5.0 |    1     6   1.1%   2.8%C 0->2:Ref 
+        ld r24, Y       -> 0x00FDD0: ld r24, Y                    2000                      1000
+        ldd r25, Y+1    -> 0x00FDD2: ldd r25, Y+1                 2000                      1000
+        stpi X, r24     -> 0x00FDD4: movw r30, r24                1000                      1000
+JVM_ARRAYLENGTH                                                   8000   0.7%   3.3%C       1000   8.0 |    1     8   1.5%   3.8%C 2->2:Short 
+        ldpi r24, Z     -> 0x00FDD6: ldpi r24, Z                  2000                      1000
+        ld r25, Z       -> 0x00FDD8: ld r25, Z                    2000                      1000
+        push r25        -> 0x00FDDA: push r25                     2000                      1000
+        push r24        -> 0x00FDDC: push r24                     2000                      1000
+JVM_SCONST_1                                                      2000   0.2%   0.8%C       1000   2.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+        ldi r24, 1      -> 0x00FDDE: ldi r24, 1                   1000                      1000
+        ldi r25, 0      -> 0x00FDE0: ldi r25, 0                   1000                      1000
+JVM_SSUB                                                          7000   0.6%   2.9%C       1000   7.0 |    1    10   1.9%   4.7%C 4->2:Short 
+        pop r22         -> 0x00FDE2: pop r22                      2000                      1000
+        pop r23         -> 0x00FDE4: pop r23                      2000                      1000
+        sub r22, r24    -> 0x00FDE6: sub r22, r24                 1000                      1000
+        sbc r23, r25    -> 0x00FDE8: sbc r23, r25                 1000                      1000
+        push r23        -> 0x00FDEA: movw r24, r22                1000                      1000
+JVM_SSTORE         6                                              4000   0.3%   1.7%C       1000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+        std Y+6, r24    -> 0x00FDEC: std Y+6, r24                 2000                      1000
+        std Y+7, r25    -> 0x00FDEE: std Y+7, r25                 2000                      1000
+JVM_MARKLOOP_START                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_BRTARGET     1                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_SLOAD           5                                            64000   5.3%  26.6%C       8000   8.0 |    1     8   1.5%   3.8%C 0->2:Short 
+        ldd r24, Y+8    -> 0x00FDF0: ldd r24, Y+8                16000                      8000
+        ldd r25, Y+9    -> 0x00FDF2: ldd r25, Y+9                16000                      8000
+        push r25        -> 0x00FDF4: push r25                    16000                      8000
+        push r24        -> 0x00FDF6: push r24                    16000                      8000
+JVM_SLOAD           6                                            32000   2.6%  13.3%C       8000   4.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+        ldd r24, Y+6    -> 0x00FDF8: ldd r24, Y+6                16000                      8000
+        ldd r25, Y+7    -> 0x00FDFA: ldd r25, Y+7                16000                      8000
+JVM_IF_SCMPGT    Offset:55 Br.target: 3                          65000   5.4%  27.0%C       8000   8.1 |    1    12   2.3%   5.7%C 4->0: 
+        pop r22         -> 0x00FDFC: pop r22                     16000                      8000
+        pop r23         -> 0x00FDFE: pop r23                     16000                      8000
+        cp r24, r22     -> 0x00FE00: cp r24, r22                  8000                      8000
+        cpc r25, r23    -> 0x00FE02: cpc r25, r23                 8000                      8000
+        break           -> 0x00FE06: rjmp 118                     2000                      1000
+        break           -> 0x00FE04: brge 1                      15000                      8000
+JVM_SLOAD           5                                            56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 0->2:Short 
+        ldd r24, Y+8    -> 0x00FE08: ldd r24, Y+8                14000                      7000
+        ldd r25, Y+9    -> 0x00FE0A: ldd r25, Y+9                14000                      7000
+        push r25        -> 0x00FE0C: push r25                    14000                      7000
+        push r24        -> 0x00FE0E: push r24                    14000                      7000
+JVM_SLOAD           6                                            28000   2.3%  11.6%C       7000   4.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+        ldd r24, Y+6    -> 0x00FE10: ldd r24, Y+6                14000                      7000
+        ldd r25, Y+7    -> 0x00FE12: ldd r25, Y+7                14000                      7000
+JVM_SADD                                                         70000   5.8%  29.0%C       7000  10.0 |    1    12   2.3%   5.7%C 4->2:Short 
+        pop r22         -> 0x00FE14: pop r22                     14000                      7000
+        pop r23         -> 0x00FE16: pop r23                     14000                      7000
+        add r24, r22    -> 0x00FE18: add r24, r22                 7000                      7000
+        adc r25, r23    -> 0x00FE1A: adc r25, r23                 7000                      7000
+        push r25        -> 0x00FE1C: push r25                    14000                      7000
+        push r24        -> 0x00FE1E: push r24                    14000                      7000
+JVM_SCONST_1                                                     21000   1.7%   8.7%C       7000   3.0 |    1     6   1.1%   2.8%C 2->4:Short,Short 
+        ldi r24, 1      -> 0x00FE20: ldi r24, 1                   7000                      7000
+        ldi r25, 0      -> 0x00FE22: ldi r25, 0                   7000                      7000
+        push r25        -> 0x00FE24: movw r22, r24                7000                      7000
+JVM_SUSHR                                                        91000   7.5%  37.8%C       7000  13.0 |    1    14   2.6%   6.6%C 4->2:Short 
+        pop r24         -> 0x00FE26: pop r24                     14000                      7000
+        pop r25         -> 0x00FE28: pop r25                     14000                      7000
+        rjmp 2          -> 0x00FE2A: rjmp 2                      14000                      7000
+        lsr r25         -> 0x00FE2C: lsr r25                      7000                      7000
+        ror r24         -> 0x00FE2E: ror r24                      7000                      7000
+        dec r22         -> 0x00FE30: dec r22                     14000                     14000
+        brpl -4         -> 0x00FE32: brpl -4                     21000                     14000
+JVM_SSTORE_2                                                     28000   2.3%  11.6%C       7000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+        std Y+14, r24   -> 0x00FE34: std Y+14, r24               14000                      7000
+        std Y+15, r25   -> 0x00FE36: std Y+15, r25               14000                      7000
+JVM_ALOAD_0                                                      56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 0->2:Ref 
+        ld r24, Y       -> 0x00FE38: ld r24, Y                   14000                      7000
+        ldd r25, Y+1    -> 0x00FE3A: ldd r25, Y+1                14000                      7000
+        stpi X, r24     -> 0x00FE3C: stpi X, r24                 14000                      7000
+        stpi X, r25     -> 0x00FE3E: stpi X, r25                 14000                      7000
+JVM_SLOAD_2                                                      35000   2.9%  14.5%C       7000   5.0 |    1     6   1.1%   2.8%C 2->4:Ref,Short 
+        ldd r24, Y+14   -> 0x00FE40: ldd r24, Y+14               14000                      7000
+        ldd r25, Y+15   -> 0x00FE42: ldd r25, Y+15               14000                      7000
+        push r25        -> 0x00FE44: movw r22, r24                7000                      7000
+JVM_S2I                                                          35000   2.9%  14.5%C       7000   5.0 |    1    10   1.9%   4.7%C 4->6:Ref,Int 
+        eor r24, r24    -> 0x00FE46: eor r24, r24                 7000                      7000
+        sbrc r23, 7     -> 0x00FE48: sbrc r23, 7                 14000                      7000
+        com r24         -> 0x00FE4A: com r24                         0                         0
+        mov r25, r24    -> 0x00FE4C: mov r25, r24                 7000                      7000
+        push r25        -> 0x00FE4E: movw r30, r22                7000                      7000
+JVM_GETARRAY_I                                                  196000  16.2%  81.3%C       7000  28.0 |    1    34   6.4%  16.0%C 6->4:Int 
+        ldpd r21, X     -> 0x00FE50: ldpd r21, X                 14000                      7000
+        ldpd r20, X     -> 0x00FE52: ldpd r20, X                 14000                      7000
+        add r30, r30    -> 0x00FE54: add r30, r30                 7000                      7000
+        adc r31, r31    -> 0x00FE56: adc r31, r31                 7000                      7000
+        add r30, r30    -> 0x00FE58: add r30, r30                 7000                      7000
+        adc r31, r31    -> 0x00FE5A: adc r31, r31                 7000                      7000
+        add r30, r20    -> 0x00FE5C: add r30, r20                 7000                      7000
+        adc r31, r21    -> 0x00FE5E: adc r31, r21                 7000                      7000
+        adiw r30, 3     -> 0x00FE60: adiw r30, 3                 14000                      7000
+        ldpi r22, Z     -> 0x00FE62: ldpi r22, Z                 14000                      7000
+        ldpi r23, Z     -> 0x00FE64: ldpi r23, Z                 14000                      7000
+        ldpi r24, Z     -> 0x00FE66: ldpi r24, Z                 14000                      7000
+        ldpi r25, Z     -> 0x00FE68: ldpi r25, Z                 14000                      7000
+        push r25        -> 0x00FE6A: push r25                    14000                      7000
+        push r24        -> 0x00FE6C: push r24                    14000                      7000
+        push r23        -> 0x00FE6E: push r23                    14000                      7000
+        push r22        -> 0x00FE70: push r22                    14000                      7000
+JVM_IDUP2                                                            0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 4->8:Int,Int 
+JVM_ISTORE         7                                             56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 8->4:Int 
+        std Y+2, r22    -> 0x00FE72: std Y+2, r22                14000                      7000
+        std Y+3, r23    -> 0x00FE74: std Y+3, r23                14000                      7000
+        std Y+4, r24    -> 0x00FE76: std Y+4, r24                14000                      7000
+        std Y+5, r25    -> 0x00FE78: std Y+5, r25                14000                      7000
+JVM_ILOAD_0                                                      56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+        ldd r22, Y+16   -> 0x00FE7A: ldd r22, Y+16               14000                      7000
+        ldd r23, Y+17   -> 0x00FE7C: ldd r23, Y+17               14000                      7000
+        ldd r24, Y+18   -> 0x00FE7E: ldd r24, Y+18               14000                      7000
+        ldd r25, Y+19   -> 0x00FE80: ldd r25, Y+19               14000                      7000
+JVM_IF_ICMPGE    Offset:15 Br.target: 2                          91000   7.5%  37.8%C       7000  13.0 |    1    18   3.4%   8.5%C 8->0: 
+        pop r18         -> 0x00FE82: pop r18                     14000                      7000
+        pop r19         -> 0x00FE84: pop r19                     14000                      7000
+        pop r20         -> 0x00FE86: pop r20                     14000                      7000
+        pop r21         -> 0x00FE88: pop r21                     14000                      7000
+        cp r18, r22     -> 0x00FE8A: cp r18, r22                  7000                      7000
+        cpc r19, r23    -> 0x00FE8C: cpc r19, r23                 7000                      7000
+        cpc r20, r24    -> 0x00FE8E: cpc r20, r24                 7000                      7000
+        cpc r21, r25    -> 0x00FE90: cpc r21, r25                 7000                      7000
+        break           -> 0x00FE92: brge 13                      7000                      7000
+JVM_SLOAD_2                                                      56000   4.6%  23.2%C       7000   8.0 |    1     8   1.5%   3.8%C 0->2:Short 
+        ldd r24, Y+14   -> 0x00FE94: ldd r24, Y+14               14000                      7000
+        ldd r25, Y+15   -> 0x00FE96: ldd r25, Y+15               14000                      7000
+        push r25        -> 0x00FE98: push r25                    14000                      7000
+        push r24        -> 0x00FE9A: push r24                    14000                      7000
+JVM_SCONST_1                                                     14000   1.2%   5.8%C       7000   2.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+        ldi r24, 1      -> 0x00FE9C: ldi r24, 1                   7000                      7000
+        ldi r25, 0      -> 0x00FE9E: ldi r25, 0                   7000                      7000
+JVM_SADD                                                         42000   3.5%  17.4%C       7000   6.0 |    1     8   1.5%   3.8%C 4->2:Short 
+        pop r22         -> 0x00FEA0: pop r22                     14000                      7000
+        pop r23         -> 0x00FEA2: pop r23                     14000                      7000
+        add r24, r22    -> 0x00FEA4: add r24, r22                 7000                      7000
+        adc r25, r23    -> 0x00FEA6: adc r25, r23                 7000                      7000
+JVM_SSTORE         5                                             28000   2.3%  11.6%C       7000   4.0 |    1     4   0.8%   1.9%C 2->0: 
+        std Y+8, r24    -> 0x00FEA8: std Y+8, r24                14000                      7000
+        std Y+9, r25    -> 0x00FEAA: std Y+9, r25                14000                      7000
+JVM_GOTO         Offset:-36 Br.target: 1                         14000   1.2%   5.8%C       7000   2.0 |    1     2   0.4%   0.9%C 0->0: 
+        break           -> 0x00FEAC: rjmp -95                    14000                      7000
+JVM_BRTARGET     2                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_ILOAD           7                                                0   0.0%   0.0%C          0   0.0 |    1    16   3.0%   7.5%C 0->4:Int 
+        ldd r22, Y+2    -> 0x00FEAE: ldd r22, Y+2                    0                         0
+        ldd r23, Y+3    -> 0x00FEB0: ldd r23, Y+3                    0                         0
+        ldd r24, Y+4    -> 0x00FEB2: ldd r24, Y+4                    0                         0
+        ldd r25, Y+5    -> 0x00FEB4: ldd r25, Y+5                    0                         0
+        push r25        -> 0x00FEB6: push r25                        0                         0
+        push r24        -> 0x00FEB8: push r24                        0                         0
+        push r23        -> 0x00FEBA: push r23                        0                         0
+        push r22        -> 0x00FEBC: push r22                        0                         0
+JVM_ILOAD_0                                                          0   0.0%   0.0%C          0   0.0 |    1     8   1.5%   3.8%C 4->8:Int,Int 
+        ldd r22, Y+16   -> 0x00FEBE: ldd r22, Y+16                   0                         0
+        ldd r23, Y+17   -> 0x00FEC0: ldd r23, Y+17                   0                         0
+        ldd r24, Y+18   -> 0x00FEC2: ldd r24, Y+18                   0                         0
+        ldd r25, Y+19   -> 0x00FEC4: ldd r25, Y+19                   0                         0
+JVM_IF_ICMPLE    Offset:15 Br.target: 3                              0   0.0%   0.0%C          0   0.0 |    1    18   3.4%   8.5%C 8->0: 
+        pop r18         -> 0x00FEC6: pop r18                         0                         0
+        pop r19         -> 0x00FEC8: pop r19                         0                         0
+        pop r20         -> 0x00FECA: pop r20                         0                         0
+        pop r21         -> 0x00FECC: pop r21                         0                         0
+        cp r22, r18     -> 0x00FECE: cp r22, r18                     0                         0
+        cpc r23, r19    -> 0x00FED0: cpc r23, r19                    0                         0
+        cpc r24, r20    -> 0x00FED2: cpc r24, r20                    0                         0
+        cpc r25, r21    -> 0x00FED4: cpc r25, r21                    0                         0
+        break           -> 0x00FED6: brge 14                         0                         0
+JVM_SLOAD_2                                                          0   0.0%   0.0%C          0   0.0 |    1     8   1.5%   3.8%C 0->2:Short 
+        ldd r24, Y+14   -> 0x00FED8: ldd r24, Y+14                   0                         0
+        ldd r25, Y+15   -> 0x00FEDA: ldd r25, Y+15                   0                         0
+        push r25        -> 0x00FEDC: push r25                        0                         0
+        push r24        -> 0x00FEDE: push r24                        0                         0
+JVM_SCONST_1                                                         0   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C 2->4:Short,Short 
+        ldi r24, 1      -> 0x00FEE0: ldi r24, 1                      0                         0
+        ldi r25, 0      -> 0x00FEE2: ldi r25, 0                      0                         0
+JVM_SSUB                                                             0   0.0%   0.0%C          0   0.0 |    1    10   1.9%   4.7%C 4->2:Short 
+        pop r22         -> 0x00FEE4: pop r22                         0                         0
+        pop r23         -> 0x00FEE6: pop r23                         0                         0
+        sub r22, r24    -> 0x00FEE8: sub r22, r24                    0                         0
+        sbc r23, r25    -> 0x00FEEA: sbc r23, r25                    0                         0
+        push r23        -> 0x00FEEC: movw r24, r22                   0                         0
+JVM_SSTORE         6                                                 0   0.0%   0.0%C          0   0.0 |    1     4   0.8%   1.9%C 2->0: 
+        std Y+6, r24    -> 0x00FEEE: std Y+6, r24                    0                         0
+        std Y+7, r25    -> 0x00FEF0: std Y+7, r25                    0                         0
+JVM_GOTO         Offset:-55 Br.target: 1                             0   0.0%   0.0%C          0   0.0 |    1     2   0.4%   0.9%C 0->0: 
+        break           -> 0x00FEF2: rjmp -130                       0                         0
+JVM_BRTARGET     3                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_MARKLOOP_END                                                     0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_IINC         Local:3 Increment:1                              7018   0.6%   2.9%C       1000   7.0 |    1    30   5.6%  14.2%C 0->0: 
+        ldd r30, Y+10   -> 0x00FEF4: ldd r30, Y+10                2000                      1000
+        inc r30         -> 0x00FEF6: inc r30                      1000                      1000
+        std Y+10, r30   -> 0x00FEF8: std Y+10, r30                2000                      1000
+        brne 11         -> 0x00FEFA: brne 11                      1997                      1000
+        ldd r30, Y+11   -> 0x00FEFC: ldd r30, Y+11                   6                         3
+        inc r30         -> 0x00FEFE: inc r30                         3                         3
+        std Y+11, r30   -> 0x00FF00: std Y+11, r30                   6                         3
+        brne 7          -> 0x00FF02: brne 7                          6                         3
+        ldd r30, Y+12   -> 0x00FF04: ldd r30, Y+12                   0                         0
+        inc r30         -> 0x00FF06: inc r30                         0                         0
+        std Y+12, r30   -> 0x00FF08: std Y+12, r30                   0                         0
+        brne 3          -> 0x00FF0A: brne 3                          0                         0
+        ldd r30, Y+13   -> 0x00FF0C: ldd r30, Y+13                   0                         0
+        inc r30         -> 0x00FF0E: inc r30                         0                         0
+        std Y+13, r30   -> 0x00FF10: std Y+13, r30                   0                         0
+JVM_GOTO         Offset:-100 Br.target: 0                         2000   0.2%   0.8%C       1000   2.0 |    1     2   0.4%   0.9%C 0->0: 
+        break           -> 0x00FF12: rjmp -188                    2000                      1000
+JVM_BRTARGET     4                                                   0   0.0%   0.0%C          0   0.0 |    1     0   0.0%   0.0%C 0->0: 
+JVM_SLOAD_2                                                          5   0.0%   0.0%C          1   5.0 |    1     6   1.1%   2.8%C 0->2:Short 
+        ldd r24, Y+14   -> 0x00FF14: ldd r24, Y+14                   2                         1
+        ldd r25, Y+15   -> 0x00FF16: ldd r25, Y+15                   2                         1
+        push r25        -> 0x00FF18: movw r30, r2                    1                         1
+JVM_PUTSTATIC_S bm_binsrch32.0                                       4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C 2->0: 
+        std Z+2, r24    -> 0x00FF1A: std Z+2, r24                    2                         1
+        std Z+3, r25    -> 0x00FF1C: std Z+3, r25                    2                         1
+JVM_STOP_AOT_BM                                                      4   0.0%   0.0%C          1   4.0 |    1     4   0.8%   1.9%C 0->0: 
+        call 6048       -> 0x00FF1E: call 6048                       4                         1
+JVM_RETURN                                                           0   0.0%   0.0%C          0   0.0 |    1    12   2.3%   5.7%C 0->0: 
+        break           -> 0x00FF22: rjmp 0                          0                         0
+        pop r29         -> 0x00FF24: pop r29                         0                         0
+        pop r28         -> 0x00FF26: pop r28                         0                         0
+        pop r3          -> 0x00FF28: pop r3                          0                         0
+        pop r2          -> 0x00FF2A: pop r2                          0                         0
+        ret             -> 0x00FF2C: ret                             0                         0
+
+------------------------------------------------ NATIVE C IMPLEMENTATIONS OF JVM METHODS ----------------------------------------------------
+
+============================================================== C LISTINGS ===================================================================
+
+------------------------------------------------------------- CALL OVERVIEW -----------------------------------------------------------------
+rtcbenchmark_measure_native_performance
+    241,049 100.0%         0       0.0 |   212 100.0% : ---total---
+    241,026 100.0%         0       0.0 |   204  96.2% : ----own----
+         19   0.0%         0       0.0 |     4   1.9% : <rtc_startBenchmarkMeasurement_Native>
+          4   0.0%         1       4.0 |     4   1.9% : <rtc_stopBenchmarkMeasurement>
+
+
+---------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------
+                                                              rtcbenchmark_measure_native_performance
+---------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------  C  -----------
+
+rtcbenchmark_measure_native_performance
+    241,049 100.0%         0       0.0 |   212 100.0% : ---total---
+    241,026 100.0%         0       0.0 |   204  96.2% : ----own----
+         19   0.0%         0       0.0 |     4   1.9% : <rtc_startBenchmarkMeasurement_Native>
+          4   0.0%         1       4.0 |     4   1.9% : <rtc_stopBenchmarkMeasurement>
+
+--- SUMMED: PER AVR CATEGORY (NATIVE C)    rtcbenchmark_measure_native_performance
+                                             cycles                      exec   avg |  cnt bytes
+01) LD/ST rel to X                                0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+02) LD/ST rel to Y                                0   0.0%   0.0%C          0   0.0 |    4     8   3.8%   3.8%C
+03) LD/ST rel to Z                            56008  23.2%  23.2%C      28004   2.0 |    8    16   7.5%   7.5%C
+04) Stack push/pop                                0   0.0%   0.0%C          0   0.0 |   24    48  22.6%  22.6%C
+05) Register moves                            29002  12.0%  12.0%C      29002   1.0 |   11    22  10.4%  10.4%C
+06) Constant load                              2003   0.8%   0.8%C       2003   1.0 |    7    14   6.6%   6.6%C
+07) Comp./branches                            65999  27.4%  27.4%C      57000   1.2 |   17    34  16.0%  16.0%C
+08) Math                                      72014  29.9%  29.9%C      72013   1.0 |   27    54  25.5%  25.5%C
+09) Bit shifts                                14000   5.8%   5.8%C      14000   1.0 |    2     4   1.9%   1.9%C
+10) Bit logic                                     0   0.0%   0.0%C          0   0.0 |    0     0   0.0%   0.0%C
+11) Subroutines                                  23   0.0%   0.0%C          1  23.0 |    2     8   3.8%   3.8%C
+12) Others                                     2000   0.8%   0.8%C       1000   2.0 |    2     4   1.9%   1.9%C
+
+--- SUMMED: PER AVR OPCODE (NATIVE C)      rtcbenchmark_measure_native_performance
+                                             cycles                      exec   avg |  cnt bytes
+02) LD/ST rel to Y  STD_Y                         0   0.0%   0.0%C          0   0.0 |    3     6   2.8%   2.8%C
+02) LD/ST rel to Y  ST_YINC                       0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+03) LD/ST rel to Z  LDD_Z                     42006  17.4%  17.4%C      21003   2.0 |    6    12   5.7%   5.7%C
+03) LD/ST rel to Z  LD_Z                      14002   5.8%   5.8%C       7001   2.0 |    2     4   1.9%   1.9%C
+04) Stack push/pop  POP                           0   0.0%   0.0%C          0   0.0 |   12    24  11.3%  11.3%C
+04) Stack push/pop  PUSH                          0   0.0%   0.0%C          0   0.0 |   12    24  11.3%  11.3%C
+05) Register moves  MOVW                      29002  12.0%  12.0%C      29002   1.0 |   11    22  10.4%  10.4%C
+06) Constant load   LDI                        2003   0.8%   0.8%C       2003   1.0 |    7    14   6.6%   6.6%C
+07) Comp./branches  BRCC                          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRCS                       8000   3.3%   3.3%C       7000   1.1 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRGE                          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRLT                      14000   5.8%   5.8%C       7000   2.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  BRNE                       1999   0.8%   0.8%C       1000   2.0 |    1     2   0.9%   0.9%C
+07) Comp./branches  CP                        14000   5.8%   5.8%C      14000   1.0 |    4     8   3.8%   3.8%C
+07) Comp./branches  CPC                       28000  11.6%  11.6%C      28000   1.0 |    8    16   7.5%   7.5%C
+08) Math            ADC                       28003  11.6%  11.6%C      28003   1.0 |    7    14   6.6%   6.6%C
+08) Math            ADD                       28003  11.6%  11.6%C      28003   1.0 |    7    14   6.6%   6.6%C
+08) Math            SBC                        1003   0.4%   0.4%C       1003   1.0 |    5    10   4.7%   4.7%C
+08) Math            SBCI                       7001   2.9%   2.9%C       7001   1.0 |    2     4   1.9%   1.9%C
+08) Math            SBIW                          2   0.0%   0.0%C          1   2.0 |    1     2   0.9%   0.9%C
+08) Math            SUB                           1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C
+08) Math            SUBI                       8001   3.3%   3.3%C       8001   1.0 |    4     8   3.8%   3.8%C
+09) Bit shifts      LSR                        7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C
+09) Bit shifts      ROR                        7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C
+11) Subroutines     CALL                         23   0.0%   0.0%C          1  23.0 |    2     8   3.8%   3.8%C
+12) Others          RET                           0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C
+12) Others          RJMP                       2000   0.8%   0.8%C       1000   2.0 |    1     2   0.9%   0.9%C
+
+--- LISTING (NATIVE C): rtcbenchmark_measure_native_performance
+              cycles                      exec   avg |  cnt bytes
+0x0031A2:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r8
+0x0031A4:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r9
+0x0031A6:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r10
+0x0031A8:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r11
+0x0031AA:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r12
+0x0031AC:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r13
+0x0031AE:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r14
+0x0031B0:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r15
+0x0031B2:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r16
+0x0031B4:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r17
+0x0031B6:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r28
+0x0031B8:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    push	r29
+0x0031BA:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    movw	r16, r24
+0x0031BC:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    movw	r28, r22
+0x0031BE:         19   0.0%   0.0%C          0   0.0 |    1     4   1.9%   1.9%C    call	0x2f04	; 0x2f04 <rtc_startBenchmarkMeasurement_Native>
+0x0031C2:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    movw	r30, r16
+0x0031C4:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    subi	r30, 0x01	; 1
+0x0031C6:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    sbci	r31, 0xC0	; 192
+0x0031C8:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    add	r30, r30
+0x0031CA:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    adc	r31, r31
+0x0031CC:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    add	r30, r30
+0x0031CE:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    adc	r31, r31
+0x0031D0:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    add	r30, r28
+0x0031D2:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    adc	r31, r29
+0x0031D4:          2   0.0%   0.0%C          1   2.0 |    1     2   0.9%   0.9%C    ld	r8, Z
+0x0031D6:          2   0.0%   0.0%C          1   2.0 |    1     2   0.9%   0.9%C    ldd	r9, Z+1	; 0x01
+0x0031D8:          2   0.0%   0.0%C          1   2.0 |    1     2   0.9%   0.9%C    ldd	r10, Z+2	; 0x02
+0x0031DA:          2   0.0%   0.0%C          1   2.0 |    1     2   0.9%   0.9%C    ldd	r11, Z+3	; 0x03
+0x0031DC:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    ldi	r24, 0xFF	; 255
+0x0031DE:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    sub	r8, r24
+0x0031E0:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    sbc	r9, r24
+0x0031E2:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    sbc	r10, r24
+0x0031E4:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    sbc	r11, r24
+0x0031E6:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    movw	r26, r16
+0x0031E8:          2   0.0%   0.0%C          1   2.0 |    1     2   0.9%   0.9%C    sbiw	r26, 0x01	; 1
+0x0031EA:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    ldi	r22, 0xE8	; 232
+0x0031EC:          1   0.0%   0.0%C          1   1.0 |    1     2   0.9%   0.9%C    ldi	r23, 0x03	; 3
+0x0031EE:       1000   0.4%   0.4%C       1000   1.0 |    1     2   0.9%   0.9%C    movw	r20, r26
+0x0031F0:       1000   0.4%   0.4%C       1000   1.0 |    1     2   0.9%   0.9%C    ldi	r18, 0x00	; 0
+0x0031F2:       1000   0.4%   0.4%C       1000   1.0 |    1     2   0.9%   0.9%C    ldi	r19, 0x00	; 0
+0x0031F4:       2000   0.8%   0.8%C       1000   2.0 |    1     2   0.9%   0.9%C    rjmp	.+12     	; 0x3202 <rtcbenchmark_measure_native_performance+0x60>
+0x0031F6:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    movw	r18, r16
+0x0031F8:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    subi	r18, 0xFF	; 255
+0x0031FA:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    sbci	r19, 0xFF	; 255
+0x0031FC:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    cp	r20, r18
+0x0031FE:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    cpc	r21, r19
+0x003200:       8000   3.3%   3.3%C       7000   1.1 |    1     2   0.9%   0.9%C    brcs	.+66     	; 0x3244 <rtcbenchmark_measure_native_performance+0xa2>
+0x003202:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    movw	r24, r18
+0x003204:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    add	r24, r20
+0x003206:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    adc	r25, r21
+0x003208:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    movw	r16, r24
+0x00320A:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    lsr	r17
+0x00320C:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    ror	r16
+0x00320E:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    movw	r30, r16
+0x003210:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    add	r30, r30
+0x003212:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    adc	r31, r31
+0x003214:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    add	r30, r30
+0x003216:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    adc	r31, r31
+0x003218:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    add	r30, r28
+0x00321A:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    adc	r31, r29
+0x00321C:      14000   5.8%   5.8%C       7000   2.0 |    1     2   0.9%   0.9%C    ld	r12, Z
+0x00321E:      14000   5.8%   5.8%C       7000   2.0 |    1     2   0.9%   0.9%C    ldd	r13, Z+1	; 0x01
+0x003220:      14000   5.8%   5.8%C       7000   2.0 |    1     2   0.9%   0.9%C    ldd	r14, Z+2	; 0x02
+0x003222:      14000   5.8%   5.8%C       7000   2.0 |    1     2   0.9%   0.9%C    ldd	r15, Z+3	; 0x03
+0x003224:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    cp	r12, r8
+0x003226:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    cpc	r13, r9
+0x003228:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    cpc	r14, r10
+0x00322A:       7000   2.9%   2.9%C       7000   1.0 |    1     2   0.9%   0.9%C    cpc	r15, r11
+0x00322C:      14000   5.8%   5.8%C       7000   2.0 |    1     2   0.9%   0.9%C    brlt	.-56     	; 0x31f6 <rtcbenchmark_measure_native_performance+0x54>
+0x00322E:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    cp	r8, r12
+0x003230:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    cpc	r9, r13
+0x003232:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    cpc	r10, r14
+0x003234:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    cpc	r11, r15
+0x003236:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    brge	.+12     	; 0x3244 <rtcbenchmark_measure_native_performance+0xa2>
+0x003238:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    movw	r20, r16
+0x00323A:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    subi	r20, 0x01	; 1
+0x00323C:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    sbc	r21, r1
+0x00323E:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    cp	r20, r18
+0x003240:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    cpc	r21, r19
+0x003242:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    brcc	.-66     	; 0x3202 <rtcbenchmark_measure_native_performance+0x60>
+0x003244:       1000   0.4%   0.4%C       1000   1.0 |    1     2   0.9%   0.9%C    subi	r22, 0x01	; 1
+0x003246:       1000   0.4%   0.4%C       1000   1.0 |    1     2   0.9%   0.9%C    sbc	r23, r1
+0x003248:       1999   0.8%   0.8%C       1000   2.0 |    1     2   0.9%   0.9%C    brne	.-92     	; 0x31ee <rtcbenchmark_measure_native_performance+0x4c>
+0x00324A:          4   0.0%   0.0%C          1   4.0 |    1     4   1.9%   1.9%C    call	0x2f40	; 0x2f40 <rtc_stopBenchmarkMeasurement>
+0x00324E:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    movw	r24, r16
+0x003250:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    ldi	r26, 0x00	; 0
+0x003252:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    ldi	r27, 0x00	; 0
+0x003254:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    st	Y, r24
+0x003256:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    std	Y+1, r25	; 0x01
+0x003258:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    std	Y+2, r26	; 0x02
+0x00325A:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    std	Y+3, r27	; 0x03
+0x00325C:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r29
+0x00325E:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r28
+0x003260:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r17
+0x003262:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r16
+0x003264:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r15
+0x003266:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r14
+0x003268:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r13
+0x00326A:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r12
+0x00326C:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r11
+0x00326E:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r10
+0x003270:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r9
+0x003272:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    pop	r8
+0x003274:          0   0.0%   0.0%C          0   0.0 |    1     2   0.9%   0.9%C    ret
+
+
+============================================ COUNTERS FOR ALL SYMBOLS WHERE CYCLES>0 (JVM) ==================================================
+           0 exec            9 cyc,            0 sub,            9 total in rtc_startBenchmarkMeasurement_Native
+           0 exec           13 cyc,            0 sub,           13 total in rtc_startBenchmarkMeasurement_AOT
+           2 exec           16 cyc,            0 sub,           16 total in rtc_stopBenchmarkMeasurement
+           0 exec       241030 cyc,           19 sub,       241049 total in rtcbenchmark_measure_native_performance
+
+
+============================================ COUNTERS FOR ALL SYMBOLS WHERE CYCLES>0 (C) ==================================================
+           0 exec            9 cyc,            0 sub,            9 total in rtc_startBenchmarkMeasurement_Native
+           0 exec           13 cyc,            0 sub,           13 total in rtc_startBenchmarkMeasurement_AOT
+           2 exec           16 cyc,            0 sub,           16 total in rtc_stopBenchmarkMeasurement
+           0 exec       241030 cyc,           19 sub,       241049 total in rtcbenchmark_measure_native_performance
+

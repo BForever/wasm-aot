@@ -74,12 +74,12 @@ clean: CMakeFiles/aot.elf.dir/clean
 CMakeFiles/aot.elf.dir/all:
 	$(MAKE) -f CMakeFiles/aot.elf.dir/build.make CMakeFiles/aot.elf.dir/depend
 	$(MAKE) -f CMakeFiles/aot.elf.dir/build.make CMakeFiles/aot.elf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fanhc/wasm-aot/libs/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target aot.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/fanhc/wasm-aot/libs/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target aot.elf"
 .PHONY : CMakeFiles/aot.elf.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/aot.elf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/fanhc/wasm-aot/libs/CMakeFiles 11
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/fanhc/wasm-aot/libs/CMakeFiles 12
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/aot.elf.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/fanhc/wasm-aot/libs/CMakeFiles 0
 .PHONY : CMakeFiles/aot.elf.dir/rule

@@ -1,0 +1,130 @@
+infusion bm_binsrch32
+{
+
+	class javax.rtcbench.RTCBenchmark extends java.lang.Object 
+	{
+
+
+	}
+	method javax.rtcbench.RTCBenchmark.<init> ()V
+	{
+
+		0000;             ; 1           ; aload(0)                      ;                                                             ; 0Ref                                                        ;   ; 0
+		0001; 0           ; 4           ; invokespecial(1,41)(base,0)[<init> ()V]; 0Ref                                                        ;                                                             ;   ; 
+		0004; 1           ;             ; return                        ;                                                             ;                                                             ;   ; 
+
+	}
+	method javax.rtcbench.RTCBenchmark.test_native ()V
+	{
+
+
+	}
+	method javax.rtcbench.RTCBenchmark.test_java ()Z
+	{
+
+		0000;             ; 2           ; bspush                        ;                                                             ; 0Short(Byte)                                                ;   ; 
+		0002; 0           ; 4           ; newarray                      ; 0Short(Byte)                                                ; 2Ref                                                        ;   ; 
+		0004; 2           ; 5           ; astore(0)                     ; 2Ref                                                        ;                                                             ;   ; 0
+		0005; 4           ; 6           ; iconst_0                      ;                                                             ; 5Int(Byte)                                                  ;   ; 0
+		0006; 5           ; 7           ; istore(0)                     ; 5Int(Byte)                                                  ;                                                             ;   ; 0,1
+		0007; 6           ; 13          ; markloop_start                ;                                                             ;                                                             ;   ; 0,1
+		0013; 6,33        ; 14          ; brtarget(0)                   ;                                                             ;                                                             ;   ; 0,1
+		0014; 13          ; 15          ; iload(0)                      ;                                                             ; 14Int                                                       ;   ; 0,1
+		0015; 14          ; 17          ; bipush                        ; 14Int                                                       ; 14Int,15Int(Byte)                                           ;   ; 0,1
+		0017; 15          ; 22,38       ; if_icmpge(21,1)               ; 14Int,15Int(Byte)                                           ;                                                             ;   ; 0,1
+		0022; 17          ; 23          ; aload(0)                      ;                                                             ; 22Ref                                                       ;   ; 0,1
+		0023; 22          ; 24          ; iload(0)                      ; 22Ref                                                       ; 22Ref,23Int                                                 ;   ; 0,1
+		0024; 23          ; 25          ; i2s                           ; 22Ref,23Int                                                 ; 22Ref,24Short                                               ;   ; 0,1
+		0025; 24          ; 26          ; iload(0)                      ; 22Ref,24Short                                               ; 22Ref,24Short,25Int                                         ;   ; 0,1
+		0026; 25          ; 28          ; bipush                        ; 22Ref,24Short,25Int                                         ; 22Ref,24Short,25Int,26Int(Byte)                             ;   ; 0,1
+		0028; 26          ; 29          ; isub                          ; 22Ref,24Short,25Int,26Int(Byte)                             ; 22Ref,24Short,28Int                                         ;   ; 0,1
+		0029; 28          ; 30          ; putarray_i                    ; 22Ref,24Short,28Int                                         ;                                                             ;   ; 0,1
+		0030; 29          ; 33          ; iinc                          ;                                                             ;                                                             ;   ; 0,1
+		0033; 30          ; 13          ; goto(-20,0)                   ;                                                             ;                                                             ;   ; 0,1
+		0038; 17          ; 39          ; brtarget(1)                   ;                                                             ;                                                             ;   ; 0
+		0039; 38          ; 40          ; markloop_end                  ;                                                             ;                                                             ;   ; 0
+		0040; 38          ; 41          ; aload(0)                      ;                                                             ; 40Ref                                                       ;   ; 0
+		0041; 40          ; 44          ; invokestatic(0,3)(bm_binsrch32,2)[rtcbenchmark_measure_java_performance ([I)V]; 40Ref                                                       ;                                                             ;   ; 
+		0044; 41          ; 45          ; sconst_1                      ;                                                             ; 44Short(Byte)                                               ;   ; 
+		0045; 44          ;             ; sreturn                       ; 44Short(Byte)                                               ;                                                             ;   ; 
+
+	}
+	method javax.rtcbench.RTCBenchmark.rtcbenchmark_measure_java_performance ([I)V
+	{
+
+		0000;             ; 1           ; start_aot_bm                  ;                                                             ;                                                             ;   ; 0
+		0001; 0           ; 2           ; aload(0)                      ;                                                             ; 1Ref                                                        ;   ; 0
+		0002; 1           ; 4           ; bspush                        ; 1Ref                                                        ; 1Ref,2Short(Byte)                                           ;   ; 0
+		0004; 2           ; 5           ; getarray_i                    ; 1Ref,2Short(Byte)                                           ; 4Int                                                        ;   ; 0
+		0005; 4           ; 6           ; iconst_1                      ; 4Int                                                        ; 4Int,5Int(Byte)                                             ;   ; 0
+		0006; 5           ; 7           ; iadd                          ; 4Int,5Int(Byte)                                             ; 6Int                                                        ;   ; 0
+		0007; 6           ; 8           ; istore(0)                     ; 6Int                                                        ;                                                             ;   ; 0,1
+		0008; 7           ; 9           ; sconst_0                      ;                                                             ; 8Short(Byte)                                                ;   ; 0,1
+		0009; 8           ; 10          ; sstore(2)                     ; 8Short(Byte)                                                ;                                                             ;   ; 0,1,2
+		0010; 9           ; 11          ; iconst_0                      ;                                                             ; 10Int(Byte)                                                 ;   ; 0,1,2
+		0011; 10          ; 12          ; istore(3)                     ; 10Int(Byte)                                                 ;                                                             ;   ; 0,1,2,3
+		0012; 11,111      ; 13          ; brtarget(0)                   ;                                                             ;                                                             ;   ; 0,1,2,3
+		0013; 12          ; 14          ; iload(3)                      ;                                                             ; 13Int                                                       ;   ; 0,1,2,3
+		0014; 13          ; 17          ; sipush                        ; 13Int                                                       ; 13Int,14Int(Short)                                          ;   ; 0,1,2,3
+		0017; 14          ; 22,116      ; if_icmpge(99,4)               ; 13Int,14Int(Short)                                          ;                                                             ;   ; 0,1,2,3
+		0022; 17          ; 23          ; sconst_0                      ;                                                             ; 22Short(Byte)                                               ;   ; 0,1,2,3
+		0023; 22          ; 25          ; sstore(5)                     ; 22Short(Byte)                                               ;                                                             ;   ; 0,1,2,3,4
+		0025; 23          ; 26          ; aload(0)                      ;                                                             ; 25Ref                                                       ;   ; 0,1,2,3,4
+		0026; 25          ; 27          ; arraylength                   ; 25Ref                                                       ; 26Short                                                     ;   ; 0,1,2,3,4
+		0027; 26          ; 28          ; sconst_1                      ; 26Short                                                     ; 26Short,27Short(Byte)                                       ;   ; 0,1,2,3,4
+		0028; 27          ; 29          ; ssub                          ; 26Short,27Short(Byte)                                       ; 28Short                                                     ; G ; 0,1,2,3,4
+		0029; 28          ; 31          ; sstore(6)                     ; 28Short                                                     ;                                                             ;   ; 0,1,2,3,4,5
+		0031; 29          ; 47          ; markloop_start                ;                                                             ;                                                             ;   ; 0,1,2,3,4,5
+		0047; 29,82,101   ; 48          ; brtarget(1)                   ;                                                             ;                                                             ;   ; 0,1,2,3,4,5
+		0048; 47          ; 50          ; sload(5)                      ;                                                             ; 48Short                                                     ;   ; 0,1,2,3,4,5
+		0050; 48          ; 52          ; sload(6)                      ; 48Short                                                     ; 48Short,50Short                                             ;   ; 0,1,2,3,4,5
+		0052; 50          ; 57,106      ; if_scmpgt(54,3)               ; 48Short,50Short                                             ;                                                             ;   ; 0,1,2,3,4,5
+		0057; 52          ; 59          ; sload(5)                      ;                                                             ; 57Short                                                     ;   ; 0,1,3,4,5
+		0059; 57          ; 61          ; sload(6)                      ; 57Short                                                     ; 57Short,59Short                                             ;   ; 0,1,3,4,5
+		0061; 59          ; 62          ; sadd                          ; 57Short,59Short                                             ; 61Short                                                     ; G ; 0,1,3,4,5
+		0062; 61          ; 64          ; sushr_const(1)                ; 61Short                                                     ; 62Short                                                     ;   ; 0,1,3,4,5
+		0064; 62          ; 65          ; sstore(2)                     ; 62Short                                                     ;                                                             ;   ; 0,1,2,3,4,5
+		0065; 64          ; 66          ; aload(0)                      ;                                                             ; 65Ref                                                       ;   ; 0,1,2,3,4,5
+		0066; 65          ; 67          ; sload(2)                      ; 65Ref                                                       ; 65Ref,66Short                                               ;   ; 0,1,2,3,4,5
+		0067; 66          ; 68          ; getarray_i                    ; 65Ref,66Short                                               ; 67Int                                                       ;   ; 0,1,2,3,4,5
+		0068; 67          ; 69          ; idup2                         ; 67Int                                                       ; 46Int,46Int                                                 ;   ; 0,1,2,3,4,5
+		0069; 68          ; 71          ; istore(7)                     ; 46Int,46Int                                                 ; 46Int                                                       ;   ; 0,1,2,3,4,5,6
+		0071; 69          ; 72          ; iload(0)                      ; 46Int                                                       ; 46Int,71Int                                                 ;   ; 0,1,2,3,4,5,6
+		0072; 71          ; 77,87       ; if_icmpge(15,2)               ; 46Int,71Int                                                 ;                                                             ;   ; 0,1,2,3,4,5,6
+		0077; 72          ; 78          ; sload(2)                      ;                                                             ; 77Short                                                     ;   ; 0,1,2,3,5
+		0078; 77          ; 79          ; sconst_1                      ; 77Short                                                     ; 77Short,78Short(Byte)                                       ;   ; 0,1,2,3,5
+		0079; 78          ; 80          ; sadd                          ; 77Short,78Short(Byte)                                       ; 79Short                                                     ; G ; 0,1,2,3,5
+		0080; 79          ; 82          ; sstore(5)                     ; 79Short                                                     ;                                                             ;   ; 0,1,2,3,4,5
+		0082; 80          ; 47          ; goto(-35,1)                   ;                                                             ;                                                             ;   ; 0,1,2,3,4,5
+		0087; 72          ; 88          ; brtarget(2)                   ;                                                             ;                                                             ;   ; 0,1,2,3,4,6
+		0088; 87          ; 90          ; iload(7)                      ;                                                             ; 88Int                                                       ;   ; 0,1,2,3,4,6
+		0090; 88          ; 91          ; iload(0)                      ; 88Int                                                       ; 88Int,90Int                                                 ;   ; 0,1,2,3,4
+		0091; 90          ; 96,106      ; if_icmple(15,3)               ; 88Int,90Int                                                 ;                                                             ;   ; 0,1,2,3,4
+		0096; 91          ; 97          ; sload(2)                      ;                                                             ; 96Short                                                     ;   ; 0,1,2,3,4
+		0097; 96          ; 98          ; sconst_1                      ; 96Short                                                     ; 96Short,97Short(Byte)                                       ;   ; 0,1,2,3,4
+		0098; 97          ; 99          ; ssub                          ; 96Short,97Short(Byte)                                       ; 98Short                                                     ; G ; 0,1,2,3,4
+		0099; 98          ; 101         ; sstore(6)                     ; 98Short                                                     ;                                                             ;   ; 0,1,2,3,4,5
+		0101; 99          ; 47          ; goto(-54,1)                   ;                                                             ;                                                             ;   ; 0,1,2,3,4,5
+		0106; 52,91       ; 107         ; brtarget(3)                   ;                                                             ;                                                             ;   ; 0,1,2,3
+		0107; 106         ; 108         ; markloop_end                  ;                                                             ;                                                             ;   ; 0,1,2,3
+		0108; 106         ; 111         ; iinc                          ;                                                             ;                                                             ;   ; 0,1,2,3
+		0111; 108         ; 12          ; goto(-99,0)                   ;                                                             ;                                                             ;   ; 0,1,2,3
+		0116; 17          ; 117         ; brtarget(4)                   ;                                                             ;                                                             ;   ; 2
+		0117; 116         ; 118         ; sload(2)                      ;                                                             ; 117Short                                                    ;   ; 2
+		0118; 117         ; 121         ; putstatic_s(0,0)              ; 117Short                                                    ;                                                             ;   ; 
+		0121; 118         ; 122         ; stop_aot_bm                   ;                                                             ;                                                             ;   ; 
+		0122; 121         ;             ; return                        ;                                                             ;                                                             ;   ; 
+
+	}
+	method javax.rtcbench.RTCBenchmark.<clinit> ()V
+	{
+
+		0000;             ; 1           ; sconst_0                      ;                                                             ; 0Short(Byte)                                                ;   ; 
+		0001; 0           ; 4           ; putstatic_s(0,0)              ; 0Short(Byte)                                                ;                                                             ;   ; 
+		0004; 1           ; 7           ; lds(0,1)                      ;                                                             ; 4Ref                                                        ;   ; 
+		0007; 4           ; 10          ; putstatic_a(0,0)              ; 4Ref                                                        ;                                                             ;   ; 
+		0010; 7           ;             ; return                        ;                                                             ;                                                             ;   ; 
+
+	}
+
+}

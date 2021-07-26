@@ -17,11 +17,11 @@
 # cd ../libs
 
 
-benchlist=(binsrch bsort fillarray funcall hsort lec outlier)
-
+# benchlist=(binsrch bsort fillarray funcall hsort lec outlier)
+benchlist=(bsort)
 
 for bench in ${benchlist[*]}
 do 
     echo "start benchmark: $bench"
-    java -jar avrora.jar -single -monitors=c-print -mcu=atmega128 ../app/benchmark/$bench.elf | tee $bench.nativeoutput.txt 
+    java -jar avrora.jar -single -monitors=c-print,trace -trace-only-when-enabled=true -colors=false -mcu=atmega128 ../app/benchmark/$bench.elf | tee $bench.nativeoutput.txt 
 done

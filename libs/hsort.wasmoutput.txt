@@ -4,8 +4,803 @@ Loading ../bin/aot.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0          2212  [avrora.c-print] 1 0000
-   0       2819155  [avrora.c-print] 11 benchmark start.
-   0       3345117  [avrora.c-print] 11 benchmark stop.
+   0          2473  [avrora.c-print] 1 0000
+   0          2770  [avrora.trace]trace disabled --------------------------0
+   0         12641  [avrora.c-print] 11       sys | malloc 4 52c
+   0         17012  [avrora.c-print] 11       sys | malloc 35 532
+   0         22137  [avrora.c-print] 11       sys | malloc 8 557
+   0         26834  [avrora.c-print] 11       sys | malloc 8 561
+   0         31830  [avrora.c-print] 11       sys | malloc 9 56b
+   0         37768  [avrora.c-print] 11       sys | malloc 11 576
+   0         44096  [avrora.c-print] 11       sys | malloc 10 583
+   0         50463  [avrora.c-print] 11       sys | malloc 4 58f
+   0         55169  [avrora.c-print] 11       sys | malloc 37 595
+   0         60321  [avrora.c-print] 11       sys | malloc 2 5bc
+   0         64656  [avrora.c-print] 11       sys | malloc 28 5c0
+   0         69206  [avrora.c-print] 11       sys | malloc 4 5de
+   0         73914  [avrora.c-print] 11       sys | malloc 29 5e4
+   0         80018  [avrora.c-print] 11       sys | realloc 4 5bc 603
+   0         84384  [avrora.c-print] 11       sys | malloc 28 609
+   0         88945  [avrora.c-print] 11       sys | malloc 4 627
+   0         93432  [avrora.c-print] 11       sys | malloc 7 62d
+   0         99258  [avrora.c-print] 11       sys | realloc 6 603 636
+   0        103645  [avrora.c-print] 11       sys | malloc 28 63e
+   0        110450  [avrora.c-print] 11       sys | realloc 8 636 65c
+   0        114854  [avrora.c-print] 11       sys | malloc 28 666
+   0        119299  [avrora.c-print] 11       sys | malloc 10 684
+   0        126114  [avrora.c-print] 11       sys | realloc 10 65c 690
+   0        130539  [avrora.c-print] 11       sys | malloc 28 69c
+   0        135007  [avrora.c-print] 11       sys | malloc 10 6ba
+   0        141914  [avrora.c-print] 11       sys | realloc 12 690 6c6
+   0        146358  [avrora.c-print] 11       sys | malloc 28 6d4
+   0        150798  [avrora.c-print] 11       sys | malloc 10 690
+   0        157723  [avrora.c-print] 11       sys | realloc 14 6c6 6f2
+   0        162165  [avrora.c-print] 11       sys | malloc 28 702
+   0        166631  [avrora.c-print] 11       sys | malloc 10 6c6
+   0        174982  [avrora.c-print] 11       sys | malloc 105 720
+   0        191762  [avrora.c-print] 11       sys | realloc 4 0 603
+   0        197671  [avrora.c-print] 11       sys | realloc 8 603 65c
+   0        203916  [avrora.c-print] 11       sys | realloc 12 65c 78b
+   0        209808  [avrora.c-print] 11       sys | realloc 16 78b 78b
+   0        215700  [avrora.c-print] 11       sys | realloc 20 78b 78b
+   0        221592  [avrora.c-print] 11       sys | realloc 24 78b 78b
+   0        227299  [avrora.c-print] 11       sys | realloc 28 78b 78b
+   0        232330  [avrora.c-print] 11       sys | malloc 192 7a9
+   0        239980  [avrora.c-print] 11       sys | malloc 256 86b
+   0        253380  [avrora.c-print] 11      emit | [END]:0x73a4
+   0        256297  [avrora.c-print] 11      emit | func end
+   0        258716  [avrora.c-print] 11      emit | ret
+   0        344726  [avrora.c-print] 11       sys | free 86b
+   0        349575  [avrora.c-print] 11       sys | malloc 256 86b
+   0        363382  [avrora.c-print] 11      emit | [BLOCK nil]
+   0        367672  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0        372684  [avrora.c-print] 11      emit | Ld R22. from param[24]
+   0        375731  [avrora.c-print] 11      emit | push32
+   0        378731  [avrora.c-print] 11      emit | s: 1
+   0        383015  [avrora.c-print] 11      emit | [I32.CONST 1]
+   0        386972  [avrora.c-print] 11      emit | load 1 to R22.
+   0        389938  [avrora.c-print] 11      emit | push32
+   0        392936  [avrora.c-print] 11      emit | s: 2
+   0        398446  [avrora.c-print] 11      emit | [I32.Shl | I32ShrS | I32ShrU]
+   0        403932  [avrora.c-print] 11      emit | [I32.CONST 1]
+   0        407889  [avrora.c-print] 11      emit | load 1 to R22.
+   0        410855  [avrora.c-print] 11      emit | push32
+   0        413853  [avrora.c-print] 11      emit | s: 2
+   0        417507  [avrora.c-print] 11      emit | [I32.(logic)]
+   0        421306  [avrora.c-print] 11      emit | s: 1
+   0        425546  [avrora.c-print] 11      emit | [LOCAL.TEE 3]
+   0        429260  [avrora.c-print] 11      emit | pop32 to R22...
+   0        434612  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0        437656  [avrora.c-print] 11      emit | push32
+   0        442130  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0        447142  [avrora.c-print] 11      emit | Ld R22. from param[20]
+   0        450189  [avrora.c-print] 11      emit | push32
+   0        453189  [avrora.c-print] 11      emit | s: 2
+   0        458699  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0        465421  [avrora.c-print] 11      emit | push/pop optimized
+   0        470241  [avrora.c-print] 11      emit | push/pop optimized
+   0        474868  [avrora.c-print] 11      emit | push/pop optimized
+   0        569076  [avrora.c-print] 11      emit | [BR_IF 0]
+   0        572074  [avrora.c-print] 11      emit | s: 0
+   0        575155  [avrora.c-print] 11      emit | br 4
+   0        579147  [avrora.c-print] 11      emit | [LOOP nil]
+   0        583090  [avrora.c-print] 11      emit | [BLOCK nil]
+   0        587029  [avrora.c-print] 11      emit | [BLOCK nil]
+   0        591319  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0        596084  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0        599128  [avrora.c-print] 11      emit | push32
+   0        602128  [avrora.c-print] 11      emit | s: 1
+   0        606412  [avrora.c-print] 11      emit | [I32.CONST 1]
+   0        610369  [avrora.c-print] 11      emit | load 1 to R22.
+   0        613335  [avrora.c-print] 11      emit | push32
+   0        616333  [avrora.c-print] 11      emit | s: 2
+   0        619523  [avrora.c-print] 11      emit | [I32.ADD]
+   0        623005  [avrora.c-print] 11      emit | pop32 to R22.
+   0        626726  [avrora.c-print] 11      emit | pop32 to R18.
+   0        631723  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0        634697  [avrora.c-print] 11      emit | push32
+   0        637695  [avrora.c-print] 11      emit | s: 1
+   0        641928  [avrora.c-print] 11      emit | [LOCAL.TEE 4]
+   0        645642  [avrora.c-print] 11      emit | pop32 to R22...
+   0        650994  [avrora.c-print] 11      emit | Store R22... to local[4]
+   0        654038  [avrora.c-print] 11      emit | push32
+   0        658512  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0        663524  [avrora.c-print] 11      emit | Ld R22. from param[20]
+   0        666571  [avrora.c-print] 11      emit | push32
+   0        669571  [avrora.c-print] 11      emit | s: 2
+   0        675081  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0        682304  [avrora.c-print] 11      emit | push/pop optimized
+   0        687872  [avrora.c-print] 11      emit | push/pop optimized
+   0        692910  [avrora.c-print] 11      emit | push/pop optimized
+   0        697755  [avrora.c-print] 11      emit | push/pop optimized
+   0        703003  [avrora.c-print] 11      emit | [BR_IF 0]
+   0        706001  [avrora.c-print] 11      emit | s: 0
+   0        709082  [avrora.c-print] 11      emit | br 4
+   0        713541  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0        718306  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0        721350  [avrora.c-print] 11      emit | push32
+   0        724350  [avrora.c-print] 11      emit | s: 1
+   0        728583  [avrora.c-print] 11      emit | [LOCAL.SET 3]
+   0        732297  [avrora.c-print] 11      emit | pop32 to R22...
+   0        737649  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0        740782  [avrora.c-print] 11      emit | s: 0
+   0        744207  [avrora.c-print] 11      emit | [BR 1]
+   0        747092  [avrora.c-print] 11      emit | 330
+   0        751051  [avrora.c-print] 11      emit | [END]:0x74f2
+   0        754509  [avrora.c-print] 11      emit | of block 4
+   0        758811  [avrora.c-print] 11      emit | [LOCAL.GET 4]
+   0        763576  [avrora.c-print] 11      emit | Ld R22. from local[4]
+   0        766620  [avrora.c-print] 11      emit | push32
+   0        769620  [avrora.c-print] 11      emit | s: 1
+   0        773853  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0        778618  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0        781662  [avrora.c-print] 11      emit | push32
+   0        784662  [avrora.c-print] 11      emit | s: 2
+   0        788895  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0        793907  [avrora.c-print] 11      emit | Ld R22. from param[28]
+   0        796954  [avrora.c-print] 11      emit | push32
+   0        799954  [avrora.c-print] 11      emit | s: 3
+   0        804187  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0        808952  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0        811996  [avrora.c-print] 11      emit | push32
+   0        814996  [avrora.c-print] 11      emit | s: 4
+   0        819280  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0        823237  [avrora.c-print] 11      emit | load 2 to R22.
+   0        826203  [avrora.c-print] 11      emit | push32
+   0        829201  [avrora.c-print] 11      emit | s: 5
+   0        834711  [avrora.c-print] 11      emit | [I32.Shl | I32ShrS | I32ShrU]
+   0        839103  [avrora.c-print] 11      emit | [I32.ADD]
+   0        842585  [avrora.c-print] 11      emit | pop32 to R22.
+   0        846306  [avrora.c-print] 11      emit | pop32 to R18.
+   0        852331  [avrora.c-print] 11      emit | push/pop optimized
+   0        858153  [avrora.c-print] 11      emit | push/pop optimized
+   0        949885  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0        952859  [avrora.c-print] 11      emit | push32
+   0        955857  [avrora.c-print] 11      emit | s: 3
+   0        960228  [avrora.c-print] 11      emit | [I32.Load 0]
+   0        964536  [avrora.c-print] 11      emit | pop32 offset to R22.
+   0        969677  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0        974689  [avrora.c-print] 11      emit | Ld R22. from param[28]
+   0        977736  [avrora.c-print] 11      emit | push32
+   0        980736  [avrora.c-print] 11      emit | s: 4
+   0        984969  [avrora.c-print] 11      emit | [LOCAL.GET 4]
+   0        989734  [avrora.c-print] 11      emit | Ld R22. from local[4]
+   0        992778  [avrora.c-print] 11      emit | push32
+   0        995778  [avrora.c-print] 11      emit | s: 5
+   0       1000062  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0       1004019  [avrora.c-print] 11      emit | load 2 to R22.
+   0       1006985  [avrora.c-print] 11      emit | push32
+   0       1009983  [avrora.c-print] 11      emit | s: 6
+   0       1015493  [avrora.c-print] 11      emit | [I32.Shl | I32ShrS | I32ShrU]
+   0       1019885  [avrora.c-print] 11      emit | [I32.ADD]
+   0       1023367  [avrora.c-print] 11      emit | pop32 to R22.
+   0       1027088  [avrora.c-print] 11      emit | pop32 to R18.
+   0       1032085  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       1035059  [avrora.c-print] 11      emit | push32
+   0       1038057  [avrora.c-print] 11      emit | s: 4
+   0       1042428  [avrora.c-print] 11      emit | [I32.Load 0]
+   0       1046736  [avrora.c-print] 11      emit | pop32 offset to R22.
+   0       1053154  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0       1059179  [avrora.c-print] 11      emit | push/pop optimized
+   0       1065021  [avrora.c-print] 11      emit | push/pop optimized
+   0       1069659  [avrora.c-print] 11      emit | push/pop optimized
+   0       1077990  [avrora.c-print] 11      emit | [LOCAL.SET 3]
+   0       1081704  [avrora.c-print] 11      emit | pop32 to R22...
+   0       1087056  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       1090189  [avrora.c-print] 11      emit | s: 0
+   0       1094010  [avrora.c-print] 11      emit | [END]:0x7642
+   0       1097468  [avrora.c-print] 11      emit | of block 3
+   0       1101770  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       1106782  [avrora.c-print] 11      emit | Ld R22. from param[28]
+   0       1109829  [avrora.c-print] 11      emit | push32
+   0       1112829  [avrora.c-print] 11      emit | s: 1
+   0       1117062  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       1122074  [avrora.c-print] 11      emit | Ld R22. from param[24]
+   0       1125121  [avrora.c-print] 11      emit | push32
+   0       1128121  [avrora.c-print] 11      emit | s: 2
+   0       1132405  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0       1136362  [avrora.c-print] 11      emit | load 2 to R22.
+   0       1139328  [avrora.c-print] 11      emit | push32
+   0       1142326  [avrora.c-print] 11      emit | s: 3
+   0       1147836  [avrora.c-print] 11      emit | [I32.Shl | I32ShrS | I32ShrU]
+   0       1152228  [avrora.c-print] 11      emit | [I32.ADD]
+   0       1155710  [avrora.c-print] 11      emit | pop32 to R22.
+   0       1159431  [avrora.c-print] 11      emit | pop32 to R18.
+   0       1165446  [avrora.c-print] 11      emit | push/pop optimized
+   0       1171224  [avrora.c-print] 11      emit | push/pop optimized
+   0       1262956  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       1265930  [avrora.c-print] 11      emit | push32
+   0       1268928  [avrora.c-print] 11      emit | s: 1
+   0       1273161  [avrora.c-print] 11      emit | [LOCAL.TEE 1]
+   0       1276875  [avrora.c-print] 11      emit | pop32 to R22...
+   0       1282474  [avrora.c-print] 11      emit | Store R22... to param[24]
+   0       1285521  [avrora.c-print] 11      emit | push32
+   0       1290133  [avrora.c-print] 11      emit | [I32.Load 0]
+   0       1294441  [avrora.c-print] 11      emit | pop32 offset to R22.
+   0       1299582  [avrora.c-print] 11      emit | [LOCAL.TEE 4]
+   0       1303296  [avrora.c-print] 11      emit | pop32 to R22...
+   0       1308648  [avrora.c-print] 11      emit | Store R22... to local[4]
+   0       1311692  [avrora.c-print] 11      emit | push32
+   0       1316166  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       1321178  [avrora.c-print] 11      emit | Ld R22. from param[28]
+   0       1324225  [avrora.c-print] 11      emit | push32
+   0       1327225  [avrora.c-print] 11      emit | s: 2
+   0       1331458  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0       1336223  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       1339267  [avrora.c-print] 11      emit | push32
+   0       1342267  [avrora.c-print] 11      emit | s: 3
+   0       1346551  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0       1350508  [avrora.c-print] 11      emit | load 2 to R22.
+   0       1353474  [avrora.c-print] 11      emit | push32
+   0       1356472  [avrora.c-print] 11      emit | s: 4
+   0       1361982  [avrora.c-print] 11      emit | [I32.Shl | I32ShrS | I32ShrU]
+   0       1366374  [avrora.c-print] 11      emit | [I32.ADD]
+   0       1369856  [avrora.c-print] 11      emit | pop32 to R22.
+   0       1373577  [avrora.c-print] 11      emit | pop32 to R18.
+   0       1379602  [avrora.c-print] 11      emit | push/pop optimized
+   0       1385100  [avrora.c-print] 11      emit | push/pop optimized
+   0       1390853  [avrora.c-print] 11      emit | push/pop optimized
+   0       1482397  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       1485371  [avrora.c-print] 11      emit | push32
+   0       1488369  [avrora.c-print] 11      emit | s: 2
+   0       1492602  [avrora.c-print] 11      emit | [LOCAL.TEE 5]
+   0       1496316  [avrora.c-print] 11      emit | pop32 to R22...
+   0       1501668  [avrora.c-print] 11      emit | Store R22... to local[8]
+   0       1504712  [avrora.c-print] 11      emit | push32
+   0       1509324  [avrora.c-print] 11      emit | [I32.Load 0]
+   0       1513632  [avrora.c-print] 11      emit | pop32 offset to R22.
+   0       1518773  [avrora.c-print] 11      emit | [LOCAL.TEE 6]
+   0       1522487  [avrora.c-print] 11      emit | pop32 to R22...
+   0       1528079  [avrora.c-print] 11      emit | Store R22... to local[12]
+   0       1531123  [avrora.c-print] 11      emit | push32
+   0       1536874  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0       1542118  [avrora.c-print] 11      emit | [BR_IF 1]
+   0       1545116  [avrora.c-print] 11      emit | s: 0
+   0       1548197  [avrora.c-print] 11      emit | br 4
+   0       1552656  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       1557668  [avrora.c-print] 11      emit | Ld R22. from param[24]
+   0       1560715  [avrora.c-print] 11      emit | push32
+   0       1563715  [avrora.c-print] 11      emit | s: 1
+   0       1567948  [avrora.c-print] 11      emit | [LOCAL.GET 6]
+   0       1572953  [avrora.c-print] 11      emit | Ld R22. from local[12]
+   0       1575997  [avrora.c-print] 11      emit | push32
+   0       1578997  [avrora.c-print] 11      emit | s: 2
+   0       1583484  [avrora.c-print] 11      emit | [I32.STORE 0]
+   0       1587444  [avrora.c-print] 11      emit | pop32 val to R22.
+   0       1593404  [avrora.c-print] 11      emit | push/pop optimized
+   0       1598918  [avrora.c-print] 11      emit | push/pop optimized
+   0       1604300  [avrora.c-print] 11      emit | push/pop optimized
+   0       1609288  [avrora.c-print] 11      emit | push/pop optimized
+   0       1615296  [avrora.c-print] 11      emit | pop32 offset to R18.
+   0       1618977  [avrora.c-print] 11      emit | s: 0
+   0       1623216  [avrora.c-print] 11      emit | [LOCAL.GET 5]
+   0       1627981  [avrora.c-print] 11      emit | Ld R22. from local[8]
+   0       1631025  [avrora.c-print] 11      emit | push32
+   0       1634025  [avrora.c-print] 11      emit | s: 1
+   0       1638258  [avrora.c-print] 11      emit | [LOCAL.GET 4]
+   0       1643023  [avrora.c-print] 11      emit | Ld R22. from local[4]
+   0       1646067  [avrora.c-print] 11      emit | push32
+   0       1649067  [avrora.c-print] 11      emit | s: 2
+   0       1653554  [avrora.c-print] 11      emit | [I32.STORE 0]
+   0       1657514  [avrora.c-print] 11      emit | pop32 val to R22.
+   0       1662047  [avrora.c-print] 11      emit | pop32 offset to R18.
+   0       1665728  [avrora.c-print] 11      emit | s: 0
+   0       1669967  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0       1674732  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       1677776  [avrora.c-print] 11      emit | push32
+   0       1680776  [avrora.c-print] 11      emit | s: 1
+   0       1685009  [avrora.c-print] 11      emit | [LOCAL.SET 1]
+   0       1688723  [avrora.c-print] 11      emit | pop32 to R22...
+   0       1694322  [avrora.c-print] 11      emit | Store R22... to param[24]
+   0       1697458  [avrora.c-print] 11      emit | s: 0
+   0       1701697  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0       1706462  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       1709506  [avrora.c-print] 11      emit | push32
+   0       1712506  [avrora.c-print] 11      emit | s: 1
+   0       1716790  [avrora.c-print] 11      emit | [I32.CONST 1]
+   0       1720747  [avrora.c-print] 11      emit | load 1 to R22.
+   0       1723713  [avrora.c-print] 11      emit | push32
+   0       1726711  [avrora.c-print] 11      emit | s: 2
+   0       1732221  [avrora.c-print] 11      emit | [I32.Shl | I32ShrS | I32ShrU]
+   0       1739350  [avrora.c-print] 11      emit | push/pop optimized
+   0       1744588  [avrora.c-print] 11      emit | push/pop optimized
+   0       1836504  [avrora.c-print] 11      emit | [I32.CONST 1]
+   0       1840461  [avrora.c-print] 11      emit | load 1 to R22.
+   0       1843427  [avrora.c-print] 11      emit | push32
+   0       1846425  [avrora.c-print] 11      emit | s: 2
+   0       1850079  [avrora.c-print] 11      emit | [I32.(logic)]
+   0       1853878  [avrora.c-print] 11      emit | s: 1
+   0       1858118  [avrora.c-print] 11      emit | [LOCAL.TEE 3]
+   0       1861832  [avrora.c-print] 11      emit | pop32 to R22...
+   0       1867184  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       1870228  [avrora.c-print] 11      emit | push32
+   0       1874702  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       1879714  [avrora.c-print] 11      emit | Ld R22. from param[20]
+   0       1882761  [avrora.c-print] 11      emit | push32
+   0       1885761  [avrora.c-print] 11      emit | s: 2
+   0       1891271  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0       1896514  [avrora.c-print] 11      emit | [BR_IF 0]
+   0       1899512  [avrora.c-print] 11      emit | s: 0
+   0       1902593  [avrora.c-print] 11      emit | br 4
+   0       1906636  [avrora.c-print] 11      emit | [END]:0x78d0
+   0       1910094  [avrora.c-print] 11      emit | of block 2
+   0       1913973  [avrora.c-print] 11      emit | [END]:0x78d0
+   0       1917431  [avrora.c-print] 11      emit | of block 1
+   0       1921317  [avrora.c-print] 11      emit | [END]:0x78d0
+   0       1924234  [avrora.c-print] 11      emit | func end
+   0       1928658  [avrora.c-print] 11      emit | deinit 16B locals
+   0       1931295  [avrora.c-print] 11      emit | ret
+   0       1937001  [avrora.c-print] 11      emit | push/pop optimized
+   0       1942332  [avrora.c-print] 11      emit | push/pop optimized
+   0       1947470  [avrora.c-print] 11      emit | push/pop optimized
+   0       1952255  [avrora.c-print] 11      emit | push/pop optimized
+   0       2036554  [avrora.c-print] 11       sys | free 86b
+   0       2041403  [avrora.c-print] 11       sys | malloc 256 86b
+   0       2055625  [avrora.c-print] 11      emit | [CALL 0]
+   0       2062759  [avrora.c-print] 11      emit | call func rtc_startBenchmarkMeasurement_Native
+   0       2066756  [avrora.c-print] 11      emit | [BLOCK nil]
+   0       2071046  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       2076058  [avrora.c-print] 11      emit | Ld R22. from param[16]
+   0       2079105  [avrora.c-print] 11      emit | push32
+   0       2082105  [avrora.c-print] 11      emit | s: 1
+   0       2087165  [avrora.c-print] 11      emit | [BR_IF 0]
+   0       2090163  [avrora.c-print] 11      emit | s: 0
+   0       2093244  [avrora.c-print] 11      emit | br 4
+   0       2097703  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       2102715  [avrora.c-print] 11      emit | Ld R22. from param[16]
+   0       2105762  [avrora.c-print] 11      emit | push32
+   0       2108762  [avrora.c-print] 11      emit | s: 1
+   0       2113181  [avrora.c-print] 11      emit | [I32.CONST -2]
+   0       2117232  [avrora.c-print] 11      emit | load -2 to R22.
+   0       2120198  [avrora.c-print] 11      emit | push32
+   0       2123196  [avrora.c-print] 11      emit | s: 2
+   0       2126386  [avrora.c-print] 11      emit | [I32.ADD]
+   0       2129868  [avrora.c-print] 11      emit | pop32 to R22.
+   0       2133589  [avrora.c-print] 11      emit | pop32 to R18.
+   0       2138586  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       2141560  [avrora.c-print] 11      emit | push32
+   0       2144558  [avrora.c-print] 11      emit | s: 1
+   0       2148842  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0       2152799  [avrora.c-print] 11      emit | load 2 to R22.
+   0       2155765  [avrora.c-print] 11      emit | push32
+   0       2158763  [avrora.c-print] 11      emit | s: 2
+   0       2161953  [avrora.c-print] 11      emit | [I32.DIV]
+   0       2168582  [avrora.c-print] 11      emit | push/pop optimized
+   0       2173812  [avrora.c-print] 11      emit | push/pop optimized
+   0       2266858  [avrora.c-print] 11      emit | s: 1
+   0       2271098  [avrora.c-print] 11      emit | [LOCAL.SET 2]
+   0       2274812  [avrora.c-print] 11      emit | pop32 to R22...
+   0       2280164  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       2283297  [avrora.c-print] 11      emit | s: 0
+   0       2287069  [avrora.c-print] 11      emit | [LOOP nil]
+   0       2291363  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       2296375  [avrora.c-print] 11      emit | Ld R22. from param[12]
+   0       2299422  [avrora.c-print] 11      emit | push32
+   0       2302422  [avrora.c-print] 11      emit | s: 1
+   0       2306655  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       2311420  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       2314464  [avrora.c-print] 11      emit | push32
+   0       2317464  [avrora.c-print] 11      emit | s: 2
+   0       2321697  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       2326709  [avrora.c-print] 11      emit | Ld R22. from param[16]
+   0       2329756  [avrora.c-print] 11      emit | push32
+   0       2332756  [avrora.c-print] 11      emit | s: 3
+   0       2337053  [avrora.c-print] 11      emit | [CALL 4]
+   0       2340645  [avrora.c-print] 11      emit | call func f2
+   0       2343453  [avrora.c-print] 11      emit | drop32
+   0       2346401  [avrora.c-print] 11      emit | drop32
+   0       2349349  [avrora.c-print] 11      emit | drop32
+   0       2352389  [avrora.c-print] 11      emit | s: 0
+   0       2356629  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       2361394  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       2364438  [avrora.c-print] 11      emit | push32
+   0       2367438  [avrora.c-print] 11      emit | s: 1
+   0       2371722  [avrora.c-print] 11      emit | [I32.CONST 0]
+   0       2375679  [avrora.c-print] 11      emit | load 0 to R22.
+   0       2378645  [avrora.c-print] 11      emit | push32
+   0       2381643  [avrora.c-print] 11      emit | s: 2
+   0       2387153  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0       2392863  [avrora.c-print] 11      emit | [LOCAL.SET 3]
+   0       2396577  [avrora.c-print] 11      emit | pop32 to R22...
+   0       2401929  [avrora.c-print] 11      emit | Store R22... to local[4]
+   0       2405062  [avrora.c-print] 11      emit | s: 0
+   0       2409301  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       2414066  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       2420434  [avrora.c-print] 11      emit | push/pop optimized
+   0       2425114  [avrora.c-print] 11      emit | push/pop optimized
+   0       2429566  [avrora.c-print] 11      emit | push32
+   0       2432566  [avrora.c-print] 11      emit | s: 1
+   0       2436985  [avrora.c-print] 11      emit | [I32.CONST -1]
+   0       2441036  [avrora.c-print] 11      emit | load -1 to R22.
+   0       2444002  [avrora.c-print] 11      emit | push32
+   0       2447000  [avrora.c-print] 11      emit | s: 2
+   0       2450190  [avrora.c-print] 11      emit | [I32.ADD]
+   0       2453672  [avrora.c-print] 11      emit | pop32 to R22.
+   0       2457393  [avrora.c-print] 11      emit | pop32 to R18.
+   0       2462390  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       2465364  [avrora.c-print] 11      emit | push32
+   0       2468362  [avrora.c-print] 11      emit | s: 1
+   0       2472595  [avrora.c-print] 11      emit | [LOCAL.SET 2]
+   0       2476309  [avrora.c-print] 11      emit | pop32 to R22...
+   0       2481661  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       2484794  [avrora.c-print] 11      emit | s: 0
+   0       2489033  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0       2493798  [avrora.c-print] 11      emit | Ld R22. from local[4]
+   0       2496842  [avrora.c-print] 11      emit | push32
+   0       2499842  [avrora.c-print] 11      emit | s: 1
+   0       2503609  [avrora.c-print] 11      emit | [BR_IF 0]
+   0       2506607  [avrora.c-print] 11      emit | s: 0
+   0       2509688  [avrora.c-print] 11      emit | br 4
+   0       2513731  [avrora.c-print] 11      emit | [END]:0x7a50
+   0       2517189  [avrora.c-print] 11      emit | of block 2
+   0       2521484  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       2526496  [avrora.c-print] 11      emit | Ld R22. from param[16]
+   0       2529543  [avrora.c-print] 11      emit | push32
+   0       2532543  [avrora.c-print] 11      emit | s: 1
+   0       2536827  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0       2540784  [avrora.c-print] 11      emit | load 2 to R22.
+   0       2543750  [avrora.c-print] 11      emit | push32
+   0       2546748  [avrora.c-print] 11      emit | s: 2
+   0       2552258  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0       2559622  [avrora.c-print] 11      emit | push/pop optimized
+   0       2565072  [avrora.c-print] 11      emit | push/pop optimized
+   0       2570266  [avrora.c-print] 11      emit | push/pop optimized
+   0       2575302  [avrora.c-print] 11      emit | push/pop optimized
+   0       2665918  [avrora.c-print] 11      emit | [BR_IF 0]
+   0       2668916  [avrora.c-print] 11      emit | s: 0
+   0       2671997  [avrora.c-print] 11      emit | br 4
+   0       2676456  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       2681468  [avrora.c-print] 11      emit | Ld R22. from param[16]
+   0       2684515  [avrora.c-print] 11      emit | push32
+   0       2687515  [avrora.c-print] 11      emit | s: 1
+   0       2691799  [avrora.c-print] 11      emit | [I32.CONST 1]
+   0       2695756  [avrora.c-print] 11      emit | load 1 to R22.
+   0       2698722  [avrora.c-print] 11      emit | push32
+   0       2701720  [avrora.c-print] 11      emit | s: 2
+   0       2704910  [avrora.c-print] 11      emit | [I32.ADD]
+   0       2708392  [avrora.c-print] 11      emit | pop32 to R22.
+   0       2712113  [avrora.c-print] 11      emit | pop32 to R18.
+   0       2717110  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       2720084  [avrora.c-print] 11      emit | push32
+   0       2723082  [avrora.c-print] 11      emit | s: 1
+   0       2727315  [avrora.c-print] 11      emit | [LOCAL.SET 3]
+   0       2731029  [avrora.c-print] 11      emit | pop32 to R22...
+   0       2736381  [avrora.c-print] 11      emit | Store R22... to local[4]
+   0       2739514  [avrora.c-print] 11      emit | s: 0
+   0       2743753  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       2748765  [avrora.c-print] 11      emit | Ld R22. from param[16]
+   0       2751812  [avrora.c-print] 11      emit | push32
+   0       2754812  [avrora.c-print] 11      emit | s: 1
+   0       2759096  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0       2763053  [avrora.c-print] 11      emit | load 2 to R22.
+   0       2766019  [avrora.c-print] 11      emit | push32
+   0       2769017  [avrora.c-print] 11      emit | s: 2
+   0       2774527  [avrora.c-print] 11      emit | [I32.Shl | I32ShrS | I32ShrU]
+   0       2779962  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       2784974  [avrora.c-print] 11      emit | Ld R22. from param[12]
+   0       2788021  [avrora.c-print] 11      emit | push32
+   0       2791021  [avrora.c-print] 11      emit | s: 2
+   0       2794211  [avrora.c-print] 11      emit | [I32.ADD]
+   0       2797693  [avrora.c-print] 11      emit | pop32 to R22.
+   0       2803762  [avrora.c-print] 11      emit | push/pop optimized
+   0       2809020  [avrora.c-print] 11      emit | push/pop optimized
+   0       2815098  [avrora.c-print] 11      emit | pop32 to R18.
+   0       2820095  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       2823069  [avrora.c-print] 11      emit | push32
+   0       2826067  [avrora.c-print] 11      emit | s: 1
+   0       2830486  [avrora.c-print] 11      emit | [I32.CONST -4]
+   0       2834537  [avrora.c-print] 11      emit | load -4 to R22.
+   0       2837503  [avrora.c-print] 11      emit | push32
+   0       2840501  [avrora.c-print] 11      emit | s: 2
+   0       2843691  [avrora.c-print] 11      emit | [I32.ADD]
+   0       2847173  [avrora.c-print] 11      emit | pop32 to R22.
+   0       2850894  [avrora.c-print] 11      emit | pop32 to R18.
+   0       2855891  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       2858865  [avrora.c-print] 11      emit | push32
+   0       2861863  [avrora.c-print] 11      emit | s: 1
+   0       2866096  [avrora.c-print] 11      emit | [LOCAL.SET 2]
+   0       2869810  [avrora.c-print] 11      emit | pop32 to R22...
+   0       2875162  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       2878295  [avrora.c-print] 11      emit | s: 0
+   0       2882067  [avrora.c-print] 11      emit | [LOOP nil]
+   0       2886361  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       2891126  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       2894170  [avrora.c-print] 11      emit | push32
+   0       2897170  [avrora.c-print] 11      emit | s: 1
+   0       2901541  [avrora.c-print] 11      emit | [I32.Load 0]
+   0       2905849  [avrora.c-print] 11      emit | pop32 offset to R22.
+   0       2910990  [avrora.c-print] 11      emit | [LOCAL.SET 0]
+   0       2914704  [avrora.c-print] 11      emit | pop32 to R22...
+   0       2920303  [avrora.c-print] 11      emit | Store R22... to param[16]
+   0       2923439  [avrora.c-print] 11      emit | s: 0
+   0       2927678  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       2932443  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       2935487  [avrora.c-print] 11      emit | push32
+   0       2938487  [avrora.c-print] 11      emit | s: 1
+   0       2942720  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       2947732  [avrora.c-print] 11      emit | Ld R22. from param[12]
+   0       2950779  [avrora.c-print] 11      emit | push32
+   0       2953779  [avrora.c-print] 11      emit | s: 2
+   0       2958150  [avrora.c-print] 11      emit | [I32.Load 0]
+   0       2962458  [avrora.c-print] 11      emit | pop32 offset to R22.
+   0       2968789  [avrora.c-print] 11      emit | push/pop optimized
+   0       2974146  [avrora.c-print] 11      emit | push/pop optimized
+   0       2979242  [avrora.c-print] 11      emit | push/pop optimized
+   0       2984225  [avrora.c-print] 11      emit | push/pop optimized
+   0       3075888  [avrora.c-print] 11      emit | [I32.STORE 0]
+   0       3079848  [avrora.c-print] 11      emit | pop32 val to R22.
+   0       3084381  [avrora.c-print] 11      emit | pop32 offset to R18.
+   0       3088062  [avrora.c-print] 11      emit | s: 0
+   0       3092301  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       3097313  [avrora.c-print] 11      emit | Ld R22. from param[12]
+   0       3100360  [avrora.c-print] 11      emit | push32
+   0       3103360  [avrora.c-print] 11      emit | s: 1
+   0       3107593  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       3112605  [avrora.c-print] 11      emit | Ld R22. from param[16]
+   0       3115652  [avrora.c-print] 11      emit | push32
+   0       3118652  [avrora.c-print] 11      emit | s: 2
+   0       3123139  [avrora.c-print] 11      emit | [I32.STORE 0]
+   0       3127099  [avrora.c-print] 11      emit | pop32 val to R22.
+   0       3131632  [avrora.c-print] 11      emit | pop32 offset to R18.
+   0       3135313  [avrora.c-print] 11      emit | s: 0
+   0       3139552  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       3144564  [avrora.c-print] 11      emit | Ld R22. from param[12]
+   0       3147611  [avrora.c-print] 11      emit | push32
+   0       3150611  [avrora.c-print] 11      emit | s: 1
+   0       3154895  [avrora.c-print] 11      emit | [I32.CONST 0]
+   0       3158852  [avrora.c-print] 11      emit | load 0 to R22.
+   0       3161818  [avrora.c-print] 11      emit | push32
+   0       3164816  [avrora.c-print] 11      emit | s: 2
+   0       3169049  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0       3173814  [avrora.c-print] 11      emit | Ld R22. from local[4]
+   0       3176858  [avrora.c-print] 11      emit | push32
+   0       3179858  [avrora.c-print] 11      emit | s: 3
+   0       3184277  [avrora.c-print] 11      emit | [I32.CONST -2]
+   0       3188328  [avrora.c-print] 11      emit | load -2 to R22.
+   0       3191294  [avrora.c-print] 11      emit | push32
+   0       3194292  [avrora.c-print] 11      emit | s: 4
+   0       3197482  [avrora.c-print] 11      emit | [I32.ADD]
+   0       3200964  [avrora.c-print] 11      emit | pop32 to R22.
+   0       3204685  [avrora.c-print] 11      emit | pop32 to R18.
+   0       3209682  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       3215850  [avrora.c-print] 11      emit | push/pop optimized
+   0       3221235  [avrora.c-print] 11      emit | push/pop optimized
+   0       3310971  [avrora.c-print] 11      emit | push32
+   0       3313969  [avrora.c-print] 11      emit | s: 3
+   0       3318266  [avrora.c-print] 11      emit | [CALL 4]
+   0       3321858  [avrora.c-print] 11      emit | call func f2
+   0       3324666  [avrora.c-print] 11      emit | drop32
+   0       3327614  [avrora.c-print] 11      emit | drop32
+   0       3330562  [avrora.c-print] 11      emit | drop32
+   0       3333602  [avrora.c-print] 11      emit | s: 0
+   0       3337842  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       3342607  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       3345651  [avrora.c-print] 11      emit | push32
+   0       3348651  [avrora.c-print] 11      emit | s: 1
+   0       3353070  [avrora.c-print] 11      emit | [I32.CONST -4]
+   0       3357121  [avrora.c-print] 11      emit | load -4 to R22.
+   0       3360087  [avrora.c-print] 11      emit | push32
+   0       3363085  [avrora.c-print] 11      emit | s: 2
+   0       3366275  [avrora.c-print] 11      emit | [I32.ADD]
+   0       3369757  [avrora.c-print] 11      emit | pop32 to R22.
+   0       3373478  [avrora.c-print] 11      emit | pop32 to R18.
+   0       3378475  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       3381449  [avrora.c-print] 11      emit | push32
+   0       3384447  [avrora.c-print] 11      emit | s: 1
+   0       3388680  [avrora.c-print] 11      emit | [LOCAL.SET 2]
+   0       3392394  [avrora.c-print] 11      emit | pop32 to R22...
+   0       3397746  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       3400879  [avrora.c-print] 11      emit | s: 0
+   0       3405118  [avrora.c-print] 11      emit | [LOCAL.GET 3]
+   0       3409883  [avrora.c-print] 11      emit | Ld R22. from local[4]
+   0       3412927  [avrora.c-print] 11      emit | push32
+   0       3415927  [avrora.c-print] 11      emit | s: 1
+   0       3420346  [avrora.c-print] 11      emit | [I32.CONST -1]
+   0       3424397  [avrora.c-print] 11      emit | load -1 to R22.
+   0       3427363  [avrora.c-print] 11      emit | push32
+   0       3430361  [avrora.c-print] 11      emit | s: 2
+   0       3433551  [avrora.c-print] 11      emit | [I32.ADD]
+   0       3437033  [avrora.c-print] 11      emit | pop32 to R22.
+   0       3440754  [avrora.c-print] 11      emit | pop32 to R18.
+   0       3445751  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       3448725  [avrora.c-print] 11      emit | push32
+   0       3451723  [avrora.c-print] 11      emit | s: 1
+   0       3455956  [avrora.c-print] 11      emit | [LOCAL.TEE 3]
+   0       3459670  [avrora.c-print] 11      emit | pop32 to R22...
+   0       3465958  [avrora.c-print] 11      emit | push/pop optimized
+   0       3471086  [avrora.c-print] 11      emit | push/pop optimized
+   0       3476041  [avrora.c-print] 11      emit | push/pop optimized
+   0       3482683  [avrora.c-print] 11      emit | Store R22... to local[4]
+   0       3485727  [avrora.c-print] 11      emit | push32
+   0       3490252  [avrora.c-print] 11      emit | [I32.CONST 2]
+   0       3494209  [avrora.c-print] 11      emit | load 2 to R22.
+   0       3497175  [avrora.c-print] 11      emit | push32
+   0       3500173  [avrora.c-print] 11      emit | s: 2
+   0       3505683  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0       3510927  [avrora.c-print] 11      emit | [BR_IF 0]
+   0       3513925  [avrora.c-print] 11      emit | s: 0
+   0       3517006  [avrora.c-print] 11      emit | br 4
+   0       3521051  [avrora.c-print] 11      emit | [END]:0x7d0e
+   0       3524509  [avrora.c-print] 11      emit | of block 2
+   0       3528390  [avrora.c-print] 11      emit | [END]:0x7d0e
+   0       3531848  [avrora.c-print] 11      emit | of block 1
+   0       3536214  [avrora.c-print] 11      emit | [CALL 1]
+   0       3542516  [avrora.c-print] 11      emit | call func rtc_stopBenchmarkMeasurement
+   0       3546448  [avrora.c-print] 11      emit | [END]:0x7d12
+   0       3549365  [avrora.c-print] 11      emit | func end
+   0       3553549  [avrora.c-print] 11      emit | deinit 8B locals
+   0       3556186  [avrora.c-print] 11      emit | ret
+   0       3561601  [avrora.c-print] 11      emit | push/pop optimized
+   0       3566460  [avrora.c-print] 11      emit | push/pop optimized
+   0       3647113  [avrora.c-print] 11       sys | free 86b
+   0       3651962  [avrora.c-print] 11       sys | malloc 256 86b
+   0       3667801  [avrora.c-print] 11      emit | [I32.CONST 99]
+   0       3671998  [avrora.c-print] 11      emit | load 99 to R22.
+   0       3674964  [avrora.c-print] 11      emit | push32
+   0       3677962  [avrora.c-print] 11      emit | s: 1
+   0       3682195  [avrora.c-print] 11      emit | [LOCAL.SET 0]
+   0       3685909  [avrora.c-print] 11      emit | pop32 to R22...
+   0       3691261  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       3694394  [avrora.c-print] 11      emit | s: 0
+   0       3699349  [avrora.c-print] 11      emit | [I32.CONST 400]
+   0       3703786  [avrora.c-print] 11      emit | load 400 to R22.
+   0       3706752  [avrora.c-print] 11      emit | push32
+   0       3709750  [avrora.c-print] 11      emit | s: 1
+   0       3714047  [avrora.c-print] 11      emit | [CALL 2]
+   0       3720674  [avrora.c-print] 11      emit | pop32 for param 0 at R22.
+   0       3724890  [avrora.c-print] 11      emit | call func malloc
+   0       3730128  [avrora.c-print] 11      emit | push32 for return type i32
+   0       3734617  [avrora.c-print] 11      emit | [LOCAL.TEE 1]
+   0       3738331  [avrora.c-print] 11      emit | pop32 to R22...
+   0       3743683  [avrora.c-print] 11      emit | Store R22... to local[4]
+   0       3746727  [avrora.c-print] 11      emit | push32
+   0       3751201  [avrora.c-print] 11      emit | [LOCAL.SET 2]
+   0       3754915  [avrora.c-print] 11      emit | pop32 to R22...
+   0       3760267  [avrora.c-print] 11      emit | Store R22... to local[8]
+   0       3763400  [avrora.c-print] 11      emit | s: 0
+   0       3767172  [avrora.c-print] 11      emit | [LOOP nil]
+   0       3771466  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       3776231  [avrora.c-print] 11      emit | Ld R22. from local[8]
+   0       3779275  [avrora.c-print] 11      emit | push32
+   0       3782275  [avrora.c-print] 11      emit | s: 1
+   0       3786508  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       3791273  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       3794317  [avrora.c-print] 11      emit | push32
+   0       3800528  [avrora.c-print] 11      emit | push/pop optimized
+   0       3805707  [avrora.c-print] 11      emit | push/pop optimized
+   0       3810600  [avrora.c-print] 11      emit | push/pop optimized
+   0       3815343  [avrora.c-print] 11      emit | push/pop optimized
+   0       3909354  [avrora.c-print] 11      emit | s: 2
+   0       3913841  [avrora.c-print] 11      emit | [I32.STORE 0]
+   0       3917801  [avrora.c-print] 11      emit | pop32 val to R22.
+   0       3922334  [avrora.c-print] 11      emit | pop32 offset to R18.
+   0       3926015  [avrora.c-print] 11      emit | s: 0
+   0       3930254  [avrora.c-print] 11      emit | [LOCAL.GET 2]
+   0       3935019  [avrora.c-print] 11      emit | Ld R22. from local[8]
+   0       3938063  [avrora.c-print] 11      emit | push32
+   0       3941063  [avrora.c-print] 11      emit | s: 1
+   0       3945347  [avrora.c-print] 11      emit | [I32.CONST 4]
+   0       3949304  [avrora.c-print] 11      emit | load 4 to R22.
+   0       3952270  [avrora.c-print] 11      emit | push32
+   0       3955268  [avrora.c-print] 11      emit | s: 2
+   0       3958458  [avrora.c-print] 11      emit | [I32.ADD]
+   0       3961940  [avrora.c-print] 11      emit | pop32 to R22.
+   0       3965661  [avrora.c-print] 11      emit | pop32 to R18.
+   0       3970658  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       3973632  [avrora.c-print] 11      emit | push32
+   0       3976630  [avrora.c-print] 11      emit | s: 1
+   0       3980863  [avrora.c-print] 11      emit | [LOCAL.SET 2]
+   0       3984577  [avrora.c-print] 11      emit | pop32 to R22...
+   0       3989929  [avrora.c-print] 11      emit | Store R22... to local[8]
+   0       3993062  [avrora.c-print] 11      emit | s: 0
+   0       3997301  [avrora.c-print] 11      emit | [LOCAL.GET 0]
+   0       4002066  [avrora.c-print] 11      emit | Ld R22. from local[0]
+   0       4005110  [avrora.c-print] 11      emit | push32
+   0       4008110  [avrora.c-print] 11      emit | s: 1
+   0       4012529  [avrora.c-print] 11      emit | [I32.CONST -1]
+   0       4016580  [avrora.c-print] 11      emit | load -1 to R22.
+   0       4019546  [avrora.c-print] 11      emit | push32
+   0       4022544  [avrora.c-print] 11      emit | s: 2
+   0       4025734  [avrora.c-print] 11      emit | [I32.ADD]
+   0       4029216  [avrora.c-print] 11      emit | pop32 to R22.
+   0       4032937  [avrora.c-print] 11      emit | pop32 to R18.
+   0       4037934  [avrora.c-print] 11      emit | add32 R22. = R22. + R18.
+   0       4040908  [avrora.c-print] 11      emit | push32
+   0       4043906  [avrora.c-print] 11      emit | s: 1
+   0       4048139  [avrora.c-print] 11      emit | [LOCAL.TEE 0]
+   0       4051853  [avrora.c-print] 11      emit | pop32 to R22...
+   0       4057205  [avrora.c-print] 11      emit | Store R22... to local[0]
+   0       4063577  [avrora.c-print] 11      emit | push/pop optimized
+   0       4068783  [avrora.c-print] 11      emit | push/pop optimized
+   0       4073816  [avrora.c-print] 11      emit | push/pop optimized
+   0       4078382  [avrora.c-print] 11      emit | push/pop optimized
+   0       4082308  [avrora.c-print] 11      emit | push32
+   0       4086968  [avrora.c-print] 11      emit | [I32.CONST -1]
+   0       4091019  [avrora.c-print] 11      emit | load -1 to R22.
+   0       4093985  [avrora.c-print] 11      emit | push32
+   0       4096983  [avrora.c-print] 11      emit | s: 2
+   0       4102493  [avrora.c-print] 11      emit | [I32.(ComparisonInstruction)]
+   0       4107747  [avrora.c-print] 11      emit | [BR_IF 0]
+   0       4110745  [avrora.c-print] 11      emit | s: 0
+   0       4113826  [avrora.c-print] 11      emit | br 4
+   0       4117869  [avrora.c-print] 11      emit | [END]:0x7e58
+   0       4121327  [avrora.c-print] 11      emit | of block 1
+   0       4126338  [avrora.c-print] 11      emit | [I32.CONST 100]
+   0       4130775  [avrora.c-print] 11      emit | load 100 to R22.
+   0       4133741  [avrora.c-print] 11      emit | push32
+   0       4136739  [avrora.c-print] 11      emit | s: 1
+   0       4140972  [avrora.c-print] 11      emit | [LOCAL.GET 1]
+   0       4145737  [avrora.c-print] 11      emit | Ld R22. from local[4]
+   0       4148781  [avrora.c-print] 11      emit | push32
+   0       4151781  [avrora.c-print] 11      emit | s: 2
+   0       4156078  [avrora.c-print] 11      emit | [CALL 5]
+   0       4159670  [avrora.c-print] 11      emit | call func f3
+   0       4162478  [avrora.c-print] 11      emit | drop32
+   0       4165426  [avrora.c-print] 11      emit | drop32
+   0       4168466  [avrora.c-print] 11      emit | s: 0
+   0       4172292  [avrora.c-print] 11      emit | [END]:0x7e8c
+   0       4175209  [avrora.c-print] 11      emit | func end
+   0       4179633  [avrora.c-print] 11      emit | deinit 12B locals
+   0       4183245  [avrora.c-print] 11      emit | ret
+   0       4189225  [avrora.c-print] 11      emit | push/pop optimized
+   0       4194733  [avrora.c-print] 11      emit | push/pop optimized
+   0       4365964  [avrora.c-print] 11       sys | free 86b
+   0       4370803  [avrora.c-print] 11       sys | malloc 256 86b
+   0       4385524  [avrora.c-print] 11      temp | table address: 32408
+   0       4471554  [avrora.c-print] 11       sys | free 86b
+   0       4476271  [avrora.c-print] 11       sys | malloc 256 86b
+   0       5478239  [avrora.c-print] 11       sys | free 86b
+   0       5481573  [avrora.c-print] 11      temp | SP:0x10f9
+   0       5484707  [avrora.c-print] 11      temp | start exec
+   0       5489165  [avrora.c-print] 11      temp | mem size:3725
+   0       5489185  [avrora.c-print] 11 
+   0       5493584  [avrora.c-print] 11      temp | copy 28 B globals
+   0       5497536  [avrora.c-print] 11      temp | mem_start:0x232
+   0       5500893  [avrora.c-print] 11         | start exec
+   0       5504590  [avrora.c-print] 11 malloc from 0 to 400
+   0       5522595  [avrora.trace]trace enabled ---------------------------1
+   0       5574868  [avrora.trace]trace disabled --------------------------0
+   0       5579118  [avrora.c-print] 11         | wasm func returned.
 ==============================================================================
-Simulated time: 3345222 cycles
+Simulated time: 5579137 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 31337 
+Program throughput: 0.0056168186 instrs/cycle
+Program throughput: 0.04493455 mips
+com	4
+brge	101
+sub	5
+bst	1
+dec	732
+sbiw	51
+jmp	150
+out	204
+pop	6574
+movw	209
+brtc	2
+breq	205
+mov	2
+cpc	1464
+ret	55
+add	956
+adc	2724
+st	2
+std	1834
+brpl	699
+or	354
+in	102
+brne	82
+ldd	4648
+cp	488
+push	5774
+rjmp	251
+brcs	33
+ldi	2961
+call	55
+sts	1
+sbrc	2
+sbc	9
+brlt	150
+ld	200
+adiw	253
+

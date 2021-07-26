@@ -1,7 +1,9 @@
 #include "benchmark.h"
 #include "AvroraPrint.h"
+#include "AvroraTrace.h"
 #include <stdarg.h>
 #include <stdio.h>
+
 void avr_Print(char * str)
 {
 	int i;
@@ -45,9 +47,10 @@ void rtc_startBenchmarkMeasurement_Native(){
     avroraWriteCharBuffer('r');
     avroraWriteCharBuffer('t');
     avroraPrintCharBuffer();
+    avroraTraceEnable();
 }
 void rtc_stopBenchmarkMeasurement(){
-    // avr_Print("stop");
+    avroraTraceDisable();
     avroraWriteCharBuffer('b');
     avroraWriteCharBuffer('e');
     avroraWriteCharBuffer('n');

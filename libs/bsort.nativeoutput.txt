@@ -1,11 +1,44 @@
-[1;34mAvrora [1;00m[[1;34mBeta 1.7.117[1;00m] - (c) 2003-2007 UCLA Compilers Group
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
 
-[0;33mLoading ../app/benchmark/bsort.elf[1;00m...[0;32mOK[1;00m
+Loading ../app/benchmark/bsort.elf...OK
 =={ Simulation events }=======================================================
-[0;32mNode          Time   Event[1;00m
+Node          Time   Event
 ------------------------------------------------------------------------------
-   0            84  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:06 R27:01 R28:FF R29:10 R30:46 R31:04 
-   0          4170  [avrora.c-print] 11 benchstart
-   0       1606165  [avrora.c-print] 11 benchstop
+   0            84  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:06 R27:01 R28:FF R29:10 R30:A4 R31:04 
+   0           114  [avrora.trace]trace disabled --------------------------0
+   0           382  [avrora.c-print] 11 benchstart
+   0           385  [avrora.trace]trace enabled ---------------------------1
+   0           408  [avrora.c-print] 8 0
+   0           530  [avrora.c-print] 8 1
+   0           603  [avrora.c-print] 8 2
+   0           650  [avrora.trace]trace disabled --------------------------0
+   0           701  [avrora.c-print] 11 benchstop
 ==============================================================================
-[0;32mSimulated time[1;00m: [1;36m1606172[1;00m cycles
+Simulated time: 708 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 170 
+Program throughput: 0.24011299 instrs/cycle
+Program throughput: 1.9209039 mips
+ret	1
+brge	3
+sbci	3
+sub	3
+st	15
+std	9
+sbiw	6
+jmp	1
+cp	13
+ldd	9
+rjmp	6
+ldi	9
+movw	7
+pop	13
+breq	10
+sts	10
+sbc	4
+mov	7
+cpc	19
+ld	15
+adiw	3
+subi	4
+

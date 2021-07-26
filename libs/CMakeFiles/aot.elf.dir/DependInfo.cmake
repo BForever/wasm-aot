@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/fanhc/wasm-aot/src/debug.c" "/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir/src/debug.c.o"
   "/home/fanhc/wasm-aot/src/instructions.c" "/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir/src/instructions.c.o"
   "/home/fanhc/wasm-aot/src/main.c" "/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir/src/main.c.o"
+  "/home/fanhc/wasm-aot/src/memory.c" "/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir/src/memory.c.o"
   "/home/fanhc/wasm-aot/src/parse.c" "/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir/src/parse.c.o"
   "/home/fanhc/wasm-aot/src/rtc_emit.c" "/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir/src/rtc_emit.c.o"
   "/home/fanhc/wasm-aot/src/user_import.c" "/home/fanhc/wasm-aot/libs/CMakeFiles/aot.elf.dir/src/user_import.c.o"

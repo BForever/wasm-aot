@@ -12,22 +12,15 @@ void ParseSection_Global(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Start(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Data(wasm_module_ptr module, bytes start, bytes end);
-extern wasm_module g_module;
 
 
 wasm_module_ptr wasm_load_module(wasm_code_ptr code)
 {
-    log(parse, "code addr:%p", code);
-
     int result = 0;
     wasm_module_ptr module;
-    // module = sys_malloc(sizeof(wasm_module));
-    module = &g_module;
+    module = sys_malloc(sizeof(wasm_module));
 
-    module->name = ".unnamed";
-
-    log(parse, "load module: %d bytes", code->length);
-    log(parse, "at %p", code->ptr);
+    log(parse, "load module: %d bytes at %p", code->length,code->ptr);
 
     bytes pos = code->ptr;
     bytes end = pos + code->length;
@@ -510,7 +503,7 @@ void ParseSection_Data(wasm_module_ptr module, bytes start, bytes end)
 
         segment->initExpr = start;
         Parse_InitExpr(module, &start, end);
-        segment->initExprSize = (u32)(start - segment->initExpr);
+        segment->initExprSize = (u16)(start - segment->initExpr);
 
         if (segment->initExprSize <= 1)
         {

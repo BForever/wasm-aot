@@ -3,21 +3,22 @@
 
 #include<stdio.h>
 #include<avr/io.h>
-#define DEBUG 0
+#define DEBUG 1
 #define d_log_parse     0
 #define d_log_compile   0
-#define d_log_wkreprog  1
-#define d_log_emit      1
+#define d_log_wkreprog  0
+#define d_log_emit      0
 #define d_log_sys       0
 #define d_log_temp      1
-#define d_log_panic     0
+#define d_log_panic     1
+
 
 #ifdef AVRORA
 // extern char global_print_buff[128];
 // #define printf(FMT,...) do{snprintf(global_print_buff,128,FMT,##__VA_ARGS__);avr_Print(global_print_buff);}while(0)
 
     void avr_Printf(char * format, ...);
-    #define printf    avr_Printf
+    #define printf(fmt,...)    do{static char __attribute__((section (".progmem"))) literal[]=fmt;avr_Printf(literal,##__VA_ARGS__);}while(0)
     
 #endif
 
@@ -73,13 +74,12 @@
 # endif
 
 #if d_log_panic
-#define panicf(FMT,...)  do{printf("%s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);while(1);}while(0)
-#define panic()  do{printf("%s :%d\r\n",__FILE__,__LINE__);while(1);}while(0)
+#define panicf(FMT,...)  do{printf("panic! : "FMT " %s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);while(1);}while(0)
+#define panic()  do{printf("panic at ""%s :%d\r\n",__FILE__,__LINE__);while(1);}while(0)
 #else
 #define panicf(FMT,...)  do{while(1);}while(0)
 #define panic()  do{while(1);}while(0)
 #endif
-
 
 #define STACK_POINTER() ((char *)AVR_STACK_POINTER_REG)
 

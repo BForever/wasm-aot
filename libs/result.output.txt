@@ -1,29 +1,73 @@
 
-in ./lec.wasmoutput.txt :
--
-in ./fillarray.wasmoutput.txt :
-39638
-in ./binsrch.wasmoutput.txt :
-3140136
-in ./funcall.wasmoutput.txt :
-1965
-in ./hsort.wasmoutput.txt :
-525962
-in ./bsort.wasmoutput.txt :
-16929322
-in ./test.wasmoutput.txt :
-16929322
 in ./fillarray.nativeoutput.txt :
-3917
+4175
+8043
+3868
+in ./lec.wasmoutput.txt :
+5071007
+5141893
+70886
 in ./outlier.nativeoutput.txt :
-32536
+997
+33484
+32487
+in ./wasmbench.output.txt :
+
+
+-
 in ./binsrch.nativeoutput.txt :
-255080
+2153
+257184
+255031
+in ./result.output.txt :
+
+
+-
+in ./outlier.wasmoutput.txt :
+
+
+-
 in ./lec.nativeoutput.txt :
-106774
+1995
+14431
+12436
+in ./fillarray.wasmoutput.txt :
+964832
+998931
+34099
 in ./funcall.nativeoutput.txt :
-58
+136
+145
+9
 in ./bsort.nativeoutput.txt :
-1601995
+4179
+1606125
+1601946
 in ./hsort.nativeoutput.txt :
-224868
+1839
+61305
+59466
+in ./fft.wasmoutput.txt :
+
+
+-
+in ./binsrch.wasmoutput.txt :
+1823807
+5527103
+3703296
+in ./funcall.wasmoutput.txt :
+418312
+418322
+10
+in ./hsort.wasmoutput.txt :
+2924132
+3691069
+766937
+in ./bsort.wasmoutput.txt :
+1888563
+6084
+-1882479
+in ./test.wasmoutput.txt :
+
+
+-

@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/aot.elf.dir/src/debug.c.o"
   "CMakeFiles/aot.elf.dir/src/instructions.c.o"
   "CMakeFiles/aot.elf.dir/src/main.c.o"
+  "CMakeFiles/aot.elf.dir/src/memory.c.o"
   "CMakeFiles/aot.elf.dir/src/parse.c.o"
   "CMakeFiles/aot.elf.dir/src/rtc_emit.c.o"
   "CMakeFiles/aot.elf.dir/src/user_import.c.o"

@@ -65,7 +65,7 @@ endif(AVRORA)
 execute_process(COMMAND bash towat.sh WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 # add_custom_command(
-#     TARGET *.elf
+#     TARGET binsrch.elf
 #     POST_BUILD
 #     COMMAND avr-objdump -D ${EXECUTABLE_OUTPUT_PATH}/binsrch.elf > ${EXECUTABLE_OUTPUT_PATH}/binsrch.S
 #     COMMAND echo dissassemble done

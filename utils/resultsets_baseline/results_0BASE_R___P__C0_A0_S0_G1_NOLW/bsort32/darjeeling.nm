@@ -1,0 +1,723 @@
+00002900 00000200 T app_method_function_pointers	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:49
+00007692 00000016 T asm_guard_assert	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:10
+000076a8 00000052 T asm_guard_check_regs	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:15
+000078ea 00000028 T asm_MOVW	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:152
+0000771e 0000000c T asm_opcodeWithSingleRegOperand
+00007738 00000026 T asm_opcodeWithSrcAndDestRegOperand	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:55
+0080023f 00000002 B avr_flash_buf_len	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:19
+00800241 00000004 B avr_flash_end_of_safe_region	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:18
+00800245 00000004 B avr_flash_pageaddress	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:17
+00800249 00000002 B avr_flash_pagebuffer	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:16
+0001f800 0000009c T avr_flash_program_page	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:146
+0000a078 00000054 T avr_flash_program_page_if_not_modified	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:60
+0000330e 00000018 T avr_millis	/home/emnets/CapeVM/src/core/c/arduino/avr.c:62
+00003478 0000000e t avroraPrintInt16	/home/emnets/CapeVM/src/config/avrora/include/../../../../avrora/src/avrora/monitors/AvroraPrint.h:125
+00003486 0000000e t avroraPrintPtr	/home/emnets/CapeVM/src/config/avrora/include/../../../../avrora/src/avrora/monitors/AvroraPrint.h:187
+0080025b 00000001 B avrora_profilemonitor	/home/emnets/CapeVM/src/config/avrora/include/../../../../avrora/src/avrora/monitors/AvroraProfiler.h:35
+00800250 00000001 B avroraTraceEnabledVariable	/home/emnets/CapeVM/src/config/avrora/include/../../../../avrora/src/avrora/monitors/AvroraTrace.h:11
+0000333e 0000003a T avr_serialInit	/home/emnets/CapeVM/src/core/c/arduino/avr.c:143
+00003378 00000022 T avr_serialPrint	/home/emnets/CapeVM/src/core/c/arduino/avr.c:161
+000033b2 00000020 T avr_serialPrintf	/home/emnets/CapeVM/src/core/c/arduino/avr.c:188
+0000339a 00000018 T avr_serialVPrint	/home/emnets/CapeVM/src/core/c/arduino/avr.c:181
+00003326 00000018 T avr_timerInit	/home/emnets/CapeVM/src/core/c/arduino/avr.c:86
+00002b3e T __bad_interrupt
+000030c4 0000000e T base_init	/home/emnets/CapeVM/src/lib/base/c/common/base_init.c:3
+00000292 00000130 T base_native_method_function_pointers	/home/emnets/CapeVM/src/build/avrora/infusion-base/jlib_base.c:106
+00003166 00000002 T bm_bsort32_init	/home/emnets/CapeVM/src/lib/bm_bsort32/c/common/bm_bsort32_init.c:1
+000003c2 0000000a T bm_bsort32_native_method_function_pointers	/home/emnets/CapeVM/src/build/avrora/infusion-bm_bsort32/jlib_bm_bsort32.c:10
+00800cbf B __bss_end
+0080019e B __bss_start
+00008fcc 000000aa T callJavaMethod	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:1098
+00008db8 00000214 T callJavaMethod_setup	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:1010
+000092d8 00000048 T callMethod	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:957
+000091da 000000fe T callMethodFast	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:967
+00009076 00000164 T callNativeMethod	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:1128
+000033d2 0000002e T core_init	/home/emnets/CapeVM/src/core/c/common/core.c:18
+00800264 00000008 B CorePortMe_start	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:61
+0080025c 00000008 B CorePortMe_stop	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:62
+0000933e 000000aa T createThreadAndRunMethodToFinish	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:1217
+00800251 00000002 B ctimerWatch	/home/emnets/CapeVM/src/config/avrora/include/../../../../avrora/src/avrora/monitors/AvroraTimer.h:70
+00002b00 T __ctors_end
+00002b00 T __ctors_start
+00800cad 00000002 B currentVm	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:81
+0080019e D __data_end
+0000ab22 A __data_load_end
+0000aa84 A __data_load_start
+00800100 D __data_start
+0080024b 00000005 B debugbuf1	/home/emnets/CapeVM/src/config/avrora/include/../../../../avrora/src/avrora/monitors/AvroraPrint.h:70
+0080026c 00000002 B di_app_archive	/home/emnets/CapeVM/src/core/c/common/djarchive.c:4
+00002600 00000215 T di_app_infusion_archive_data
+000003cc 000021ba T di_lib_infusions_archive_data
+0000a33e T _div
+0000a33e 00000028 T __divmodhi4
+0000a364 t __divmodhi4_exit
+0000a356 t __divmodhi4_neg1
+0000a35e t __divmodhi4_neg2
+0000a3aa 0000002e T __divmodsi4
+0000a3d6 t __divmodsi4_exit
+0000a3c8 t __divmodsi4_neg2
+00003256 00000024 T dj_archive_get_file	/home/emnets/CapeVM/src/core/c/common/djarchive.c:16
+00003230 00000026 T dj_archive_number_of_files	/home/emnets/CapeVM/src/core/c/common/djarchive.c:6
+00800227 00000002 B dj_core_pollingHook	/home/emnets/CapeVM/src/core/c/common/core.c:11
+00800cb5 00000002 B dj_currentThread	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:82
+000097da 00000028 T dj_di_read_methodImplHeader	/home/emnets/CapeVM/src/lib/vm/c/common/parse_infusion.c:4
+00008a88 00000034 T dj_di_strEquals	/home/emnets/CapeVM/src/lib/vm/c/common/util.c:34
+00008abc 00000028 T dj_di_strEqualsDirectStr	/home/emnets/CapeVM/src/lib/vm/c/common/util.c:54
+00008b92 0000004e T dj_exec_activate_thread	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:412
+00008d6e 0000004a T dj_exec_createAndThrow	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:1256
+00008d5c 00000012 T dj_exec_currentMethodIsRTCCompiled	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:942
+00008b66 0000002c T dj_exec_deactivateThread	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:387
+00008b4e 00000018 T dj_exec_getCurrentFrame	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:221
+00008c2e 00000014 T dj_exec_getCurrentInfusion	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:441
+00008c42 00000046 T dj_exec_getNumberOfObjectsOnReferenceStack	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:646
+0080026e 00000001 B dj_exec_runlevel	/home/emnets/CapeVM/src/core/c/common/core.c:8
+00008b44 0000000a T dj_exec_setVM
+00008d42 0000001a T dj_exec_stackPeekDeepRef	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:771
+00008d32 00000010 T dj_exec_stackPeekRef	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:761
+00008cfe 0000001c T dj_exec_stackPopInt	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:705
+00008d1a 00000018 T dj_exec_stackPopRef	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:725
+00008ce4 0000001a T dj_exec_stackPopShort	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:695
+00008ca4 00000024 T dj_exec_stackPushInt	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:665
+00008cc8 0000001c T dj_exec_stackPushRef	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:685
+00008c88 0000001c T dj_exec_stackPushShort	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:655
+00008be0 0000004e T dj_exec_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:431
+00800109 00000001 D dj_exec_use_rtc	/home/emnets/CapeVM/src/lib/vm_dev/include/common/execution.h:78
+00009c5e 000000ae T dj_frame_markRootSet	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:91
+00009d0c 000000cc T dj_frame_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:118
+00008948 00000012 T dj_global_id_getMethodImplementation	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:440
+0000842e 00000052 t dj_global_id_getParent	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:70
+0000870e 00000010 T dj_global_id_getRuntimeClassId	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:321
+000084bc 000000f8 T dj_global_id_implements	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:125
+000085b4 0000008c T dj_global_id_isEqualToOrChildOf	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:148
+00008490 0000002c T dj_global_id_isJavaLangObject	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:304
+00008890 000000b8 T dj_global_id_lookupAnyVirtualMethod	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:405
+0000871e 000000bc T dj_global_id_lookupMethodImplInClassDef	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:326
+000087da 000000b6 T dj_global_id_lookupVirtualMethod	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:365
+00008480 00000010 T dj_global_id_mapToInfusion	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:57
+0000841c 00000012 T dj_global_id_resolve	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:40
+00008640 00000044 T dj_global_id_testClassType	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:208
+00008684 0000008a T dj_global_id_testType	/home/emnets/CapeVM/src/lib/vm/c/common/global_id.c:253
+00003400 0000002c T dj_hook_add	/home/emnets/CapeVM/src/core/c/common/hooks.c:5
+0000342c 0000002a T dj_hook_call	/home/emnets/CapeVM/src/core/c/common/hooks.c:20
+000093e8 000001ce T dj_infusion_create	/home/emnets/CapeVM/src/lib/vm/c/common/infusion.c:44
+0000976c 0000004c T dj_infusion_getMethodImplementation	/home/emnets/CapeVM/src/lib/vm/c/common/infusion.c:191
+000095b6 0000004e T dj_infusion_getReferencedInfusionIndex	/home/emnets/CapeVM/src/lib/vm/c/common/infusion.c:121
+00009604 0000006a T dj_infusion_markRootSet	/home/emnets/CapeVM/src/lib/vm/c/common/infusion.c:138
+000097b8 00000022 T dj_infusion_resolve	/home/emnets/CapeVM/src/lib/vm/c/common/infusion.c:211
+0000966e 000000fe T dj_infusion_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/infusion.c:148
+0000895a 0000009c T dj_int_array_create	/home/emnets/CapeVM/src/lib/vm/c/common/array.c:36
+00009aba 000000a0 T dj_jstring_create	/home/emnets/CapeVM/src/lib/vm/c/common/jstring.c:9
+00009b5a 00000086 T dj_jstring_createFromGlobalId	/home/emnets/CapeVM/src/lib/vm/c/common/jstring.c:60
+00003996 00000018 T dj_libraries_init	/home/emnets/CapeVM/src/build/avrora/generated-libinit/GENERATED_libinit.c:17
+0000352e 0000003a T dj_mem_addSafePointer	/home/emnets/CapeVM/src/core/c/common/heap.c:211
+000038b2 0000008e T dj_mem_alloc	/home/emnets/CapeVM/src/core/c/common/heap.c:137
+00003940 00000056 T dj_mem_checked_alloc	/home/emnets/CapeVM/src/core/c/common/heap.c:120
+000035ca 00000128 T dj_mem_compact	/home/emnets/CapeVM/src/core/c/common/heap.c:383
+000034ce 00000040 T dj_mem_free	/home/emnets/CapeVM/src/core/c/common/heap.c:180
+0000376c 00000146 T dj_mem_gc	/home/emnets/CapeVM/src/core/c/common/heap.c:429
+00003586 0000000a T dj_mem_getFirstChunk	/home/emnets/CapeVM/src/core/c/common/heap.c:371
+00003518 00000016 T dj_mem_getFree	/home/emnets/CapeVM/src/core/c/common/heap.c:202
+00003590 0000003a T dj_mem_getNextChunk	/home/emnets/CapeVM/src/core/c/common/heap.c:375
+0000350e 0000000a T dj_mem_getSize	/home/emnets/CapeVM/src/core/c/common/heap.c:194
+00009be0 00000018 t dj_mem_getUpdatedPointer	/home/emnets/CapeVM/src/core/include/common/heap.h:164
+0000371e 0000004e T dj_mem_guardValidHeapPointer	/home/emnets/CapeVM/src/core/c/common/heap.c:456
+00003494 0000003a T dj_mem_init	/home/emnets/CapeVM/src/core/c/common/heap.c:103
+000036f2 0000002c T dj_mem_isHeapPointer	/home/emnets/CapeVM/src/core/c/common/heap.c:452
+0080022d 00000002 B dj_mem_markObjectHook	/home/emnets/CapeVM/src/core/c/common/heap.c:94
+0080022f 00000002 B dj_mem_markRootSetHook	/home/emnets/CapeVM/src/core/c/common/heap.c:93
+00800229 00000002 B dj_mem_postGCHook	/home/emnets/CapeVM/src/core/c/common/heap.c:96
+00003568 0000001e T dj_mem_removeSafePointer	/home/emnets/CapeVM/src/core/c/common/heap.c:239
+00009802 00000024 t dj_mem_setRefGrayIfWhite	/home/emnets/CapeVM/src/core/include/common/heap.h:184
+00009bf8 00000024 t dj_mem_setRefGrayIfWhite	/home/emnets/CapeVM/src/core/include/common/heap.h:184
+0080022b 00000002 B dj_mem_updateReferenceHook	/home/emnets/CapeVM/src/core/c/common/heap.c:95
+00009e74 00000058 T dj_monitor_block_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:324
+00009ecc 0000004e T dj_monitor_markRootSet	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:335
+0000793a 00000036 T dj_object_create	/home/emnets/CapeVM/src/lib/vm/c/common/object.c:35
+0000797a 0000002c T dj_object_getReferences	/home/emnets/CapeVM/src/lib/vm/c/common/object.c:60
+00007970 0000000a T dj_object_getRuntimeId	/home/emnets/CapeVM/src/lib/vm/c/common/object.c:55
+000089f6 0000005a T dj_ref_array_create	/home/emnets/CapeVM/src/lib/vm/c/common/array.c:81
+00008a50 00000038 T dj_ref_array_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/array.c:113
+00009c1c 0000003e T dj_thread_create	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:44
+00009c5a 00000004 T dj_thread_destroy	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:68
+00009dd8 0000004e T dj_thread_markRootSet	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:155
+00009e26 0000004e T dj_thread_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/vmthread.c:183
+0000345a 0000001e T dj_timer_getTimeMillis	/home/emnets/CapeVM/src/core/c/arduino/djtimer.c:37
+00003456 00000004 T dj_timer_init	/home/emnets/CapeVM/src/core/c/arduino/djtimer.c:32
+000079d4 00000058 T dj_vm_addInfusion	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:182
+00007e1a 00000052 T dj_vm_addThread	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:607
+00007eaa 0000001e T dj_vm_countThreads	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:657
+000079a6 0000002e T dj_vm_create	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:144
+00008032 00000050 T dj_vm_createSysLibObject	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:591
+00007fa0 00000066 T dj_vm_getRuntimeClass	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:1084
+00008006 0000002c T dj_vm_getRuntimeClassDefinition	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:1118
+00007e0a 00000010 T dj_vm_getSysLibClassRuntimeId	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:579
+00008082 00000008 T dj_vm_getSystemInfusion	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:1124
+00007ec8 00000022 T dj_vm_getThread	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:776
+00007eea 0000002a T dj_vm_getThreadById	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:798
+00007a6a 00000320 T dj_vm_loadInfusion	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:291
+00007d8a 00000080 T dj_vm_loadInfusionArchive	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:558
+00007a2c 0000003e T dj_vm_lookupInfusion	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:273
+0000812c 00000120 T dj_vm_main	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:55
+00007f14 0000008c T dj_vm_mem_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:940
+00007e6c 0000003e T dj_vm_removeThread	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:635
+0000808a 000000a2 T dj_vm_runClassInitialisers	/home/emnets/CapeVM/src/lib/vm/c/common/vm.c:1136
+00008386 0000003a T DO_ANEWARRAY	/home/emnets/CapeVM/src/lib/vm/c/common/execution_instructions.c:115
+00002b26 00000010 T __do_clear_bss
+00002b2e t .do_clear_bss_loop
+00002b30 t .do_clear_bss_start
+00002b0c 0000001a T __do_copy_data
+000083c0 0000005c T DO_INSTANCEOF	/home/emnets/CapeVM/src/lib/vm/c/common/execution_instructions.c:128
+00008282 00000082 T DO_INVOKEVIRTUAL	/home/emnets/CapeVM/src/lib/vm/c/common/execution_instructions.c:31
+0000824c 00000036 T DO_LDS	/home/emnets/CapeVM/src/lib/vm/c/common/execution_instructions.c:12
+00008304 00000082 T DO_NEW	/home/emnets/CapeVM/src/lib/vm/c/common/execution_instructions.c:93
+00002b00 T __dtors_end
+00002b00 T __dtors_start
+0080019e D _edata
+00810000 N __eeprom_end
+00007060 00000010 T emit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_emit.c:21
+00007070 00000024 T emit2	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_emit.c:28
+00007766 00000050 T emit_ADIW	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:64
+000077c6 00000026 T emit_ADIW_if_necessary_to_bring_offset_in_range	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:84
+000077b6 00000010 T emit_BRANCH	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:80
+00006f6e 000000c0 T emit_flush_to_flash	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_emit.c:42
+00006f5c 00000012 T emit_init	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_emit.c:7
+000077ec 00000064 T emit_LDD	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:113
+000078a6 00000044 T emit_LDI_SBCI_SUBI_CPI	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:143
+0000430a 0000005e T emit_load_local_16bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:448
+00004586 00000022 T emit_load_local_16bit_baseline_wrapper	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_baseline.c:25
+00004368 00000026 T emit_load_local_32bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:465
+000045a8 00000034 T emit_load_local_32bit_baseline_wrapper	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_baseline.c:31
+00007912 00000028 T emit_MOVW	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:156
+0000772a 0000000e T emit_opcodeWithSingleRegOperand	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:51
+0000775e 00000008 T emit_opcodeWithSrcAndDestRegOperand	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:58
+0000702e 00000032 T emit_raw_word	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_emit.c:13
+00007850 00000056 T emit_STD	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:126
+0000438e 0000005e T emit_store_local_16bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:469
+000045dc 00000022 T emit_store_local_16bit_baseline_wrapper	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_baseline.c:41
+000043ec 00000026 T emit_store_local_32bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:486
+000045fe 00000034 T emit_store_local_32bit_baseline_wrapper	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_baseline.c:47
+00007094 00000028 T emit_without_optimisation	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_emit.c:36
+00007168 00000030 T emit_x_branchtag	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_branches.c:31
+00004456 00000040 T emit_x_CALL	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:11
+00004536 0000001c T emit_x_POP_16bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:42
+00004502 00000034 T emit_x_POP_32bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:36
+00004552 0000001c T emit_x_POP_REF	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:46
+0000457a 0000000c T emit_x_postinvoke	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:139
+00004436 00000020 T emit_x_postinvoke_code	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:114
+0000456e 0000000c T emit_x_preinvoke	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:110
+00004412 00000024 T emit_x_preinvoke_code	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:82
+000044ca 0000001c T emit_x_PUSH_16bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:27
+00004496 00000034 T emit_x_PUSH_32bit	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:21
+000044e6 0000001c T emit_x_PUSH_REF	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:31
+00800cbf N _end
+0000aa84 T _etext
+0000aa80 W exit
+0000aa80 T _exit
+0000a94c 00000078 T fputc
+00000003 W __FUSE_REGION_LENGTH__
+0080023b 00000002 b heap_base	/home/emnets/CapeVM/src/core/c/common/heap.c:81
+00000000 W __heap_end
+00800239 00000002 b heap_size	/home/emnets/CapeVM/src/core/c/common/heap.c:82
+00002b00 W __init
+00800cb3 00000002 B intStack	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:94
+00003156 00000010 T java_lang_Object_int_hashCode	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_Object.c:108
+000030d2 00000084 T java_lang_Object_java_lang_String_toString	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_Object.c:84
+00002cc2 0000000e T java_lang_Runtime_int_freeMemory	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_Runtime.c:43
+00002cd0 0000000e T java_lang_Runtime_int_totalMemory	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_Runtime.c:50
+00002cc0 00000002 T java_lang_Runtime_void_exit_int	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_Runtime.c:37
+00002cde 00000004 T java_lang_Runtime_void_gc	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_Runtime.c:57
+00002ce2 0000000c T java_lang_System_int_currentTimeMillis	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_System.c:44
+00002cee 00000216 T java_lang_System_void_arraycopy_java_lang_Object_short_java_lang_Object_short_short	/home/emnets/CapeVM/src/lib/base/c/common/java_lang_System.c:50
+00800101 00000008 D java_library_native_handlers	/home/emnets/CapeVM/src/build/avrora/generated-libinit/GENERATED_libinit.c:5
+00800100 00000001 D java_library_native_handlers_length	/home/emnets/CapeVM/src/build/avrora/generated-libinit/GENERATED_libinit.c:9
+00002c30 0000000e T javax_darjeeling_Darjeeling_int_getMemFree	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Darjeeling.c:74
+00002c26 0000000a T javax_darjeeling_Darjeeling_int_getNodeId	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Darjeeling.c:67
+00002c3e 00000010 T javax_darjeeling_Darjeeling_int_random	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Darjeeling.c:80
+00002c5e 00000042 T javax_darjeeling_Darjeeling_java_lang_Thread_getThread_short	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Darjeeling.c:97
+00002c4e 00000010 T javax_darjeeling_Darjeeling_short_getNrThreads	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Darjeeling.c:91
+00002b42 0000006e T javax_darjeeling_Darjeeling_void_assertTrue_int_boolean	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Darjeeling.c:39
+00002bb0 00000076 T javax_darjeeling_Darjeeling_void__print_java_lang_String	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Darjeeling.c:51
+00002ca8 00000008 T javax_darjeeling_Stopwatch_void_measure	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Stopwatch.c:10
+00002ca0 00000008 T javax_darjeeling_Stopwatch_void_resetAndStart	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Stopwatch.c:6
+00002cb0 00000010 T javax_darjeeling_Stopwatch_void_setTimerNumber_byte	/home/emnets/CapeVM/src/lib/base/c/common/javax_darjeeling_Stopwatch.c:14
+00003200 00000030 T javax_rtcbench_RTCBenchmark_void_test_native	/home/emnets/CapeVM/src/lib/bm_bsort32/c/common/javax_rtcbench_RTCBenchmark.c:7
+0000308c 00000038 T javax_rtc_RTC_int_coremark_get_time	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:73
+00002f6a 00000004 T javax_rtc_RTC_void_avroraBreak	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:9
+00002fb0 00000012 T javax_rtc_RTC_void_avroraPrintHex16_short	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:23
+00002fc2 00000032 T javax_rtc_RTC_void_avroraPrintHex32_int	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:28
+00002f80 00000030 T javax_rtc_RTC_void_avroraPrintInt_int	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:18
+00002ff4 00000012 T javax_rtc_RTC_void_avroraPrintPtr_java_lang_Object	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:33
+00002f6e 00000012 T javax_rtc_RTC_void_avroraPrintShort_short	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:13
+00003006 00000008 T javax_rtc_RTC_void_avroraPrintSP	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:38
+0000300e 00000008 T javax_rtc_RTC_void_avroraStartCountingCalls	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:42
+00003016 00000008 T javax_rtc_RTC_void_avroraStopCountingCalls	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:46
+0000301e 00000010 T javax_rtc_RTC_void_beep_int	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:50
+00003040 00000026 T javax_rtc_RTC_void_coremark_start_time_nat	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:65
+00003066 00000026 T javax_rtc_RTC_void_coremark_stop_time	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:69
+0000302e 00000012 T javax_rtc_RTC_void_terminateOnException_short	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:55
+00002f58 00000012 T javax_rtc_RTC_void_useRTC_boolean	/home/emnets/CapeVM/src/lib/base/c/common/javax_rtc_RTC.c:5
+00800271 00000002 B left_pointer	/home/emnets/CapeVM/src/core/c/common/heap.c:86
+00800cb1 00000002 B localReferenceVariables	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:96
+000039ae 0000004e T main	/home/emnets/CapeVM/src/config/avrora/c/main.c:46
+00800273 00000a28 B mem	/home/emnets/CapeVM/src/config/avrora/c/main.c:44
+0000a456 00000012 T memcpy
+0000a468 00000024 T memmove
+0000a48c 0000000e T memset
+0000a31e 00000020 T __mulsi3
+0000a3fa 00000016 T __muluhisi3
+0000a3d8 00000010 T __negsi2
+00004426 t next1	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:68
+00004428 t next2	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_x.c:68
+0080023d 00000002 b panicExceptionObject	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:17
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+0000003b a __RAMPZ__
+00800caf 00000002 B refStack	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:95
+0080026f 00000002 B right_pointer	/home/emnets/CapeVM/src/core/c/common/heap.c:86
+00003bb8 00000010 T RTC_ANEWARRAY	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:101
+00003168 00000098 T rtcbenchmark_measure_native_performance	/home/emnets/CapeVM/src/lib/bm_bsort32/c/common/bsort32.c:7
+00003bd8 00000022 T RTC_CHECKCAST	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:117
+00006a1e 0000002e T rtc_common_push_returnvalue_from_R22_if_necessary	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_common.c:296
+000067e8 00000236 T rtc_common_translate_inc	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_common.c:189
+00006a4c 00000158 T rtc_common_translate_invoke	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_common.c:24
+00003fb8 00000314 T rtc_compile_lib	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:245
+00003dcc 000001ec T rtc_compile_method	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:127
+00004300 0000000a T rtc_current_method_get_uses_reg	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:444
+00003a16 0000000c T rtc_current_method_is_lightweight	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_prologue_epilogue.c:5
+00003d94 00000038 T rtc_current_method_set_uses_reg	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:419
+00003ae6 00000080 T rtc_emit_epilogue	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_prologue_epilogue.c:68
+00003a22 000000c4 T rtc_emit_prologue	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_prologue_epilogue.c:9
+000039fc 0000001a T rtc_init	/home/emnets/CapeVM/src/lib/rtc/c/common/rtc_init.c:6
+00003bc8 00000010 T RTC_INSTANCEOF	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:109
+00006bcc 00000080 T rtc_instruction_fails_for_baseline_pushpop_optimisation	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_optimiser.c:58
+00003b76 00000010 T RTC_INVOKESPECIAL_OR_STATIC_FAST_JAVA	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:34
+00003b86 00000012 T RTC_INVOKESTATIC_FAST_NATIVE	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:69
+00003b66 00000010 T RTC_INVOKEVIRTUAL_OR_INTERFACE	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:17
+000076fa 00000024 T rtc_is_double_word_instruction	/home/emnets/CapeVM/src/lib/rtc/c/arduino/asm_functions.c:37
+00003ba8 00000010 T RTC_LDS	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:93
+000070bc 000000ac T rtc_mark_branchtarget	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_branches.c:15
+00006c4c 000000d8 T rtc_maybe_optimise_push_pop	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_optimiser.c:191
+000042cc 00000034 T rtc_method_get_uses_reg	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:440
+00800253 00000008 B rtcMonitorVariable	/home/emnets/CapeVM/src/config/avrora/include/../../../../avrora/src/avrora/monitors/AvroraRTC.h:13
+00003b98 00000010 T RTC_NEW	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_complex_instructions.c:85
+00003ca8 0000005c T rtc_offset_for_FIELD_A_FIXED	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:98
+00003c9c 00000008 T rtc_offset_for_intlocal_int	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:81
+00003c7e 0000001e T rtc_offset_for_intlocal_short	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:74
+00003c5c 00000022 T rtc_offset_for_referenced_infusion	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:62
+00003ca4 00000004 T rtc_offset_for_reflocal	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:94
+00003c04 00000018 T rtc_offset_for_static_byte	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:57
+00003c3c 00000020 T rtc_offset_for_static_int	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:59
+00003bfa 0000000a T rtc_offset_for_static_ref	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:56
+00003c1c 00000020 T rtc_offset_for_static_short	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:58
+00006d24 00000238 T rtc_optimise	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_optimiser.c:234
+00006ba4 00000028 T rtc_optimise_drop_instruction	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_optimiser.c:29
+00007198 000004fa T rtc_patch_branches	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_branches.c:61
+00009320 0000001e T rtc_run_interpreter_if_not_aot_compiled	/home/emnets/CapeVM/src/lib/vm/c/common/execution.c:1952
+00002f1e 00000022 T rtc_startBenchmarkMeasurement_AOT	/home/emnets/CapeVM/src/lib/base/c/common/rtc_measure.c:19
+00002f04 0000001a T rtc_startBenchmarkMeasurement_Native	/home/emnets/CapeVM/src/lib/base/c/common/rtc_measure.c:7
+0000ab22 00000001 D rtc_start_of_compiled_code_marker	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:43
+00800c9b 00000002 B rtc_start_of_next_method	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:46
+00002f40 00000018 T rtc_stopBenchmarkMeasurement	/home/emnets/CapeVM/src/lib/base/c/common/rtc_measure.c:31
+00004632 000021b6 T rtc_translate_single_instruction	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc_instructions_baseline.c:58
+00003d04 00000090 T rtc_update_method_pointers	/home/emnets/CapeVM/src/lib/rtc/c/arduino/rtc.c:109
+00800231 00000008 b safePointerPool	/home/emnets/CapeVM/src/core/c/common/heap.c:84
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003e a __SP_H__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003d a __SP_L__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+0000003f a __SREG__
+000010ff W __stack
+0000aa82 t __stop_program
+0000a936 00000016 T strnlen
+0000a920 00000016 T strnlen_P
+0000a3e8 00000012 T __tablejump2__
+0080019e 00000080 b temp.2224
+0080021e 00000001 b timer0_fract	/home/emnets/CapeVM/src/core/c/arduino/avr.c:40
+0080021f 00000004 B timer0_millis	/home/emnets/CapeVM/src/core/c/arduino/avr.c:39
+00800223 00000004 B timer0_overflow_count	/home/emnets/CapeVM/src/core/c/arduino/avr.c:38
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000000 a __tmp_reg__
+00000292 T __trampolines_end
+00000292 T __trampolines_start
+0000a410 00000028 T __udivmodhi4
+0000a426 t __udivmodhi4_ep
+0000a418 t __udivmodhi4_loop
+0000a366 00000044 T __udivmodsi4
+0000a38c t __udivmodsi4_ep
+0000a372 t __udivmodsi4_loop
+0000a9c4 000000bc T __ultoa_invert
+0000a438 0000001e T __umulhisi3
+00002b3e W __vector_1
+00002b3e W __vector_10
+00002b3e W __vector_11
+00002b3e W __vector_12
+00002b3e W __vector_13
+00002b3e W __vector_14
+00002b3e W __vector_15
+0000327a 00000094 T __vector_16	/home/emnets/CapeVM/src/core/c/arduino/avr.c:42
+00002b3e W __vector_17
+00002b3e W __vector_18
+00002b3e W __vector_19
+00002b3e W __vector_2
+00002b3e W __vector_20
+00002b3e W __vector_21
+00002b3e W __vector_22
+00002b3e W __vector_23
+00002b3e W __vector_24
+00002b3e W __vector_25
+00002b3e W __vector_26
+00002b3e W __vector_27
+00002b3e W __vector_28
+00002b3e W __vector_29
+00002b3e W __vector_3
+00002b3e W __vector_30
+00002b3e W __vector_31
+00002b3e W __vector_32
+00002b3e W __vector_33
+00002b3e W __vector_34
+00002b3e W __vector_4
+00002b3e W __vector_5
+00002b3e W __vector_6
+00002b3e W __vector_7
+00002b3e W __vector_8
+00002b3e W __vector_9
+00000000 W __vector_default
+00000000 T __vectors
+0000a50c 00000414 T vfprintf
+00009f1a 00000002 T vm_dev_init	/home/emnets/CapeVM/src/lib/vm_dev/c/common/vm_dev_init.c:1
+00008ae4 00000060 T vm_init	/home/emnets/CapeVM/src/lib/vm/c/common/vm_init.c:10
+00800ca5 00000004 B vm_markObjectHook	/home/emnets/CapeVM/src/lib/vm/c/common/vm_init.c:6
+00800ca9 00000004 B vm_markRootSetHook	/home/emnets/CapeVM/src/lib/vm/c/common/vm_init.c:5
+00009830 0000000a T vm_mem_getPanicExceptionObject	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:79
+0000990a 000000b4 T vm_mem_markObject	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:165
+0000988c 0000007e T vm_mem_markRootSet	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:116
+00009870 0000001c T vm_mem_postGC	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:104
+0000983a 00000036 T vm_mem_preGC	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:90
+00009826 0000000a T vm_mem_setPanicExceptionObject	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:74
+000099be 000000fc T vm_mem_updatePointers	/home/emnets/CapeVM/src/lib/vm/c/common/vm_gc.c:202
+00800ca1 00000004 B vm_postGCHook	/home/emnets/CapeVM/src/lib/vm/c/common/vm_init.c:8
+00800c9d 00000004 B vm_updatePointersHook	/home/emnets/CapeVM/src/lib/vm/c/common/vm_init.c:7
+0000a49a 00000072 T vsnprintf
+00800cb7 00000004 B wkreprog_gc_markRootSetHook	/home/emnets/CapeVM/src/lib/wkreprog/c/common/wkreprog_init.c:6
+00800cbb 00000004 B wkreprog_gc_updatePointersHook	/home/emnets/CapeVM/src/lib/wkreprog/c/common/wkreprog_init.c:7
+0000a266 000000b8 T wkreprog_impl_close	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:113
+00009f86 00000026 T wkreprog_impl_get_raw_position	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:25
+00009fac 000000cc T wkreprog_impl_open_raw	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:39
+0000a0cc 0000019a T wkreprog_impl_write	/home/emnets/CapeVM/src/lib/wkreprog/c/arduino/wkreprog_impl.c:72
+00009f56 00000030 T wkreprog_init	/home/emnets/CapeVM/src/lib/wkreprog/c/common/wkreprog_init.c:9
+00009f1c 00000018 T wkreprog_mem_markRootSet	/home/emnets/CapeVM/src/lib/wkreprog/c/common/wkreprog_gc.c:6
+00009f34 00000022 T wkreprog_mem_updatePointers	/home/emnets/CapeVM/src/lib/wkreprog/c/common/wkreprog_gc.c:12
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__
+00000001 a __zero_reg__

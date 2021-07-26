@@ -1,0 +1,89 @@
+196 malloc 8 3ffb2c50
+565 malloc 3156 3ffb2c60
+646 malloc 1024 3ffb38b8
+2768 malloc 96 3ffb3cc0
+5044 malloc 4 3ffb3d28
+7059 malloc 9 3ffb3d38
+9175 malloc 4 3ffb3d48
+11181 malloc 37 3ffb3d58
+13486 realloc 52 0 3ffb3d88
+15978 malloc 4 3ffb3dc0
+18121 malloc 29 3ffb3dd0
+20422 realloc 104 3ffb3d88 3ffb3df8
+23646 realloc 156 3ffb3df8 3ffb3e68
+26817 realloc 208 3ffb3e68 3ffb3f08
+30024 realloc 260 3ffb3f08 3ffb3df8
+33318 realloc 32 0 3ffb3d98
+35925 realloc 64 3ffb3d98 3ffb3f98
+38902 realloc 96 3ffb3f98 3ffb3f30
+42033 realloc 128 3ffb3f30 3ffb3fe0
+45243 realloc 160 3ffb3fe0 3ffb3f38
+48457 realloc 192 3ffb3f38 3ffb4068
+51667 realloc 224 3ffb4068 3ffb3f80
+54890 malloc 7 3ffb3db0
+57011 free 3ffb3db0
+58835 malloc 18 3ffb3da8
+61093 malloc 40 3ffb3f50
+63350 malloc 7 3ffb3d98
+65520 malloc 13 3ffb3f38
+67766 free 3ffb3f38
+69599 malloc 11 3ffb3f40
+71846 free 3ffb3f40
+73679 malloc 14 3ffb3f38
+75925 free 3ffb3f38
+77759 malloc 12 3ffb3f40
+80005 free 3ffb3f40
+81839 malloc 14 3ffb3f38
+84085 free 3ffb3f38
+85919 malloc 13 3ffb3f38
+88165 free 3ffb3f38
+90112 realloc 1040 0 3ffb4130
+93424 malloc 3156 3ffd4148
+95309 malloc 4000 3ffd4da8
+97776 malloc 4096 3ffd5d50
+100548 free 3ffd4da8
+102073 free 3ffd4148
+103996 malloc 3156 3ffd50f0
+106506 malloc 4000 3ffd4148
+109040 free 3ffd4148
+110927 free 3ffd50f0
+112850 malloc 3156 3ffd50f0
+115360 malloc 4000 3ffd4148
+117894 free 3ffd4148
+119782 free 3ffd50f0
+121704 malloc 3156 3ffd50f0
+124214 malloc 4000 3ffd4148
+126749 free 3ffd4148
+128636 free 3ffd50f0
+130558 malloc 3156 3ffd50f0
+133068 malloc 4000 3ffd4148
+135603 free 3ffd4148
+137490 free 3ffd50f0
+139412 malloc 3156 3ffd50f0
+141922 malloc 4000 3ffd4148
+144456 free 3ffd4148
+146344 free 3ffd50f0
+148266 malloc 3156 3ffd50f0
+150776 malloc 4000 3ffd4148
+153310 free 3ffd4148
+155198 free 3ffd50f0
+157273 malloc 9 3ffb3f40
+159393 free 3ffb3f40
+161300 malloc 9 3ffb3f40
+163512 free 3ffb3f40
+174736 free 3ffb3d48
+176625 free 3ffb3d58
+178538 free 3ffb3dc0
+180440 free 3ffb3dd0
+182353 free 3ffb3da8
+184263 free 3ffb3f50
+186173 free 3ffb3d98
+188080 free 3ffb3df8
+189991 free 3ffb3d28
+191903 free 3ffb3f80
+193808 free 3ffb3cc0
+195733 free 3ffb38b8
+197640 free 3ffb2c60
+199547 free 3ffb3d38
+201456 free 3ffd5d50
+203358 free 3ffb2c50

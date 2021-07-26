@@ -57,6 +57,10 @@ i32 idiv(i32 input1,i32 input2){
     return input1/input2;
 }
 
+u32 umul(u32 input1,u32 input2){
+    return input2*input1;
+}
+
 u32 LeadingZeros_32(u32 x)
 {
     //do the smearing
@@ -244,24 +248,21 @@ void emit_local_init(u16 numLocalBytes){
     emit_IN(R28,0x3d);
     emit_IN(R29,0x3e);
     emit_SBIW(R28,numLocalBytes);
-    
-    // R29需要在关中断的情况下进行修改
-    emit_IN(R0,0x3f);
-    emit_CLI();
+    // R29需要在关中断的情况下进行修改(目前不涉及多线程和中断)
+    // emit_IN(R0,0x3f);
+    // emit_CLI();
     emit_OUT(0x3e,R29);
-    emit_OUT(0x3f,R0);
-
+    // emit_OUT(0x3f,R0);
     emit_OUT(0x3d,R28);
 }
 void emit_local_deinit(u16 numLocalBytes){
     emit_ADIW(R28,numLocalBytes);
 
-    // R29需要在关中断的情况下进行修改
-    emit_IN(R0,0x3f);
-    emit_CLI();
+    // R29需要在关中断的情况下进行修改(目前不涉及多线程和中断)
+    // emit_IN(R0,0x3f);
+    // emit_CLI();
     emit_OUT(0x3e,R29);
-    emit_OUT(0x3f,R0);
-
+    // emit_OUT(0x3f,R0);
     emit_OUT(0x3d,R28);
     emit_POP(R29);
     emit_POP(R28);

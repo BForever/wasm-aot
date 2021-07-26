@@ -4,8 +4,44 @@ Loading ../bin/aot.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0          2212  [avrora.c-print] 1 0000
-   0       1126057  [avrora.c-print] 11 benchmark start.
-   0       1165695  [avrora.c-print] 11 benchmark stop.
+   0          2473  [avrora.c-print] 1 0000
+   0          2770  [avrora.trace]trace disabled --------------------------0
+   0         53538  [avrora.c-print] 11      temp | start of compiled code:   5c30
+   0        602355  [avrora.c-print] 11      temp | table address: 24276
+   0       1012257  [avrora.c-print] 11      temp | end of compiled code:   5ef0
+   0       1015567  [avrora.c-print] 11      temp | SP:0x10f9
+   0       1018701  [avrora.c-print] 11      temp | start exec
+   0       1023159  [avrora.c-print] 11      temp | mem size:3725
+   0       1023179  [avrora.c-print] 11 
+   0       1027578  [avrora.c-print] 11      temp | copy 28 B globals
+   0       1031530  [avrora.c-print] 11      temp | mem_start:0x232
+   0       1034887  [avrora.c-print] 11         | start exec
+   0       1038824  [avrora.c-print] 11 malloc from 0 to 1024
+   0       1084753  [avrora.trace]trace enabled ---------------------------1
+   0       1121920  [avrora.trace]trace disabled --------------------------0
+   0       1126170  [avrora.c-print] 11         | wasm func returned.
 ==============================================================================
-Simulated time: 1165800 cycles
+Simulated time: 1126189 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 22044 
+Program throughput: 0.01957398 instrs/cycle
+Program throughput: 0.15659183 mips
+ret	1
+add	768
+adc	1792
+st	256
+std	2816
+or	3
+jmp	255
+ldd	3076
+cp	257
+push	4100
+pop	4100
+ldi	3077
+movw	256
+call	1
+breq	258
+sts	1
+cpc	771
+adiw	256
+

@@ -1,7 +1,10 @@
 #include "benchmark.h"
 
+
 void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t NUMNUMBERS, int32_t numbers[]) {
     rtc_startBenchmarkMeasurement_Native();
+
+
 
     int32_t toFind = numbers[NUMNUMBERS-1];
 

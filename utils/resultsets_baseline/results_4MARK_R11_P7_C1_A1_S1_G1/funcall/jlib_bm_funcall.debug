@@ -1,0 +1,49 @@
+infusion bm_funcall
+{
+
+	class javax.rtcbench.RTCBenchmark extends java.lang.Object 
+	{
+
+
+	}
+	method javax.rtcbench.RTCBenchmark.<init> ()V
+	{
+
+		0000;             ; 1           ; aload(0)                      ;                                                             ; 0Ref                                                        ;   ; 0
+		0001; 0           ; 4           ; invokespecial(1,41)(base,0)[<init> ()V]; 0Ref                                                        ;                                                             ;   ; 
+		0004; 1           ;             ; return                        ;                                                             ;                                                             ;   ; 
+
+	}
+	method javax.rtcbench.RTCBenchmark.test_native ()V
+	{
+
+
+	}
+	method javax.rtcbench.RTCBenchmark.test_java ()Z
+	{
+
+		0000;             ; 3           ; invokestatic(0,3)(bm_funcall,2)[rtcbenchmark_measure_java_performance ()V];                                                             ;                                                             ;   ; 
+		0003; 0           ; 4           ; sconst_1                      ;                                                             ; 3Short(Byte)                                                ;   ; 
+		0004; 3           ;             ; sreturn                       ; 3Short(Byte)                                                ;                                                             ;   ; 
+
+	}
+	method javax.rtcbench.RTCBenchmark.rtcbenchmark_measure_java_performance ()V
+	{
+
+		0000;             ; 1           ; start_aot_bm                  ;                                                             ;                                                             ;   ; 
+		0001; 0           ; 4           ; new(0,0)                      ;                                                             ; 1Ref                                                        ;   ; 
+		0004; 1           ; 7           ; invokespecial(0,0)(base,0)[<init> ()V]; 1Ref                                                        ;                                                             ;   ; 
+		0007; 4           ; 8           ; stop_aot_bm                   ;                                                             ;                                                             ;   ; 
+		0008; 7           ;             ; return                        ;                                                             ;                                                             ;   ; 
+
+	}
+	method javax.rtcbench.RTCBenchmark.<clinit> ()V
+	{
+
+		0000;             ; 3           ; lds(0,1)                      ;                                                             ; 0Ref                                                        ;   ; 
+		0003; 0           ; 6           ; putstatic_a(0,0)              ; 0Ref                                                        ;                                                             ;   ; 
+		0006; 3           ;             ; return                        ;                                                             ;                                                             ;   ; 
+
+	}
+
+}

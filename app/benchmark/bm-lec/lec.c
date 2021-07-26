@@ -1,5 +1,5 @@
-#include <stdint.h>
 
+#include "benchmark.h"
 
 // Split into separate function to avoid the compiler just optimising away the whole test.
 void compress(int16_t ri, int16_t ri_1, uint8_t **stream, uint8_t *stream_bits_used_in_current_byte);
@@ -16,6 +16,7 @@ uint8_t __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16
     for (uint16_t i=0; i<NUMNUMBERS; i++) {
         int16_t ri = numbers[i];
         compress(ri, ri_1, &stream, &stream_bits_used_in_current_byte);
+        // printInt(*stream);
 
         ri_1 = ri;
     }
@@ -155,6 +156,8 @@ void encode(int16_t di, uint32_t *bsi, uint8_t *bsi_length) {
         di_abs = di;
     }
     uint8_t ni = computeBinaryLog(di_abs);
+    // printInt16(1111);
+    // printInt16(ni);
     // extract si from Table
     uint16_t si = si_tbl[ni];
     uint8_t si_length = si_length_tbl[ni];

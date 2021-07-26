@@ -1,6 +1,9 @@
 #include "debug.h"
 #ifdef AVRORA
 #include<AvroraPrint.h>
+#include<avr/pgmspace.h>
+#define GLOBAL_PRINT_BUFFER_SIZE 128
+
 void avr_Print(char * str)
 {
 	int i;
@@ -15,8 +18,15 @@ void avr_Print(char * str)
 
 void avr_VPrint(char * format, va_list arg)
 {
-	static char temp[128];
-	vsnprintf(temp, 128, format, arg);
+	static char __attribute__((section (".wait"))) temp[GLOBAL_PRINT_BUFFER_SIZE];
+	static char __attribute__((section (".wait"))) temp2[GLOBAL_PRINT_BUFFER_SIZE];
+	int i=0;
+	char c;
+	do{
+		c = pgm_read_byte_far(format+i);
+		temp2[i++]=c;
+	}while(c);
+	vsnprintf(temp, 128, temp2, arg);
 	avr_Print(temp);
 }
 

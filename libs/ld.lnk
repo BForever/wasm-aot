@@ -157,6 +157,11 @@ SECTIONS
   {
      PROVIDE (__data_start = .) ;
      
+      PROVIDE (__wait_start = .) ;
+     *(.wait)/* Used at runtime*/
+     . = ALIGN(2);
+     PROVIDE (__wait_end = .) ;
+     
     *(.rodata)  /* We need to include .rodata here if gcc is used */
      *(.rodata*) /* with -fdata-sections.  */
       *(.data)

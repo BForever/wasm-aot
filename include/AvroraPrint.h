@@ -67,7 +67,7 @@
 /* Try the C99 keyword instead. */
 # define AVRORA_PRINT_INLINE inline
 #endif
-volatile u8 debugbuf1[5]={1,1,1,1,1};
+volatile u8 __attribute__((section (".wait"))) debugbuf1[5]={1,1,1,1,1};
 
 
 #define AVRORA_PRINT_STRINGS  					0x2

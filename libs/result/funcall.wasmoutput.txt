@@ -1,0 +1,68 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../bin/aot.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0          4048  [avrora.c-print] 1 0000
+   0         50131  [avrora.c-print] 11      temp | [instruction] 9508
+   0        152235  [avrora.c-print] 11      temp | [instruction] 940E
+   0        156088  [avrora.c-print] 11      temp | [instruction] 0000
+   0        160108  [avrora.c-print] 11      temp | [instruction] 940E
+   0        163961  [avrora.c-print] 11      temp | [instruction] 0001
+   0        167979  [avrora.c-print] 11      temp | [instruction] 9508
+   0        271594  [avrora.c-print] 11      temp | [instruction] 922F
+   0        275614  [avrora.c-print] 11      temp | [instruction] 923F
+   0        279634  [avrora.c-print] 11      temp | [instruction] 924F
+   0        283654  [avrora.c-print] 11      temp | [instruction] 925F
+   0        287674  [avrora.c-print] 11      temp | [instruction] 926F
+   0        291694  [avrora.c-print] 11      temp | [instruction] 927F
+   0        295714  [avrora.c-print] 11      temp | [instruction] 928F
+   0        299734  [avrora.c-print] 11      temp | [instruction] 929F
+   0        303756  [avrora.c-print] 11      temp | [instruction] 92AF
+   0        307778  [avrora.c-print] 11      temp | [instruction] 92BF
+   0        311800  [avrora.c-print] 11      temp | [instruction] 92CF
+   0        315822  [avrora.c-print] 11      temp | [instruction] 92DF
+   0        319844  [avrora.c-print] 11      temp | [instruction] 92EF
+   0        323866  [avrora.c-print] 11      temp | [instruction] 92FF
+   0        327886  [avrora.c-print] 11      temp | [instruction] 930F
+   0        331906  [avrora.c-print] 11      temp | [instruction] 931F
+   0        335926  [avrora.c-print] 11      temp | [instruction] E267
+   0        339946  [avrora.c-print] 11      temp | [instruction] E073
+   0        343913  [avrora.c-print] 11      temp | [instruction] 011B
+   0        347933  [avrora.c-print] 11      temp | [instruction] 940E
+   0        351786  [avrora.c-print] 11      temp | [instruction] 0003
+   0        355806  [avrora.c-print] 11      temp | [instruction] 911F
+   0        359826  [avrora.c-print] 11      temp | [instruction] 910F
+   0        363848  [avrora.c-print] 11      temp | [instruction] 90FF
+   0        367870  [avrora.c-print] 11      temp | [instruction] 90EF
+   0        371892  [avrora.c-print] 11      temp | [instruction] 90DF
+   0        375914  [avrora.c-print] 11      temp | [instruction] 90CF
+   0        379936  [avrora.c-print] 11      temp | [instruction] 90BF
+   0        383958  [avrora.c-print] 11      temp | [instruction] 90AF
+   0        387978  [avrora.c-print] 11      temp | [instruction] 909F
+   0        391998  [avrora.c-print] 11      temp | [instruction] 908F
+   0        396018  [avrora.c-print] 11      temp | [instruction] 907F
+   0        400038  [avrora.c-print] 11      temp | [instruction] 906F
+   0        404058  [avrora.c-print] 11      temp | [instruction] 905F
+   0        408078  [avrora.c-print] 11      temp | [instruction] 904F
+   0        412098  [avrora.c-print] 11      temp | [instruction] 903F
+   0        416118  [avrora.c-print] 11      temp | [instruction] 902F
+   0        420136  [avrora.c-print] 11      temp | [instruction] 9508
+   0        517789  [avrora.c-print] 11      temp | [instruction] 940E
+   0        521809  [avrora.c-print] 11      temp | [instruction] 1C42
+   0        526377  [avrora.c-print] 11      temp | [instruction] 940E
+   0        530399  [avrora.c-print] 11      temp | [instruction] 1C4B
+   0        538407  [avrora.c-print] 11      temp | [instruction] 940E
+   0        542425  [avrora.c-print] 11      temp | [instruction] 2906
+   0        631631  [avrora.c-print] 11      temp | SP:0x10f9
+   0        635950  [avrora.c-print] 11      temp | mem size:3484
+   0        635970  [avrora.c-print] 11 
+   0        639908  [avrora.c-print] 11      temp | copy 28 B globals
+   0        643484  [avrora.c-print] 11      temp | mem_start:0x327
+   0        648266  [avrora.c-print] 11      temp | start exec
+   0        650365  [avrora.c-print] 11 benchmark start.
+   0        652330  [avrora.c-print] 11 benchmark stop.
+   0        656061  [avrora.c-print] 11      temp | wasm func returned.
+==============================================================================
+Simulated time: 656080 cycles

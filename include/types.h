@@ -108,9 +108,9 @@ typedef struct DATA_SEGMENT
     const u8 *              initExpr;       // wasm code
     const u8 *              data;
 
-    u32                     initExprSize;
-    u32                     memoryRegion;
-    u32                     size;
+    u16                     initExprSize;
+    u16                     memoryRegion;
+    u16                     size;
 }data_segment;
 typedef data_segment* data_segment_ptr;
 
@@ -151,7 +151,6 @@ typedef wasm_code* wasm_code_ptr;
 
 typedef struct TRANSLATION_STATE
 {
-  u16 jump_vector_start_addr;
   u16 wasm_globals_size;
   bytes wasm_global_temp_space;
   bytes wasm_mem_space;
