@@ -18,12 +18,6 @@ void printStr(u32 ptr)
     // printf("hello, world!\r\n");
     printf("%s\n",real_ptr);
 }
-u32 getA(){
-    return 22;
-}
-u32 getB(){
-    return 33;
-}
 
 u32 shift(u32 input, u32 move){
     return input != move;
@@ -58,11 +52,9 @@ u32 test(u32 input1,u32 input2,u32 input3){
 
 
 
-#define IMPORTS_NUM 8
+#define IMPORTS_NUM 6
 normal_function imports[IMPORTS_NUM]={
     printInt,
-    getA,
-    getB,
     rtc_startBenchmarkMeasurement_Native,
     rtc_stopBenchmarkMeasurement,
     import_malloc,
@@ -71,8 +63,6 @@ normal_function imports[IMPORTS_NUM]={
     };
 char* imports_name[IMPORTS_NUM]={
     "printInt",
-    "getA",
-    "getB",
     "rtc_startBenchmarkMeasurement_Native",
     "rtc_stopBenchmarkMeasurement",
     "malloc",

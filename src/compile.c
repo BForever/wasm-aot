@@ -246,7 +246,7 @@ void wasm_compile_module(wasm_module_ptr module)
             }
             if (!found)
             {
-                panicf("import function not found!");
+                panicf("import function %s not found!",func->name);
             }
             continue; //TODO 链接外部函数
         }

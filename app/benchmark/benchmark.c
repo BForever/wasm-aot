@@ -36,35 +36,35 @@ void avr_Printf(char * format, ...)
 // extern void* malloc(uint16_t size);
 void rtc_startBenchmarkMeasurement_Native(){
     // avr_Print("start");
-    avroraWriteCharBuffer('b');
-    avroraWriteCharBuffer('e');
-    avroraWriteCharBuffer('n');
-    avroraWriteCharBuffer('c');
-    avroraWriteCharBuffer('h');
-    avroraWriteCharBuffer('s');
-    avroraWriteCharBuffer('t');
-    avroraWriteCharBuffer('a');
-    avroraWriteCharBuffer('r');
-    avroraWriteCharBuffer('t');
-    avroraPrintCharBuffer();
+    // avroraWriteCharBuffer('b');
+    // avroraWriteCharBuffer('e');
+    // avroraWriteCharBuffer('n');
+    // avroraWriteCharBuffer('c');
+    // avroraWriteCharBuffer('h');
+    // avroraWriteCharBuffer('s');
+    // avroraWriteCharBuffer('t');
+    // avroraWriteCharBuffer('a');
+    // avroraWriteCharBuffer('r');
+    // avroraWriteCharBuffer('t');
+    // avroraPrintCharBuffer();
     avroraTraceEnable();
 }
 void rtc_stopBenchmarkMeasurement(){
     avroraTraceDisable();
-    avroraWriteCharBuffer('b');
-    avroraWriteCharBuffer('e');
-    avroraWriteCharBuffer('n');
-    avroraWriteCharBuffer('c');
-    avroraWriteCharBuffer('h');
-    avroraWriteCharBuffer('s');
-    avroraWriteCharBuffer('t');
-    avroraWriteCharBuffer('o');
-    avroraWriteCharBuffer('p');
-    avroraPrintCharBuffer();
+    // avroraWriteCharBuffer('b');
+    // avroraWriteCharBuffer('e');
+    // avroraWriteCharBuffer('n');
+    // avroraWriteCharBuffer('c');
+    // avroraWriteCharBuffer('h');
+    // avroraWriteCharBuffer('s');
+    // avroraWriteCharBuffer('t');
+    // avroraWriteCharBuffer('o');
+    // avroraWriteCharBuffer('p');
+    // avroraPrintCharBuffer();
 }
 
 void printInt(uint32_t value){
-    avr_Printf("res: %ld\r\n",value);
+    avr_Printf("%ld\n",value);
 }
 void PrintInt32(uint32_t value){
     avroraPrintInt32(value);

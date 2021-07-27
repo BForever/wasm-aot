@@ -6,26 +6,15 @@ Node          Time   Event
 ------------------------------------------------------------------------------
    0          2473  [avrora.c-print] 1 0000
    0          2770  [avrora.trace]trace disabled --------------------------0
-   0         53538  [avrora.c-print] 11      temp | start of compiled code:   5c50
-   0        600531  [avrora.c-print] 11      temp | table address: 24308
-   0       1033171  [avrora.c-print] 11      temp | end of compiled code:   5f10
-   0       1036481  [avrora.c-print] 11      temp | SP:0x10f9
-   0       1039615  [avrora.c-print] 11      temp | start exec
-   0       1044073  [avrora.c-print] 11      temp | mem size:3725
-   0       1044093  [avrora.c-print] 11 
-   0       1048492  [avrora.c-print] 11      temp | copy 28 B globals
-   0       1052444  [avrora.c-print] 11      temp | mem_start:0x232
-   0       1055801  [avrora.c-print] 11         | start exec
-   0       1059738  [avrora.c-print] 11 malloc from 0 to 1024
-   0       1105667  [avrora.trace]trace enabled ---------------------------1
-   0       1142834  [avrora.trace]trace disabled --------------------------0
-   0       1147084  [avrora.c-print] 11         | wasm func returned.
+   0       1008093  [avrora.c-print] 11 malloc from 0 to 1024
+   0       1054022  [avrora.trace]trace enabled ---------------------------1
+   0       1091189  [avrora.trace]trace disabled --------------------------0
 ==============================================================================
-Simulated time: 1147103 cycles
+Simulated time: 1091295 cycles
 =={ Trace results for node 0 }================================================
 Instructions executed: 22044 
-Program throughput: 0.019217106 instrs/cycle
-Program throughput: 0.15373684 mips
+Program throughput: 0.020199854 instrs/cycle
+Program throughput: 0.16159883 mips
 ret	1
 add	768
 adc	1792

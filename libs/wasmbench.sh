@@ -16,9 +16,9 @@
 # sed -i "s#char#char\ __attribute__\ ((section\ (\".rtc_code_marker\")))"# test.wasm.h
 # cd ../libs
 
-# benchlist=(binsrch bsort fillarray funcall hsort lec fft outlier)
+benchlist=(binsrch bsort fillarray funcall hsort lec fft outlier)
 # benchlist=(binsrch bsort fillarray funcall)
-benchlist=(fft)
+# benchlist=(fft)
 
 for bench in ${benchlist[*]}
 do 

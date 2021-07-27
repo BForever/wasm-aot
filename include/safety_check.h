@@ -7,4 +7,6 @@
 //只需要在栈净增加的操作后使用，如const,call,这里测试加在const上的开销
 #define check_stack_overflow 0
 
+#define flash_data 0
+
 #endif

@@ -1,4 +1,4 @@
-#include "fft.wasm.h"
+#include "outlier.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"

@@ -6,358 +6,434 @@ Node          Time   Event
 ------------------------------------------------------------------------------
    0          2473  [avrora.c-print] 1 0000
    0          2770  [avrora.trace]trace disabled --------------------------0
-   0         15687  [avrora.c-print] 11     parse | load module: 3591 bytes at 0x6488
-   0         20592  [avrora.c-print] 11     parse |  sectionType = 1
-   0         24533  [avrora.c-print] 11     parse | ** Type [6]
-   0         29503  [avrora.c-print] 11     parse |     type  0: 
-   0         33648  [avrora.c-print] 11     parse | () -> nil
-   0         39201  [avrora.c-print] 11     parse |     type  1: 
-   0         44177  [avrora.c-print] 11     parse | (i32) -> i32
-   0         50442  [avrora.c-print] 11     parse |     type  2: 
-   0         57516  [avrora.c-print] 11     parse | (i32, i32, i32) -> i32
-   0         62735  [avrora.c-print] 11     parse |     type  3: 
-   0         67711  [avrora.c-print] 11     parse | (i32) -> nil
-   0         73620  [avrora.c-print] 11     parse |     type  4: 
-   0         79645  [avrora.c-print] 11     parse | (i32, i32) -> i32
-   0         86266  [avrora.c-print] 11     parse |     type  5: 
-   0         94389  [avrora.c-print] 11     parse | (i32, i32, i32, i32) -> i32
-   0         99395  [avrora.c-print] 11     parse |  sectionType = 2
-   0        103573  [avrora.c-print] 11     parse | ** Import [6]
-   0        113745  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_startBenchmarkMeasurement_Native' 
-   0        125772  [avrora.c-print] 11     parse |    added function   0: rtc_startBenchmarkMeasurement_Native; sig: 0;
-   0        135040  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_stopBenchmarkMeasurement' 
-   0        139639  [avrora.c-print] 11     parse | bytes to alloc: 4
-   0        150775  [avrora.c-print] 11     parse |    added function   1: rtc_stopBenchmarkMeasurement; sig: 0;
-   0        157397  [avrora.c-print] 11     parse |     kind: 0 'env.malloc' 
-   0        161996  [avrora.c-print] 11     parse | bytes to alloc: 6
-   0        170985  [avrora.c-print] 11     parse |    added function   2: malloc; sig: 1;
-   0        177583  [avrora.c-print] 11     parse |     kind: 0 'env.memset' 
-   0        182182  [avrora.c-print] 11     parse | bytes to alloc: 8
-   0        191187  [avrora.c-print] 11     parse |    added function   3: memset; sig: 2;
-   0        198053  [avrora.c-print] 11     parse |     kind: 0 'env.printStr' 
-   0        202892  [avrora.c-print] 11     parse | bytes to alloc: 10
-   0        212121  [avrora.c-print] 11     parse |    added function   4: printStr; sig: 1;
-   0        219003  [avrora.c-print] 11     parse |     kind: 0 'env.printInt' 
-   0        223842  [avrora.c-print] 11     parse | bytes to alloc: 12
-   0        233182  [avrora.c-print] 11     parse |    added function   5: printInt; sig: 3;
-   0        238085  [avrora.c-print] 11     parse |  sectionType = 3
-   0        242471  [avrora.c-print] 11     parse | ** Function [4]
-   0        247316  [avrora.c-print] 11     parse | bytes to alloc: 14
-   0        256969  [avrora.c-print] 11     parse |    added function   6: f1; sig: 0;
-   0        261846  [avrora.c-print] 11     parse | bytes to alloc: 16
-   0        271568  [avrora.c-print] 11     parse |    added function   7: f2; sig: 4;
-   0        276445  [avrora.c-print] 11     parse | bytes to alloc: 18
-   0        286180  [avrora.c-print] 11     parse |    added function   8: f3; sig: 5;
-   0        291057  [avrora.c-print] 11     parse | bytes to alloc: 20
-   0        300922  [avrora.c-print] 11     parse |    added function   9: f4; sig: 0;
-   0        305752  [avrora.c-print] 11     parse |  sectionType = 4
-   0        310855  [avrora.c-print] 11     parse |  skipped section type: 4
-   0        315638  [avrora.c-print] 11     parse |  sectionType = 5
-   0        319786  [avrora.c-print] 11     parse | ** Memory [1]
-   0        325138  [avrora.c-print] 11     parse |  sectionType = 6
-   0        329308  [avrora.c-print] 11     parse | ** Global [8]
-   0        337418  [avrora.c-print] 11     parse |     global: [0] i32 mutable=1
-   0        345444  [avrora.c-print] 11     parse |     global: [1] i32 mutable=0
-   0        353470  [avrora.c-print] 11     parse |     global: [2] i32 mutable=0
-   0        361496  [avrora.c-print] 11     parse |     global: [3] i32 mutable=0
-   0        369522  [avrora.c-print] 11     parse |     global: [4] i32 mutable=0
-   0        377548  [avrora.c-print] 11     parse |     global: [5] i32 mutable=0
-   0        385574  [avrora.c-print] 11     parse |     global: [6] i32 mutable=0
-   0        393581  [avrora.c-print] 11     parse |     global: [7] i32 mutable=0
-   0        398685  [avrora.c-print] 11     parse |  sectionType = 7
-   0        403788  [avrora.c-print] 11     parse |  skipped section type: 7
-   0        408975  [avrora.c-print] 11     parse |  sectionType = 10
-   0        412913  [avrora.c-print] 11     parse | ** Code [4]
-   0        418006  [avrora.c-print] 11     parse |     code size: 2   
-   0        423324  [avrora.c-print] 11     parse |     code size: 13  
-   0        428958  [avrora.c-print] 11     parse |     code size: 792 
-   0        436383  [avrora.c-print] 11     parse |       19 locals; type: 'i32'
-   0        442020  [avrora.c-print] 11     parse |     code size: 216 
-   0        449292  [avrora.c-print] 11     parse |        4 locals; type: 'i32'
-   0        454587  [avrora.c-print] 11     parse |  sectionType = 11
-   0        458527  [avrora.c-print] 11     parse | ** Data [1]
-   0        470906  [avrora.c-print] 11     parse |     segment [0]  memory: 0;  expr-size: 4;  size: 2065
-   0        474515  [avrora.c-print] 11     parse | Parsing done.
-   0        486909  [avrora.c-print] 11      temp | start of compiled code:   7290
-   0       4662263  [avrora.c-print] 11      temp | table address: 37638
-   0       7566719  [avrora.c-print] 11      temp | end of compiled code:   939a
-   0       7570029  [avrora.c-print] 11      temp | SP:0x10f9
-   0       7573163  [avrora.c-print] 11      temp | start exec
-   0       7596708  [avrora.c-print] 11      temp | mem size:3725
-   0       7596728  [avrora.c-print] 11 
-   0       7601127  [avrora.c-print] 11      temp | copy 32 B globals
-   0       7605079  [avrora.c-print] 11      temp | mem_start:0x232
-   0       7611776  [avrora.c-print] 11  ￨￠ￗￍ￁ﾴﾦﾖﾆtaL7 ￯~mpile.c | start exec
-   0       7615473  [avrora.c-print] 11 malloc from 0 to 256
-   0       7619620  [avrora.c-print] 11 malloc from 256 to 512
-   0       7638487  [avrora.c-print] 11 BEFORE FFT
-   0       7639619  [avrora.c-print] 11 -----
-   0       7640567  [avrora.c-print] 11 0
-   0       7641546  [avrora.c-print] 11 0
-   0       7642759  [avrora.c-print] 11 -----
-   0       7643947  [avrora.c-print] 11 16
-   0       7644926  [avrora.c-print] 11 0
-   0       7646139  [avrora.c-print] 11 -----
-   0       7647327  [avrora.c-print] 11 32
-   0       7648306  [avrora.c-print] 11 0
-   0       7649519  [avrora.c-print] 11 -----
-   0       7650707  [avrora.c-print] 11 48
-   0       7651686  [avrora.c-print] 11 0
-   0       7652899  [avrora.c-print] 11 -----
-   0       7654087  [avrora.c-print] 11 64
-   0       7655066  [avrora.c-print] 11 0
-   0       7656279  [avrora.c-print] 11 -----
-   0       7657467  [avrora.c-print] 11 80
-   0       7658446  [avrora.c-print] 11 0
-   0       7659659  [avrora.c-print] 11 -----
-   0       7660847  [avrora.c-print] 11 96
-   0       7661826  [avrora.c-print] 11 0
-   0       7663039  [avrora.c-print] 11 -----
-   0       7664467  [avrora.c-print] 11 112
-   0       7665446  [avrora.c-print] 11 0
-   0       7666659  [avrora.c-print] 11 -----
-   0       7668087  [avrora.c-print] 11 128
-   0       7669066  [avrora.c-print] 11 0
-   0       7670279  [avrora.c-print] 11 -----
-   0       7671707  [avrora.c-print] 11 144
-   0       7672686  [avrora.c-print] 11 0
-   0       7673899  [avrora.c-print] 11 -----
-   0       7675327  [avrora.c-print] 11 160
-   0       7676306  [avrora.c-print] 11 0
-   0       7677519  [avrora.c-print] 11 -----
-   0       7678947  [avrora.c-print] 11 176
-   0       7679926  [avrora.c-print] 11 0
-   0       7681139  [avrora.c-print] 11 -----
-   0       7682567  [avrora.c-print] 11 192
-   0       7683546  [avrora.c-print] 11 0
-   0       7684759  [avrora.c-print] 11 -----
-   0       7686187  [avrora.c-print] 11 208
-   0       7687166  [avrora.c-print] 11 0
-   0       7688379  [avrora.c-print] 11 -----
-   0       7689807  [avrora.c-print] 11 224
-   0       7690786  [avrora.c-print] 11 0
-   0       7691999  [avrora.c-print] 11 -----
-   0       7693427  [avrora.c-print] 11 240
-   0       7694406  [avrora.c-print] 11 0
-   0       7695619  [avrora.c-print] 11 -----
-   0       7697047  [avrora.c-print] 11 256
-   0       7698026  [avrora.c-print] 11 0
-   0       7699239  [avrora.c-print] 11 -----
-   0       7700667  [avrora.c-print] 11 272
-   0       7701646  [avrora.c-print] 11 0
-   0       7702859  [avrora.c-print] 11 -----
-   0       7704287  [avrora.c-print] 11 288
-   0       7705266  [avrora.c-print] 11 0
-   0       7706479  [avrora.c-print] 11 -----
-   0       7707907  [avrora.c-print] 11 304
-   0       7708886  [avrora.c-print] 11 0
-   0       7710099  [avrora.c-print] 11 -----
-   0       7711527  [avrora.c-print] 11 320
-   0       7712506  [avrora.c-print] 11 0
-   0       7713719  [avrora.c-print] 11 -----
-   0       7715147  [avrora.c-print] 11 336
-   0       7716126  [avrora.c-print] 11 0
-   0       7717339  [avrora.c-print] 11 -----
-   0       7718767  [avrora.c-print] 11 352
-   0       7719746  [avrora.c-print] 11 0
-   0       7720959  [avrora.c-print] 11 -----
-   0       7722387  [avrora.c-print] 11 368
-   0       7723366  [avrora.c-print] 11 0
-   0       7724579  [avrora.c-print] 11 -----
-   0       7726007  [avrora.c-print] 11 384
-   0       7726986  [avrora.c-print] 11 0
-   0       7728199  [avrora.c-print] 11 -----
-   0       7729627  [avrora.c-print] 11 400
-   0       7730606  [avrora.c-print] 11 0
-   0       7731819  [avrora.c-print] 11 -----
-   0       7733247  [avrora.c-print] 11 416
-   0       7734226  [avrora.c-print] 11 0
-   0       7735439  [avrora.c-print] 11 -----
-   0       7736867  [avrora.c-print] 11 432
-   0       7737846  [avrora.c-print] 11 0
-   0       7739059  [avrora.c-print] 11 -----
-   0       7740487  [avrora.c-print] 11 448
-   0       7741466  [avrora.c-print] 11 0
-   0       7742679  [avrora.c-print] 11 -----
-   0       7744107  [avrora.c-print] 11 464
-   0       7745086  [avrora.c-print] 11 0
-   0       7746299  [avrora.c-print] 11 -----
-   0       7747727  [avrora.c-print] 11 480
-   0       7748706  [avrora.c-print] 11 0
-   0       7749919  [avrora.c-print] 11 -----
-   0       7751347  [avrora.c-print] 11 496
-   0       7752326  [avrora.c-print] 11 0
-   0       7753539  [avrora.c-print] 11 -----
-   0       7754967  [avrora.c-print] 11 512
-   0       7755946  [avrora.c-print] 11 0
-   0       7757159  [avrora.c-print] 11 -----
-   0       7758587  [avrora.c-print] 11 528
-   0       7759566  [avrora.c-print] 11 0
-   0       7760779  [avrora.c-print] 11 -----
-   0       7762207  [avrora.c-print] 11 544
-   0       7763186  [avrora.c-print] 11 0
-   0       7764399  [avrora.c-print] 11 -----
-   0       7765827  [avrora.c-print] 11 560
-   0       7766806  [avrora.c-print] 11 0
-   0       7768019  [avrora.c-print] 11 -----
-   0       7769447  [avrora.c-print] 11 576
-   0       7770426  [avrora.c-print] 11 0
-   0       7771639  [avrora.c-print] 11 -----
-   0       7773067  [avrora.c-print] 11 592
-   0       7774046  [avrora.c-print] 11 0
-   0       7775259  [avrora.c-print] 11 -----
-   0       7776687  [avrora.c-print] 11 608
-   0       7777666  [avrora.c-print] 11 0
-   0       7778879  [avrora.c-print] 11 -----
-   0       7780307  [avrora.c-print] 11 624
-   0       7781286  [avrora.c-print] 11 0
-   0       7782499  [avrora.c-print] 11 -----
-   0       7783927  [avrora.c-print] 11 640
-   0       7784906  [avrora.c-print] 11 0
-   0       7786119  [avrora.c-print] 11 -----
-   0       7787547  [avrora.c-print] 11 656
-   0       7788526  [avrora.c-print] 11 0
-   0       7789739  [avrora.c-print] 11 -----
-   0       7791167  [avrora.c-print] 11 672
-   0       7792146  [avrora.c-print] 11 0
-   0       7793359  [avrora.c-print] 11 -----
-   0       7794787  [avrora.c-print] 11 688
-   0       7795766  [avrora.c-print] 11 0
-   0       7796979  [avrora.c-print] 11 -----
-   0       7798407  [avrora.c-print] 11 704
-   0       7799386  [avrora.c-print] 11 0
-   0       7800599  [avrora.c-print] 11 -----
-   0       7802027  [avrora.c-print] 11 720
-   0       7803006  [avrora.c-print] 11 0
-   0       7804219  [avrora.c-print] 11 -----
-   0       7805647  [avrora.c-print] 11 736
-   0       7806626  [avrora.c-print] 11 0
-   0       7807839  [avrora.c-print] 11 -----
-   0       7809267  [avrora.c-print] 11 752
-   0       7810246  [avrora.c-print] 11 0
-   0       7811459  [avrora.c-print] 11 -----
-   0       7812887  [avrora.c-print] 11 768
-   0       7813866  [avrora.c-print] 11 0
-   0       7815079  [avrora.c-print] 11 -----
-   0       7816507  [avrora.c-print] 11 784
-   0       7817486  [avrora.c-print] 11 0
-   0       7818699  [avrora.c-print] 11 -----
-   0       7820127  [avrora.c-print] 11 800
-   0       7821106  [avrora.c-print] 11 0
-   0       7822319  [avrora.c-print] 11 -----
-   0       7823747  [avrora.c-print] 11 816
-   0       7824726  [avrora.c-print] 11 0
-   0       7825939  [avrora.c-print] 11 -----
-   0       7827367  [avrora.c-print] 11 832
-   0       7828346  [avrora.c-print] 11 0
-   0       7829559  [avrora.c-print] 11 -----
-   0       7830987  [avrora.c-print] 11 848
-   0       7831966  [avrora.c-print] 11 0
-   0       7833179  [avrora.c-print] 11 -----
-   0       7834607  [avrora.c-print] 11 864
-   0       7835586  [avrora.c-print] 11 0
-   0       7836799  [avrora.c-print] 11 -----
-   0       7838227  [avrora.c-print] 11 880
-   0       7839206  [avrora.c-print] 11 0
-   0       7840419  [avrora.c-print] 11 -----
-   0       7841847  [avrora.c-print] 11 896
-   0       7842826  [avrora.c-print] 11 0
-   0       7844039  [avrora.c-print] 11 -----
-   0       7845467  [avrora.c-print] 11 912
-   0       7846446  [avrora.c-print] 11 0
-   0       7847659  [avrora.c-print] 11 -----
-   0       7849087  [avrora.c-print] 11 928
-   0       7850066  [avrora.c-print] 11 0
-   0       7851279  [avrora.c-print] 11 -----
-   0       7852707  [avrora.c-print] 11 944
-   0       7853686  [avrora.c-print] 11 0
-   0       7854899  [avrora.c-print] 11 -----
-   0       7856327  [avrora.c-print] 11 960
-   0       7857306  [avrora.c-print] 11 0
-   0       7858519  [avrora.c-print] 11 -----
-   0       7859947  [avrora.c-print] 11 976
-   0       7860926  [avrora.c-print] 11 0
-   0       7862139  [avrora.c-print] 11 -----
-   0       7863567  [avrora.c-print] 11 992
-   0       7864546  [avrora.c-print] 11 0
-   0       7865759  [avrora.c-print] 11 -----
-   0       7867427  [avrora.c-print] 11 1008
-   0       7868406  [avrora.c-print] 11 0
-   0       7868642  [avrora.trace]trace enabled ---------------------------1
-   0       9253511  [avrora.trace]trace disabled --------------------------0
-   0       9256314  [avrora.c-print] 1 0130
-   0       9256611  [avrora.trace]trace disabled --------------------------0
-   0       9269528  [avrora.c-print] 11     parse | load module: 3591 bytes at 0x6488
-   0       9274433  [avrora.c-print] 11     parse |  sectionType = 1
-   0       9278374  [avrora.c-print] 11     parse | ** Type [6]
-   0       9283344  [avrora.c-print] 11     parse |     type  0: 
-   0       9287489  [avrora.c-print] 11     parse | () -> nil
-   0       9293042  [avrora.c-print] 11     parse |     type  1: 
-   0       9298018  [avrora.c-print] 11     parse | (i32) -> i32
-   0       9304283  [avrora.c-print] 11     parse |     type  2: 
-   0       9311357  [avrora.c-print] 11     parse | (i32, i32, i32) -> i32
-   0       9316576  [avrora.c-print] 11     parse |     type  3: 
-   0       9321552  [avrora.c-print] 11     parse | (i32) -> nil
-   0       9327461  [avrora.c-print] 11     parse |     type  4: 
-   0       9333486  [avrora.c-print] 11     parse | (i32, i32) -> i32
-   0       9340107  [avrora.c-print] 11     parse |     type  5: 
-   0       9348230  [avrora.c-print] 11     parse | (i32, i32, i32, i32) -> i32
-   0       9353236  [avrora.c-print] 11     parse |  sectionType = 2
-   0       9357414  [avrora.c-print] 11     parse | ** Import [6]
-   0       9367586  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_startBenchmarkMeasurement_Native' 
-   0       9372425  [avrora.c-print] 11     parse | bytes to alloc: 22
-   0       9380724  [avrora.c-print] 11     parse |    added function  10:  sig: 0;
-   0       9386762  [avrora.c-print] 11     parse |     kind: 0 '.' 
-   0       9391601  [avrora.c-print] 11     parse | bytes to alloc: 24
-   0       9399901  [avrora.c-print] 11     parse |    added function  11:  sig: 0;
-   0       9405543  [avrora.c-print] 11     parse |     kind: 0 '.' 
-   0       9410382  [avrora.c-print] 11     parse | bytes to alloc: 26
-   0       9418682  [avrora.c-print] 11     parse |    added function  12:  sig: 1;
-   0       9424324  [avrora.c-print] 11     parse |     kind: 0 '.' 
-   0       9429163  [avrora.c-print] 11     parse | bytes to alloc: 28
-   0       9437463  [avrora.c-print] 11     parse |    added function  13:  sig: 2;
-   0       9443141  [avrora.c-print] 11     parse |     kind: 0 '.' 
-   0       9447980  [avrora.c-print] 11     parse | bytes to alloc: 30
-   0       9456280  [avrora.c-print] 11     parse |    added function  14:  sig: 1;
-   0       9461958  [avrora.c-print] 11     parse |     kind: 0 '.' 
-   0       9466797  [avrora.c-print] 11     parse | bytes to alloc: 32
-   0       9475097  [avrora.c-print] 11     parse |    added function  15:  sig: 3;
-   0       9480000  [avrora.c-print] 11     parse |  sectionType = 3
-   0       9484386  [avrora.c-print] 11     parse | ** Function [4]
-   0       9489231  [avrora.c-print] 11     parse | bytes to alloc: 34
-   0       9498340  [avrora.c-print] 11     parse |    added function  16:  sig: 0;
-   0       9503217  [avrora.c-print] 11     parse | bytes to alloc: 36
-   0       9512326  [avrora.c-print] 11     parse |    added function  17:  sig: 4;
-   0       9517203  [avrora.c-print] 11     parse | bytes to alloc: 38
-   0       9526312  [avrora.c-print] 11     parse |    added function  18:  sig: 5;
-   0       9531189  [avrora.c-print] 11     parse | bytes to alloc: 40
-   0       9540298  [avrora.c-print] 11     parse |    added function  19:  sig: 0;
-   0       9545128  [avrora.c-print] 11     parse |  sectionType = 4
-   0       9550231  [avrora.c-print] 11     parse |  skipped section type: 4
-   0       9555014  [avrora.c-print] 11     parse |  sectionType = 5
-   0       9559162  [avrora.c-print] 11     parse | ** Memory [1]
-   0       9564514  [avrora.c-print] 11     parse |  sectionType = 6
-   0       9568684  [avrora.c-print] 11     parse | ** Global [8]
-   0       9576696  [avrora.c-print] 11     parse |     global: [0] i32 mutable=1
-   0       9584722  [avrora.c-print] 11     parse |     global: [1] i32 mutable=0
-   0       9592748  [avrora.c-print] 11     parse |     global: [2] i32 mutable=0
-   0       9600774  [avrora.c-print] 11     parse |     global: [3] i32 mutable=0
-   0       9608800  [avrora.c-print] 11     parse |     global: [4] i32 mutable=0
-   0       9616826  [avrora.c-print] 11     parse |     global: [5] i32 mutable=0
-   0       9624852  [avrora.c-print] 11     parse |     global: [6] i32 mutable=0
-   0       9632859  [avrora.c-print] 11     parse |     global: [7] i32 mutable=0
-   0       9637963  [avrora.c-print] 11     parse |  sectionType = 7
-   0       9643066  [avrora.c-print] 11     parse |  skipped section type: 7
-   0       9648253  [avrora.c-print] 11     parse |  sectionType = 10
-   0       9652191  [avrora.c-print] 11     parse | ** Code [4]
-   0       9657284  [avrora.c-print] 11     parse |     code size: 2   
-   0       9662602  [avrora.c-print] 11     parse |     code size: 13  
-   0       9668236  [avrora.c-print] 11     parse |     code size: 792 
-   0       9675661  [avrora.c-print] 11     parse |       19 locals; type: 'i32'
-   0       9681298  [avrora.c-print] 11     parse |     code size: 216 
-   0       9688570  [avrora.c-print] 11     parse |        4 locals; type: 'i32'
-   0       9693865  [avrora.c-print] 11     parse |  sectionType = 11
-   0       9697805  [avrora.c-print] 11     parse | ** Data [1]
-   0       9709388  [avrora.c-print] 11     parse |     segment [0]  memory: 0;  expr-size: 0;  size: 0
-   0       9712997  [avrora.c-print] 11     parse | Parsing done.
-   0       9722562  [avrora.c-print] 11 panic! : global type not supported /home/fanhc/wasm-aot/src/compile.c :297
+   0       7628806  [avrora.c-print] 11 malloc from 0 to 128
+   0       7632953  [avrora.c-print] 11 malloc from 128 to 256
+   0       7653100  [avrora.c-print] 11 BEFORE FFT
+   0       7654232  [avrora.c-print] 11 -----
+   0       7655183  [avrora.c-print] 11 0
+   0       7656165  [avrora.c-print] 11 0
+   0       7657394  [avrora.c-print] 11 -----
+   0       7658585  [avrora.c-print] 11 16
+   0       7659567  [avrora.c-print] 11 0
+   0       7660796  [avrora.c-print] 11 -----
+   0       7661987  [avrora.c-print] 11 32
+   0       7662969  [avrora.c-print] 11 0
+   0       7664198  [avrora.c-print] 11 -----
+   0       7665389  [avrora.c-print] 11 48
+   0       7666371  [avrora.c-print] 11 0
+   0       7667600  [avrora.c-print] 11 -----
+   0       7668791  [avrora.c-print] 11 64
+   0       7669773  [avrora.c-print] 11 0
+   0       7671002  [avrora.c-print] 11 -----
+   0       7672193  [avrora.c-print] 11 80
+   0       7673175  [avrora.c-print] 11 0
+   0       7674404  [avrora.c-print] 11 -----
+   0       7675595  [avrora.c-print] 11 96
+   0       7676577  [avrora.c-print] 11 0
+   0       7677806  [avrora.c-print] 11 -----
+   0       7679237  [avrora.c-print] 11 112
+   0       7680219  [avrora.c-print] 11 0
+   0       7681448  [avrora.c-print] 11 -----
+   0       7682879  [avrora.c-print] 11 128
+   0       7683861  [avrora.c-print] 11 0
+   0       7685090  [avrora.c-print] 11 -----
+   0       7686521  [avrora.c-print] 11 144
+   0       7687503  [avrora.c-print] 11 0
+   0       7688732  [avrora.c-print] 11 -----
+   0       7690163  [avrora.c-print] 11 160
+   0       7691145  [avrora.c-print] 11 0
+   0       7692374  [avrora.c-print] 11 -----
+   0       7693805  [avrora.c-print] 11 176
+   0       7694787  [avrora.c-print] 11 0
+   0       7696016  [avrora.c-print] 11 -----
+   0       7697447  [avrora.c-print] 11 192
+   0       7698429  [avrora.c-print] 11 0
+   0       7699658  [avrora.c-print] 11 -----
+   0       7701089  [avrora.c-print] 11 208
+   0       7702071  [avrora.c-print] 11 0
+   0       7703300  [avrora.c-print] 11 -----
+   0       7704731  [avrora.c-print] 11 224
+   0       7705713  [avrora.c-print] 11 0
+   0       7706942  [avrora.c-print] 11 -----
+   0       7708373  [avrora.c-print] 11 240
+   0       7709355  [avrora.c-print] 11 0
+   0       7710584  [avrora.c-print] 11 -----
+   0       7712015  [avrora.c-print] 11 256
+   0       7712997  [avrora.c-print] 11 0
+   0       7714226  [avrora.c-print] 11 -----
+   0       7715657  [avrora.c-print] 11 272
+   0       7716639  [avrora.c-print] 11 0
+   0       7717868  [avrora.c-print] 11 -----
+   0       7719299  [avrora.c-print] 11 288
+   0       7720281  [avrora.c-print] 11 0
+   0       7721510  [avrora.c-print] 11 -----
+   0       7722941  [avrora.c-print] 11 304
+   0       7723923  [avrora.c-print] 11 0
+   0       7725152  [avrora.c-print] 11 -----
+   0       7726583  [avrora.c-print] 11 320
+   0       7727565  [avrora.c-print] 11 0
+   0       7728794  [avrora.c-print] 11 -----
+   0       7730225  [avrora.c-print] 11 336
+   0       7731207  [avrora.c-print] 11 0
+   0       7732436  [avrora.c-print] 11 -----
+   0       7733867  [avrora.c-print] 11 352
+   0       7734849  [avrora.c-print] 11 0
+   0       7736078  [avrora.c-print] 11 -----
+   0       7737509  [avrora.c-print] 11 368
+   0       7738491  [avrora.c-print] 11 0
+   0       7739720  [avrora.c-print] 11 -----
+   0       7741151  [avrora.c-print] 11 384
+   0       7742133  [avrora.c-print] 11 0
+   0       7743362  [avrora.c-print] 11 -----
+   0       7744793  [avrora.c-print] 11 400
+   0       7745775  [avrora.c-print] 11 0
+   0       7747004  [avrora.c-print] 11 -----
+   0       7748435  [avrora.c-print] 11 416
+   0       7749417  [avrora.c-print] 11 0
+   0       7750646  [avrora.c-print] 11 -----
+   0       7752077  [avrora.c-print] 11 432
+   0       7753059  [avrora.c-print] 11 0
+   0       7754288  [avrora.c-print] 11 -----
+   0       7755719  [avrora.c-print] 11 448
+   0       7756701  [avrora.c-print] 11 0
+   0       7757930  [avrora.c-print] 11 -----
+   0       7759361  [avrora.c-print] 11 464
+   0       7760343  [avrora.c-print] 11 0
+   0       7761572  [avrora.c-print] 11 -----
+   0       7763003  [avrora.c-print] 11 480
+   0       7763985  [avrora.c-print] 11 0
+   0       7765214  [avrora.c-print] 11 -----
+   0       7766645  [avrora.c-print] 11 496
+   0       7767627  [avrora.c-print] 11 0
+   0       7768856  [avrora.c-print] 11 -----
+   0       7770287  [avrora.c-print] 11 512
+   0       7771269  [avrora.c-print] 11 0
+   0       7772498  [avrora.c-print] 11 -----
+   0       7773929  [avrora.c-print] 11 528
+   0       7774911  [avrora.c-print] 11 0
+   0       7776140  [avrora.c-print] 11 -----
+   0       7777571  [avrora.c-print] 11 544
+   0       7778553  [avrora.c-print] 11 0
+   0       7779782  [avrora.c-print] 11 -----
+   0       7781213  [avrora.c-print] 11 560
+   0       7782195  [avrora.c-print] 11 0
+   0       7783424  [avrora.c-print] 11 -----
+   0       7784855  [avrora.c-print] 11 576
+   0       7785837  [avrora.c-print] 11 0
+   0       7787066  [avrora.c-print] 11 -----
+   0       7788497  [avrora.c-print] 11 592
+   0       7789479  [avrora.c-print] 11 0
+   0       7790708  [avrora.c-print] 11 -----
+   0       7792139  [avrora.c-print] 11 608
+   0       7793121  [avrora.c-print] 11 0
+   0       7794350  [avrora.c-print] 11 -----
+   0       7795781  [avrora.c-print] 11 624
+   0       7796763  [avrora.c-print] 11 0
+   0       7797992  [avrora.c-print] 11 -----
+   0       7799423  [avrora.c-print] 11 640
+   0       7800405  [avrora.c-print] 11 0
+   0       7801634  [avrora.c-print] 11 -----
+   0       7803065  [avrora.c-print] 11 656
+   0       7804047  [avrora.c-print] 11 0
+   0       7805276  [avrora.c-print] 11 -----
+   0       7806707  [avrora.c-print] 11 672
+   0       7807689  [avrora.c-print] 11 0
+   0       7808918  [avrora.c-print] 11 -----
+   0       7810349  [avrora.c-print] 11 688
+   0       7811331  [avrora.c-print] 11 0
+   0       7812560  [avrora.c-print] 11 -----
+   0       7813991  [avrora.c-print] 11 704
+   0       7814973  [avrora.c-print] 11 0
+   0       7816202  [avrora.c-print] 11 -----
+   0       7817633  [avrora.c-print] 11 720
+   0       7818615  [avrora.c-print] 11 0
+   0       7819844  [avrora.c-print] 11 -----
+   0       7821275  [avrora.c-print] 11 736
+   0       7822257  [avrora.c-print] 11 0
+   0       7823486  [avrora.c-print] 11 -----
+   0       7824917  [avrora.c-print] 11 752
+   0       7825899  [avrora.c-print] 11 0
+   0       7827128  [avrora.c-print] 11 -----
+   0       7828559  [avrora.c-print] 11 768
+   0       7829541  [avrora.c-print] 11 0
+   0       7830770  [avrora.c-print] 11 -----
+   0       7832201  [avrora.c-print] 11 784
+   0       7833183  [avrora.c-print] 11 0
+   0       7834412  [avrora.c-print] 11 -----
+   0       7835843  [avrora.c-print] 11 800
+   0       7836825  [avrora.c-print] 11 0
+   0       7838054  [avrora.c-print] 11 -----
+   0       7839485  [avrora.c-print] 11 816
+   0       7840467  [avrora.c-print] 11 0
+   0       7841696  [avrora.c-print] 11 -----
+   0       7843127  [avrora.c-print] 11 832
+   0       7844109  [avrora.c-print] 11 0
+   0       7845338  [avrora.c-print] 11 -----
+   0       7846769  [avrora.c-print] 11 848
+   0       7847751  [avrora.c-print] 11 0
+   0       7848980  [avrora.c-print] 11 -----
+   0       7850411  [avrora.c-print] 11 864
+   0       7851393  [avrora.c-print] 11 0
+   0       7852622  [avrora.c-print] 11 -----
+   0       7854053  [avrora.c-print] 11 880
+   0       7855035  [avrora.c-print] 11 0
+   0       7856264  [avrora.c-print] 11 -----
+   0       7857695  [avrora.c-print] 11 896
+   0       7858677  [avrora.c-print] 11 0
+   0       7859906  [avrora.c-print] 11 -----
+   0       7861337  [avrora.c-print] 11 912
+   0       7862319  [avrora.c-print] 11 0
+   0       7863548  [avrora.c-print] 11 -----
+   0       7864979  [avrora.c-print] 11 928
+   0       7865961  [avrora.c-print] 11 0
+   0       7867190  [avrora.c-print] 11 -----
+   0       7868621  [avrora.c-print] 11 944
+   0       7869603  [avrora.c-print] 11 0
+   0       7870832  [avrora.c-print] 11 -----
+   0       7872263  [avrora.c-print] 11 960
+   0       7873245  [avrora.c-print] 11 0
+   0       7874474  [avrora.c-print] 11 -----
+   0       7875905  [avrora.c-print] 11 976
+   0       7876887  [avrora.c-print] 11 0
+   0       7878116  [avrora.c-print] 11 -----
+   0       7879547  [avrora.c-print] 11 992
+   0       7880529  [avrora.c-print] 11 0
+   0       7881758  [avrora.c-print] 11 -----
+   0       7883429  [avrora.c-print] 11 1008
+   0       7884411  [avrora.c-print] 11 0
+   0       7884637  [avrora.trace]trace enabled ---------------------------1
+   0       8699707  [avrora.trace]trace disabled --------------------------0
+   0       8701219  [avrora.c-print] 11 AFTER FFT
+   0       8702339  [avrora.c-print] 11 -----
+   0       8703776  [avrora.c-print] 11 498
+   0       8704748  [avrora.c-print] 11 0
+   0       8705977  [avrora.c-print] 11 -----
+   0       8707267  [avrora.c-print] 11 -10
+   0       8708719  [avrora.c-print] 11 158
+   0       8709948  [avrora.c-print] 11 -----
+   0       8710998  [avrora.c-print] 11 -8
+   0       8712210  [avrora.c-print] 11 78
+   0       8713439  [avrora.c-print] 11 -----
+   0       8714729  [avrora.c-print] 11 -10
+   0       8715941  [avrora.c-print] 11 49
+   0       8717170  [avrora.c-print] 11 -----
+   0       8718460  [avrora.c-print] 11 -10
+   0       8719672  [avrora.c-print] 11 37
+   0       8720901  [avrora.c-print] 11 -----
+   0       8721951  [avrora.c-print] 11 -9
+   0       8723163  [avrora.c-print] 11 29
+   0       8724392  [avrora.c-print] 11 -----
+   0       8725682  [avrora.c-print] 11 -10
+   0       8726894  [avrora.c-print] 11 24
+   0       8728123  [avrora.c-print] 11 -----
+   0       8729413  [avrora.c-print] 11 -10
+   0       8730625  [avrora.c-print] 11 19
+   0       8731854  [avrora.c-print] 11 -----
+   0       8732904  [avrora.c-print] 11 -8
+   0       8734116  [avrora.c-print] 11 18
+   0       8735345  [avrora.c-print] 11 -----
+   0       8736395  [avrora.c-print] 11 -8
+   0       8737607  [avrora.c-print] 11 14
+   0       8738836  [avrora.c-print] 11 -----
+   0       8739886  [avrora.c-print] 11 -8
+   0       8741098  [avrora.c-print] 11 13
+   0       8742327  [avrora.c-print] 11 -----
+   0       8743377  [avrora.c-print] 11 -9
+   0       8744589  [avrora.c-print] 11 11
+   0       8745818  [avrora.c-print] 11 -----
+   0       8746868  [avrora.c-print] 11 -8
+   0       8747840  [avrora.c-print] 11 8
+   0       8749069  [avrora.c-print] 11 -----
+   0       8750119  [avrora.c-print] 11 -9
+   0       8751091  [avrora.c-print] 11 9
+   0       8752320  [avrora.c-print] 11 -----
+   0       8753370  [avrora.c-print] 11 -8
+   0       8754342  [avrora.c-print] 11 8
+   0       8755571  [avrora.c-print] 11 -----
+   0       8756621  [avrora.c-print] 11 -9
+   0       8757593  [avrora.c-print] 11 7
+   0       8758822  [avrora.c-print] 11 -----
+   0       8759872  [avrora.c-print] 11 -8
+   0       8760844  [avrora.c-print] 11 7
+   0       8762073  [avrora.c-print] 11 -----
+   0       8763123  [avrora.c-print] 11 -8
+   0       8764095  [avrora.c-print] 11 6
+   0       8765324  [avrora.c-print] 11 -----
+   0       8766374  [avrora.c-print] 11 -8
+   0       8767346  [avrora.c-print] 11 5
+   0       8768575  [avrora.c-print] 11 -----
+   0       8769625  [avrora.c-print] 11 -8
+   0       8770597  [avrora.c-print] 11 4
+   0       8771826  [avrora.c-print] 11 -----
+   0       8772876  [avrora.c-print] 11 -8
+   0       8773848  [avrora.c-print] 11 4
+   0       8775077  [avrora.c-print] 11 -----
+   0       8776127  [avrora.c-print] 11 -8
+   0       8777099  [avrora.c-print] 11 4
+   0       8778328  [avrora.c-print] 11 -----
+   0       8779378  [avrora.c-print] 11 -8
+   0       8780350  [avrora.c-print] 11 3
+   0       8781579  [avrora.c-print] 11 -----
+   0       8782629  [avrora.c-print] 11 -9
+   0       8783601  [avrora.c-print] 11 2
+   0       8784830  [avrora.c-print] 11 -----
+   0       8785880  [avrora.c-print] 11 -8
+   0       8786852  [avrora.c-print] 11 2
+   0       8788081  [avrora.c-print] 11 -----
+   0       8789131  [avrora.c-print] 11 -8
+   0       8790103  [avrora.c-print] 11 2
+   0       8791332  [avrora.c-print] 11 -----
+   0       8792382  [avrora.c-print] 11 -8
+   0       8793354  [avrora.c-print] 11 2
+   0       8794583  [avrora.c-print] 11 -----
+   0       8795633  [avrora.c-print] 11 -7
+   0       8796605  [avrora.c-print] 11 1
+   0       8797834  [avrora.c-print] 11 -----
+   0       8798884  [avrora.c-print] 11 -9
+   0       8799856  [avrora.c-print] 11 1
+   0       8801085  [avrora.c-print] 11 -----
+   0       8802135  [avrora.c-print] 11 -8
+   0       8803107  [avrora.c-print] 11 0
+   0       8804336  [avrora.c-print] 11 -----
+   0       8805386  [avrora.c-print] 11 -8
+   0       8806451  [avrora.c-print] 11 -1
+   0       8807680  [avrora.c-print] 11 -----
+   0       8808730  [avrora.c-print] 11 -8
+   0       8809795  [avrora.c-print] 11 -1
+   0       8811024  [avrora.c-print] 11 -----
+   0       8812074  [avrora.c-print] 11 -8
+   0       8813046  [avrora.c-print] 11 0
+   0       8814275  [avrora.c-print] 11 -----
+   0       8815325  [avrora.c-print] 11 -8
+   0       8816297  [avrora.c-print] 11 0
+   0       8817526  [avrora.c-print] 11 -----
+   0       8818576  [avrora.c-print] 11 -8
+   0       8819548  [avrora.c-print] 11 0
+   0       8820777  [avrora.c-print] 11 -----
+   0       8821827  [avrora.c-print] 11 -8
+   0       8822892  [avrora.c-print] 11 -1
+   0       8824121  [avrora.c-print] 11 -----
+   0       8825171  [avrora.c-print] 11 -8
+   0       8826236  [avrora.c-print] 11 -1
+   0       8827465  [avrora.c-print] 11 -----
+   0       8828515  [avrora.c-print] 11 -7
+   0       8829580  [avrora.c-print] 11 -1
+   0       8830809  [avrora.c-print] 11 -----
+   0       8831859  [avrora.c-print] 11 -8
+   0       8832924  [avrora.c-print] 11 -2
+   0       8834153  [avrora.c-print] 11 -----
+   0       8835203  [avrora.c-print] 11 -8
+   0       8836268  [avrora.c-print] 11 -3
+   0       8837497  [avrora.c-print] 11 -----
+   0       8838547  [avrora.c-print] 11 -8
+   0       8839612  [avrora.c-print] 11 -2
+   0       8840841  [avrora.c-print] 11 -----
+   0       8841891  [avrora.c-print] 11 -8
+   0       8842956  [avrora.c-print] 11 -2
+   0       8844185  [avrora.c-print] 11 -----
+   0       8845235  [avrora.c-print] 11 -8
+   0       8846300  [avrora.c-print] 11 -3
+   0       8847529  [avrora.c-print] 11 -----
+   0       8848579  [avrora.c-print] 11 -7
+   0       8849644  [avrora.c-print] 11 -5
+   0       8850873  [avrora.c-print] 11 -----
+   0       8851923  [avrora.c-print] 11 -8
+   0       8852988  [avrora.c-print] 11 -4
+   0       8854217  [avrora.c-print] 11 -----
+   0       8855267  [avrora.c-print] 11 -7
+   0       8856332  [avrora.c-print] 11 -5
+   0       8857561  [avrora.c-print] 11 -----
+   0       8858611  [avrora.c-print] 11 -8
+   0       8859676  [avrora.c-print] 11 -6
+   0       8860905  [avrora.c-print] 11 -----
+   0       8861955  [avrora.c-print] 11 -7
+   0       8863020  [avrora.c-print] 11 -7
+   0       8864249  [avrora.c-print] 11 -----
+   0       8865299  [avrora.c-print] 11 -8
+   0       8866364  [avrora.c-print] 11 -7
+   0       8867593  [avrora.c-print] 11 -----
+   0       8868643  [avrora.c-print] 11 -8
+   0       8869708  [avrora.c-print] 11 -8
+   0       8870937  [avrora.c-print] 11 -----
+   0       8871987  [avrora.c-print] 11 -8
+   0       8873052  [avrora.c-print] 11 -9
+   0       8874281  [avrora.c-print] 11 -----
+   0       8875331  [avrora.c-print] 11 -8
+   0       8876636  [avrora.c-print] 11 -10
+   0       8877865  [avrora.c-print] 11 -----
+   0       8878915  [avrora.c-print] 11 -8
+   0       8880220  [avrora.c-print] 11 -10
+   0       8881449  [avrora.c-print] 11 -----
+   0       8882499  [avrora.c-print] 11 -8
+   0       8883804  [avrora.c-print] 11 -12
+   0       8885033  [avrora.c-print] 11 -----
+   0       8886083  [avrora.c-print] 11 -8
+   0       8887388  [avrora.c-print] 11 -13
+   0       8888617  [avrora.c-print] 11 -----
+   0       8889667  [avrora.c-print] 11 -7
+   0       8890972  [avrora.c-print] 11 -16
+   0       8892201  [avrora.c-print] 11 -----
+   0       8893251  [avrora.c-print] 11 -8
+   0       8894556  [avrora.c-print] 11 -18
+   0       8895785  [avrora.c-print] 11 -----
+   0       8897075  [avrora.c-print] 11 -10
+   0       8898380  [avrora.c-print] 11 -20
+   0       8899609  [avrora.c-print] 11 -----
+   0       8900899  [avrora.c-print] 11 -10
+   0       8902204  [avrora.c-print] 11 -24
+   0       8903433  [avrora.c-print] 11 -----
+   0       8904483  [avrora.c-print] 11 -9
+   0       8905788  [avrora.c-print] 11 -29
+   0       8907017  [avrora.c-print] 11 -----
+   0       8908067  [avrora.c-print] 11 -9
+   0       8909372  [avrora.c-print] 11 -39
+   0       8910601  [avrora.c-print] 11 -----
+   0       8911891  [avrora.c-print] 11 -10
+   0       8913196  [avrora.c-print] 11 -50
+   0       8914425  [avrora.c-print] 11 -----
+   0       8915475  [avrora.c-print] 11 -8
+   0       8916780  [avrora.c-print] 11 -79
+   0       8918009  [avrora.c-print] 11 -----
+   0       8919299  [avrora.c-print] 11 -10
+   0       8920844  [avrora.c-print] 11 -159
+==============================================================================
+Simulated time: 8921411 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 557951 
+Program throughput: 0.062540665 instrs/cycle
+Program throughput: 0.5003253 mips
+brge	189
+sub	4463
+asr	16913
+brmi	831
+dec	48224
+mul	7680
+eor	3422
+lsr	11520
+jmp	351
+pop	63884
+movw	4190
+breq	585
+ror	85299
+and	280
+cpc	4323
+ret	3073
+add	30165
+adc	65251
+st	880
+brpl	48224
+std	17580
+or	189
+brne	63
+ldd	31538
+cp	1995
+push	63884
+rjmp	4274
+ldi	26584
+call	3073
+sts	1
+sbc	5741
+brlt	390
+ld	1006
+adiw	1886
+

@@ -50,6 +50,8 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x01 Nop
     case Nop:
     {
+        // DEBUG
+        emit_2_CALL(embed_func_print_stack);
         break;
     }
     // 0x02 Block
@@ -419,23 +421,26 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             base = ts.current_func->numLocalBytes + 4 + base * 4;
             log(emit, "Ld R22. from param[%d]", base);
         }
-
-        emit_LDD(R22, Y, base + 1);
-        emit_LDD(R23, Y, base + 2);
-        emit_LDD(R24, Y, base + 3);
-        emit_LDD(R25, Y, base + 4);
+        if(base>=60){
+            emit_LDI(RZL,base&0xff);
+            emit_LDI(RZH,base&0xff00);
+            emit_ADD(RYL,RZL);
+            emit_ADC(RYH,RZH);
+            emit_LDD(R22, Y, 1);
+            emit_LDD(R23, Y, 2);
+            emit_LDD(R24, Y, 3);
+            emit_LDD(R25, Y, 4);
+            emit_SUB(RYL,RZL);
+            emit_SBC(RYH,RZH);
+        }else{
+            emit_LDD(R22, Y, base + 1);
+            emit_LDD(R23, Y, base + 2);
+            emit_LDD(R24, Y, base + 3);
+            emit_LDD(R25, Y, base + 4);
+        }
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
 
-        // DEBUG 打印返回地址
-        // base = ts.current_func->numLocalBytes+2;
-        // emit_LDD(R22, Y, base + 1);
-        // emit_LDD(R23, Y, base + 2);
-        // emit_LDD(R24, Y, base + 3);
-        // emit_LDD(R25, Y, base + 4);
-        // emit_2_CALL(4);
-
-        // ts.pc += 16;
         ts.stack_top++;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -462,10 +467,23 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             base = ts.current_func->numLocalBytes + 4 + base * 4;
             log(emit, "Store R22... to param[%d]", base);
         }
-        emit_STD(R22, Y, base + 1);
-        emit_STD(R23, Y, base + 2);
-        emit_STD(R24, Y, base + 3);
-        emit_STD(R25, Y, base + 4);
+        if(base>=60){
+            emit_LDI(RZL,base&0xff);
+            emit_LDI(RZH,base&0xff00);
+            emit_ADD(RYL,RZL);
+            emit_ADC(RYH,RZH);
+            emit_STD(R22, Y, 1);
+            emit_STD(R23, Y, 2);
+            emit_STD(R24, Y, 3);
+            emit_STD(R25, Y, 4);
+            emit_SUB(RYL,RZL);
+            emit_SBC(RYH,RZH);
+        }else{
+            emit_STD(R22, Y, base + 1);
+            emit_STD(R23, Y, base + 2);
+            emit_STD(R24, Y, base + 3);
+            emit_STD(R25, Y, base + 4);
+        }
         // ts.pc += 16;
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);
@@ -492,10 +510,23 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             base = ts.current_func->numLocalBytes + 4 + base * 4;
             log(emit, "Store R22... to param[%d]", base);
         }
-        emit_STD(R22, Y, base + 1);
-        emit_STD(R23, Y, base + 2);
-        emit_STD(R24, Y, base + 3);
-        emit_STD(R25, Y, base + 4);
+        if(base>=60){
+            emit_LDI(RZL,base&0xff);
+            emit_LDI(RZH,base&0xff00);
+            emit_ADD(RYL,RZL);
+            emit_ADC(RYH,RZH);
+            emit_STD(R22, Y, 1);
+            emit_STD(R23, Y, 2);
+            emit_STD(R24, Y, 3);
+            emit_STD(R25, Y, 4);
+            emit_SUB(RYL,RZL);
+            emit_SBC(RYH,RZH);
+        }else{
+            emit_STD(R22, Y, base + 1);
+            emit_STD(R23, Y, base + 2);
+            emit_STD(R24, Y, base + 3);
+            emit_STD(R25, Y, base + 4);
+        }
         // 比Set多一个Push操作
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
@@ -510,16 +541,25 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         log(emit, "[GLOBAL.GET %d]", operand.num32[0]);
         log(emit, "Load R22. from global[%d]", module->global_list[operand.num16[0]].offset);
         emit_MOVW(RZ, R2);
-        emit_ADIW(RZ, module->global_list[operand.num16[0]].offset);
-
-        emit_LDD(R22, Z, 0);
-        emit_LDD(R23, Z, 1);
-        emit_LDD(R24, Z, 2);
-        emit_LDD(R25, Z, 3);
-
+        // 由于STD的偏移量只支持[-64，63]范围内寻址，因此需要进行Z指针的运算
+        if (module->global_list[operand.num16[0]].offset >= 60)
+        {
+            emit_LDI(R22,module->global_list[operand.num16[0]].offset&0x00ff);
+            emit_LDI(R23,module->global_list[operand.num16[0]].offset&0xff00);
+            emit_ADD(RZL,R22);
+            emit_ADC(RZH,R23);
+            emit_LDD(R22, Z, 0);
+            emit_LDD(R23, Z, 1);
+            emit_LDD(R24, Z, 2);
+            emit_LDD(R25, Z, 3);
+        }else{
+            emit_LDD(R22, Z, module->global_list[operand.num16[0]].offset);
+            emit_LDD(R23, Z, module->global_list[operand.num16[0]].offset + 1);
+            emit_LDD(R24, Z, module->global_list[operand.num16[0]].offset + 2);
+            emit_LDD(R25, Z, module->global_list[operand.num16[0]].offset + 3);
+        }
         log(emit, "push32");
         emit_x_PUSH_32bit(R22);
-        // ts.pc += 8;
         ts.stack_top++;
         log(emit, "s: %d", ts.stack_top);
         break;
@@ -535,17 +575,17 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // ts.pc += 8;
         log(emit, "Store R22. to global[%d]", module->global_list[operand.num16[0]].offset);
         emit_MOVW(RZ, R2);
-        // ts.pc += 2;
-
         // 由于STD的偏移量只支持[-64，63]范围内寻址，因此需要进行Z指针的运算
         if (module->global_list[operand.num16[0]].offset >= 60)
         {
-            emit_ADIW(RZ, module->global_list[operand.num16[0]].offset);
+            emit_LDI(R22,module->global_list[operand.num16[0]].offset&0x00ff);
+            emit_LDI(R23,module->global_list[operand.num16[0]].offset&0xff00);
+            emit_ADD(RZL,R22);
+            emit_ADC(RZH,R23);
             emit_STD(R22, Z, 0);
             emit_STD(R23, Z, 1);
             emit_STD(R24, Z, 2);
             emit_STD(R25, Z, 3);
-            // ts.pc += 16;
         }
         else
         {
@@ -553,7 +593,6 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R23, Z, module->global_list[operand.num16[0]].offset + 1);
             emit_STD(R24, Z, module->global_list[operand.num16[0]].offset + 2);
             emit_STD(R25, Z, module->global_list[operand.num16[0]].offset + 3);
-            // ts.pc += 8;
         }
         ts.stack_top--;
         log(emit, "s: %d", ts.stack_top);

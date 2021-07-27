@@ -3,9 +3,9 @@
 
 #include<stdio.h>
 #include<avr/io.h>
-#define DEBUG 1
+#define DEBUG 0
 #define d_log_parse     1
-#define d_log_compile   0
+#define d_log_compile   1
 #define d_log_wkreprog  0
 #define d_log_emit      0
 #define d_log_sys       0
@@ -74,8 +74,8 @@
 # endif
 
 #if d_log_panic
-#define panicf(FMT,...)  do{printf("panic! : "FMT " %s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);while(1);}while(0)
-#define panic()  do{printf("panic at ""%s :%d\r\n",__FILE__,__LINE__);while(1);}while(0)
+#define panicf(FMT,...)  do{printf("panic! : "FMT " %s :%d\r\n",##__VA_ARGS__,__FILE__,__LINE__);asm volatile("break");}while(0)
+#define panic()  do{printf("panic at ""%s :%d\r\n",__FILE__,__LINE__);asm volatile("break");}while(0)
 #else
 #define panicf(FMT,...)  do{while(1);}while(0)
 #define panic()  do{while(1);}while(0)

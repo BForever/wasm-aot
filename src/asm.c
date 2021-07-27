@@ -256,7 +256,16 @@ void emit_local_init(u16 numLocalBytes){
     emit_PUSH(R29);
     emit_IN(R28,0x3d);
     emit_IN(R29,0x3e);
-    emit_SBIW(R28,numLocalBytes);
+
+    if(numLocalBytes>=60){
+        emit_LDI(RZL,(numLocalBytes&0x00ff));
+        emit_LDI(RZH,(numLocalBytes&0xff00));
+        emit_SUB(RYL,RZL);
+        emit_SBC(RYH,RZH);
+    }else{
+        emit_SBIW(R28,numLocalBytes);
+    }
+    
     // R29需要在关中断的情况下进行修改(目前不涉及多线程和中断)
     // emit_IN(R0,0x3f);
     // emit_CLI();
@@ -265,7 +274,16 @@ void emit_local_init(u16 numLocalBytes){
     emit_OUT(0x3d,R28);
 }
 void emit_local_deinit(u16 numLocalBytes){
-    emit_ADIW(R28,numLocalBytes);
+ 
+    if(numLocalBytes>=60){
+        emit_LDI(RZL,(numLocalBytes&0x00ff));
+        emit_LDI(RZH,(numLocalBytes&0xff00));
+        emit_ADD(RYL,RZL);
+        emit_ADC(RYH,RZH);
+    }else{
+        emit_ADIW(R28,numLocalBytes);
+    }
+    
 
     // R29需要在关中断的情况下进行修改(目前不涉及多线程和中断)
     // emit_IN(R0,0x3f);

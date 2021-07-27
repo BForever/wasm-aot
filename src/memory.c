@@ -11,7 +11,11 @@ u32 embed_i32load(u16 offset1,u32 addr){
     u16 target = addr+offset1;
     u32 res;
     u8 overflow=1;
-    // printf("r%d\r\n",target);
+    // if(target>1024){
+        printf("r%x\n",target);
+    // }
+    
+#if flash_data
     for(int i=0;i<WASM_MEM_AREA_NUM;i++){
         if(target>=mem_areas[i].start&&target<mem_areas[i].end){
             if(mem_areas[i].flash){
@@ -28,6 +32,14 @@ u32 embed_i32load(u16 offset1,u32 addr){
         printf("read out of bound! at %d\n",target);
         asm volatile("break");
     }
+    
+#else
+    if(target<0||target>=4096){
+        printf("read out of bound! at %d\n",target);
+        asm volatile("break");
+    }
+    res = *(u32*)((u8*)ts.wasm_mem_space+ts.wasm_globals_size+target);
+#endif
     return res;
 }
 u64 embed_i64load(u16 offset1,u32 addr){
@@ -40,6 +52,7 @@ u64 embed_i64load(u16 offset1,u32 addr){
     
     u8 overflow=1;
     // printf("r%d\r\n",target);
+#if flash_data
     for(int i=0;i<WASM_MEM_AREA_NUM;i++){
         if(target>=mem_areas[i].start&&target<mem_areas[i].end){
             if(mem_areas[i].flash){
@@ -58,6 +71,11 @@ u64 embed_i64load(u16 offset1,u32 addr){
         printf("read out of bound! at %d\n",target);
         asm volatile("break");
     }
+#else
+    res.n32[0] = *(u32*)((u8*)ts.wasm_mem_space+ts.wasm_globals_size+target);
+    res.n32[1] = *(u32*)((u8*)ts.wasm_mem_space+ts.wasm_globals_size+target+4);
+#endif
+    
     return res.n64;
 }
 

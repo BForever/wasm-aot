@@ -5,8 +5,8 @@
 void javax_rtcbench_RTCBenchmark_void_test_native() {
 	const uint16_t NUMNUMBERS = 1<<RTCTEST_FFT_ARRAYSIZE;
 	
-	int32_t *im = malloc(sizeof(int32_t)*NUMNUMBERS);
-	int32_t *data = malloc(sizeof(int32_t)*NUMNUMBERS);
+	int16_t *im = malloc(sizeof(int16_t)*NUMNUMBERS);
+	int16_t *data = malloc(sizeof(int16_t)*NUMNUMBERS);
 	// int16_t data[NUMNUMBERS];
 	// int16_t im[NUMNUMBERS];
 
@@ -26,10 +26,10 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
 	rtcbenchmark_measure_native_performance(data, im, RTCTEST_FFT_ARRAYSIZE, 0);
 
 	// printStr("AFTER FFT");
-	for (uint16_t i=0; i<NUMNUMBERS; i++) {
-		// printStr("-----");
-		printInt16(data[i]);
-		printInt16(im[i]);
-	}
+	// for (uint16_t i=0; i<NUMNUMBERS; i++) {
+	// 	printStr("-----");
+	// 	printInt16(data[i]);
+	// 	printInt16(im[i]);
+	// }
 }
 
