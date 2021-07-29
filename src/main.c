@@ -1,4 +1,4 @@
-#include "outlier.wasm.h"
+#include "test.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"

@@ -1,13 +1,13 @@
 #ifndef REFSIGNATUREDB_H
 #define REFSIGNATUREDB_H
-#if AVRORA
+#ifdef AVRORA
 #include <avr/pgmspace.h>
 #endif
 #include "RefSignature.h"
 
 // ===================== refSignatureDB Database ===================================
 #define REFSIGNATUREDB_SIZE 257
-#if AVRORA
+#ifdef AVRORA
 extern const RefSignature refSignatureDB[] PROGMEM;
 
 static inline void RefSignatureDB_get(RefSignature *refSigPtr, uint16_t indexDB) 

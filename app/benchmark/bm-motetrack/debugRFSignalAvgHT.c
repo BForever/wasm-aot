@@ -11,7 +11,7 @@ void printRFSignalAvgHT(RFSignalAvgHT *h) {
         avroraPrintInt16(h->htData[i].rssiSum_1);
         avroraPrintInt16(h->htData[i].nbrSamples_1);
     }
-    #if AVRORA
+    #ifdef AVRORA
     asm volatile ("break");
     #else
     printStr("break");

@@ -3,7 +3,7 @@
 
 #define SIGNATUREDB_SIZE 74
 #include "RefSignature.h"
-#if AVRORA
+#ifdef AVRORA
 #include <avr/pgmspace.h>
 
 // ===================== signatureDB Database ===================================

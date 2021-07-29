@@ -1,6 +1,6 @@
 #include "benchmark.h"
 
-#if AVRORA
+#ifdef AVRORA
 #include <avr/pgmspace.h>
 const uint16_t heat_sensor_data[126][64] PROGMEM = {
 #else
@@ -139,7 +139,7 @@ const uint16_t heat_sensor_data[126][64]  = {
 
 uint16_t get_heat_sensor_data(uint16_t frame_buffer[64], volatile uint16_t frame_number)
 { 
-    #if AVRORA
+    #ifdef AVRORA
     memcpy_P(frame_buffer, &heat_sensor_data[frame_number], sizeof(uint16_t[64]));
     #else
     memcpy(frame_buffer, &heat_sensor_data[frame_number], sizeof(uint16_t[64]));

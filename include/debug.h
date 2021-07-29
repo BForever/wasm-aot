@@ -19,7 +19,7 @@
 
     void avr_Printf(char * format, ...);
     #define printf(fmt,...)    do{static char __attribute__((section (".progmem"))) literal[]=fmt;avr_Printf(literal,##__VA_ARGS__);}while(0)
-    
+    #define printf_P    avr_Printf
 #endif
 
 #if DEBUG

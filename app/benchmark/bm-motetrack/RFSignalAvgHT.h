@@ -225,7 +225,7 @@ static inline bool RFSignalAvgHT_put(RFSignalAvgHT *HPtr, uint16_t newSrcID, uin
         // return FAIL;
         printStr("BEEF0004");
         // printInt32(0xBEEF0004);
-        #if AVRORA
+        #ifdef AVRORA
         asm volatile ("break");
         #else
         printStr("break");
@@ -240,7 +240,7 @@ static inline bool RFSignalAvgHT_put(RFSignalAvgHT *HPtr, uint16_t newSrcID, uin
         // return FAIL;
         printStr("BEEF0005");
         // printInt32(0xBEEF0005);
-        #if AVRORA
+        #ifdef AVRORA
         asm volatile ("break");
         #else
         printStr("break");

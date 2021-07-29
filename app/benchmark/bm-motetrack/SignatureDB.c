@@ -1,6 +1,6 @@
 
 #include "RefSignature.h"
-#if AVRORA
+#ifdef AVRORA
 #include <avr/pgmspace.h>
 const RefSignature signatureDB[] PROGMEM = {
 #else

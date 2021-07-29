@@ -14,13 +14,12 @@
 #include <string.h>
 extern char __wait_end;
 
-
 bool is_imported(wasm_function_ptr func)
 {
     return !(func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL);
 }
-u16 __attribute__((section (".wait"))) entry_method;
-translation_state  __attribute__((section (".wait"))) ts;
+u16 __attribute__((section(".wait"))) entry_method;
+translation_state __attribute__((section(".wait"))) ts;
 wasm_block_ct blct;
 extern wasm_module g_module;
 
@@ -49,55 +48,55 @@ void branch_pc_refill(wasm_module_ptr module)
             {
             case embed_func_idiv:
             {
-                logif(compile, printf("func %d idiv", func_id); printf(",call %p", ((u16)idiv)*2););
+                logif(compile, printf("func %d idiv", func_id); printf(",call %p", ((u16)idiv) * 2););
                 emit_2_CALL(idiv);
                 break;
             }
             case embed_func_udiv:
             {
-                logif(compile, printf("func %d udiv", func_id); printf(",call %p", ((u16)udiv)*2););
+                logif(compile, printf("func %d udiv", func_id); printf(",call %p", ((u16)udiv) * 2););
                 emit_2_CALL(udiv);
                 break;
             }
             case embed_func_umul:
             {
-                logif(compile, printf("func %d umul", func_id); printf(",call %p", ((u16)umul)*2););
+                logif(compile, printf("func %d umul", func_id); printf(",call %p", ((u16)umul) * 2););
                 emit_2_CALL(umul);
                 break;
             }
             case embed_func_clz32:
             {
-                logif(compile, printf("func %d clz32", func_id); printf(",call %p", ((u16)udiv)*2););
+                logif(compile, printf("func %d clz32", func_id); printf(",call %p", ((u16)udiv) * 2););
                 emit_2_CALL(LeadingZeros_32);
                 break;
             }
             case embed_func_i32load:
             {
-                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv)*2););
+                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv) * 2););
                 emit_2_CALL(embed_i32load);
                 break;
             }
             case embed_func_i64load:
             {
-                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv)*2););
+                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv) * 2););
                 emit_2_CALL(embed_i64load);
                 break;
             }
             case embed_func_i32store:
             {
-                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv)*2););
+                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv) * 2););
                 emit_2_CALL(embed_i32store);
                 break;
             }
             case embed_func_print_stack:
             {
-                logif(compile, printf("func %d print_stack", func_id); printf(",call %p", ((u16)print_stack)*2););
+                logif(compile, printf("func %d print_stack", func_id); printf(",call %p", ((u16)print_stack) * 2););
                 emit_2_CALL(print_stack);
                 break;
             }
             case embed_func_count:
             {
-                logif(compile, printf("func %d count_func", func_id); printf(",call %p", ((u16)count_func)*2););
+                logif(compile, printf("func %d count_func", func_id); printf(",call %p", ((u16)count_func) * 2););
                 emit_2_CALL(count_func);
                 break;
             }
@@ -125,7 +124,7 @@ void branch_pc_refill(wasm_module_ptr module)
 void compile_init(wasm_module_ptr module)
 {
     RTC_SET_START_OF_NEXT_METHOD(RTC_START_OF_COMPILED_CODE_SPACE);
-    log(temp,"start of compiled code: %6x",rtc_start_of_next_method*2);
+    log(temp, "start of compiled code: %6x", rtc_start_of_next_method * 2);
     ts.codebuffer = sys_malloc(RTC_CODEBUFFER_SIZE * 2);
     emit_init(ts.codebuffer);
     ts.pc = 0;
@@ -137,15 +136,14 @@ void compile_deinit(wasm_module_ptr module)
 {
     compile_open();
     table_address = wkreprog_get_raw_position();
-    log(temp,"table address: %ld",table_address);
-    normal_function p=empty_function;
-    wkreprog_write(2,&p);
+    log(temp, "table address: %ld", table_address);
+    normal_function p = empty_function;
+    wkreprog_write(2, &p);
     compile_close();
-    
 
     // 烧写跳转指令
     branch_pc_refill(module);
-    log(temp,"end of compiled code: %6x",rtc_start_of_next_method*2);
+    log(temp, "end of compiled code: %6x", rtc_start_of_next_method * 2);
 }
 //为了调试，这里每次都烧写，在全部功能调试完毕后可以改为一次性烧写，节约部分时间
 void compile_open()
@@ -180,14 +178,13 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         // log(emit, "push for call save");
         emit_x_call_save();
 
-        
         // ts.wasm_mem_space = malloc(8);
         log(compile, "global space:%p", ts.wasm_mem_space);
         // logif(emit,printf("set Z:Z+1 to %02X",(u8)wasm_globals_start);printf(":%02X",(u8)(((u16)wasm_globals_start)>>8)););
         // emit_x_PUSH_16bit(R2);
         emit_LDI(R22, (u8)ts.wasm_mem_space);
         emit_LDI(R23, ((u8)((u16)ts.wasm_mem_space >> 8)));
-        emit_MOVW(R2,R22);
+        emit_MOVW(R2, R22);
     }
 
     if (func->numLocals || func->funcType->args_num)
@@ -199,14 +196,13 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         log(compile, "init %dB locals", func->numLocalBytes);
 
         emit_local_init(func->numLocalBytes);
-        
     }
 #if count_stack_check
-        emit_2_CALL(embed_func_count);
+    emit_2_CALL(embed_func_count);
 #endif
     while (start < end)
     {
-        
+
         // log(temp,"where");
         emit_single_instruction(module, func, &start, end);
     }
@@ -219,20 +215,20 @@ void wasm_compile_module(wasm_module_ptr module)
 {
 
     wasm_global_init(module);
-    
+
     // 加载全局变量区首地址
     // ts.wasm_mem_space = GET_FAR_ADDRESS(g_module) + sizeof(wasm_module) + 64;
     //TODO 暂时减小用于调试
     // ts.wasm_mem_space = sys_malloc(256);
     ts.wasm_mem_space = &__wait_end;
-    if(!ts.wasm_mem_space){
+    if (!ts.wasm_mem_space)
+    {
         panicf("no space!!\n");
         asm volatile("break");
     }
     // wasm_memory_init(module);
 
     compile_init(module);
-    
 
     wasm_function_ptr func;
     for (int i = 0; i < module->function_num; i++)
@@ -255,7 +251,7 @@ void wasm_compile_module(wasm_module_ptr module)
             }
             if (!found)
             {
-                panicf("import function %s not found!",func->name);
+                panicf("import function %s not found!", func->name);
             }
             continue; //TODO 链接外部函数
         }
@@ -273,7 +269,6 @@ void wasm_compile_module(wasm_module_ptr module)
             }
         }
     }
-
 
     compile_deinit(module);
     // module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE / 2;
@@ -309,7 +304,7 @@ void wasm_global_init(wasm_module_ptr module)
     }
     ts.wasm_globals_size = offset;
 }
-
+extern u16 __attribute__((section(".wait"))) malloc_record;
 void wasm_call_entry_method(wasm_module_ptr module)
 {
     if (module->memory_imported)
@@ -318,38 +313,99 @@ void wasm_call_entry_method(wasm_module_ptr module)
     }
     else
     {
-        for(int i=0;i<module->data_segment_num;i++){
-            bytes initexpr = module->data_segment_list[i].initExpr+1;
-            bytes end = initexpr+module->data_segment_list[i].initExprSize;
+        //保存memcpy的参数在最后进行拷贝，防止出错
+        u16 cpy_d, cpy_s, cpy_n;
+        u16 pcpy_d, pcpy_s, pcpy_n;
+        pcpy_d = 0;
+
+        if (module->data_segment_num == 0)
+        {
+            mem_areas[1].start = 0;
+            mem_areas[1].end = (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
+            mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
+            log(temp, "mem[1]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            malloc_record = 0;
+        }
+#if flash_data
+        else if (module->data_segment_num == 1)
+        {
+            // Flash
+            bytes initexpr = module->data_segment_list[0].initExpr + 1;
+            bytes end = initexpr + module->data_segment_list[0].initExprSize;
             u32 start;
             // hexdump_pgm(initexpr,4);
-            ReadLEB_u32(&start,&initexpr,end);
-            // mem_areas[i].start = start;
-            // mem_areas[i].end = start + module->data_segment_list[i].size;
-            // mem_areas[i].flash = 1;
-            // mem_areas[i].target = module->data_segment_list[i].data;
-
-            memcpy_P(ts.wasm_mem_space+ts.wasm_globals_size+start,module->data_segment_list[i].data,module->data_segment_list[i].size);
-            // hexdump(ts.wasm_mem_space+ts.wasm_globals_size+start,20);
-            // printf("i%p,",module->data_segment_list[i].initExpr);
-            // printf("d%p,",module->data_segment_list[i].data);
-            // printf("s%d,",mem_areas[i].start);
-            // printf("e%d,",mem_areas[i].end);
-            // printf("t%p\r\n",mem_areas[i].target);
+            ReadLEB_u32(&start, &initexpr, end);
+            mem_areas[0].start = start;
+            mem_areas[0].end = start + module->data_segment_list[0].size;
+            mem_areas[0].target = module->data_segment_list[0].data;
+            log(temp, "mem[0]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            // RAM
+            mem_areas[1].start = mem_areas[0].end;
+            mem_areas[1].end = mem_areas[1].start + (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
+            mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
+            log(temp, "mem[1]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            malloc_record = mem_areas[1].start;
         }
-        // *((u32 *)ts.wasm_mem_space) = 1111; //TODO 用于DEBUG的初始值
-        
-        mem_areas[WASM_MEM_AREA_NUM-1].start = 0;
-        mem_areas[WASM_MEM_AREA_NUM-1].end = (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
-        log(temp, "mem size:%d\r\n",mem_areas[WASM_MEM_AREA_NUM-1].end);
-        mem_areas[WASM_MEM_AREA_NUM-1].flash = 0;
-        mem_areas[WASM_MEM_AREA_NUM-1].target = ts.wasm_mem_space + ts.wasm_globals_size;
-        log(temp, "copy %d B globals", ts.wasm_globals_size);
+#else
+        else if (module->data_segment_num == 1)
+        {
+            // RAM 1
+            bytes initexpr = module->data_segment_list[0].initExpr + 1;
+            bytes end = initexpr + module->data_segment_list[0].initExprSize;
+            u32 start;
+            // hexdump_pgm(initexpr,4);
+            ReadLEB_u32(&start, &initexpr, end);
+            mem_areas[1].start = start;
+            mem_areas[1].end = start + module->data_segment_list[0].size;
+            mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
+            pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size + start;
+            pcpy_s = module->data_segment_list[0].data;
+            pcpy_n = module->data_segment_list[0].size;
+            log(temp, "mem[0]:%d-%d at D:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            // RAM 2: extend RAM 1'end
+            malloc_record = mem_areas[1].end;
+            mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[0].size);
+            log(temp, "mem[1]ex:%d-%d at D:%p\r\n", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target);
+        }
+#endif
+        else if (module->data_segment_num == 2)
+        {
+            // Flash
+            bytes initexpr = module->data_segment_list[0].initExpr + 1;
+            bytes end = initexpr + module->data_segment_list[0].initExprSize;
+            u32 start;
+            // hexdump_pgm(initexpr,4);
+            ReadLEB_u32(&start, &initexpr, end);
+            mem_areas[0].start = start;
+            mem_areas[0].end = start + module->data_segment_list[0].size;
+            mem_areas[0].target = module->data_segment_list[0].data;
+            log(temp, "mem[0]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            // RAM 1
+            initexpr = module->data_segment_list[1].initExpr + 1;
+            end = initexpr + module->data_segment_list[1].initExprSize;
+            // hexdump_pgm(initexpr,4);
+            ReadLEB_u32(&start, &initexpr, end);
+            mem_areas[1].start = start;
+            mem_areas[1].end = start + module->data_segment_list[1].size;
+            mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
+            pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size + start;
+            pcpy_s = module->data_segment_list[1].data;
+            pcpy_n = module->data_segment_list[1].size;
+            log(temp, "mem[1]:%d-%d at D:%p\r\n", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target);
+            // RAM 2: extend RAM 1'end
+            malloc_record = mem_areas[1].end;
+            mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[1].size);
+            log(temp, "mem[1]ex:%d-%d at D:%p\r\n", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target);
+        }
         log(temp, "mem_start:%p", ts.wasm_mem_space);
+        log(temp, "copy %d B globals", ts.wasm_globals_size);
+        log(temp, "start exec");
+        if(pcpy_d){
+            memcpy_P(pcpy_d,pcpy_s,pcpy_n);
+        }
         memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
-        log(temp,"start exec");
-	    ((normal_function)entry_method)();
-        log(temp,"counter:%ld",global_counter);
+        ((normal_function)entry_method)();
+        log(temp, "counter:%ld", global_counter);
     }
     //释放空间
     // sys_free(module->global_list);       //全局变量列表

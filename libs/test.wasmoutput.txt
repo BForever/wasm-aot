@@ -5,44 +5,179 @@ Loading ../bin/aot.elf...OK
 Node          Time   Event
 ------------------------------------------------------------------------------
    0          2509  [avrora.c-print] 1 0000
-   0          2806  [avrora.trace]trace disabled --------------------------0
-   0         59018  [avrora.c-print] 11      temp | start of compiled code:   617e
-   0       1098257  [avrora.c-print] 11      temp | table address: 26928
-   0       2204017  [avrora.c-print] 11      temp | end of compiled code:   6afc
-   0       2207327  [avrora.c-print] 11      temp | SP:0x10f9
-   0       2210461  [avrora.c-print] 11      temp | start exec
-   0       2215311  [avrora.c-print] 11      temp | mem size:3725
-   0       2215331  [avrora.c-print] 11 
-   0       2219730  [avrora.c-print] 11      temp | copy 28 B globals
-   0       2223682  [avrora.c-print] 11      temp | mem_start:0x236
-   0       2227039  [avrora.c-print] 11         | start exec
-   0       2229878  [avrora.c-print] 11 0
-   0       2230878  [avrora.c-print] 11 1
-   0       2231878  [avrora.c-print] 11 2
-   0       2232878  [avrora.c-print] 11 3
-   0       2233872  [avrora.c-print] 11 4
-   0       2234866  [avrora.c-print] 11 5
-   0       2235860  [avrora.c-print] 11 6
-   0       2236854  [avrora.c-print] 11 7
-   0       2237848  [avrora.c-print] 11 8
-   0       2238842  [avrora.c-print] 11 9
-   0       2240076  [avrora.c-print] 11 10
-   0       2241310  [avrora.c-print] 11 11
-   0       2242544  [avrora.c-print] 11 12
-   0       2243778  [avrora.c-print] 11 13
-   0       2245012  [avrora.c-print] 11 14
-   0       2246246  [avrora.c-print] 11 15
-   0       2247480  [avrora.c-print] 11 16
-   0       2248714  [avrora.c-print] 11 17
-   0       2249948  [avrora.c-print] 11 18
-   0       2251188  [avrora.c-print] 11 19
-   0       2252428  [avrora.c-print] 11 20
-   0       2253668  [avrora.c-print] 11 21
-   0       2254908  [avrora.c-print] 11 22
-   0       2258662  [avrora.c-print] 11         | counter:91
-   0       2262844  [avrora.c-print] 11         | wasm func returned.
+   0          2680  [avrora.trace]trace disabled --------------------------0
+   0         12515  [avrora.c-print] 11       sys | malloc 4 51e
+   0         16900  [avrora.c-print] 11       sys | malloc 35 524
+   0         23937  [avrora.c-print] 11     parse | load module: 18371 bytes at 0x6e88
+   0         28892  [avrora.c-print] 11     parse |  sectionType = 1
+   0         32851  [avrora.c-print] 11     parse | ** Type [6]
+   0         37175  [avrora.c-print] 11       sys | malloc 12 549
+   0         42171  [avrora.c-print] 11       sys | malloc 11 557
+   0         47876  [avrora.c-print] 11     parse |     type  0: 
+   0         54950  [avrora.c-print] 11     parse | (i32, i32, i32) -> i32
+   0         59692  [avrora.c-print] 11       sys | malloc 8 564
+   0         63862  [avrora.c-print] 11     parse |     type  1: 
+   0         68007  [avrora.c-print] 11     parse | () -> nil
+   0         72751  [avrora.c-print] 11       sys | malloc 9 56e
+   0         77680  [avrora.c-print] 11     parse |     type  2: 
+   0         82656  [avrora.c-print] 11     parse | (i32) -> i32
+   0         87398  [avrora.c-print] 11       sys | malloc 9 579
+   0         91961  [avrora.c-print] 11     parse |     type  3: 
+   0         96937  [avrora.c-print] 11     parse | (i32) -> nil
+   0        101919  [avrora.c-print] 11       sys | malloc 10 584
+   0        106870  [avrora.c-print] 11     parse |     type  4: 
+   0        112895  [avrora.c-print] 11     parse | (i32, i32) -> nil
+   0        117877  [avrora.c-print] 11       sys | malloc 10 590
+   0        123194  [avrora.c-print] 11     parse |     type  5: 
+   0        129219  [avrora.c-print] 11     parse | (i32, i32) -> i32
+   0        134265  [avrora.c-print] 11     parse |  sectionType = 2
+   0        138459  [avrora.c-print] 11     parse | ** Import [6]
+   0        142848  [avrora.c-print] 11       sys | malloc 4 59c
+   0        147334  [avrora.c-print] 11       sys | malloc 7 5a2
+   0        153002  [avrora.c-print] 11     parse |     kind: 0 'env.memcpy' 
+   0        157405  [avrora.c-print] 11       sys | malloc 2 5ab
+   0        161742  [avrora.c-print] 11       sys | malloc 28 5af
+   0        170146  [avrora.c-print] 11     parse |    added function   0: memcpy; sig: 0;
+   0        174600  [avrora.c-print] 11       sys | malloc 4 5cd
+   0        179326  [avrora.c-print] 11       sys | malloc 37 5d3
+   0        188654  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_startBenchmarkMeasurement_Native' 
+   0        193270  [avrora.c-print] 11     parse | bytes to alloc: 4
+   0        198435  [avrora.c-print] 11       sys | realloc 4 5ab 5fa
+   0        202802  [avrora.c-print] 11       sys | malloc 28 600
+   0        214334  [avrora.c-print] 11     parse |    added function   1: rtc_startBenchmarkMeasurement_Native; sig: 1;
+   0        218805  [avrora.c-print] 11       sys | malloc 4 61e
+   0        223548  [avrora.c-print] 11       sys | malloc 29 624
+   0        231900  [avrora.c-print] 11     parse |     kind: 0 'env.rtc_stopBenchmarkMeasurement' 
+   0        236516  [avrora.c-print] 11     parse | bytes to alloc: 6
+   0        241799  [avrora.c-print] 11       sys | realloc 6 5fa 643
+   0        246187  [avrora.c-print] 11       sys | malloc 28 64b
+   0        256887  [avrora.c-print] 11     parse |    added function   2: rtc_stopBenchmarkMeasurement; sig: 1;
+   0        261336  [avrora.c-print] 11       sys | malloc 4 5fa
+   0        265839  [avrora.c-print] 11       sys | malloc 7 669
+   0        271507  [avrora.c-print] 11     parse |     kind: 0 'env.malloc' 
+   0        276123  [avrora.c-print] 11     parse | bytes to alloc: 8
+   0        281418  [avrora.c-print] 11       sys | realloc 8 643 672
+   0        285806  [avrora.c-print] 11       sys | malloc 28 67c
+   0        294218  [avrora.c-print] 11     parse |    added function   3: malloc; sig: 2;
+   0        298687  [avrora.c-print] 11       sys | malloc 4 643
+   0        303192  [avrora.c-print] 11       sys | malloc 9 69a
+   0        309104  [avrora.c-print] 11     parse |     kind: 0 'env.printStr' 
+   0        313960  [avrora.c-print] 11     parse | bytes to alloc: 10
+   0        319513  [avrora.c-print] 11       sys | realloc 10 672 6a5
+   0        323901  [avrora.c-print] 11       sys | malloc 28 6b1
+   0        332521  [avrora.c-print] 11     parse |    added function   4: printStr; sig: 2;
+   0        336987  [avrora.c-print] 11       sys | malloc 4 676
+   0        341513  [avrora.c-print] 11       sys | malloc 9 6cf
+   0        347425  [avrora.c-print] 11     parse |     kind: 0 'env.printInt' 
+   0        352281  [avrora.c-print] 11     parse | bytes to alloc: 12
+   0        357930  [avrora.c-print] 11       sys | realloc 12 6a5 6da
+   0        362337  [avrora.c-print] 11       sys | malloc 28 6e8
+   0        370957  [avrora.c-print] 11     parse |    added function   5: printInt; sig: 3;
+   0        375887  [avrora.c-print] 11     parse |  sectionType = 3
+   0        380291  [avrora.c-print] 11     parse | ** Function [8]
+   0        385154  [avrora.c-print] 11     parse | bytes to alloc: 14
+   0        390893  [avrora.c-print] 11       sys | realloc 14 6da 706
+   0        395317  [avrora.c-print] 11       sys | malloc 28 716
+   0        399733  [avrora.c-print] 11       sys | malloc 10 6a5
+   0        408367  [avrora.c-print] 11     parse |    added function   6: f1; sig: 1;
+   0        413262  [avrora.c-print] 11     parse | bytes to alloc: 16
+   0        419013  [avrora.c-print] 11       sys | realloc 16 706 734
+   0        423437  [avrora.c-print] 11       sys | malloc 28 746
+   0        427908  [avrora.c-print] 11       sys | malloc 10 6da
+   0        436542  [avrora.c-print] 11     parse |    added function   7: f2; sig: 1;
+   0        441437  [avrora.c-print] 11     parse | bytes to alloc: 18
+   0        447204  [avrora.c-print] 11       sys | realloc 18 734 764
+   0        451628  [avrora.c-print] 11       sys | malloc 28 778
+   0        456094  [avrora.c-print] 11       sys | malloc 10 70a
+   0        464728  [avrora.c-print] 11     parse |    added function   8: f3; sig: 4;
+   0        469623  [avrora.c-print] 11     parse | bytes to alloc: 20
+   0        475482  [avrora.c-print] 11       sys | realloc 20 764 796
+   0        479929  [avrora.c-print] 11       sys | malloc 28 7ac
+   0        484414  [avrora.c-print] 11       sys | malloc 10 73a
+   0        493048  [avrora.c-print] 11     parse |    added function   9: f4; sig: 3;
+   0        497943  [avrora.c-print] 11     parse | bytes to alloc: 22
+   0        503898  [avrora.c-print] 11       sys | realloc 22 796 7ca
+   0        508362  [avrora.c-print] 11       sys | malloc 28 7e2
+   0        512866  [avrora.c-print] 11       sys | malloc 10 76c
+   0        521653  [avrora.c-print] 11     parse |    added function  10: f5; sig: 2;
+   0        526548  [avrora.c-print] 11     parse | bytes to alloc: 24
+   0        532595  [avrora.c-print] 11       sys | realloc 24 7ca 800
+   0        537078  [avrora.c-print] 11       sys | malloc 28 81a
+   0        541601  [avrora.c-print] 11       sys | malloc 10 7a0
+   0        550388  [avrora.c-print] 11     parse |    added function  11: f6; sig: 5;
+   0        555283  [avrora.c-print] 11     parse | bytes to alloc: 26
+   0        561418  [avrora.c-print] 11       sys | realloc 26 800 838
+   0        565918  [avrora.c-print] 11       sys | malloc 28 854
+   0        570460  [avrora.c-print] 11       sys | malloc 10 7d6
+   0        579247  [avrora.c-print] 11     parse |    added function  12: f7; sig: 1;
+   0        584142  [avrora.c-print] 11     parse | bytes to alloc: 28
+   0        590369  [avrora.c-print] 11       sys | realloc 28 838 872
+   0        594888  [avrora.c-print] 11       sys | malloc 28 890
+   0        599382  [avrora.c-print] 11       sys | malloc 10 7ca
+   0        608169  [avrora.c-print] 11     parse |    added function  13: f8; sig: 1;
+   0        613035  [avrora.c-print] 11     parse |  sectionType = 4
+   0        618138  [avrora.c-print] 11     parse |  skipped section type: 4
+   0        622957  [avrora.c-print] 11     parse |  sectionType = 5
+   0        627123  [avrora.c-print] 11     parse | ** Memory [1]
+   0        632547  [avrora.c-print] 11     parse |  sectionType = 6
+   0        636978  [avrora.c-print] 11     parse | ** Global [14]
+   0        641698  [avrora.c-print] 11       sys | malloc 210 8ae
+   0        649677  [avrora.c-print] 11     parse |     global: [0] i32 mutable=1
+   0        657780  [avrora.c-print] 11     parse |     global: [1] i32 mutable=0
+   0        665883  [avrora.c-print] 11     parse |     global: [2] i32 mutable=0
+   0        673986  [avrora.c-print] 11     parse |     global: [3] i32 mutable=0
+   0        682089  [avrora.c-print] 11     parse |     global: [4] i32 mutable=0
+   0        690192  [avrora.c-print] 11     parse |     global: [5] i32 mutable=0
+   0        698295  [avrora.c-print] 11     parse |     global: [6] i32 mutable=0
+   0        706398  [avrora.c-print] 11     parse |     global: [7] i32 mutable=0
+   0        714482  [avrora.c-print] 11     parse |     global: [8] i32 mutable=0
+   0        722566  [avrora.c-print] 11     parse |     global: [9] i32 mutable=0
+   0        730909  [avrora.c-print] 11     parse |     global: [10] i32 mutable=0
+   0        739233  [avrora.c-print] 11     parse |     global: [11] i32 mutable=0
+   0        747576  [avrora.c-print] 11     parse |     global: [12] i32 mutable=0
+   0        755881  [avrora.c-print] 11     parse |     global: [13] i32 mutable=0
+   0        761035  [avrora.c-print] 11     parse |  sectionType = 7
+   0        766138  [avrora.c-print] 11     parse |  skipped section type: 7
+   0        771365  [avrora.c-print] 11     parse |  sectionType = 10
+   0        775324  [avrora.c-print] 11     parse | ** Code [8]
+   0        780458  [avrora.c-print] 11     parse |     code size: 2   
+   0        785839  [avrora.c-print] 11     parse |     code size: 76  
+   0        793138  [avrora.c-print] 11     parse |        3 locals; type: 'i32'
+   0        798841  [avrora.c-print] 11     parse |     code size: 272 
+   0        806140  [avrora.c-print] 11     parse |        8 locals; type: 'i32'
+   0        811843  [avrora.c-print] 11     parse |     code size: 153 
+   0        819142  [avrora.c-print] 11     parse |        7 locals; type: 'i32'
+   0        824525  [avrora.c-print] 11     parse |     code size: 91  
+   0        831824  [avrora.c-print] 11     parse |        4 locals; type: 'i32'
+   0        837207  [avrora.c-print] 11     parse |     code size: 56  
+   0        844506  [avrora.c-print] 11     parse |        1 locals; type: 'i32'
+   0        849737  [avrora.c-print] 11     parse |     code size: 8   
+   0        855438  [avrora.c-print] 11     parse |     code size: 230 
+   0        862737  [avrora.c-print] 11     parse |        4 locals; type: 'i32'
+   0        868270  [avrora.c-print] 11     parse |  sectionType = 11
+   0        872229  [avrora.c-print] 11     parse | ** Data [1]
+   0        876689  [avrora.c-print] 11       sys | malloc 10 80e
+   0        889358  [avrora.c-print] 11     parse |     segment [0]  memory: 0;  expr-size: 4;  size: 16798
+   0        892967  [avrora.c-print] 11     parse | Parsing done.
+   0        897897  [avrora.c-print] 11       sys | realloc 4 0 734
+   0        904230  [avrora.c-print] 11       sys | realloc 8 734 796
+   0        910882  [avrora.c-print] 11       sys | realloc 12 796 800
+   0        917635  [avrora.c-print] 11       sys | realloc 16 800 842
+   0        924513  [avrora.c-print] 11       sys | realloc 20 842 982
+   0        931384  [avrora.c-print] 11       sys | realloc 24 982 838
+   0        938261  [avrora.c-print] 11       sys | realloc 28 838 982
+   0        944449  [avrora.c-print] 11       sys | realloc 32 982 982
+   0        950477  [avrora.c-print] 11       sys | realloc 36 982 982
+   0        956505  [avrora.c-print] 11       sys | realloc 40 982 982
+   0        962693  [avrora.c-print] 11       sys | realloc 44 982 982
+   0        968721  [avrora.c-print] 11       sys | realloc 48 982 982
+   0        974909  [avrora.c-print] 11       sys | realloc 52 982 982
+   0        980758  [avrora.c-print] 11       sys | realloc 56 982 982
+   0        986977  [avrora.c-print] 11      temp | start of compiled code:   b64c
+   0        991678  [avrora.c-print] 11       sys | malloc 192 9bc
+   0       1002800  [avrora.c-print] 11 panic! : import function memcpy not found! /home/fanhc/wasm-aot/src/compile.c :254
 ==============================================================================
-Simulated time: 2262863 cycles
+Simulated time: 1002819 cycles
 =={ Trace results for node 0 }================================================
 Instructions executed: 0 
 Program throughput: 0.0 instrs/cycle

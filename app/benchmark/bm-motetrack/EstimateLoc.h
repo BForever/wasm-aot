@@ -229,7 +229,7 @@ static inline void EstimateLoc_nearestRefSigs(SignalSpaceDiff retSSDiffs[NBR_FRE
             // for (f = 0; f < NBR_FREQCHANNELS; ++f)
             // printfUART("BeaconMote - nearestRefSigs():  FATAL ERROR! neither BIDIRECTIONAL_ALG nor UNIDIRECTIONAL_ALG are defined\n", "");
             printStr("BEEFBEEF");
-            #if AVRORA
+            #ifdef AVRORA
             asm volatile ("break");
             #else
             printStr("break");

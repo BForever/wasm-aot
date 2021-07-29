@@ -172,7 +172,7 @@ static inline void RFSignal_rfSignalDiff(ShortResults *results, RFSignal *rfSig1
     else {
         // printInt32(0xBEEF0001);
         printStr("BEEF0001");
-        #if AVRORA
+        #ifdef AVRORA
         asm volatile ("break");
         #else
         printStr("break");
@@ -400,7 +400,7 @@ static inline void RefSignature_signatureDiffBidirectional(ShortResults *results
         else {
             // printInt32(0xBEEF0002);
             printStr("BEEF0002");
-            #if AVRORA
+            #ifdef AVRORA
             asm volatile ("break");
             #else
             while(1);

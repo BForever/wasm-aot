@@ -7,10 +7,9 @@ typedef struct MEM_AREA
     u16 start;
     u16 end;
     u16 target;
-    u16 flash;
 }mem_area;
 
-#define WASM_MEM_AREA_NUM 3
+#define WASM_MEM_AREA_NUM 2
 extern mem_area mem_areas[WASM_MEM_AREA_NUM];
 
 u32 embed_i32load(u16 offset1,u32 addr);
