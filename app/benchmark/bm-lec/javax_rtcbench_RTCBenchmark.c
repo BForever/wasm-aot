@@ -35,6 +35,6 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
     // }   
 
     for (uint8_t i=0; i<encoded_length; i++) {
-        printInt16(output[i]);
+        printInt(output[i]);
     }
 }

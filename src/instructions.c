@@ -409,6 +409,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x20 LocalGet
     case LocalGet:
     {
+        #if count_global_local
+        emit_2_CALL(embed_func_count);
+        #endif
         //读取局部变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[LOCAL.GET %d]", operand.num32[0]);
@@ -452,6 +455,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x21 LocalSet
     case LocalSet:
     {
+        #if count_global_local
+        emit_2_CALL(embed_func_count);
+        #endif
         //读取局部变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[LOCAL.SET %d]", operand.num32[0]);
@@ -496,6 +502,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x22 LocalTee
     case LocalTee:
     {
+        #if count_global_local
+        emit_2_CALL(embed_func_count);
+        #endif
         //读取局部变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[LOCAL.TEE %d]", operand.num32[0]);
@@ -540,6 +549,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x23 GlobalGet
     case GlobalGet:
     {
+        #if count_global_local
+        emit_2_CALL(embed_func_count);
+        #endif
         //读取全局变量索引
         ReadLEB_u32(&operand, start, end);
         log(emit, "[GLOBAL.GET %d]", operand.num32[0]);
@@ -571,6 +583,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x24 GlobalSet
     case GlobalSet:
     {
+        #if count_global_local
+        emit_2_CALL(embed_func_count);
+        #endif
         //TODO由于LDD的偏移量只支持[-64，63]范围内寻址，因此后续需要替换成Z指针的运算
         ReadLEB_u32(&operand, start, end);
         log(emit, "[GLOBAL.SET %d]", operand.num32[0]);
@@ -626,7 +641,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // DEBUG
         // emit_2_CALL(embed_func_print_stack);
         // emit_LDI(R24,1);
-        // emit_2_STS(0x215,R24);
+        // emit_2_STS(0x227,R24);
 #if check_memory_bound
         emit_LDI(R24, operand.num8[0]);
         emit_LDI(R25, operand.num8[1]);
@@ -721,7 +736,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_LDI(R25, 0xFF);
         }
 #endif
-        // emit_2_STS(0x215,R1);
+        // emit_2_STS(0x227,R1);
         emit_x_PUSH_32bit(R22);
         break;
     }
@@ -770,7 +785,32 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
         // 读取offset1
         ReadLEB_u32(&operand, start, end);
         log(emit, "[I32.STORE %d]", operand.num32[0]);
-        // temp = global_size + offset1 越过全局变量区域
+
+#if check_memory_bound
+        // offset 20-21
+        emit_LDI(R20, operand.num8[0]);
+        emit_LDI(R21, operand.num8[1]);
+        // value 22-25
+        emit_x_POP_32bit(R22);
+        // addr 18-19
+        emit_x_POP_16bit(R18);
+        emit_x_POP_16bit(R30);//drop unused high 16bits
+        switch (op)
+        {
+        case I32Store:
+            emit_2_CALL(embed_func_i32store);
+            break;
+        case I32Store16:
+            emit_2_CALL(embed_func_i32store16);
+            break;
+        case I32Store8:
+            emit_2_CALL(embed_func_i32store8);
+            break;
+        default:
+            break;
+        }
+        
+#else
         operand.num16[0] += ts.wasm_globals_size;
         //读取要储存的值到R22...
         log(emit, "pop32 val to R22.");
@@ -795,6 +835,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             emit_STD(R24, Z, 2);
             emit_STD(R25, Z, 3);
         }
+#endif
 
         ts.stack_top -= 2;
         log(emit, "s: %d", ts.stack_top);

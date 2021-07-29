@@ -18,7 +18,7 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
     motetrack_init_benchmark();
 	Point p = rtcbenchmark_measure_native_performance();
     printStr("Result:");
-    printInt16(p.x);
-    printInt16(p.y);
-    printInt16(p.z);	
+    printInt(p.x);
+    printInt(p.y);
+    printInt(p.z);	
 }

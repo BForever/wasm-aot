@@ -24,14 +24,14 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
 
     printStr("stdCal:");
     for(int i=0; i<64; i++) {
-        printInt16(stdCal[i]);
+        printInt(stdCal[i]);
     }
     printStr("zscore:");
     for(int i=0; i<64; i++) {
-        printInt16(zscore[i]);
+        printInt(zscore[i]);
     }
     printStr("z_min:");
-    printInt16(z_min);
+    printInt(z_min);
     printStr("z_max:");
-    printInt16(z_max);
+    printInt(z_max);
 }

@@ -1,0 +1,67 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../app/benchmark/motetrack.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0           666  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:48 R27:01 R28:FF R29:10 R30:E2 R31:77 
+   0           696  [avrora.trace]trace disabled --------------------------0
+   0          2159  [avrora.trace]trace enabled ---------------------------1
+   0        775636  [avrora.trace]trace disabled --------------------------0
+   0        775744  [avrora.c-print] 6 Result:
+   0        775761  [avrora.c-print] 8 210
+   0        775771  [avrora.c-print] 8 249
+   0        775781  [avrora.c-print] 8 0
+==============================================================================
+Simulated time: 775799 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 511441 
+Program throughput: 0.65924424 instrs/cycle
+Program throughput: 5.273954 mips
+sbci	24292
+com	130
+sub	6133
+dec	1270
+mul	160
+sbiw	16340
+eor	105
+lsr	9
+out	12
+movw	34654
+pop	8066
+cpse	309
+neg	1800
+breq	4119
+ror	27
+mov	1593
+and	16
+cpc	28023
+cpi	3764
+brcc	33111
+subi	24342
+andi	1
+ret	4144
+add	37276
+cli	4
+st	24867
+adc	41528
+std	13431
+or	306
+rcall	2
+in	10
+lpm	20960
+brne	17839
+cp	24267
+ldd	32748
+push	8062
+rjmp	18179
+brcs	5531
+call	4144
+ldi	26523
+sts	6
+sbc	6905
+brlt	1818
+ld	22818
+lds	314
+adiw	11483
+

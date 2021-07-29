@@ -25,7 +25,6 @@ SET(lec benchmark.c bm-lec/lec.c bm-lec/javax_rtcbench_RTCBenchmark.c)
 SET(outlier benchmark.c bm-outlier/outlier32u.c bm-outlier/javax_rtcbench_RTCBenchmark.c)
 SET(heatcalib benchmark.c bm-heat_calib/heat_calib.c bm-heat_calib/heat_sensor_data.c bm-heat_calib/javax_rtcbench_RTCBenchmark.c)
 SET(motetrack benchmark.c bm-motetrack/MobileMoteM.c bm-motetrack/motetrack.c  bm-motetrack/RefSignatureDB.c bm-motetrack/SignatureDB.c)
-
 SET(heatdetect benchmark.c bm-heat_detect/heat_detect.c bm-heat_detect/heat_calib.c bm-heat_detect/heat_sensor_data.c bm-heat_detect/javax_rtcbench_RTCBenchmark.c)
 
 ADD_EXECUTABLE(binsrch.elf ${binsrch})
@@ -60,7 +59,6 @@ SET(lec bm-lec/lec.c bm-lec/javax_rtcbench_RTCBenchmark.c)
 SET(outlier bm-outlier/outlier32u.c bm-outlier/javax_rtcbench_RTCBenchmark.c)
 SET(heatcalib bm-heat_calib/heat_calib.c bm-heat_calib/heat_sensor_data.c bm-heat_calib/javax_rtcbench_RTCBenchmark.c)
 SET(motetrack bm-motetrack/MobileMoteM.c bm-motetrack/motetrack.c  bm-motetrack/RefSignatureDB.c bm-motetrack/SignatureDB.c)
-
 SET(heatdetect bm-heat_detect/heat_detect.c bm-heat_detect/heat_calib.c bm-heat_detect/heat_sensor_data.c bm-heat_detect/javax_rtcbench_RTCBenchmark.c)
 
 ADD_EXECUTABLE(binsrch.wasm ${binsrch})

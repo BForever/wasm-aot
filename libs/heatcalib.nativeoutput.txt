@@ -1,0 +1,199 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../app/benchmark/heatcalib.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0           354  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:24 R27:01 R28:FF R29:10 R30:BC R31:4A 
+   0           384  [avrora.trace]trace disabled --------------------------0
+   0          2231  [avrora.trace]trace enabled ---------------------------1
+   0      12061158  [avrora.trace]trace disabled --------------------------0
+   0      12061177  [avrora.c-print] 6 stdCal:
+   0      12061206  [avrora.c-print] 8 1301
+   0      12061239  [avrora.c-print] 8 679
+   0      12061272  [avrora.c-print] 8 -1
+   0      12061305  [avrora.c-print] 8 0
+   0      12061338  [avrora.c-print] 8 11800
+   0      12061371  [avrora.c-print] 8 -1
+   0      12061404  [avrora.c-print] 8 11
+   0      12061437  [avrora.c-print] 8 7008
+   0      12061470  [avrora.c-print] 8 23418
+   0      12061503  [avrora.c-print] 8 37
+   0      12061536  [avrora.c-print] 8 -39
+   0      12061569  [avrora.c-print] 8 6894
+   0      12061602  [avrora.c-print] 8 -6574
+   0      12061635  [avrora.c-print] 8 -64
+   0      12061668  [avrora.c-print] 8 317
+   0      12061701  [avrora.c-print] 8 -3965
+   0      12061734  [avrora.c-print] 8 808
+   0      12061767  [avrora.c-print] 8 108
+   0      12061800  [avrora.c-print] 8 1129
+   0      12061833  [avrora.c-print] 8 2466
+   0      12061866  [avrora.c-print] 8 200
+   0      12061899  [avrora.c-print] 8 265
+   0      12061932  [avrora.c-print] 8 883
+   0      12061965  [avrora.c-print] 8 921
+   0      12061998  [avrora.c-print] 8 160
+   0      12062031  [avrora.c-print] 8 19
+   0      12062064  [avrora.c-print] 8 1484
+   0      12062097  [avrora.c-print] 8 12289
+   0      12062130  [avrora.c-print] 8 117
+   0      12062163  [avrora.c-print] 8 13
+   0      12062196  [avrora.c-print] 8 2085
+   0      12062229  [avrora.c-print] 8 19469
+   0      12062262  [avrora.c-print] 8 51
+   0      12062295  [avrora.c-print] 8 -49
+   0      12062328  [avrora.c-print] 8 4966
+   0      12062361  [avrora.c-print] 8 -5177
+   0      12062394  [avrora.c-print] 8 10
+   0      12062427  [avrora.c-print] 8 326
+   0      12062460  [avrora.c-print] 8 25240
+   0      12062493  [avrora.c-print] 8 804
+   0      12062526  [avrora.c-print] 8 -9
+   0      12062559  [avrora.c-print] 8 964
+   0      12062592  [avrora.c-print] 8 -29055
+   0      12062625  [avrora.c-print] 8 230
+   0      12062658  [avrora.c-print] 8 78
+   0      12062691  [avrora.c-print] 8 759
+   0      12062724  [avrora.c-print] 8 3312
+   0      12062757  [avrora.c-print] 8 208
+   0      12062790  [avrora.c-print] 8 954
+   0      12062823  [avrora.c-print] 8 1115
+   0      12062856  [avrora.c-print] 8 264
+   0      12062889  [avrora.c-print] 8 162
+   0      12062922  [avrora.c-print] 8 -269
+   0      12062955  [avrora.c-print] 8 1461
+   0      12062988  [avrora.c-print] 8 -593
+   0      12063021  [avrora.c-print] 8 98
+   0      12063054  [avrora.c-print] 8 -393
+   0      12063087  [avrora.c-print] 8 2487
+   0      12063120  [avrora.c-print] 8 -723
+   0      12063153  [avrora.c-print] 8 45
+   0      12063186  [avrora.c-print] 8 -434
+   0      12063219  [avrora.c-print] 8 5615
+   0      12063252  [avrora.c-print] 8 -672
+   0      12063285  [avrora.c-print] 8 1
+   0      12063309  [avrora.c-print] 6 zscore:
+   0      12063338  [avrora.c-print] 8 -1
+   0      12063371  [avrora.c-print] 8 0
+   0      12063404  [avrora.c-print] 8 11800
+   0      12063437  [avrora.c-print] 8 -1
+   0      12063470  [avrora.c-print] 8 11
+   0      12063503  [avrora.c-print] 8 7008
+   0      12063536  [avrora.c-print] 8 23418
+   0      12063569  [avrora.c-print] 8 37
+   0      12063602  [avrora.c-print] 8 -39
+   0      12063635  [avrora.c-print] 8 6894
+   0      12063668  [avrora.c-print] 8 -6574
+   0      12063701  [avrora.c-print] 8 -64
+   0      12063734  [avrora.c-print] 8 317
+   0      12063767  [avrora.c-print] 8 -3965
+   0      12063800  [avrora.c-print] 8 808
+   0      12063833  [avrora.c-print] 8 108
+   0      12063866  [avrora.c-print] 8 1129
+   0      12063899  [avrora.c-print] 8 2466
+   0      12063932  [avrora.c-print] 8 200
+   0      12063965  [avrora.c-print] 8 265
+   0      12063998  [avrora.c-print] 8 883
+   0      12064031  [avrora.c-print] 8 921
+   0      12064064  [avrora.c-print] 8 160
+   0      12064097  [avrora.c-print] 8 19
+   0      12064130  [avrora.c-print] 8 1484
+   0      12064163  [avrora.c-print] 8 12289
+   0      12064196  [avrora.c-print] 8 117
+   0      12064229  [avrora.c-print] 8 13
+   0      12064262  [avrora.c-print] 8 2085
+   0      12064295  [avrora.c-print] 8 19469
+   0      12064328  [avrora.c-print] 8 51
+   0      12064361  [avrora.c-print] 8 -49
+   0      12064394  [avrora.c-print] 8 4966
+   0      12064427  [avrora.c-print] 8 -5177
+   0      12064460  [avrora.c-print] 8 10
+   0      12064493  [avrora.c-print] 8 326
+   0      12064526  [avrora.c-print] 8 25240
+   0      12064559  [avrora.c-print] 8 804
+   0      12064592  [avrora.c-print] 8 -9
+   0      12064625  [avrora.c-print] 8 964
+   0      12064658  [avrora.c-print] 8 -29055
+   0      12064691  [avrora.c-print] 8 230
+   0      12064724  [avrora.c-print] 8 78
+   0      12064757  [avrora.c-print] 8 759
+   0      12064790  [avrora.c-print] 8 3312
+   0      12064823  [avrora.c-print] 8 208
+   0      12064856  [avrora.c-print] 8 954
+   0      12064889  [avrora.c-print] 8 1115
+   0      12064922  [avrora.c-print] 8 264
+   0      12064955  [avrora.c-print] 8 162
+   0      12064988  [avrora.c-print] 8 -269
+   0      12065021  [avrora.c-print] 8 1461
+   0      12065054  [avrora.c-print] 8 -593
+   0      12065087  [avrora.c-print] 8 98
+   0      12065120  [avrora.c-print] 8 -393
+   0      12065153  [avrora.c-print] 8 2487
+   0      12065186  [avrora.c-print] 8 -723
+   0      12065219  [avrora.c-print] 8 45
+   0      12065252  [avrora.c-print] 8 -434
+   0      12065285  [avrora.c-print] 8 5615
+   0      12065318  [avrora.c-print] 8 -672
+   0      12065351  [avrora.c-print] 8 1
+   0      12065384  [avrora.c-print] 8 -487
+   0      12065417  [avrora.c-print] 8 -1644
+   0      12065441  [avrora.c-print] 6 z_min:
+   0      12065462  [avrora.c-print] 8 -29055
+   0      12065481  [avrora.c-print] 6 z_max:
+   0      12065505  [avrora.c-print] 8 25240
+==============================================================================
+Simulated time: 12065512 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 10216605 
+Program throughput: 0.846761 instrs/cycle
+Program throughput: 6.774088 mips
+sbci	54677
+com	97388
+brge	6528
+sub	173377
+bst	12864
+dec	424513
+mul	64448
+sbiw	67860
+eor	25894
+lsr	203481
+jmp	4587
+out	606
+movw	387401
+pop	53426
+brtc	25728
+neg	13782
+breq	6400
+ror	610142
+mov	51700
+cpc	1470772
+cpi	100
+brcc	13029
+subi	13332
+inc	100
+ret	60957
+add	83713
+cli	202
+st	64256
+adc	3428161
+std	39802
+or	376216
+rcall	4711
+in	606
+lpm	12928
+brne	498836
+ldd	134804
+cp	498800
+push	53224
+rjmp	23500
+brcs	479408
+call	56346
+ldi	64643
+sts	5
+sbc	468732
+sbrc	25728
+ld	57984
+lds	606
+adiw	302
+

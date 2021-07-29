@@ -1,4 +1,4 @@
-#include "test.wasm.h"
+#include "outlier.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"
@@ -13,7 +13,7 @@ extern char* __rodata_end;
 extern char __wait_end;
 extern u16  entry_method;
 
-
+// int checkv = 2;
 extern void icall(u32 index);
 int main()
 {
@@ -32,6 +32,14 @@ int main()
 	// avroraTraceEnable();
 	// icall(0);
 	// avroraTraceDisable();
+	// log(temp,"test check");
+	// avroraTraceEnable();
+	// if(module->global_num>1){
+	// 	avroraTraceDisable();
+	// }else{
+	// 	printf("not tested\n");
+	// }
+	
 	
 
 	// 开始执行

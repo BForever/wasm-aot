@@ -18,7 +18,7 @@
 
 benchlist=(binsrch bsort fillarray funcall hsort lec fft outlier)
 # benchlist=(binsrch bsort fillarray funcall)
-# benchlist=(fft)
+# benchlist=(heatcalib)
 
 for bench in ${benchlist[*]}
 do 

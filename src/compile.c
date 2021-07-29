@@ -10,6 +10,7 @@
 #include "user_import.h"
 #include "asm.h"
 #include "memory.h"
+#include "safety_check.h"
 #include <avr/pgmspace.h>
 #include <string.h>
 extern char __wait_end;
@@ -29,7 +30,8 @@ void branch_pc_refill(wasm_module_ptr module)
     // logif(compile,printf("before refill\r\n");hexdump_pgm(RTC_START_OF_COMPILED_CODE_SPACE,384););
     compile_open();
     u16 pc = 0;
-    while (pc < ts.pc)
+    u16 prev_pc = ts.pc;
+    while (pc < prev_pc)
     {
         // log(compile,"pc:%d",pc);
         u16 opcode = pgm_read_word_far(RTC_START_OF_COMPILED_CODE_SPACE + pc);
@@ -48,61 +50,73 @@ void branch_pc_refill(wasm_module_ptr module)
             {
             case embed_func_idiv:
             {
-                logif(compile, printf("func %d idiv", func_id); printf(",call %p", ((u16)idiv) * 2););
+                log(compile, "func %d idiv, call %p", func_id, ((u16)idiv) * 2);
                 emit_2_CALL(idiv);
                 break;
             }
             case embed_func_udiv:
             {
-                logif(compile, printf("func %d udiv", func_id); printf(",call %p", ((u16)udiv) * 2););
+                log(compile, "func %d udiv, call %p", func_id, ((u16)udiv) * 2);
                 emit_2_CALL(udiv);
                 break;
             }
             case embed_func_umul:
             {
-                logif(compile, printf("func %d umul", func_id); printf(",call %p", ((u16)umul) * 2););
+                log(compile, "func %d umul, call %p", func_id, ((u16)umul) * 2);
                 emit_2_CALL(umul);
                 break;
             }
             case embed_func_clz32:
             {
-                logif(compile, printf("func %d clz32", func_id); printf(",call %p", ((u16)udiv) * 2););
+                log(compile, "func %d clz32, call %p", func_id, ((u16)LeadingZeros_32) * 2);
                 emit_2_CALL(LeadingZeros_32);
                 break;
             }
             case embed_func_i32load:
             {
-                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv) * 2););
+                log(compile, "func %d i32load, call %p", func_id, ((u16)embed_i32load) * 2);
                 emit_2_CALL(embed_i32load);
                 break;
             }
             case embed_func_i64load:
             {
-                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv) * 2););
+                log(compile,"func %d i64load, call %p", func_id, ((u16)embed_i64load) * 2);
                 emit_2_CALL(embed_i64load);
                 break;
             }
             case embed_func_i32store:
             {
-                logif(compile, printf("func %d i32load", func_id); printf(",call %p", ((u16)udiv) * 2););
+                log(compile,"func %d i32load, call %p", func_id, ((u16)embed_i32store) * 2);
                 emit_2_CALL(embed_i32store);
+                break;
+            }
+            case embed_func_i32store16:
+            {
+                log(compile,"func %d i32load16, call %p", func_id, ((u16)embed_i32store16) * 2);
+                emit_2_CALL(embed_i32store16);
+                break;
+            }
+            case embed_func_i32store8:
+            {
+                log(compile,"func %d i32load8, call %p", func_id, ((u16)embed_i32store8) * 2);
+                emit_2_CALL(embed_i32store8);
                 break;
             }
             case embed_func_print_stack:
             {
-                logif(compile, printf("func %d print_stack", func_id); printf(",call %p", ((u16)print_stack) * 2););
+                log(compile,"func %d print_stack, call %p", func_id, ((u16)print_stack) * 2);
                 emit_2_CALL(print_stack);
                 break;
             }
             case embed_func_count:
             {
-                logif(compile, printf("func %d count_func", func_id); printf(",call %p", ((u16)count_func) * 2););
+                log(compile, "func %d count_func, call %p", func_id, ((u16)count_func) * 2);
                 emit_2_CALL(count_func);
                 break;
             }
             default:
             {
-                logif(compile, printf("func %d", func_id); printf(",call %p", module->function_list[func_id]->compiled * 2););
+                log(compile, "func %d, call %p",func_id, module->function_list[func_id]->compiled * 2);
                 emit_2_CALL(module->function_list[func_id]->compiled);
                 break;
             }
@@ -323,7 +337,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[1].start = 0;
             mem_areas[1].end = (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
             mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
-            log(temp, "mem[1]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             malloc_record = 0;
         }
 #if flash_data
@@ -338,12 +352,12 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[0].start = start;
             mem_areas[0].end = start + module->data_segment_list[0].size;
             mem_areas[0].target = module->data_segment_list[0].data;
-            log(temp, "mem[0]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            log(temp, "mem[0]:%d-%d at P:%p,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target,mem_areas[0].end-mem_areas[0].start);
             // RAM
             mem_areas[1].start = mem_areas[0].end;
             mem_areas[1].end = mem_areas[1].start + (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
             mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
-            log(temp, "mem[1]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             malloc_record = mem_areas[1].start;
         }
 #else
@@ -358,14 +372,14 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[1].start = start;
             mem_areas[1].end = start + module->data_segment_list[0].size;
             mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
-            pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size + start;
+            pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size;
             pcpy_s = module->data_segment_list[0].data;
             pcpy_n = module->data_segment_list[0].size;
-            log(temp, "mem[0]:%d-%d at D:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             // RAM 2: extend RAM 1'end
             malloc_record = mem_areas[1].end;
             mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[0].size);
-            log(temp, "mem[1]ex:%d-%d at D:%p\r\n", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target);
+            log(temp, "mem[1]ex:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
         }
 #endif
         else if (module->data_segment_num == 2)
@@ -379,7 +393,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[0].start = start;
             mem_areas[0].end = start + module->data_segment_list[0].size;
             mem_areas[0].target = module->data_segment_list[0].data;
-            log(temp, "mem[0]:%d-%d at P:%p\r\n", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            log(temp, "mem[0]:%d-%d at P:%p,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
             // RAM 1
             initexpr = module->data_segment_list[1].initExpr + 1;
             end = initexpr + module->data_segment_list[1].initExprSize;
@@ -388,18 +402,19 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[1].start = start;
             mem_areas[1].end = start + module->data_segment_list[1].size;
             mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
-            pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size + start;
+            pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size;
             pcpy_s = module->data_segment_list[1].data;
             pcpy_n = module->data_segment_list[1].size;
-            log(temp, "mem[1]:%d-%d at D:%p\r\n", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target);
+            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             // RAM 2: extend RAM 1'end
             malloc_record = mem_areas[1].end;
             mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[1].size);
-            log(temp, "mem[1]ex:%d-%d at D:%p\r\n", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target);
+            log(temp, "mem[1]ex:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
         }
         log(temp, "mem_start:%p", ts.wasm_mem_space);
         log(temp, "copy %d B globals", ts.wasm_globals_size);
         log(temp, "start exec");
+        log(temp,"memcpy from %p to %p, size %d",pcpy_s,pcpy_d,pcpy_n);
         if(pcpy_d){
             memcpy_P(pcpy_d,pcpy_s,pcpy_n);
         }

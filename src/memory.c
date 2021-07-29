@@ -3,6 +3,7 @@
 #include "debug.h"
 #include "safety_check.h"
 #include <avr/pgmspace.h>
+#define show_addr 0
 
 mem_area __attribute__((section(".wait"))) mem_areas[WASM_MEM_AREA_NUM] = {{0, 0, 0, 0}, {0, 4096, 0, 0}};
 // __attribute__((section (".wait")))
@@ -10,9 +11,9 @@ u32 embed_i32load(u16 offset1, u32 addr)
 {
     u16 target = addr + offset1;
     u32 res;
-    // if(target>1024){
-    printf("r%x\n", target);
-    // }
+    #if show_addr
+    printf("[read] %d\n", target);
+    #endif
 #if flash_data
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
     {
@@ -23,7 +24,10 @@ u32 embed_i32load(u16 offset1, u32 addr)
         if (target >= mem_areas[1].start && target < mem_areas[1].end)
         {
             // printf("r %p\r\n",(u8*)mem_areas[i].target+target-mem_areas[i].start);
-            res = *(u32 *)((u8 *)mem_areas[1].target + target - mem_areas[1].start);
+            u16 addr = mem_areas[1].target + target - mem_areas[1].start;
+            // printf("actual r %p\n",addr);
+            // printf("mem[1] s:%p e:%p t:%p\n",mem_areas[1].start,mem_areas[1].end,mem_areas[1].target);
+            res = *(u32 *)(addr);
         }
         else
         {
@@ -51,7 +55,9 @@ u64 embed_i64load(u16 offset1, u32 addr)
     } res;
 
     u8 overflow = 1;
-    // printf("r%d\r\n",target);
+    #if show_addr
+    printf("[read] %d\n",target);
+    #endif
 
 #if flash_data
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
@@ -88,7 +94,9 @@ u64 embed_i64load(u16 offset1, u32 addr)
 void embed_i32store(u32 value, u16 offset1, u16 addr)
 {
     u16 target = addr + offset1;
-    // printf("w%p\r\n",target);
+    #if show_addr
+    printf("[write] %d\n",target);
+    #endif
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
     {
         printf("write to read-only section!\n");
@@ -99,6 +107,54 @@ void embed_i32store(u32 value, u16 offset1, u16 addr)
         if (target >= mem_areas[1].start && target < mem_areas[1].end)
         {
             *(u32 *)((u8 *)mem_areas[1].target + target - mem_areas[1].start) = value;
+        }
+        else
+        {
+            printf("write out of bound! at %d\n", target);
+            asm volatile("break");
+        }
+    }
+}
+void embed_i32store16(u32 value, u16 offset1, u16 addr)
+{
+    u16 target = addr + offset1;
+    #if show_addr
+    printf("[write] %d\n",target);
+    #endif
+    if (target >= mem_areas[0].start && target < mem_areas[0].end)
+    {
+        printf("write to read-only section!\n");
+        asm volatile("break");
+    }
+    else
+    {
+        if (target >= mem_areas[1].start && target < mem_areas[1].end)
+        {
+            *(u16 *)((u8 *)mem_areas[1].target + target - mem_areas[1].start) = (u16)value;
+        }
+        else
+        {
+            printf("write out of bound! at %d\n", target);
+            asm volatile("break");
+        }
+    }
+}
+void embed_i32store8(u32 value, u16 offset1, u16 addr)
+{
+    u16 target = addr + offset1;
+    #if show_addr
+    printf("[write] %d\n",target);
+    #endif
+    if (target >= mem_areas[0].start && target < mem_areas[0].end)
+    {
+        printf("write to read-only section!\n");
+        asm volatile("break");
+    }
+    else
+    {
+        if (target >= mem_areas[1].start && target < mem_areas[1].end)
+        {
+            *(u8 *)((u8 *)mem_areas[1].target + target - mem_areas[1].start) = (u8)value;
         }
         else
         {

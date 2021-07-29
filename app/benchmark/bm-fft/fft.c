@@ -253,15 +253,6 @@ int16_t __attribute__((noinline)) rtcbenchmark_measure_native_performance(int16_
 	}
 
  	rtc_stopBenchmarkMeasurement();
-
-	printStr("AFTER FFT");
-	for (uint16_t i=0; i<64; i++) {
-		printStr("-----");
-		printInt16(fr[i]);
-		printInt16(fi[i]);
-	}
-
-
 	return scale;
 }
 

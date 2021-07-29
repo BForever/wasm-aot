@@ -36,16 +36,16 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
     rtcbenchmark_measure_native_performance(frame_buffer, color, rColor, largestSubset, testset, result);
 
     printStr("weight_coordinate:");
-    printInt16(x_weight_coordinate);
-    printInt16(y_weight_coordinate);
-    printInt16(xh_weight_coordinate);
-    printInt16(yh_weight_coordinate);
+    printInt(x_weight_coordinate);
+    printInt(y_weight_coordinate);
+    printInt(xh_weight_coordinate);
+    printInt(yh_weight_coordinate);
     printStr("color:");
-    printInt32(yellowGroupH);
-    printInt32(yellowGroupL);
-    printInt32(orangeGroupH);
-    printInt32(orangeGroupL);
-    printInt32(redGroupH);
-    printInt32(redGroupL);
+    printInt(yellowGroupH);
+    printInt(yellowGroupL);
+    printInt(orangeGroupH);
+    printInt(orangeGroupL);
+    printInt(redGroupH);
+    printInt(redGroupL);
 
 }

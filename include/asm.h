@@ -11,10 +11,12 @@ enum embed_func{
    embed_func_i32load = 0xFFFC,
    embed_func_i64load = 0xFFFB,
    embed_func_i32store = 0xFFFA,
-   embed_func_i64store = 0xFFF9,
-   embed_func_umul = 0xFFF8,
-   embed_func_print_stack = 0xFFF7,
-   embed_func_count = 0xFFF6,
+   embed_func_i32store16 = 0xFFF9,
+   embed_func_i32store8 = 0xFFF8,
+   embed_func_i64store = 0xFFF7,
+   embed_func_umul = 0xFFF6,
+   embed_func_print_stack = 0xFFF5,
+   embed_func_count = 0xFFF4,
 };
 u32 udiv(u32 input1,u32 input2);
 i32 idiv(i32 input1,i32 input2);
