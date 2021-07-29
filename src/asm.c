@@ -87,6 +87,11 @@ void print_stack(){
     printf("-------------\n");
 }
 
+u32 __attribute__((section (".wait"))) global_counter=0;
+void count_func(){
+    global_counter++;
+}
+
 // void emit_x_avroraBeep(uint8_t beep) {
 //     emit_PUSH(R24);
 //     emit_LDI(R24, beep);

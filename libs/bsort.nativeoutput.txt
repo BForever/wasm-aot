@@ -4,56 +4,33 @@ Loading ../app/benchmark/bsort.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0            84  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:06 R27:01 R28:FF R29:10 R30:44 R31:05 
+   0            84  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:06 R27:01 R28:FF R29:10 R30:CC R31:03 
    0           114  [avrora.trace]trace disabled --------------------------0
-   0           313  [avrora.c-print] 8 2
-   0           333  [avrora.c-print] 8 1
-   0           353  [avrora.c-print] 8 0
-   0           461  [avrora.c-print] 11 benchstart
-   0           464  [avrora.trace]trace enabled ---------------------------1
-   0           502  [avrora.c-print] 9 11111111
-   0           524  [avrora.c-print] 8 2
-   0           547  [avrora.c-print] 8 1
-   0           570  [avrora.c-print] 8 0
-   0           637  [avrora.c-print] 9 11111111
-   0           659  [avrora.c-print] 8 1
-   0           682  [avrora.c-print] 8 2
-   0           705  [avrora.c-print] 8 0
-   0           788  [avrora.c-print] 9 11111111
-   0           810  [avrora.c-print] 8 1
-   0           833  [avrora.c-print] 8 0
-   0           856  [avrora.c-print] 8 2
-   0           963  [avrora.c-print] 8 0
-   0           986  [avrora.c-print] 8 1
-   0          1009  [avrora.c-print] 8 2
-   0          1056  [avrora.trace]trace disabled --------------------------0
-   0          1107  [avrora.c-print] 11 benchstop
+   0          4124  [avrora.trace]trace enabled ---------------------------1
+   0       1606070  [avrora.trace]trace disabled --------------------------0
 ==============================================================================
-Simulated time: 1114 cycles
+Simulated time: 1606077 cycles
 =={ Trace results for node 0 }================================================
-Instructions executed: 383 
-Program throughput: 0.34380612 instrs/cycle
-Program throughput: 2.750449 mips
+Instructions executed: 981260 
+Program throughput: 0.610967 instrs/cycle
+Program throughput: 4.887736 mips
 ret	1
-sbci	15
-brge	3
-st	15
-std	9
-sbiw	10
-brne	4
-eor	12
+brge	32640
+sbci	32640
+st	163200
+std	97920
+sbiw	65537
 jmp	1
-cp	25
-ldd	9
-rjmp	19
-movw	11
-ldi	24
-pop	17
-breq	22
-sts	52
-mov	17
-cpc	35
-ld	63
-cpi	4
-subi	15
+cp	65536
+ldd	97920
+brcs	257
+rjmp	32640
+movw	32897
+ldi	512
+pop	6
+breq	32896
+sts	1
+cpc	130816
+ld	163200
+subi	32640
 

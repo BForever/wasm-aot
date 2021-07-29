@@ -9,4 +9,8 @@
 
 #define flash_data 0
 
+#define count_mem_acc 1
+#define count_stack_check 0
+#define count_all_insn 0
+
 #endif

@@ -1,6 +1,6 @@
 #ifndef BENCHMARK_H
 #define BENCHMARK_H
-
+#define NULL 0
 #ifndef AVRORA
 typedef unsigned char       uint8_t;
 typedef signed char         int8_t;
@@ -19,14 +19,15 @@ typedef uint32_t            bool;
 #endif
 
 
-extern void* malloc(uint16_t size);
-extern void *memset(void *s, int c, uint16_t n);
+extern void* malloc(uint32_t size);
+extern void *memset(void *s, int c, uint32_t n);
+extern void *memcpy(void *d, void *s, uint32_t n);
 extern void rtc_startBenchmarkMeasurement_Native();
 extern void rtc_stopBenchmarkMeasurement();
 #ifdef AVRORA
 
-#define printInt16 avroraPrintInt16
-#define printInt32 avroraPrintInt32
+#define printInt16 avroraPrintInt
+#define printInt32 avroraPrintInt
 #define printInt avroraPrintInt
 #define printStr PrintStr
 #include<AvroraPrint.h>

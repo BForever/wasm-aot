@@ -20,6 +20,8 @@
 // extern void __mulhisi3(void);
 // extern void __divmodsi4(void);
 
+
+
 extern u16 __brkval;
 extern u16 malloc_record;
 void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, bytes *start, bytes end)
@@ -36,7 +38,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     } operand;
 
     u16 base;
-    
+#if count_all_insn
+    emit_2_CALL(embed_func_count);
+#endif
     switch (op)
     {
     // 0x00 Unreachable
@@ -610,6 +614,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     case I32Load8S:
     case I32Load16S:
     {
+#if count_mem_acc
+        emit_2_CALL(embed_func_count);
+#endif
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
@@ -721,6 +728,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x29 i64.load
     case I64Load:
     {
+#if count_mem_acc
+        emit_2_CALL(embed_func_count);
+#endif
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
@@ -752,6 +762,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     case I32Store8:
     case I32Store16:
     {
+#if count_mem_acc
+        emit_2_CALL(embed_func_count);
+#endif
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
@@ -790,6 +803,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x37 i64.store
     case I64Store:
     {
+#if count_mem_acc
+        emit_2_CALL(embed_func_count);
+#endif
         // 读取对齐标签，丢弃
         ReadLEB_u32(&operand, start, end);
         // 读取offset1
@@ -851,6 +867,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x41 i32.const
     case I32Const:
     {
+#if count_stack_check
+        emit_2_CALL(embed_func_count);
+#endif
         ReadLEB_i32(&operand, start, end);
         log(emit, "[I32.CONST %ld]", operand.num32[0]);
         log(emit, "load %ld to R22.", operand.num32[0]);
@@ -893,6 +912,10 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
     // 0x42 i64.const
     case I64Const:
     {
+#if count_stack_check
+        emit_2_CALL(embed_func_count);
+#endif
+
         ReadLEB_i64(&operand, start, end);
         log(emit, "[I64.CONST %ld]", operand.num32[0]);
         log(emit, "load %ld to R22.", operand.num32[0]);

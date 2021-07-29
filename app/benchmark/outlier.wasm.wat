@@ -230,6 +230,9 @@
     i32.const 0
     local.set 0
     loop  ;; label = @1
+      local.get 3
+      i32.load
+      call 3
       block  ;; label = @2
         local.get 3
         i32.load

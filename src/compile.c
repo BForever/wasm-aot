@@ -95,6 +95,12 @@ void branch_pc_refill(wasm_module_ptr module)
                 emit_2_CALL(print_stack);
                 break;
             }
+            case embed_func_count:
+            {
+                logif(compile, printf("func %d count_func", func_id); printf(",call %p", ((u16)count_func)*2););
+                emit_2_CALL(count_func);
+                break;
+            }
             default:
             {
                 logif(compile, printf("func %d", func_id); printf(",call %p", module->function_list[func_id]->compiled * 2););
@@ -195,9 +201,12 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
         emit_local_init(func->numLocalBytes);
         
     }
-
+#if count_stack_check
+        emit_2_CALL(embed_func_count);
+#endif
     while (start < end)
     {
+        
         // log(temp,"where");
         emit_single_instruction(module, func, &start, end);
     }
@@ -340,6 +349,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
         memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
         log(temp,"start exec");
 	    ((normal_function)entry_method)();
+        log(temp,"counter:%ld",global_counter);
     }
     //释放空间
     // sys_free(module->global_list);       //全局变量列表

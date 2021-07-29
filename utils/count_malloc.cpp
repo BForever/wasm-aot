@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
     }
     string drop;
     char* ptr;
-    // int current=strtol(argv[2],&ptr,10);
-    int current=0;
+    int current=strtol(argv[2],&ptr,10);
+    // int current=1064;
     bool inited = false;
     getline(file, drop);
     // cout<<drop<<endl;

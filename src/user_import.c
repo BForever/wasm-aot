@@ -35,7 +35,8 @@ u32  __attribute__((section (".wait"))) malloc_record = 0;
 u32 import_malloc(u32 size){
     u32 res = malloc_record;
     malloc_record +=size;
-    printf("malloc from %d to %d\n",(u16)res,(u16)(malloc_record));
+    log(sys,"malloc %ld %x",size,res);
+    // printf("malloc from %d to %d\n",(u16)res,(u16)(malloc_record));
     return res;
 }
 

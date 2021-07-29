@@ -19,8 +19,9 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
 	rtcbenchmark_measure_native_performance(NUMNUMBERS, buffer, distrance_matrix, 500, outliers);
 
 	for (uint16_t i=0; i<NUMNUMBERS; i++) {
+		printInt(outliers[i]);
 		if (outliers[i] == true) {
-			printInt16(i);
+			printInt(i);
 		}
 	}
 }

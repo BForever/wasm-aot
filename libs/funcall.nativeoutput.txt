@@ -4,37 +4,16 @@ Loading ../app/benchmark/funcall.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0            30  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:00 R27:01 R28:FF R29:10 R30:7C R31:01 
+   0            30  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:00 R27:01 R28:FF R29:10 R30:F8 R31:00 
    0            60  [avrora.trace]trace disabled --------------------------0
-   0           133  [avrora.c-print] 11 benchstart
-   0           136  [avrora.trace]trace enabled ---------------------------1
-   0           145  [avrora.trace]trace disabled --------------------------0
-   0           196  [avrora.c-print] 11 benchstop
+   0            81  [avrora.trace]trace enabled ---------------------------1
+   0            90  [avrora.trace]trace disabled --------------------------0
 ==============================================================================
-Simulated time: 203 cycles
-=={ Memory profiling results for node 0 }=====================================
-   Address     Reads               Writes
-------------------------------------------------------------------------------
-    0x0100:        0     0.0000 %      22    40.7407 %
-    0x0101:       19    82.6086 %      20    37.0370 %
-    0x0102:        0     0.0000 %       1     1.8518 %
-    0x0103:        0     0.0000 %       1     1.8518 %
-    0x0104:        0     0.0000 %       1     1.8518 %
-    0x0105:        0     0.0000 %       3     5.5555 %
-    0x0106:        0     0.0000 %       0     0.0000 %
-                   .                    .
-    0x10FA:        1     4.3478 %       1     1.8518 %
-    0x10FB:        1     4.3478 %       1     1.8518 %
-    0x10FC:        1     4.3478 %       1     1.8518 %
-    0x10FD:        1     4.3478 %       1     1.8518 %
-    0x10FE:        0     0.0000 %       1     1.8518 %
-    0x10FF:        0     0.0000 %       1     1.8518 %
-    total :       23   100.0000 %      54   100.0000 %
-
+Simulated time: 97 cycles
 =={ Trace results for node 0 }================================================
 Instructions executed: 3 
-Program throughput: 0.014778325 instrs/cycle
-Program throughput: 0.1182266 mips
+Program throughput: 0.030927835 instrs/cycle
+Program throughput: 0.24742268 mips
 ret	1
 sts	1
 jmp	1

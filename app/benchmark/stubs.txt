@@ -1,5 +1,6 @@
 malloc
 memset
+memcpy
 rtc_startBenchmarkMeasurement_Native
 rtc_stopBenchmarkMeasurement
 printInt
