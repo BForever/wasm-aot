@@ -11,7 +11,8 @@
 
 #define count_mem_acc 0
 #define count_stack_check 0
-#define count_all_insn 0
 #define count_global_local 0
+#define count_all_insn 0
+#define count_lowest_stack 0
 
 #endif

@@ -1,55 +1,53 @@
 cycle func size addr
-12459 malloc  4 518
-16842 malloc  35 51e
-22038 malloc  8 543
-26796 malloc  8 54d
-31867 malloc  9 557
-37697 malloc  9 562
-43403 malloc  13 56d
-51096 malloc  4 57c
-55820 malloc  37 582
-61002 malloc  2 5a9
-65339 malloc  28 5ad
-69906 malloc  4 5cb
-74632 malloc  29 5d1
-80767 realloc  4 5a9 5f0
-85136 malloc  28 5f6
-89714 malloc  4 614
-94219 malloc  7 61a
-100078 realloc  6 5f0 623
-104466 malloc  28 62b
-109022 malloc  4 5f0
-113525 malloc  9 649
-119434 realloc  8 623 654
-123822 malloc  28 65e
-130962 realloc  10 654 67c
-135367 malloc  28 688
-139814 malloc  10 6a6
-146664 realloc  12 67c 6b2
-151090 malloc  28 6c0
-155513 malloc  10 67c
-162381 realloc  14 6b2 6de
-166809 malloc  28 6ee
-171256 malloc  10 6b2
-179771 malloc  105 70c
-196212 realloc  4 0 623
-202077 realloc  8 623 654
-208270 realloc  12 654 777
-214158 realloc  16 777 777
-220046 realloc  20 777 777
-225934 realloc  24 777 777
-231643 realloc  28 777 777
-242462 malloc  192 795
-250641 malloc  256 857
-345130 free  857
-349955 malloc  256 857
-1695720 free  857
-1700545 malloc  256 857
-2262146 free  857
-2266975 malloc  256 857
-2366219 free  857
-2370915 malloc  256 857
-3988026 free  857
-4020262 malloc  80 0
-4024910 malloc  1600 50
-4029221 malloc  80 690
+11336 malloc  6 4dc
+15146 malloc  29 4e4
+20106 malloc  8 503
+24403 malloc  7 50d
+29097 malloc  8 516
+34630 malloc  8 520
+39999 malloc  12 52a
+47758 malloc  4 538
+52008 malloc  37 53e
+56407 malloc  2 565
+60149 malloc  26 569
+64223 malloc  4 585
+68473 malloc  29 58b
+73903 realloc  4 565 5aa
+77679 malloc  26 5b0
+81772 malloc  4 5cc
+85801 malloc  7 5d2
+91159 realloc  6 5aa 5db
+94954 malloc  26 5e3
+99023 malloc  4 5aa
+103054 malloc  9 5ff
+108444 realloc  8 5db 60a
+112237 malloc  26 614
+119143 realloc  10 60a 630
+122957 malloc  26 63c
+126496 malloc  2 565
+132673 realloc  12 630 658
+136485 malloc  26 666
+140112 malloc  2 5df
+146381 realloc  14 658 682
+150212 malloc  26 692
+153755 malloc  2 5db
+162487 malloc  119 6ae
+180642 realloc  4 0 60e
+186170 realloc  8 60e 630
+191844 realloc  12 630 658
+197606 realloc  16 658 727
+203031 realloc  20 727 727
+208456 realloc  24 727 727
+213676 realloc  28 727 727
+223544 malloc  192 745
+231778 malloc  256 807
+328717 free  807
+332970 malloc  256 807
+1599890 free  807
+1604143 malloc  256 807
+2171496 free  807
+2175766 malloc  256 807
+3655026 free  807
+3691079 malloc  80 0
+3695334 malloc  1600 80
+3699589 malloc  20 1680

@@ -1,6 +1,6 @@
 #ifndef DEBUG_H
 #define DEBUG_H
-
+#include"types.h"
 #include<stdio.h>
 #include<avr/io.h>
 #define DEBUG 1
@@ -17,15 +17,15 @@
 // extern char global_print_buff[128];
 // #define printf(FMT,...) do{snprintf(global_print_buff,128,FMT,##__VA_ARGS__);avr_Print(global_print_buff);}while(0)
 
-    void avr_Printf(char * format, ...);
+    void avr_Printf(u32 format, ...);
     #define printf(fmt,...)    do{static char __attribute__((section (".progmem"))) literal[]=fmt;avr_Printf(literal,##__VA_ARGS__);}while(0)
     #define printf_P    avr_Printf
 #endif
 
 #if DEBUG
 
-    #define d_Log(CATEGORY, FMT, ...)                  printf (" %8s | " FMT, #CATEGORY, ##__VA_ARGS__)
-   
+    // #define d_Log(CATEGORY, FMT, ...)                  printf (" %8s | " FMT, #CATEGORY, ##__VA_ARGS__)
+    #define d_Log(CATEGORY, FMT, ...)                  printf (" "#CATEGORY" | " FMT, ##__VA_ARGS__)
     #if d_log_parse
         #define log_parse(CATEGORY, FMT, ...)          d_Log(CATEGORY, FMT, ##__VA_ARGS__)
     #else

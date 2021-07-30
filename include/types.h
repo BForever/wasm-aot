@@ -23,7 +23,7 @@ typedef double f64;
 #endif
 typedef unsigned long long u64;
 typedef long long i64;
-typedef unsigned char* bytes;
+typedef u32 bytes;
 
 struct WASM_MODULE;
 struct WASM_FUNCTION;
@@ -46,7 +46,7 @@ typedef struct FUNC_TYPE
 
     u32                     args_num;
     u8                      returnType;
-    u8                      need_memory_pass;
+    // u8                      need_memory_pass;
     u8                      args_type_list        [2];    // 用于32位对齐
 }func_type;
 typedef func_type* func_type_ptr;
@@ -75,8 +75,6 @@ typedef struct WASM_FUNCTION
 {
     struct WASM_MODULE*      module;
 
-    // M3ImportInfo            import;
-
     bytes                 wasm;
     bytes                 wasmEnd;
 
@@ -85,18 +83,11 @@ typedef struct WASM_FUNCTION
     struct FUNC_TYPE*      funcType;
 
     u16                    compiled;
-    // normal_function         native;
-
-
-    u16                     maxStackSlots;
 
     u16                     numArgSlots;
 
     u16                     numLocals;          // not including args
     u16                     numLocalBytes;
-
-    void *                  constants;
-    u16                     numConstantBytes;
 
     struct IMPORT_INFO     import;
 
@@ -105,8 +96,8 @@ typedef wasm_function* wasm_function_ptr;
 
 typedef struct DATA_SEGMENT
 {
-    const u8 *              initExpr;       // wasm code
-    const u8 *              data;
+    u32              initExpr;       // wasm code
+    u32              data;
 
     u16                     initExprSize;
     u16                     memoryRegion;
@@ -130,8 +121,8 @@ typedef struct WASM_MODULE
 
   struct WASM_FUNCTION** function_list;
 
-  u32 startFunction;
-  u16 entry_method;
+  // u32 startFunction;
+  // u16 entry_method;
 
   struct FUNC_TYPE** func_type_list;
   u16 func_type_num;

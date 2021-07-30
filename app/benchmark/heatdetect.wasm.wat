@@ -12,10 +12,10 @@
   (type (;10;) (func (param i32 i32) (result i32)))
   (import "env" "memset" (func (;0;) (type 0)))
   (import "env" "printStr" (func (;1;) (type 1)))
-  (import "env" "memcpy" (func (;2;) (type 0)))
-  (import "env" "rtc_startBenchmarkMeasurement_Native" (func (;3;) (type 2)))
-  (import "env" "rtc_stopBenchmarkMeasurement" (func (;4;) (type 2)))
-  (import "env" "malloc" (func (;5;) (type 1)))
+  (import "env" "malloc" (func (;2;) (type 1)))
+  (import "env" "memcpy" (func (;3;) (type 0)))
+  (import "env" "rtc_startBenchmarkMeasurement_Native" (func (;4;) (type 2)))
+  (import "env" "rtc_stopBenchmarkMeasurement" (func (;5;) (type 2)))
   (import "env" "printInt" (func (;6;) (type 3)))
   (func (;7;) (type 2))
   (func (;8;) (type 4) (param i32 i32 i32 i32 i32 i32)
@@ -1836,43 +1836,37 @@
     end)
   (func (;24;) (type 2)
     (local i32 i32 i32)
-    global.get 0
-    i32.const 128
-    i32.sub
-    local.tee 0
-    global.set 0
     i32.const 0
+    local.set 0
+    i32.const 128
+    call 2
     local.set 1
     loop  ;; label = @1
-      local.get 0
       local.get 1
+      local.get 0
       i32.const 65535
       i32.and
       local.tee 2
       call 28
       drop
-      local.get 0
+      local.get 1
       local.get 2
       call 25
-      local.get 1
+      local.get 0
       i32.const 1
       i32.add
-      local.set 1
+      local.set 0
       local.get 2
       i32.const 99
       i32.lt_u
       br_if 0 (;@1;)
     end
-    local.get 0
+    local.get 1
     i32.const 100
     call 28
     drop
-    local.get 0
-    call 26
-    local.get 0
-    i32.const 128
-    i32.add
-    global.set 0)
+    local.get 1
+    call 26)
   (func (;25;) (type 6) (param i32 i32)
     (local i32 i32 i32 i32 i32 i32 i32 i32)
     local.get 1
@@ -2156,7 +2150,7 @@
     i32.const 1056
     i32.add
     i32.const 128
-    call 2
+    call 3
     drop
     local.get 2
     i32.load16_u offset=14
@@ -2168,7 +2162,7 @@
     local.get 0)
   (func (;29;) (type 4) (param i32 i32 i32 i32 i32 i32)
     (local i32 i32)
-    call 3
+    call 4
     i32.const 0
     local.set 6
     loop  ;; label = @1
@@ -2200,31 +2194,31 @@
       i32.lt_u
       br_if 0 (;@1;)
     end
-    call 4)
+    call 5)
   (func (;30;) (type 2)
     (local i32 i32 i32 i32)
     i32.const 0
     i32.const 128
-    call 5
+    call 2
     local.tee 0
     i32.store offset=17296
     i32.const 0
     i32.const 256
-    call 5
+    call 2
     local.tee 1
     i32.store offset=17300
     i32.const 0
     i32.const 128
-    call 5
+    call 2
     local.tee 2
     i32.store offset=17304
     i32.const 0
     i32.const 128
-    call 5
+    call 2
     i32.store offset=17308
     i32.const 0
     i32.const 64
-    call 5
+    call 2
     i32.store offset=17264
     i32.const 0
     local.set 3
@@ -2256,17 +2250,17 @@
     end
     call 24
     i32.const 128
-    call 5
+    call 2
     i32.const 64
-    call 5
+    call 2
     i32.const 64
-    call 5
+    call 2
     i32.const 256
-    call 5
+    call 2
     i32.const 256
-    call 5
+    call 2
     i32.const 256
-    call 5
+    call 2
     call 29
     i32.const 17184
     call 1

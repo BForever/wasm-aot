@@ -18,7 +18,8 @@ u32 embed_i32load(u16 offset1, u32 addr)
 #if flash_data
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
     {
-        res = pgm_read_dword((u8 *)(mem_areas[0].target + target - mem_areas[0].start));
+        // printf("actual r %p\n",mem_areas[0].target + target - mem_areas[0].start);
+        res = pgm_read_dword_far(mem_areas[0].target + target - mem_areas[0].start);
     }
     else
     {
@@ -67,8 +68,8 @@ u64 embed_i64load(u16 offset1, u32 addr)
 #if flash_data
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
     {
-        res.n32[0] = pgm_read_dword((u8 *)(mem_areas[0].target + target - mem_areas[0].start));
-        res.n32[1] = pgm_read_dword((u8 *)(mem_areas[0].target + target - mem_areas[0].start + 4));
+        res.n32[0] = pgm_read_dword_far(mem_areas[0].target + target - mem_areas[0].start);
+        res.n32[1] = pgm_read_dword_far(mem_areas[0].target + target - mem_areas[0].start + 4);
     }
     else
     {
@@ -190,7 +191,7 @@ u16 table_length = 2;
 u32 table_address;
 void icall(u32 index)
 {
-    normal_function func = pgm_read_word(table_address + 2 * index);
+    normal_function func = pgm_read_word_far(table_address + 2 * index);
 
 #if check_icall_type
     if (func_type_map[pseudo_table[index]] != 0)

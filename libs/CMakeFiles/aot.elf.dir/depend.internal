@@ -15,6 +15,7 @@ CMakeFiles/aot.elf.dir/src/compile.c.o
  ../include/instructions.h
  ../include/memory.h
  ../include/rtc_emit.h
+ ../include/safety_check.h
  ../include/types.h
  ../include/user_import.h
  ../include/utils.h
@@ -32,12 +33,13 @@ CMakeFiles/aot.elf.dir/src/instructions.c.o
  ../include/debug.h
  ../include/instructions.h
  ../include/rtc_emit.h
+ ../include/safety_check.h
  ../include/types.h
  ../include/utils.h
  ../include/wkreprog_impl.h
  /home/fanhc/wasm-aot/src/instructions.c
 CMakeFiles/aot.elf.dir/src/main.c.o
- ../app/benchmark/fft.wasm.h
+ ../app/test.wasm.h
  ../include/asm.h
  ../include/compile.h
  ../include/debug.h
@@ -50,6 +52,7 @@ CMakeFiles/aot.elf.dir/src/memory.c.o
  ../include/compile.h
  ../include/debug.h
  ../include/memory.h
+ ../include/safety_check.h
  ../include/types.h
  /home/fanhc/wasm-aot/src/memory.c
 CMakeFiles/aot.elf.dir/src/parse.c.o
@@ -70,6 +73,8 @@ CMakeFiles/aot.elf.dir/src/user_import.c.o
  ../include/AvroraTrace.h
  ../include/compile.h
  ../include/debug.h
+ ../include/memory.h
+ ../include/safety_check.h
  ../include/types.h
  /home/fanhc/wasm-aot/src/user_import.c
 CMakeFiles/aot.elf.dir/src/utils.c.o

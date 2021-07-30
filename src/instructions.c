@@ -290,7 +290,7 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
             panicf("called index out of scope");
         }
         wasm_function_ptr called_func = module->function_list[operand.num16[0]];
-        if (is_imported(called_func))
+        if (operand.num16[0]<module->import_num)
         {
             func_type_ptr type = called_func->funcType;
             //先检查是否需要通过内存（栈）传参
@@ -911,6 +911,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
 #if count_stack_check
         emit_2_CALL(embed_func_count);
 #endif
+#if count_lowest_stack
+        emit_2_CALL(embed_func_print_stack);
+#endif
         ReadLEB_i32(&operand, start, end);
         log(emit, "[I32.CONST %ld]", operand.num32[0]);
         log(emit, "load %ld to R22.", operand.num32[0]);
@@ -956,7 +959,9 @@ void emit_single_instruction(wasm_module_ptr module, wasm_function_ptr func, byt
 #if count_stack_check
         emit_2_CALL(embed_func_count);
 #endif
-
+#if count_lowest_stack
+        emit_2_CALL(embed_func_print_stack);
+#endif
         ReadLEB_i64(&operand, start, end);
         log(emit, "[I64.CONST %ld]", operand.num32[0]);
         log(emit, "load %ld to R22.", operand.num32[0]);

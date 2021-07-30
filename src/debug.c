@@ -16,7 +16,7 @@ void avr_Print(char * str)
 	}
 }
 
-void avr_VPrint(char * format, va_list arg)
+void avr_VPrint(u32 format, va_list arg)
 {
 	static char __attribute__((section (".wait"))) temp[GLOBAL_PRINT_BUFFER_SIZE];
 	static char __attribute__((section (".wait"))) temp2[GLOBAL_PRINT_BUFFER_SIZE];
@@ -30,7 +30,7 @@ void avr_VPrint(char * format, va_list arg)
 	avr_Print(temp);
 }
 
-void avr_Printf(char * format, ...)
+void avr_Printf(u32 format, ...)
 {
 	va_list arg;
 

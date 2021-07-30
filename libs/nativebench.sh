@@ -17,7 +17,7 @@
 # cd ../libs
 
 
-benchlist=(binsrch bsort fillarray funcall hsort fft lec outlier heatcalib)
+benchlist=(binsrch bsort fillarray funcall hsort fft lec outlier heatcalib heatdetect)
 # benchlist=(lec)
 
 for bench in ${benchlist[*]}

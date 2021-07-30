@@ -14,6 +14,7 @@ CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/debug.h
 CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/instructions.h
 CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/memory.h
 CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/rtc_emit.h
+CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/safety_check.h
 CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/types.h
 CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/user_import.h
 CMakeFiles/aot.elf.dir/src/compile.c.o: ../include/utils.h
@@ -31,12 +32,13 @@ CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/compile.h
 CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/debug.h
 CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/instructions.h
 CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/rtc_emit.h
+CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/safety_check.h
 CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/types.h
 CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/utils.h
 CMakeFiles/aot.elf.dir/src/instructions.c.o: ../include/wkreprog_impl.h
 CMakeFiles/aot.elf.dir/src/instructions.c.o: ../src/instructions.c
 
-CMakeFiles/aot.elf.dir/src/main.c.o: ../app/benchmark/fft.wasm.h
+CMakeFiles/aot.elf.dir/src/main.c.o: ../app/test.wasm.h
 CMakeFiles/aot.elf.dir/src/main.c.o: ../include/asm.h
 CMakeFiles/aot.elf.dir/src/main.c.o: ../include/compile.h
 CMakeFiles/aot.elf.dir/src/main.c.o: ../include/debug.h
@@ -49,6 +51,7 @@ CMakeFiles/aot.elf.dir/src/main.c.o: ../src/main.c
 CMakeFiles/aot.elf.dir/src/memory.c.o: ../include/compile.h
 CMakeFiles/aot.elf.dir/src/memory.c.o: ../include/debug.h
 CMakeFiles/aot.elf.dir/src/memory.c.o: ../include/memory.h
+CMakeFiles/aot.elf.dir/src/memory.c.o: ../include/safety_check.h
 CMakeFiles/aot.elf.dir/src/memory.c.o: ../include/types.h
 CMakeFiles/aot.elf.dir/src/memory.c.o: ../src/memory.c
 
@@ -69,6 +72,8 @@ CMakeFiles/aot.elf.dir/src/rtc_emit.c.o: ../src/rtc_emit.c
 CMakeFiles/aot.elf.dir/src/user_import.c.o: ../include/AvroraTrace.h
 CMakeFiles/aot.elf.dir/src/user_import.c.o: ../include/compile.h
 CMakeFiles/aot.elf.dir/src/user_import.c.o: ../include/debug.h
+CMakeFiles/aot.elf.dir/src/user_import.c.o: ../include/memory.h
+CMakeFiles/aot.elf.dir/src/user_import.c.o: ../include/safety_check.h
 CMakeFiles/aot.elf.dir/src/user_import.c.o: ../include/types.h
 CMakeFiles/aot.elf.dir/src/user_import.c.o: ../src/user_import.c
 

@@ -9,7 +9,7 @@ void ParseSection_Import(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Function(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Memory(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Global(wasm_module_ptr module, bytes start, bytes end);
-void ParseSection_Start(wasm_module_ptr module, bytes start, bytes end);
+// void ParseSection_Start(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end);
 void ParseSection_Data(wasm_module_ptr module, bytes start, bytes end);
 
@@ -26,9 +26,9 @@ wasm_module_ptr wasm_load_module(wasm_code_ptr code)
     bytes end = pos + code->length;
 
     u32 magic, version;
+    
     Read_u32(&magic, &pos, end);
     Read_u32(&version, &pos, end);
-
     if (magic != 0x6d736100 || version != 1)
     {
         panicf("Wasm Malformed");
@@ -84,7 +84,8 @@ void ParseModuleSection(wasm_module_ptr module, u8 i_sectionType, bytes start, u
             ParseSection_Memory,   // 5
             ParseSection_Global,   // 6
             NULL,                  //ParseSection_Export,   // 7
-            ParseSection_Start,    // 8
+            // ParseSection_Start,    // 8
+            NULL,    // 8
             NULL,                  //ParseSection_Element,  // 9
             ParseSection_Code,     // 10
             ParseSection_Data,     // 11
@@ -205,7 +206,7 @@ void ParseSection_Import(wasm_module_ptr module, bytes start, bytes end)
     ReadLEB_u32(&numImports, &start, end);
     log(parse, "** Import [%d]", numImports);
 
-    for (u32 i = 0; i < numImports; ++i)
+    for (u16 i = 0; i < numImports; ++i)
     {
         u8 importKind;
         Read_utf8(&import.moduleUtf8, &start, end);
@@ -290,8 +291,15 @@ void Module_AddFunction(wasm_module_ptr module, u32 i_typeIndex, import_info_ptr
         }
         else
         {
-            func->name = sys_malloc(10);
-            snprintf(func->name, 10, "f%d", module->function_num - module->import_num);
+            if(module->function_num - module->import_num<10){
+                func->name = sys_malloc(2);
+            }else if(module->function_num - module->import_num<100){
+                func->name = sys_malloc(3);
+            }else{
+                func->name = sys_malloc(4);
+            }
+            
+            snprintf(func->name, 10, "%d", module->function_num - module->import_num);
         }
         // log(parse,"   added function %3d: %s; sig: %d;",module->function_num-1,func->name, i_typeIndex);
         logif(parse, {printf("   added function %3d:",module->function_num-1);printf(" %s;",func->name);printf(" sig: %d;", i_typeIndex); });
@@ -396,19 +404,19 @@ void ParseSection_Global(wasm_module_ptr module, bytes start, bytes end)
         }
     }
 }
-void ParseSection_Start(wasm_module_ptr module, bytes start, bytes end)
-{
-    u32 startFuncIndex;
-    ReadLEB_u32(&startFuncIndex, &start, end);
-    log(parse, "** Start Function: %d", startFuncIndex);
+// void ParseSection_Start(wasm_module_ptr module, bytes start, bytes end)
+// {
+//     u32 startFuncIndex;
+//     ReadLEB_u32(&startFuncIndex, &start, end);
+//     log(parse, "** Start Function: %d", startFuncIndex);
 
-    if (startFuncIndex < module->function_num)
-    {
-        module->startFunction = startFuncIndex;
-    }
-    else
-        panicf("start function index out of bounds");
-}
+//     if (startFuncIndex < module->function_num)
+//     {
+//         module->startFunction = startFuncIndex;
+//     }
+//     else
+//         panicf("start function index out of bounds");
+// }
 void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end)
 {
     u32 numFunctions;
@@ -424,15 +432,14 @@ void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end)
     {
         u32 size;
         ReadLEB_u32(&size, &start, end);
-
         if (size)
         {
-            const u8 *ptr = start;
+            bytes ptr = start;
             start += size;
 
             if (start <= end)
             {
-                const u8 *begin = ptr;
+                bytes begin = ptr;
 
                 u32 numLocalBlocks;
                 ReadLEB_u32(&numLocalBlocks, &ptr, end);
@@ -467,8 +474,7 @@ void ParseSection_Code(wasm_module_ptr module, bytes start, bytes end)
                         panicf("unsupported local type");
                         break;
                     }
-                    // log(parse, "      %2d locals; type: '%s'", varCount, wasm_types_names[normalType]);
-                    logif(parse, printf("      %2d locals; ", varCount); printf("type: '%s'", wasm_types_names[normalType]));
+                    log(parse, "      %2ld locals; type: '%s'", varCount, wasm_types_names[normalType]);
                 }
 
                 wasm_function_ptr func = module->function_list[f + module->import_num];

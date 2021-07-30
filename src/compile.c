@@ -15,10 +15,6 @@
 #include <string.h>
 extern char __wait_end;
 
-bool is_imported(wasm_function_ptr func)
-{
-    return !(func->import.moduleUtf8 == NULL && func->import.fieldUtf8 == NULL);
-}
 u16 __attribute__((section(".wait"))) entry_method;
 translation_state __attribute__((section(".wait"))) ts;
 wasm_block_ct blct;
@@ -35,10 +31,11 @@ void branch_pc_refill(wasm_module_ptr module)
     {
         // log(compile,"pc:%d",pc);
         u16 opcode = pgm_read_word_far(RTC_START_OF_COMPILED_CODE_SPACE + pc);
+        
         if (opcode == OPCODE_JMP)
         {
             u16 label_id = pgm_read_word_far(RTC_START_OF_COMPILED_CODE_SPACE + pc + 2);
-            logif(compile, printf("label %d", label_id); printf(",jmp %p", RTC_START_OF_COMPILED_CODE_SPACE + blct.block_pc[label_id]););
+            log(compile, "label %d,jmp %p", label_id,RTC_START_OF_COMPILED_CODE_SPACE + blct.block_pc[label_id]);
             emit_2_JMP((RTC_START_OF_COMPILED_CODE_SPACE + blct.block_pc[label_id]));
             emit_flush_to_flash();
             pc += 4;
@@ -148,12 +145,12 @@ extern void empty_function();
 extern u32 table_address;
 void compile_deinit(wasm_module_ptr module)
 {
-    compile_open();
-    table_address = wkreprog_get_raw_position();
-    log(temp, "table address: %ld", table_address);
-    normal_function p = empty_function;
-    wkreprog_write(2, &p);
-    compile_close();
+    // compile_open();
+    // table_address = wkreprog_get_raw_position();
+    // log(temp, "table address: %ld", table_address);
+    // normal_function p = empty_function;
+    // wkreprog_write(2, &p);
+    // compile_close();
 
     // 烧写跳转指令
     branch_pc_refill(module);
@@ -214,6 +211,9 @@ void wasm_compile_function(wasm_module_ptr module, wasm_function_ptr func)
 #if count_stack_check
     emit_2_CALL(embed_func_count);
 #endif
+#if count_lowest_stack
+    emit_2_CALL(embed_func_print_stack);
+#endif
     while (start < end)
     {
 
@@ -230,17 +230,12 @@ void wasm_compile_module(wasm_module_ptr module)
 
     wasm_global_init(module);
 
-    // 加载全局变量区首地址
-    // ts.wasm_mem_space = GET_FAR_ADDRESS(g_module) + sizeof(wasm_module) + 64;
-    //TODO 暂时减小用于调试
-    // ts.wasm_mem_space = sys_malloc(256);
     ts.wasm_mem_space = &__wait_end;
     if (!ts.wasm_mem_space)
     {
         panicf("no space!!\n");
         asm volatile("break");
     }
-    // wasm_memory_init(module);
 
     compile_init(module);
 
@@ -249,7 +244,7 @@ void wasm_compile_module(wasm_module_ptr module)
     {
         func = module->function_list[i];
         // log(compile, "func %s", func->name);
-        if (is_imported(func))
+        if (i<module->import_num)
         {
             log(compile, "native\tfunc %s", func->name);
             bool found = false;
@@ -325,6 +320,7 @@ void wasm_global_init(wasm_module_ptr module)
     ts.wasm_globals_size = offset;
 }
 extern u16 __attribute__((section(".wait"))) malloc_record;
+extern u16 __attribute__((section(".wait"))) lowest_stack;
 void wasm_call_entry_method(wasm_module_ptr module)
 {
     if (module->memory_imported)
@@ -335,7 +331,8 @@ void wasm_call_entry_method(wasm_module_ptr module)
     {
         //保存memcpy的参数在最后进行拷贝，防止出错
         u16 cpy_d, cpy_s, cpy_n;
-        u16 pcpy_d, pcpy_s, pcpy_n;
+        u16 pcpy_d, pcpy_n;
+        u32 pcpy_s;
         pcpy_d = 0;
 
         if (module->data_segment_num == 0)
@@ -343,7 +340,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[1].start = 0;
             mem_areas[1].end = (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
             mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
-            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
+            log(temp, "mem[1]:%d-%d at D:%ld,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             malloc_record = 0;
         }
 #if flash_data
@@ -358,12 +355,12 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[0].start = start;
             mem_areas[0].end = start + module->data_segment_list[0].size;
             mem_areas[0].target = module->data_segment_list[0].data;
-            log(temp, "mem[0]:%d-%d at P:%p,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target,mem_areas[0].end-mem_areas[0].start);
+            log(temp, "mem[0]:%d-%d at P:%ld,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target,mem_areas[0].end-mem_areas[0].start);
             // RAM
             mem_areas[1].start = mem_areas[0].end;
             mem_areas[1].end = mem_areas[1].start + (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
             mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
-            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
+            log(temp, "mem[1]:%d-%d at D:%ld,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             malloc_record = module_heap_base;
             
         }
@@ -382,11 +379,11 @@ void wasm_call_entry_method(wasm_module_ptr module)
             pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size;
             pcpy_s = module->data_segment_list[0].data;
             pcpy_n = module->data_segment_list[0].size;
-            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
+            log(temp, "mem[1]:%d-%d at D:%ld,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             // RAM 2: extend RAM 1'end
             malloc_record = module_heap_base;
             mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[0].size);
-            log(temp, "mem[1]ex:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
+            log(temp, "mem[1]ex:%d-%d at D:%ld,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
         }
 #endif
         else if (module->data_segment_num == 2)
@@ -400,7 +397,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[0].start = start;
             mem_areas[0].end = start + module->data_segment_list[0].size;
             mem_areas[0].target = module->data_segment_list[0].data;
-            log(temp, "mem[0]:%d-%d at P:%p,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target,mem_areas[0].end-mem_areas[0].start);
+            log(temp, "mem[0]:%d-%d at P:%ld,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target,mem_areas[0].end-mem_areas[0].start);
             // RAM 1
             initexpr = module->data_segment_list[1].initExpr + 1;
             end = initexpr + module->data_segment_list[1].initExprSize;
@@ -412,22 +409,23 @@ void wasm_call_entry_method(wasm_module_ptr module)
             pcpy_d = ts.wasm_mem_space + ts.wasm_globals_size;
             pcpy_s = module->data_segment_list[1].data;
             pcpy_n = module->data_segment_list[1].size;
-            log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
+            log(temp, "mem[1]:%d-%d at D:%ld,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             // RAM 2: extend RAM 1'end
             malloc_record = module_heap_base;
             mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[1].size);
-            log(temp, "mem[1]ex:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
+            log(temp, "mem[1]ex:%d-%d at D:%ld,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
         }
         log(temp, "mem_start:%p", ts.wasm_mem_space);
         log(temp, "copy %d B globals", ts.wasm_globals_size);
-        log(temp, "start exec");
-        log(temp,"memcpy from %p to %p, size %d",pcpy_s,pcpy_d,pcpy_n);
+        log(temp,"memcpy from %ld to %d, size %d",pcpy_s,pcpy_d,pcpy_n);
         if(pcpy_d){
-            memcpy_P(pcpy_d,pcpy_s,pcpy_n);
+            memcpy_PF(pcpy_d,pcpy_s,pcpy_n);
         }
         memcpy(ts.wasm_mem_space, ts.wasm_global_temp_space, ts.wasm_globals_size);
+        log(temp, "start exec: %p",entry_method);
         ((normal_function)entry_method)();
         log(temp, "counter:%ld", global_counter);
+        log(temp, "max stack usage:%d", 0x10ff-lowest_stack);
     }
     //释放空间
     // sys_free(module->global_list);       //全局变量列表

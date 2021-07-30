@@ -1,71 +1,70 @@
 cycle func size addr
-12459 malloc  4 518
-16842 malloc  35 51e
-22278 malloc  12 543
-27034 malloc  8 551
-32107 malloc  9 55b
-37937 malloc  9 566
-43641 malloc  11 571
-50489 malloc  10 57e
-56949 malloc  12 58a
-64786 malloc  4 598
-69512 malloc  37 59e
-74694 malloc  2 5c5
-79029 malloc  28 5c9
-83594 malloc  4 5e7
-88322 malloc  29 5ed
-94457 realloc  4 5c5 60c
-98824 malloc  28 612
-103402 malloc  4 630
-107905 malloc  9 636
-113800 realloc  6 60c 641
-118186 malloc  28 649
-122742 malloc  4 60c
-127245 malloc  9 667
-133154 realloc  8 641 672
-137542 malloc  28 67c
-142120 malloc  4 641
-146625 malloc  7 69a
-152756 realloc  10 672 6a3
-157146 malloc  28 6af
-161721 malloc  4 676
-166247 malloc  7 6cd
-172472 realloc  12 6a3 6d6
-176879 malloc  28 6e4
-184127 realloc  14 6d6 702
-188551 malloc  28 712
-192955 malloc  10 6a3
-199833 realloc  16 702 730
-204257 malloc  28 742
-208714 malloc  10 6d6
-215608 realloc  18 730 760
-220032 malloc  28 774
-224484 malloc  10 706
-231470 realloc  20 760 792
-235915 malloc  28 7a8
-240386 malloc  10 736
-248939 malloc  120 7c6
-267419 malloc  10 768
-273336 realloc  4 0 730
-279419 realloc  8 730 840
-285363 realloc  12 840 840
-291307 realloc  16 840 840
-297251 realloc  20 840 840
-303195 realloc  24 840 840
-309139 realloc  28 840 840
-314904 realloc  32 840 840
-325761 malloc  192 862
-335328 malloc  256 924
-431737 free  924
-436600 malloc  256 924
-633570 free  924
-638433 malloc  256 924
-4412024 free  924
-4416887 malloc  256 924
-4984100 free  924
-4988967 malloc  256 924
-5090701 free  924
-5095435 malloc  256 924
-9109627 free  924
-9164706 malloc  128 0
-9169114 malloc  128 80
+11336 malloc  6 4dc
+15146 malloc  29 4e4
+20346 malloc  12 503
+24641 malloc  7 511
+29337 malloc  8 51a
+35110 malloc  10 524
+41499 malloc  8 530
+46628 malloc  9 53a
+52829 malloc  11 545
+60756 malloc  4 552
+65004 malloc  37 558
+69405 malloc  2 57f
+73147 malloc  26 583
+77223 malloc  4 59f
+81473 malloc  29 5a5
+86903 realloc  4 57f 5c4
+90681 malloc  26 5ca
+94772 malloc  4 5e6
+98803 malloc  7 5ec
+104157 realloc  6 5c4 5f5
+107954 malloc  26 5fd
+112021 malloc  4 5c4
+116048 malloc  7 619
+121416 realloc  8 5f5 622
+125211 malloc  26 62c
+129302 malloc  4 5f5
+133329 malloc  9 648
+138969 realloc  10 622 653
+142764 malloc  26 65f
+146850 malloc  4 626
+150898 malloc  9 67b
+156630 realloc  12 653 686
+160442 malloc  26 694
+167456 realloc  14 686 6b0
+171289 malloc  26 6c0
+174830 malloc  2 57f
+181121 realloc  16 6b0 6dc
+184956 malloc  26 6ee
+188495 malloc  2 622
+194802 realloc  18 6dc 70a
+198635 malloc  26 71e
+202289 malloc  2 65b
+208686 realloc  20 70a 73a
+212536 malloc  26 750
+216217 malloc  2 657
+224985 malloc  153 76c
+246585 malloc  14 6b0
+252216 realloc  4 0 68e
+257834 realloc  8 68e 6e4
+263623 realloc  12 6e4 686
+269384 realloc  16 686 6dc
+275268 realloc  20 6dc 807
+280721 realloc  24 807 807
+286174 realloc  28 807 807
+291627 realloc  32 807 807
+296875 realloc  36 807 807
+306766 malloc  192 82d
+316715 malloc  256 8ef
+410419 free  8ef
+414695 malloc  256 8ef
+609337 free  8ef
+613613 malloc  256 8ef
+4179108 free  8ef
+4183384 malloc  256 8ef
+4890805 free  8ef
+4895098 malloc  256 8ef
+8491715 free  8ef
+8538852 malloc  128 3120
+8543347 malloc  128 3248

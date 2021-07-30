@@ -55,7 +55,7 @@ bool check_neighbor_zscore_weight(uint16_t index);
 //    get_xy
 //    labelPixel
 //    rotateColor
-//    findGroup
+//    findGrou
 
 
 void heat_detect(uint16_t frame_buffer[64], uint8_t color[64], uint8_t rColor[64], int32_t largestSubset[64], int32_t testset[64], int32_t result[64]) {
@@ -71,7 +71,6 @@ void heat_detect(uint16_t frame_buffer[64], uint8_t color[64], uint8_t rColor[64
     get_largest_subset(largestSubset, &maxSubsetLen, testset, result);
 
     reset_log_variable(color);
-
     if (maxSubsetLen > 1) {
         if (z_max > zscore_threshold_hot) {
             get_filtered_xy(largestSubset, maxSubsetLen);

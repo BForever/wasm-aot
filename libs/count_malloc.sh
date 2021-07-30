@@ -16,7 +16,7 @@ do
     line=`cat ${filename} |grep "sys |"|sed -ne "s/\s\+[[:digit:]]\+\s\+\([[:digit:]]\+\)\s\+\[avrora\.c\-print\]\s11\s\+sys\s|\s\([[:alpha:]]\+\)\(.*\)/\1 \2 \3/p"`
     # echo "$line"
     echo "$line">>$file.malloc.txt
-    ./count_malloc $file.malloc.txt> $file.malloc.csv
+    ./count_malloc $file.malloc.txt 1064 > $file.malloc.csv
 done
 
 # index=0

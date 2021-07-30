@@ -12,7 +12,7 @@ void ReadLebUnsigned(u64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_en
     u64 value = 0;
 
     u32 shift = 0;
-    const u8 *ptr = *io_bytes;
+    bytes ptr = *io_bytes;
 
     while (ptr < i_end)
     {
@@ -43,7 +43,7 @@ void ReadLebSigned(i64 *o_value, u32 i_maxNumBits, bytes *io_bytes, bytes i_end)
     i64 value = 0;
 
     u32 shift = 0;
-    const u8 *ptr = *io_bytes;
+    bytes ptr = *io_bytes;
 
     while (ptr < i_end)
     {
@@ -85,7 +85,7 @@ void ReadLEB_u32(u32 *o_value, bytes *io_bytes, bytes i_end)
 }
 void Read_u8(u8 *o_value, bytes *io_bytes, bytes i_end)
 {
-    const u8 *ptr = *io_bytes;
+    bytes ptr = *io_bytes;
 
     if (ptr < i_end)
     {
@@ -99,9 +99,9 @@ void Read_u8(u8 *o_value, bytes *io_bytes, bytes i_end)
 
 void Read_u32(u32 *o_value, bytes *io_bytes, bytes i_end)
 {
-    const u8 *ptr = *io_bytes;
+    bytes ptr = *io_bytes;
     ptr += sizeof(u32);
-
+    
     if (ptr <= i_end)
     {
         *o_value = pgm_read_dword_far(*io_bytes);
@@ -152,15 +152,16 @@ void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end)
 
     if (utf8Length <= d_m3MaxSaneUtf8Length)
     {
-        const u8 *ptr = *io_bytes;
-        const u8 *end = ptr + utf8Length;
+        bytes ptr = *io_bytes;
+        bytes end = ptr + utf8Length;
 
         if (end <= i_end)
         {
             char *utf8;
             utf8 = sys_malloc(utf8Length + 1);
+            memcpy_PF(utf8,ptr,utf8Length);
 
-            pgm_memcpy(utf8, ptr, utf8Length);
+            // pgm_memcpy(utf8, ptr, utf8Length);
             utf8[utf8Length] = 0;
             *o_utf8 = utf8;
 
@@ -173,7 +174,7 @@ void Read_utf8(bytes *o_utf8, bytes *io_bytes, bytes i_end)
         panicf("missing utf8");
 }
 
-void hexdump(bytes buf, u32 buf_len) {
+void hexdump(char*  buf, u32 buf_len) {
 	int i, j, mod = buf_len % 16;
 	int n = 16 - mod;
 	for (i = 0; i < buf_len; i++)
@@ -215,7 +216,7 @@ void hexdump(bytes buf, u32 buf_len) {
 	printf("\n");
 }
 
-void hexdump_pgm(bytes buf, u32 buf_len) {
+void hexdump_pgm(u32 buf, u32 buf_len) {
 	int i, j, mod = buf_len % 16;
 	int n = 16 - mod;
     u8 c;
@@ -228,14 +229,15 @@ void hexdump_pgm(bytes buf, u32 buf_len) {
             }
 			printf("0x%08x:\t",buf+i);
 		}
-        c =  pgm_read_byte_far(&buf[i]);
+        // c =  pgm_read_byte_far(&buf[i]);
+        c =  pgm_read_byte_far(buf+i);
 		printf("%02X ", c);
 		if ((i + 1) % 16 == 0)
 		{
 			printf("\t");
 			for (j = i - 15; j <= i; j++)
 			{
-                c =  pgm_read_byte_far(&buf[j]);
+                c =  pgm_read_byte_far(buf+j);
 				if (j == i - 7)
 					printf(" ");
 				if (c >= 32 && c < 127)
@@ -250,7 +252,7 @@ void hexdump_pgm(bytes buf, u32 buf_len) {
 	printf("\t");
 	for (i = buf_len - mod; i < buf_len; i++)
 	{
-        c =  pgm_read_byte_far(&buf[i]);
+        c =  pgm_read_byte_far(buf+i);
 		if (i == buf_len - mod + 8)
 			printf(" ");
 		if (c >= 32 && c < 127)

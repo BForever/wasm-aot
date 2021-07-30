@@ -1,48 +1,46 @@
 cycle func size addr
-12459 malloc  4 518
-16842 malloc  35 51e
-22038 malloc  6 543
-26796 malloc  8 54b
-31867 malloc  9 555
-37937 malloc  10 560
-44466 malloc  4 56c
-49190 malloc  37 572
-54370 malloc  2 599
-58705 malloc  28 59d
-63272 malloc  4 5bb
-67998 malloc  29 5c1
-74131 realloc  4 599 5e0
-78500 malloc  28 5e6
-83078 malloc  4 604
-87583 malloc  7 60a
-93442 realloc  6 5e0 613
-97830 malloc  28 61b
-104712 realloc  8 613 639
-109117 malloc  28 643
-113562 malloc  10 661
-120394 realloc  10 639 66d
-124818 malloc  28 679
-129282 malloc  10 697
-136208 realloc  12 66d 6a3
-140653 malloc  28 6b1
-145095 malloc  10 66d
-153631 malloc  105 6cf
-168819 realloc  4 0 5e0
-174756 realloc  8 5e0 639
-181027 realloc  12 639 73a
-186947 realloc  16 73a 73a
-192867 realloc  20 73a 73a
-198787 realloc  24 73a 73a
-204528 realloc  28 73a 73a
-215366 malloc  192 758
-222855 malloc  256 81a
-320301 free  81a
-325147 malloc  256 81a
-539007 free  81a
-543853 malloc  256 81a
-863676 free  81a
-868526 malloc  256 81a
-971981 free  81a
-976698 malloc  256 81a
-1329669 free  81a
-1362387 malloc  1024 0
+11336 malloc  6 4dc
+15146 malloc  29 4e4
+20106 malloc  6 503
+24403 malloc  7 50b
+29097 malloc  8 514
+34632 malloc  9 51e
+41107 malloc  4 529
+45357 malloc  37 52f
+49756 malloc  2 556
+53500 malloc  26 55a
+57574 malloc  4 576
+61824 malloc  29 57c
+67252 realloc  4 556 59b
+71028 malloc  26 5a1
+75121 malloc  4 5bd
+79150 malloc  7 5c3
+84506 realloc  6 59b 5cc
+88301 malloc  26 5d4
+94955 realloc  8 5cc 5f0
+98771 malloc  26 5fa
+102310 malloc  2 556
+108473 realloc  10 5f0 616
+112285 malloc  26 622
+115911 malloc  2 59b
+122090 realloc  12 616 63e
+125904 malloc  26 64c
+129529 malloc  2 5d0
+138257 malloc  119 668
+154989 realloc  4 0 5f4
+160497 realloc  8 5f4 616
+166245 realloc  12 616 6e1
+171674 realloc  16 6e1 6e1
+177103 realloc  20 6e1 6e1
+182532 realloc  24 6e1 6e1
+187756 realloc  28 6e1 6e1
+197628 malloc  192 6ff
+205000 malloc  256 7c1
+299889 free  7c1
+304144 malloc  256 7c1
+517533 free  7c1
+521788 malloc  256 7c1
+841653 free  7c1
+845925 malloc  256 7c1
+1257492 free  7c1
+1294025 malloc  1024 0

@@ -5,12 +5,10 @@
 
 void __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16_t *frame_buffer, uint8_t *color, uint8_t *rColor, int32_t *largestSubset, int32_t *testset, int32_t *result) {
     rtc_startBenchmarkMeasurement_Native();
-
     for (uint16_t i=0; i<25; i++) {
         get_heat_sensor_data(frame_buffer, 101+i); // detection frames start after 100 calibration frames and 1 check frame.
         heat_detect(frame_buffer, color, rColor, largestSubset, testset, result);
     }
-
     rtc_stopBenchmarkMeasurement();
 }
 

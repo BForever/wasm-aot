@@ -6,7 +6,7 @@ typedef struct MEM_AREA
 {
     u16 start;
     u16 end;
-    u16 target;
+    u32 target;
 }mem_area;
 
 #define WASM_MEM_AREA_NUM 2

@@ -1,0 +1,98 @@
+cycle func size addr
+11336 malloc  6 4dc
+15146 malloc  29 4e4
+20346 malloc  12 503
+24641 malloc  8 511
+30416 malloc  10 51b
+36805 malloc  7 527
+41499 malloc  8 530
+46628 malloc  9 53a
+52183 malloc  9 545
+59254 malloc  4 550
+63262 malloc  7 556
+67393 malloc  2 55f
+71135 malloc  26 563
+75211 malloc  4 57f
+79219 malloc  7 585
+84451 realloc  4 55f 58e
+88225 malloc  26 594
+92316 malloc  4 5b0
+96585 malloc  37 5b6
+102211 realloc  6 58e 5dd
+106006 malloc  26 5e5
+110073 malloc  4 58e
+114340 malloc  29 601
+119908 realloc  8 5dd 620
+123703 malloc  26 62a
+127796 malloc  4 5dd
+131823 malloc  9 646
+137463 realloc  10 620 651
+141258 malloc  26 65d
+145344 malloc  4 624
+149390 malloc  9 679
+155122 realloc  12 651 684
+158934 malloc  26 692
+165950 realloc  14 684 6ae
+169785 malloc  26 6be
+173326 malloc  2 55f
+179619 realloc  16 6ae 6da
+183454 malloc  26 6ec
+186993 malloc  2 620
+193298 realloc  18 6da 708
+197131 malloc  26 71c
+200783 malloc  2 659
+207176 realloc  20 708 738
+211028 malloc  26 74e
+214709 malloc  2 655
+221196 realloc  22 738 76a
+225065 malloc  26 782
+228604 malloc  2 651
+235109 realloc  24 76a 79e
+238980 malloc  26 7b8
+242692 malloc  2 68e
+249289 realloc  26 79e 7d4
+253179 malloc  26 7f0
+256920 malloc  2 68a
+263609 realloc  28 7d4 80c
+267475 malloc  26 7d4
+271215 malloc  2 684
+280002 malloc  238 82a
+313655 malloc  14 6ae
+319509 realloc  4 0 6e6
+325243 realloc  8 6e6 6da
+330783 realloc  12 6da 6da
+336257 realloc  16 6da 6da
+342163 realloc  20 6da 738
+348253 realloc  24 738 79e
+354439 realloc  28 79e 91a
+360096 realloc  32 91a 91a
+365581 realloc  36 91a 91a
+371066 realloc  40 91a 91a
+376723 realloc  44 91a 91a
+382208 realloc  48 91a 91a
+387865 realloc  52 91a 91a
+393145 realloc  56 91a 91a
+403051 malloc  192 954
+413017 malloc  256 a16
+511384 free  a16
+515677 malloc  256 a16
+751112 free  a16
+755405 malloc  256 a16
+1877453 free  a16
+1881746 malloc  256 a16
+2539408 free  a16
+2543701 malloc  256 a16
+2980691 free  a16
+2984984 malloc  256 a16
+3309061 free  a16
+3313354 malloc  256 a16
+3415566 free  a16
+3419859 malloc  256 a16
+4143497 free  a16
+4147807 malloc  256 a16
+6744438 free  a16
+6792933 malloc  128 17872
+6797778 malloc  256 18000
+6802607 malloc  128 18256
+6807452 malloc  128 18384
+6843544 malloc  128 18512

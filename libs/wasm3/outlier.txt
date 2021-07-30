@@ -42,7 +42,7 @@
 558 free 56f42740
 561 malloc 13 56f42760
 564 free 56f42760
-577 realloc 1910 0 56f42780
+577 realloc 131088 0 56f42780
 690 malloc 3156 56f627a0
 785 malloc 4000 56f63400
 798 malloc 4096 56f643b0
@@ -79,9 +79,13 @@
 1104 malloc 9 56f627c0
 1108 free 56f627c0
 1137 malloc 96 56f627d0
+benchmark start time: 1142
 1153 malloc 8 56f62840
 1184 malloc 8 56f62850
 1273 malloc 28 56f62860
+benchmark stop time: 1471
+time used: 329
+WASM3 main function returned.
 1528 free 56f42310
 1532 free 56f42320
 1535 free 56f42390

@@ -42,7 +42,7 @@
 96242 free 3ffb3ff0
 98075 malloc 13 3ffb3ff0
 100322 free 3ffb3ff0
-102368 realloc 1024 0 3ffb4288
+102368 realloc 131088 0 3ffb4288
 105754 malloc 3156 3ffd42a0
 107726 malloc 4000 3ffd4f00
 110280 malloc 4096 3ffd5ea8
@@ -79,8 +79,12 @@
 178129 malloc 9 3ffb3ff0
 180356 free 3ffb3ff0
 183241 malloc 24 3ffb3fe8
+benchmark start time: 184675
 188277 malloc 8 3ffb3fd8
 189607 malloc 12 3ffb3fc0
+benchmark stop time: 192471
+time used: 7796
+WASM3 main function returned.
 198525 free 3ffb3de0
 200414 free 3ffb3df0
 202327 free 3ffb3e58

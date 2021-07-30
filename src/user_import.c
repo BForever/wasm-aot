@@ -52,7 +52,7 @@ u16  __attribute__((section (".wait"))) malloc_record;
 u32 import_malloc(u32 size){
     u32 res = malloc_record;
     malloc_record +=size;
-    log(sys,"malloc %ld %ld",size,res);
+    log(sys,"malloc %ld %x",size,(u16)res);
     // printf("malloc from %d to %d\n",(u16)res,(u16)(malloc_record));
     return res;
 }
@@ -67,7 +67,7 @@ u32 import_memset(u32 s,u32 ch,u32 n){
 u32 import_memcpy(u32 d,u32 s,u32 n){
     #if flash_data
         if(addr_is_in_flash(s)){
-            memcpy_P(addr_W2N(d),addr_W2N_P(s),n);
+            memcpy_PF(addr_W2N(d),addr_W2N_P(s),n);
         }else{
             memcpy(addr_W2N(d),addr_W2N(s),n);
         }

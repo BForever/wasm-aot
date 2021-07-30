@@ -77,14 +77,17 @@ u32 LeadingZeros_32(u32 x)
     x += x >> 16;
     return 32 - (x & 0x0000003f); //subtract # of 1s from 32
 }
-
+u16 __attribute__((section (".wait"))) lowest_stack=0x10ff;
 void print_stack(){
     u8* sp = STACK_POINTER();
-    printf("----stack----\n");
-    for(int i=20;i>=9;i--){
-        printf("%04p: %02x\n",(sp+i),*(sp+i));
+    // printf("----stack----\n");
+    // for(int i=20;i>=11;i--){
+    //     printf("%04p: %02x\n",(sp+i),*(sp+i));
+    // }
+    // printf("-------------\n");
+    if(sp+2<=lowest_stack){
+        lowest_stack = sp+2;
     }
-    printf("-------------\n");
 }
 
 u32 __attribute__((section (".wait"))) global_counter=0;

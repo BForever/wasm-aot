@@ -37,7 +37,7 @@ ADD_EXECUTABLE(lec.elf ${lec})
 ADD_EXECUTABLE(outlier.elf ${outlier})
 ADD_EXECUTABLE(heatcalib.elf ${heatcalib})
 ADD_EXECUTABLE(heatdetect.elf ${heatdetect})
-ADD_EXECUTABLE(motetrack.elf ${motetrack})
+# ADD_EXECUTABLE(motetrack.elf ${motetrack})
 
 ########################### WASM编译 ##########################
 else()
@@ -70,7 +70,7 @@ ADD_EXECUTABLE(lec.wasm ${lec})
 ADD_EXECUTABLE(outlier.wasm ${outlier})
 ADD_EXECUTABLE(heatcalib.wasm ${heatcalib})
 ADD_EXECUTABLE(heatdetect.wasm ${heatdetect})
-ADD_EXECUTABLE(motetrack.wasm ${motetrack})
+# ADD_EXECUTABLE(motetrack.wasm ${motetrack})
 
 endif(AVRORA)
 
