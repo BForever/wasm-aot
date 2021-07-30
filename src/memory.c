@@ -3,7 +3,8 @@
 #include "debug.h"
 #include "safety_check.h"
 #include <avr/pgmspace.h>
-#define show_addr 0
+#define show_addr  0
+#define show_value 0
 
 mem_area __attribute__((section(".wait"))) mem_areas[WASM_MEM_AREA_NUM] = {{0, 0, 0, 0}, {0, 4096, 0, 0}};
 // __attribute__((section (".wait")))
@@ -12,7 +13,7 @@ u32 embed_i32load(u16 offset1, u32 addr)
     u16 target = addr + offset1;
     u32 res;
     #if show_addr
-    printf("[read] %d\n", target);
+    printf("[read]\t%d\n", target);
     #endif
 #if flash_data
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
@@ -43,6 +44,10 @@ u32 embed_i32load(u16 offset1, u32 addr)
     }
     res = *(u32 *)((u8 *)ts.wasm_mem_space + ts.wasm_globals_size + target);
 #endif
+
+#if show_value
+    printf("[value]\t%ld\n",res);
+#endif
     return res;
 }
 u64 embed_i64load(u16 offset1, u32 addr)
@@ -56,7 +61,7 @@ u64 embed_i64load(u16 offset1, u32 addr)
 
     u8 overflow = 1;
     #if show_addr
-    printf("[read] %d\n",target);
+    printf("[read]\t%d\n",target);
     #endif
 
 #if flash_data
@@ -88,6 +93,9 @@ u64 embed_i64load(u16 offset1, u32 addr)
     res.n32[0] = *(u32 *)((u8 *)ts.wasm_mem_space + ts.wasm_globals_size + target);
     res.n32[1] = *(u32 *)((u8 *)ts.wasm_mem_space + ts.wasm_globals_size + target + 4);
 #endif
+#if show_value
+    printf("[value]\t%ld:%ld\n",res.n32[0],res.n32[1]);
+#endif
     return res.n64;
 }
 
@@ -95,7 +103,10 @@ void embed_i32store(u32 value, u16 offset1, u16 addr)
 {
     u16 target = addr + offset1;
     #if show_addr
-    printf("[write] %d\n",target);
+    printf("[write]\t%d\n",target);
+    #endif
+    #if show_value
+    printf("[value]\t%ld\n",value);
     #endif
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
     {
@@ -119,7 +130,10 @@ void embed_i32store16(u32 value, u16 offset1, u16 addr)
 {
     u16 target = addr + offset1;
     #if show_addr
-    printf("[write] %d\n",target);
+    printf("[write]\t%d\n",target);
+    #endif
+    #if show_value
+    printf("[value]\t%ld\n",value);
     #endif
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
     {
@@ -143,7 +157,10 @@ void embed_i32store8(u32 value, u16 offset1, u16 addr)
 {
     u16 target = addr + offset1;
     #if show_addr
-    printf("[write] %d\n",target);
+    printf("[write]\t%d\n",target);
+    #endif
+    #if show_value
+    printf("[value]\t%ld\n",value);
     #endif
     if (target >= mem_areas[0].start && target < mem_areas[0].end)
     {

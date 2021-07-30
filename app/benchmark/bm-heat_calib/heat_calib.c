@@ -13,7 +13,8 @@ void zscoreCalculation(uint16_t frame_buffer[64]);
 
 // Split into separate function to avoid the compiler just optimising away the whole test.
 void heat_calib() {
-    uint16_t frame_buffer[64];
+    // uint16_t frame_buffer[64];
+    uint16_t* frame_buffer=malloc(64*sizeof(uint16_t));
 
     for (uint16_t i=0; i<100; i++) {
         get_heat_sensor_data(frame_buffer, i);

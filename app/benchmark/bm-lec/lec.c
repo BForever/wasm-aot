@@ -16,7 +16,6 @@ uint8_t __attribute__((noinline)) rtcbenchmark_measure_native_performance(uint16
     for (uint16_t i=0; i<NUMNUMBERS; i++) {
         int16_t ri = numbers[i];
         compress(ri, ri_1, &stream, &stream_bits_used_in_current_byte);
-        // printInt(*stream);
 
         ri_1 = ri;
     }

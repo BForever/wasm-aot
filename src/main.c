@@ -1,4 +1,4 @@
-#include "outlier.wasm.h"
+#include "heatcalib.wasm.h"
 #include "debug.h"
 #include "types.h"
 #include "parse.h"

@@ -18,6 +18,9 @@ void javax_rtcbench_RTCBenchmark_void_test_native() {
 
     for (uint16_t i=0; i<64; i++) {
         ACal[i] = QCal[i] = stdCal[i] = 0;
+        // printInt(ACal[i]);
+        // printInt(QCal[i]);
+        // printInt(stdCal[i]);
     }
 
     rtcbenchmark_measure_native_performance();

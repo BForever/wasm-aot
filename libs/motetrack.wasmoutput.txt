@@ -1,0 +1,96 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../bin/aot.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0          2041  [avrora.c-print] 1 0000
+   0          2212  [avrora.trace]trace disabled --------------------------0
+   0         12041  [avrora.c-print] 11       sys | malloc 4 4e0
+   0         16508  [avrora.c-print] 11       sys | malloc 35 4e6
+   0         22030  [avrora.c-print] 11       sys | malloc 12 50b
+   0         27110  [avrora.c-print] 11       sys | malloc 11 519
+   0         33800  [avrora.c-print] 11       sys | malloc 9 526
+   0         39714  [avrora.c-print] 11       sys | malloc 8 531
+   0         44871  [avrora.c-print] 11       sys | malloc 9 53b
+   0         50659  [avrora.c-print] 11       sys | malloc 11 546
+   0         57223  [avrora.c-print] 11       sys | malloc 10 553
+   0         64370  [avrora.c-print] 11       sys | malloc 4 55f
+   0         68938  [avrora.c-print] 11       sys | malloc 7 565
+   0         73664  [avrora.c-print] 11       sys | malloc 2 56e
+   0         78081  [avrora.c-print] 11       sys | malloc 28 572
+   0         82728  [avrora.c-print] 11       sys | malloc 4 590
+   0         87296  [avrora.c-print] 11       sys | malloc 9 596
+   0         93171  [avrora.c-print] 11       sys | realloc 4 56e 5a1
+   0         97624  [avrora.c-print] 11       sys | malloc 28 5a7
+   0        102288  [avrora.c-print] 11       sys | malloc 4 5c5
+   0        106879  [avrora.c-print] 11       sys | malloc 7 5cb
+   0        112840  [avrora.c-print] 11       sys | realloc 6 5a1 5d4
+   0        117314  [avrora.c-print] 11       sys | malloc 28 5dc
+   0        121954  [avrora.c-print] 11       sys | malloc 4 5a1
+   0        126545  [avrora.c-print] 11       sys | malloc 7 5fa
+   0        132520  [avrora.c-print] 11       sys | realloc 8 5d4 603
+   0        136992  [avrora.c-print] 11       sys | malloc 28 60d
+   0        141656  [avrora.c-print] 11       sys | malloc 4 5d4
+   0        146485  [avrora.c-print] 11       sys | malloc 37 62b
+   0        153254  [avrora.c-print] 11       sys | realloc 10 603 652
+   0        157726  [avrora.c-print] 11       sys | malloc 28 65e
+   0        162385  [avrora.c-print] 11       sys | malloc 4 607
+   0        167233  [avrora.c-print] 11       sys | malloc 29 67c
+   0        173952  [avrora.c-print] 11       sys | realloc 12 652 69b
+   0        178443  [avrora.c-print] 11       sys | malloc 28 6a9
+   0        183121  [avrora.c-print] 11       sys | malloc 4 658
+   0        187748  [avrora.c-print] 11       sys | malloc 9 6c7
+   0        194201  [avrora.c-print] 11       sys | realloc 14 69b 6d2
+   0        198711  [avrora.c-print] 11       sys | malloc 28 6e2
+   0        206151  [avrora.c-print] 11       sys | realloc 16 6d2 700
+   0        210678  [avrora.c-print] 11       sys | malloc 28 712
+   0        215238  [avrora.c-print] 11       sys | malloc 10 69b
+   0        222308  [avrora.c-print] 11       sys | realloc 18 700 730
+   0        226835  [avrora.c-print] 11       sys | malloc 28 744
+   0        231392  [avrora.c-print] 11       sys | malloc 10 6d6
+   0        238554  [avrora.c-print] 11       sys | realloc 20 730 762
+   0        243100  [avrora.c-print] 11       sys | malloc 28 778
+   0        247674  [avrora.c-print] 11       sys | malloc 10 706
+   0        254928  [avrora.c-print] 11       sys | realloc 22 762 796
+   0        259497  [avrora.c-print] 11       sys | malloc 28 7ae
+   0        264090  [avrora.c-print] 11       sys | malloc 10 738
+   0        271440  [avrora.c-print] 11       sys | realloc 24 796 7cc
+   0        276026  [avrora.c-print] 11       sys | malloc 28 7e6
+   0        280640  [avrora.c-print] 11       sys | malloc 10 76c
+   0        288082  [avrora.c-print] 11       sys | realloc 26 7cc 804
+   0        292685  [avrora.c-print] 11       sys | malloc 28 820
+   0        297318  [avrora.c-print] 11       sys | malloc 10 7a2
+   0        304850  [avrora.c-print] 11       sys | realloc 28 804 83e
+   0        309474  [avrora.c-print] 11       sys | malloc 28 85c
+   0        314055  [avrora.c-print] 11       sys | malloc 10 796
+   0        322768  [avrora.c-print] 11       sys | malloc 225 87a
+   0        351969  [avrora.c-print] 11       sys | malloc 10 7da
+   0        358144  [avrora.c-print] 11       sys | realloc 4 0 652
+   0        364668  [avrora.c-print] 11       sys | realloc 8 652 762
+   0        371528  [avrora.c-print] 11       sys | realloc 12 762 7cc
+   0        378331  [avrora.c-print] 11       sys | realloc 16 7cc 80e
+   0        385417  [avrora.c-print] 11       sys | realloc 20 80e 95d
+   0        392494  [avrora.c-print] 11       sys | realloc 24 95d 804
+   0        399577  [avrora.c-print] 11       sys | realloc 28 804 95d
+   0        405925  [avrora.c-print] 11       sys | realloc 32 95d 95d
+   0        412273  [avrora.c-print] 11       sys | realloc 36 95d 95d
+   0        418621  [avrora.c-print] 11       sys | realloc 40 95d 95d
+   0        424809  [avrora.c-print] 11       sys | realloc 44 95d 95d
+   0        431157  [avrora.c-print] 11       sys | realloc 48 95d 95d
+   0        437345  [avrora.c-print] 11       sys | realloc 52 95d 95d
+   0        443693  [avrora.c-print] 11       sys | realloc 56 95d 95d
+   0        449702  [avrora.c-print] 11       sys | realloc 60 95d 95d
+   0        456095  [avrora.c-print] 11      temp | start of compiled code:   e0a6
+   0        460897  [avrora.c-print] 11       sys | malloc 192 99b
+   0        471918  [avrora.c-print] 11       sys | malloc 256 a5d
+   0        567903  [avrora.c-print] 11       sys | free a5d
+   0        572930  [avrora.c-print] 11       sys | malloc 256 a5d
+   0        942582  [avrora.c-print] 11 panic! : unsupported instructions: 0E  /home/fanhc/wasm-aot/src/instructions.c :1388
+==============================================================================
+Simulated time: 942601 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 0 
+Program throughput: 0.0 instrs/cycle
+Program throughput: 0.0 mips
+

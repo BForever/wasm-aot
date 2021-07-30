@@ -287,11 +287,12 @@ void wasm_compile_module(wasm_module_ptr module)
     compile_deinit(module);
     // module->entry_method = RTC_START_OF_COMPILED_CODE_SPACE / 2;
 }
-
+u32 __attribute__((section(".wait"))) module_heap_base;
 void wasm_global_init(wasm_module_ptr module)
 {
     ts.wasm_global_temp_space = NULL;
     u16 offset = 0;
+    u32 temp;
     for (int i = 0; i < module->global_num; i++)
     {
         wasm_global_ptr g = &module->global_list[i];
@@ -304,7 +305,12 @@ void wasm_global_init(wasm_module_ptr module)
             bytes init_start = g->initExpr + 1;
             bytes init_end = init_start + g->initExprSize - 1;
             logif(compile, printf("global %d's i_expr:\r\n", i); hexdump_pgm(init_start, init_end - init_start););
-            ReadLEB_i32(((i32 *)(ts.wasm_global_temp_space + offset)), &init_start, init_end);
+            ReadLEB_i32(&temp, &init_start, init_end);
+            *((i32 *)(ts.wasm_global_temp_space + offset))=temp;
+            if(i==0){
+                module_heap_base = temp;
+            }
+
             log(compile, "i_val: %d", *((i32 *)(ts.wasm_global_temp_space + offset)));
             // hexdump(ts.wasm_global_temp_space,16);
             g->offset = offset;
@@ -358,7 +364,8 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[1].end = mem_areas[1].start + (bytes)STACK_POINTER() - ts.wasm_mem_space - ts.wasm_globals_size;
             mem_areas[1].target = ts.wasm_mem_space + ts.wasm_globals_size;
             log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
-            malloc_record = mem_areas[1].start;
+            malloc_record = module_heap_base;
+            
         }
 #else
         else if (module->data_segment_num == 1)
@@ -377,7 +384,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
             pcpy_n = module->data_segment_list[0].size;
             log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             // RAM 2: extend RAM 1'end
-            malloc_record = mem_areas[1].end;
+            malloc_record = module_heap_base;
             mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[0].size);
             log(temp, "mem[1]ex:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
         }
@@ -393,7 +400,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
             mem_areas[0].start = start;
             mem_areas[0].end = start + module->data_segment_list[0].size;
             mem_areas[0].target = module->data_segment_list[0].data;
-            log(temp, "mem[0]:%d-%d at P:%p,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target);
+            log(temp, "mem[0]:%d-%d at P:%p,size %d", mem_areas[0].start, mem_areas[0].end, mem_areas[0].target,mem_areas[0].end-mem_areas[0].start);
             // RAM 1
             initexpr = module->data_segment_list[1].initExpr + 1;
             end = initexpr + module->data_segment_list[1].initExprSize;
@@ -407,7 +414,7 @@ void wasm_call_entry_method(wasm_module_ptr module)
             pcpy_n = module->data_segment_list[1].size;
             log(temp, "mem[1]:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
             // RAM 2: extend RAM 1'end
-            malloc_record = mem_areas[1].end;
+            malloc_record = module_heap_base;
             mem_areas[1].end = mem_areas[1].end + ((bytes)STACK_POINTER() - mem_areas[1].target - module->data_segment_list[1].size);
             log(temp, "mem[1]ex:%d-%d at D:%p,size %d", mem_areas[1].start, mem_areas[1].end, mem_areas[1].target,mem_areas[1].end-mem_areas[1].start);
         }

@@ -8,7 +8,7 @@
 #define d_log_compile   0
 #define d_log_wkreprog  0
 #define d_log_emit      0
-#define d_log_sys       0
+#define d_log_sys       1
 #define d_log_temp      1
 #define d_log_panic     1
 

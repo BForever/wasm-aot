@@ -4,30 +4,1349 @@ Loading ../bin/aot.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0          2509  [avrora.c-print] 1 0000
-   0          2680  [avrora.trace]trace disabled --------------------------0
-   0         40831  [avrora.c-print] 11      temp | start of compiled code:   6860
-   0        375931  [avrora.c-print] 11      temp | table address: 27214
-   0        776013  [avrora.c-print] 11      temp | end of compiled code:   6a4e
-   0        779323  [avrora.c-print] 11      temp | SP:0x10f9
-   0        782457  [avrora.c-print] 11      temp | start exec
-   0        789391  [avrora.c-print] 11      temp | mem[0]:0-4 at P:0x684d,size 0
-   0        798382  [avrora.c-print] 11      temp | mem[1]:20000-20008 at D:0x228,size 8
-   0        807687  [avrora.c-print] 11      temp | mem[1]ex:20000-23741 at D:0x228,size 3741
-   0        811644  [avrora.c-print] 11      temp | mem_start:0x228
-   0        815789  [avrora.c-print] 11      temp | copy 0 B globals
-   0        818923  [avrora.c-print] 11      temp | start exec
-   0        825763  [avrora.c-print] 11      temp | memcpy from 0x6858 to 0x228, size 8
-   0        826924  [avrora.c-print] 11 1
-   0        827938  [avrora.c-print] 11 2
-   0        829862  [avrora.c-print] 11 20008
-   0        830982  [avrora.c-print] 11 3
-   0        832092  [avrora.c-print] 11 4
-   0        835719  [avrora.c-print] 11 write to read-only section!
+   0          2041  [avrora.c-print] 1 0000
+   0          2212  [avrora.trace]trace disabled --------------------------0
+   0         12041  [avrora.c-print] 11       sys | malloc 4 4e0
+   0         16508  [avrora.c-print] 11       sys | malloc 35 4e6
+   0         22030  [avrora.c-print] 11       sys | malloc 12 50b
+   0         26870  [avrora.c-print] 11       sys | malloc 8 519
+   0         32025  [avrora.c-print] 11       sys | malloc 9 523
+   0         38181  [avrora.c-print] 11       sys | malloc 11 52e
+   0         44873  [avrora.c-print] 11       sys | malloc 9 53b
+   0         50661  [avrora.c-print] 11       sys | malloc 12 546
+   0         57613  [avrora.c-print] 11       sys | malloc 11 554
+   0         64612  [avrora.c-print] 11       sys | malloc 4 561
+   0         69420  [avrora.c-print] 11       sys | malloc 37 567
+   0         74686  [avrora.c-print] 11       sys | malloc 2 58e
+   0         79103  [avrora.c-print] 11       sys | malloc 28 592
+   0         83752  [avrora.c-print] 11       sys | malloc 4 5b0
+   0         88562  [avrora.c-print] 11       sys | malloc 29 5b6
+   0         94797  [avrora.c-print] 11       sys | realloc 4 58e 5d5
+   0         99252  [avrora.c-print] 11       sys | malloc 28 5db
+   0        103916  [avrora.c-print] 11       sys | malloc 4 5f9
+   0        108507  [avrora.c-print] 11       sys | malloc 7 5ff
+   0        114466  [avrora.c-print] 11       sys | realloc 6 5d5 608
+   0        118936  [avrora.c-print] 11       sys | malloc 28 610
+   0        123576  [avrora.c-print] 11       sys | malloc 4 5d5
+   0        128165  [avrora.c-print] 11       sys | malloc 7 62e
+   0        134138  [avrora.c-print] 11       sys | realloc 8 608 637
+   0        138608  [avrora.c-print] 11       sys | malloc 28 641
+   0        143270  [avrora.c-print] 11       sys | malloc 4 608
+   0        147859  [avrora.c-print] 11       sys | malloc 9 65f
+   0        154126  [avrora.c-print] 11       sys | realloc 10 637 66a
+   0        158596  [avrora.c-print] 11       sys | malloc 28 676
+   0        165852  [avrora.c-print] 11       sys | realloc 12 66a 694
+   0        170343  [avrora.c-print] 11       sys | malloc 28 6a2
+   0        174831  [avrora.c-print] 11       sys | malloc 10 66a
+   0        181719  [avrora.c-print] 11       sys | realloc 14 694 6c0
+   0        186210  [avrora.c-print] 11       sys | malloc 28 6d0
+   0        190720  [avrora.c-print] 11       sys | malloc 10 694
+   0        197628  [avrora.c-print] 11       sys | realloc 16 6c0 6ee
+   0        202117  [avrora.c-print] 11       sys | malloc 28 700
+   0        206626  [avrora.c-print] 11       sys | malloc 10 6c4
+   0        213626  [avrora.c-print] 11       sys | realloc 18 6ee 71e
+   0        218134  [avrora.c-print] 11       sys | malloc 28 732
+   0        222662  [avrora.c-print] 11       sys | malloc 10 6f4
+   0        229750  [avrora.c-print] 11       sys | realloc 20 71e 750
+   0        234277  [avrora.c-print] 11       sys | malloc 28 766
+   0        238822  [avrora.c-print] 11       sys | malloc 10 726
+   0        246000  [avrora.c-print] 11       sys | realloc 22 750 784
+   0        250548  [avrora.c-print] 11       sys | malloc 28 79c
+   0        255114  [avrora.c-print] 11       sys | malloc 10 75a
+   0        263772  [avrora.c-print] 11       sys | malloc 135 7ba
+   0        285978  [avrora.c-print] 11       sys | malloc 20 843
+   0        292720  [avrora.c-print] 11       sys | realloc 4 0 6ee
+   0        298883  [avrora.c-print] 11       sys | realloc 8 6ee 637
+   0        305400  [avrora.c-print] 11       sys | realloc 12 637 859
+   0        311500  [avrora.c-print] 11       sys | realloc 16 859 859
+   0        317600  [avrora.c-print] 11       sys | realloc 20 859 859
+   0        323700  [avrora.c-print] 11       sys | realloc 24 859 859
+   0        329800  [avrora.c-print] 11       sys | realloc 28 859 859
+   0        335900  [avrora.c-print] 11       sys | realloc 32 859 859
+   0        341821  [avrora.c-print] 11       sys | realloc 36 859 859
+   0        348212  [avrora.c-print] 11      temp | start of compiled code:   71f8
+   0        352957  [avrora.c-print] 11       sys | malloc 192 87f
+   0        362369  [avrora.c-print] 11       sys | malloc 256 941
+   0        456705  [avrora.c-print] 11       sys | free 941
+   0        461671  [avrora.c-print] 11       sys | malloc 256 941
+   0       1004349  [avrora.c-print] 11       sys | free 941
+   0       1009315  [avrora.c-print] 11       sys | malloc 256 941
+   0       1879295  [avrora.c-print] 11       sys | free 941
+   0       1884261  [avrora.c-print] 11       sys | malloc 256 941
+   0       2529740  [avrora.c-print] 11       sys | free 941
+   0       2534706  [avrora.c-print] 11       sys | malloc 256 941
+   0       2735804  [avrora.c-print] 11       sys | free 941
+   0       2740770  [avrora.c-print] 11       sys | malloc 256 941
+   0       3062628  [avrora.c-print] 11       sys | free 941
+   0       3067598  [avrora.c-print] 11       sys | malloc 256 941
+   0       3082429  [avrora.c-print] 11      temp | table address: 33808
+   0       3171167  [avrora.c-print] 11       sys | free 941
+   0       3176016  [avrora.c-print] 11       sys | malloc 256 941
+   0       5022646  [avrora.c-print] 11       sys | free 941
+   0       5028344  [avrora.c-print] 11      temp | end of compiled code:   8410
+   0       5031710  [avrora.c-print] 11      temp | SP:0x10f9
+   0       5034920  [avrora.c-print] 11      temp | start exec
+   0       5044097  [avrora.c-print] 11      temp | mem[0]:1024-1536 at P:0x6fb1,size 512
+   0       5052826  [avrora.c-print] 11      temp | mem[1]:1536-1601 at D:0x218,size 65
+   0       5061807  [avrora.c-print] 11      temp | mem[1]ex:1536-5291 at D:0x218,size 3755
+   0       5065850  [avrora.c-print] 11      temp | mem_start:0x1f4
+   0       5070339  [avrora.c-print] 11      temp | copy 36 B globals
+   0       5073549  [avrora.c-print] 11      temp | start exec
+   0       5080783  [avrora.c-print] 11      temp | memcpy from 0x71b7 to 0x218, size 65
+   0       5087173  [avrora.c-print] 11       sys | malloc 1024 1601
+   0       5123262  [avrora.trace]trace enabled ---------------------------1
+   0       5125845  [avrora.c-print] 11 [write]	1628
+   0       5128413  [avrora.c-print] 11 [value]	1601
+   0       5131104  [avrora.c-print] 11 [write]	1627
+   0       5132952  [avrora.c-print] 11 [value]	0
+   0       5135688  [avrora.c-print] 11 [read]	1024
+   0       5139360  [avrora.c-print] 11 [value]	-31719913
+   0       5143398  [avrora.c-print] 11 [read]	1593
+   0       5147222  [avrora.c-print] 11 [value]	168364039
+   0       5149784  [avrora.c-print] 11 [read]	1554
+   0       5153368  [avrora.c-print] 11 [value]	16646270
+   0       5156408  [avrora.c-print] 11 [write]	1612
+   0       5159216  [avrora.c-print] 11 [value]	64534
+   0       5161927  [avrora.c-print] 11 [write]	1611
+   0       5164015  [avrora.c-print] 11 [value]	16
+   0       5166576  [avrora.c-print] 11 [read]	1627
+   0       5169680  [avrora.c-print] 11 [value]	409856
+   0       5172199  [avrora.c-print] 11 [read]	1611
+   0       5175783  [avrora.c-print] 11 [value]	16520720
+   0       5178305  [avrora.c-print] 11 [read]	1612
+   0       5181169  [avrora.c-print] 11 [value]	64534
+   0       5183803  [avrora.c-print] 11 [read]	1628
+   0       5186427  [avrora.c-print] 11 [value]	1601
+   0       5188923  [avrora.c-print] 11 [read]	1601
+   0       5190827  [avrora.c-print] 11 [value]	0
+   0       5193606  [avrora.c-print] 11 [write]	1601
+   0       5195934  [avrora.c-print] 11 [value]	252
+   0       5198463  [avrora.c-print] 11 [read]	1628
+   0       5201087  [avrora.c-print] 11 [value]	1601
+   0       5203713  [avrora.c-print] 11 [write]	1628
+   0       5206281  [avrora.c-print] 11 [value]	1602
+   0       5209056  [avrora.c-print] 11 [read]	1628
+   0       5211680  [avrora.c-print] 11 [value]	1602
+   0       5214176  [avrora.c-print] 11 [read]	1602
+   0       5216080  [avrora.c-print] 11 [value]	0
+   0       5218835  [avrora.c-print] 11 [write]	1602
+   0       5221643  [avrora.c-print] 11 [value]	64534
+   0       5224303  [avrora.c-print] 11 [write]	1611
+   0       5226151  [avrora.c-print] 11 [value]	0
+   0       5228852  [avrora.c-print] 11 [write]	1627
+   0       5230700  [avrora.c-print] 11 [value]	8
+   0       5233554  [avrora.c-print] 11 [read]	1026
+   0       5237226  [avrora.c-print] 11 [value]	-31588837
+   0       5241264  [avrora.c-print] 11 [read]	1587
+   0       5244848  [avrora.c-print] 11 [value]	67306243
+   0       5247410  [avrora.c-print] 11 [read]	1542
+   0       5250514  [avrora.c-print] 11 [value]	327684
+   0       5253470  [avrora.c-print] 11 [write]	1612
+   0       5255558  [avrora.c-print] 11 [value]	36
+   0       5258269  [avrora.c-print] 11 [write]	1611
+   0       5260117  [avrora.c-print] 11 [value]	6
+   0       5262678  [avrora.c-print] 11 [read]	1627
+   0       5265782  [avrora.c-print] 11 [value]	410120
+   0       5268301  [avrora.c-print] 11 [read]	1611
+   0       5270925  [avrora.c-print] 11 [value]	9222
+   0       5273447  [avrora.c-print] 11 [read]	1612
+   0       5275591  [avrora.c-print] 11 [value]	36
+   0       5278225  [avrora.c-print] 11 [read]	1628
+   0       5280849  [avrora.c-print] 11 [value]	1602
+   0       5283345  [avrora.c-print] 11 [read]	1602
+   0       5285489  [avrora.c-print] 11 [value]	22
+   0       5288254  [avrora.c-print] 11 [write]	1602
+   0       5290342  [avrora.c-print] 11 [value]	22
+   0       5292871  [avrora.c-print] 11 [read]	1628
+   0       5295495  [avrora.c-print] 11 [value]	1602
+   0       5298121  [avrora.c-print] 11 [write]	1628
+   0       5300689  [avrora.c-print] 11 [value]	1603
+   0       5303464  [avrora.c-print] 11 [read]	1628
+   0       5306088  [avrora.c-print] 11 [value]	1603
+   0       5308584  [avrora.c-print] 11 [read]	1603
+   0       5310488  [avrora.c-print] 11 [value]	0
+   0       5313257  [avrora.c-print] 11 [write]	1603
+   0       5315585  [avrora.c-print] 11 [value]	144
+   0       5318245  [avrora.c-print] 11 [write]	1611
+   0       5320093  [avrora.c-print] 11 [value]	0
+   0       5322794  [avrora.c-print] 11 [write]	1627
+   0       5324642  [avrora.c-print] 11 [value]	6
+   0       5327496  [avrora.c-print] 11 [read]	1028
+   0       5331168  [avrora.c-print] 11 [value]	-31523299
+   0       5335206  [avrora.c-print] 11 [read]	1586
+   0       5338790  [avrora.c-print] 11 [value]	50529027
+   0       5341352  [avrora.c-print] 11 [read]	1540
+   0       5344456  [avrora.c-print] 11 [value]	262147
+   0       5347398  [avrora.c-print] 11 [write]	1612
+   0       5349486  [avrora.c-print] 11 [value]	14
+   0       5352197  [avrora.c-print] 11 [write]	1611
+   0       5354045  [avrora.c-print] 11 [value]	5
+   0       5356606  [avrora.c-print] 11 [read]	1627
+   0       5359710  [avrora.c-print] 11 [value]	410374
+   0       5362229  [avrora.c-print] 11 [read]	1611
+   0       5364853  [avrora.c-print] 11 [value]	3589
+   0       5367375  [avrora.c-print] 11 [read]	1612
+   0       5369519  [avrora.c-print] 11 [value]	14
+   0       5372153  [avrora.c-print] 11 [read]	1628
+   0       5374777  [avrora.c-print] 11 [value]	1603
+   0       5377273  [avrora.c-print] 11 [read]	1603
+   0       5379657  [avrora.c-print] 11 [value]	144
+   0       5382401  [avrora.c-print] 11 [write]	1603
+   0       5384729  [avrora.c-print] 11 [value]	145
+   0       5387258  [avrora.c-print] 11 [read]	1628
+   0       5389882  [avrora.c-print] 11 [value]	1603
+   0       5392508  [avrora.c-print] 11 [write]	1628
+   0       5395076  [avrora.c-print] 11 [value]	1604
+   0       5397851  [avrora.c-print] 11 [read]	1628
+   0       5400475  [avrora.c-print] 11 [value]	1604
+   0       5402971  [avrora.c-print] 11 [read]	1604
+   0       5404875  [avrora.c-print] 11 [value]	0
+   0       5407665  [avrora.c-print] 11 [write]	1604
+   0       5409993  [avrora.c-print] 11 [value]	448
+   0       5412653  [avrora.c-print] 11 [write]	1611
+   0       5414501  [avrora.c-print] 11 [value]	0
+   0       5417202  [avrora.c-print] 11 [write]	1627
+   0       5419050  [avrora.c-print] 11 [value]	3
+   0       5421904  [avrora.c-print] 11 [read]	1030
+   0       5425576  [avrora.c-print] 11 [value]	-30278114
+   0       5429614  [avrora.c-print] 11 [read]	1585
+   0       5433198  [avrora.c-print] 11 [value]	50529027
+   0       5435760  [avrora.c-print] 11 [read]	1538
+   0       5438864  [avrora.c-print] 11 [value]	196610
+   0       5441792  [avrora.c-print] 11 [write]	1612
+   0       5443640  [avrora.c-print] 11 [value]	5
+   0       5446351  [avrora.c-print] 11 [write]	1611
+   0       5448199  [avrora.c-print] 11 [value]	4
+   0       5450760  [avrora.c-print] 11 [read]	1627
+   0       5453864  [avrora.c-print] 11 [value]	410627
+   0       5456383  [avrora.c-print] 11 [read]	1611
+   0       5459007  [avrora.c-print] 11 [value]	1284
+   0       5461529  [avrora.c-print] 11 [read]	1612
+   0       5463433  [avrora.c-print] 11 [value]	5
+   0       5466065  [avrora.c-print] 11 [read]	1628
+   0       5468689  [avrora.c-print] 11 [value]	1604
+   0       5471185  [avrora.c-print] 11 [read]	1604
+   0       5473569  [avrora.c-print] 11 [value]	192
+   0       5476331  [avrora.c-print] 11 [write]	1604
+   0       5478659  [avrora.c-print] 11 [value]	202
+   0       5481319  [avrora.c-print] 11 [write]	1611
+   0       5483167  [avrora.c-print] 11 [value]	0
+   0       5485868  [avrora.c-print] 11 [write]	1627
+   0       5487716  [avrora.c-print] 11 [value]	7
+   0       5490570  [avrora.c-print] 11 [read]	1032
+   0       5494242  [avrora.c-print] 11 [value]	-29557199
+   0       5498280  [avrora.c-print] 11 [read]	1589
+   0       5502104  [avrora.c-print] 11 [value]	100992003
+   0       5504666  [avrora.c-print] 11 [read]	1546
+   0       5507770  [avrora.c-print] 11 [value]	917510
+   0       5510754  [avrora.c-print] 11 [write]	1612
+   0       5513082  [avrora.c-print] 11 [value]	211
+   0       5515793  [avrora.c-print] 11 [write]	1611
+   0       5517641  [avrora.c-print] 11 [value]	8
+   0       5520202  [avrora.c-print] 11 [read]	1627
+   0       5523306  [avrora.c-print] 11 [value]	410631
+   0       5525825  [avrora.c-print] 11 [read]	1611
+   0       5528689  [avrora.c-print] 11 [value]	54024
+   0       5531211  [avrora.c-print] 11 [read]	1612
+   0       5533595  [avrora.c-print] 11 [value]	211
+   0       5536229  [avrora.c-print] 11 [read]	1628
+   0       5538853  [avrora.c-print] 11 [value]	1604
+   0       5541349  [avrora.c-print] 11 [read]	1604
+   0       5543733  [avrora.c-print] 11 [value]	202
+   0       5546505  [avrora.c-print] 11 [write]	1604
+   0       5548833  [avrora.c-print] 11 [value]	203
+   0       5551362  [avrora.c-print] 11 [read]	1628
+   0       5553986  [avrora.c-print] 11 [value]	1604
+   0       5556612  [avrora.c-print] 11 [write]	1628
+   0       5559180  [avrora.c-print] 11 [value]	1605
+   0       5561955  [avrora.c-print] 11 [read]	1628
+   0       5564579  [avrora.c-print] 11 [value]	1605
+   0       5567075  [avrora.c-print] 11 [read]	1605
+   0       5568979  [avrora.c-print] 11 [value]	0
+   0       5571741  [avrora.c-print] 11 [write]	1605
+   0       5574069  [avrora.c-print] 11 [value]	422
+   0       5576729  [avrora.c-print] 11 [write]	1611
+   0       5578577  [avrora.c-print] 11 [value]	0
+   0       5581278  [avrora.c-print] 11 [write]	1627
+   0       5583126  [avrora.c-print] 11 [value]	7
+   0       5585980  [avrora.c-print] 11 [read]	1034
+   0       5589652  [avrora.c-print] 11 [value]	-29426116
+   0       5593690  [avrora.c-print] 11 [read]	1588
+   0       5597274  [avrora.c-print] 11 [value]	84148995
+   0       5599836  [avrora.c-print] 11 [read]	1544
+   0       5602940  [avrora.c-print] 11 [value]	393221
+   0       5605910  [avrora.c-print] 11 [write]	1612
+   0       5607998  [avrora.c-print] 11 [value]	91
+   0       5610709  [avrora.c-print] 11 [write]	1611
+   0       5612557  [avrora.c-print] 11 [value]	7
+   0       5615118  [avrora.c-print] 11 [read]	1627
+   0       5618222  [avrora.c-print] 11 [value]	410887
+   0       5620741  [avrora.c-print] 11 [read]	1611
+   0       5623605  [avrora.c-print] 11 [value]	23303
+   0       5626127  [avrora.c-print] 11 [read]	1612
+   0       5628271  [avrora.c-print] 11 [value]	91
+   0       5630905  [avrora.c-print] 11 [read]	1628
+   0       5633529  [avrora.c-print] 11 [value]	1605
+   0       5636025  [avrora.c-print] 11 [read]	1605
+   0       5638409  [avrora.c-print] 11 [value]	166
+   0       5641174  [avrora.c-print] 11 [write]	1605
+   0       5643502  [avrora.c-print] 11 [value]	167
+   0       5646031  [avrora.c-print] 11 [read]	1628
+   0       5648655  [avrora.c-print] 11 [value]	1605
+   0       5651281  [avrora.c-print] 11 [write]	1628
+   0       5653849  [avrora.c-print] 11 [value]	1606
+   0       5656624  [avrora.c-print] 11 [read]	1628
+   0       5659248  [avrora.c-print] 11 [value]	1606
+   0       5661744  [avrora.c-print] 11 [read]	1606
+   0       5663648  [avrora.c-print] 11 [value]	0
+   0       5666417  [avrora.c-print] 11 [write]	1606
+   0       5668745  [avrora.c-print] 11 [value]	364
+   0       5671405  [avrora.c-print] 11 [write]	1611
+   0       5673253  [avrora.c-print] 11 [value]	0
+   0       5675954  [avrora.c-print] 11 [write]	1627
+   0       5677802  [avrora.c-print] 11 [value]	6
+   0       5680656  [avrora.c-print] 11 [read]	1036
+   0       5684328  [avrora.c-print] 11 [value]	-30671298
+   0       5688366  [avrora.c-print] 11 [read]	1586
+   0       5691950  [avrora.c-print] 11 [value]	50529027
+   0       5694512  [avrora.c-print] 11 [read]	1540
+   0       5697616  [avrora.c-print] 11 [value]	262147
+   0       5700558  [avrora.c-print] 11 [write]	1612
+   0       5702646  [avrora.c-print] 11 [value]	14
+   0       5705357  [avrora.c-print] 11 [write]	1611
+   0       5707205  [avrora.c-print] 11 [value]	5
+   0       5709766  [avrora.c-print] 11 [read]	1627
+   0       5712870  [avrora.c-print] 11 [value]	411142
+   0       5715389  [avrora.c-print] 11 [read]	1611
+   0       5718013  [avrora.c-print] 11 [value]	3589
+   0       5720535  [avrora.c-print] 11 [read]	1612
+   0       5722679  [avrora.c-print] 11 [value]	14
+   0       5725313  [avrora.c-print] 11 [read]	1628
+   0       5727937  [avrora.c-print] 11 [value]	1606
+   0       5730433  [avrora.c-print] 11 [read]	1606
+   0       5732817  [avrora.c-print] 11 [value]	108
+   0       5735561  [avrora.c-print] 11 [write]	1606
+   0       5737889  [avrora.c-print] 11 [value]	109
+   0       5740418  [avrora.c-print] 11 [read]	1628
+   0       5743042  [avrora.c-print] 11 [value]	1606
+   0       5745668  [avrora.c-print] 11 [write]	1628
+   0       5748236  [avrora.c-print] 11 [value]	1607
+   0       5751011  [avrora.c-print] 11 [read]	1628
+   0       5753635  [avrora.c-print] 11 [value]	1607
+   0       5756131  [avrora.c-print] 11 [read]	1607
+   0       5758035  [avrora.c-print] 11 [value]	0
+   0       5760825  [avrora.c-print] 11 [write]	1607
+   0       5763153  [avrora.c-print] 11 [value]	448
+   0       5765813  [avrora.c-print] 11 [write]	1611
+   0       5767661  [avrora.c-print] 11 [value]	0
+   0       5770362  [avrora.c-print] 11 [write]	1627
+   0       5772210  [avrora.c-print] 11 [value]	3
+   0       5775064  [avrora.c-print] 11 [read]	1038
+   0       5778736  [avrora.c-print] 11 [value]	-30671317
+   0       5782774  [avrora.c-print] 11 [read]	1589
+   0       5786598  [avrora.c-print] 11 [value]	100992003
+   0       5789160  [avrora.c-print] 11 [read]	1546
+   0       5792264  [avrora.c-print] 11 [value]	917510
+   0       5795248  [avrora.c-print] 11 [write]	1612
+   0       5797576  [avrora.c-print] 11 [value]	204
+   0       5800287  [avrora.c-print] 11 [write]	1611
+   0       5802135  [avrora.c-print] 11 [value]	8
+   0       5804696  [avrora.c-print] 11 [read]	1627
+   0       5807800  [avrora.c-print] 11 [value]	411395
+   0       5810319  [avrora.c-print] 11 [read]	1611
+   0       5813183  [avrora.c-print] 11 [value]	52232
+   0       5815705  [avrora.c-print] 11 [read]	1612
+   0       5818089  [avrora.c-print] 11 [value]	204
+   0       5820723  [avrora.c-print] 11 [read]	1628
+   0       5823347  [avrora.c-print] 11 [value]	1607
+   0       5825843  [avrora.c-print] 11 [read]	1607
+   0       5828227  [avrora.c-print] 11 [value]	192
+   0       5830971  [avrora.c-print] 11 [write]	1607
+   0       5833299  [avrora.c-print] 11 [value]	217
+   0       5835828  [avrora.c-print] 11 [read]	1628
+   0       5838452  [avrora.c-print] 11 [value]	1607
+   0       5841078  [avrora.c-print] 11 [write]	1628
+   0       5843646  [avrora.c-print] 11 [value]	1608
+   0       5846421  [avrora.c-print] 11 [read]	1628
+   0       5849045  [avrora.c-print] 11 [value]	1608
+   0       5851541  [avrora.c-print] 11 [read]	1608
+   0       5855365  [avrora.c-print] 11 [value]	134217728
+   0       5858155  [avrora.c-print] 11 [write]	1608
+   0       5860723  [avrora.c-print] 11 [value]	6528
+   0       5863383  [avrora.c-print] 11 [write]	1611
+   0       5865231  [avrora.c-print] 11 [value]	0
+   0       5867932  [avrora.c-print] 11 [write]	1627
+   0       5869780  [avrora.c-print] 11 [value]	3
+   0       5872634  [avrora.c-print] 11 [read]	1040
+   0       5876306  [avrora.c-print] 11 [value]	-29229525
+   0       5880359  [avrora.c-print] 11 [read]	1584
+   0       5883943  [avrora.c-print] 11 [value]	50529026
+   0       5886505  [avrora.c-print] 11 [read]	1536
+   0       5889609  [avrora.c-print] 11 [value]	131072
+   0       5892259  [avrora.c-print] 11 [write]	1612
+   0       5894107  [avrora.c-print] 11 [value]	0
+   0       5896777  [avrora.c-print] 11 [write]	1611
+   0       5898625  [avrora.c-print] 11 [value]	2
+   0       5901186  [avrora.c-print] 11 [read]	1627
+   0       5904290  [avrora.c-print] 11 [value]	411651
+   0       5906809  [avrora.c-print] 11 [read]	1611
+   0       5908713  [avrora.c-print] 11 [value]	2
+   0       5911235  [avrora.c-print] 11 [read]	1612
+   0       5913139  [avrora.c-print] 11 [value]	0
+   0       5915771  [avrora.c-print] 11 [read]	1628
+   0       5918395  [avrora.c-print] 11 [value]	1608
+   0       5920891  [avrora.c-print] 11 [read]	1608
+   0       5924475  [avrora.c-print] 11 [value]	33554560
+   0       5927251  [avrora.c-print] 11 [write]	1608
+   0       5929579  [avrora.c-print] 11 [value]	128
+   0       5932239  [avrora.c-print] 11 [write]	1611
+   0       5934087  [avrora.c-print] 11 [value]	0
+   0       5936788  [avrora.c-print] 11 [write]	1627
+   0       5938636  [avrora.c-print] 11 [value]	5
+   0       5941490  [avrora.c-print] 11 [read]	1042
+   0       5945162  [avrora.c-print] 11 [value]	-28836287
+   0       5949200  [avrora.c-print] 11 [read]	1589
+   0       5953024  [avrora.c-print] 11 [value]	100992003
+   0       5955586  [avrora.c-print] 11 [read]	1546
+   0       5958690  [avrora.c-print] 11 [value]	917510
+   0       5961674  [avrora.c-print] 11 [write]	1612
+   0       5964002  [avrora.c-print] 11 [value]	214
+   0       5966713  [avrora.c-print] 11 [write]	1611
+   0       5968561  [avrora.c-print] 11 [value]	8
+   0       5971122  [avrora.c-print] 11 [read]	1627
+   0       5974226  [avrora.c-print] 11 [value]	411653
+   0       5976745  [avrora.c-print] 11 [read]	1611
+   0       5979609  [avrora.c-print] 11 [value]	54792
+   0       5982131  [avrora.c-print] 11 [read]	1612
+   0       5984515  [avrora.c-print] 11 [value]	214
+   0       5987149  [avrora.c-print] 11 [read]	1628
+   0       5989773  [avrora.c-print] 11 [value]	1608
+   0       5992269  [avrora.c-print] 11 [read]	1608
+   0       5996093  [avrora.c-print] 11 [value]	134217856
+   0       5998851  [avrora.c-print] 11 [write]	1608
+   0       6001179  [avrora.c-print] 11 [value]	134
+   0       6003708  [avrora.c-print] 11 [read]	1628
+   0       6006332  [avrora.c-print] 11 [value]	1608
+   0       6008958  [avrora.c-print] 11 [write]	1628
+   0       6011526  [avrora.c-print] 11 [value]	1609
+   0       6014301  [avrora.c-print] 11 [read]	1628
+   0       6016925  [avrora.c-print] 11 [value]	1609
+   0       6019421  [avrora.c-print] 11 [read]	1609
+   0       6023339  [avrora.c-print] 11 [value]	-704118784
+   0       6026115  [avrora.c-print] 11 [write]	1609
+   0       6028683  [avrora.c-print] 11 [value]	1712
+   0       6031343  [avrora.c-print] 11 [write]	1611
+   0       6033191  [avrora.c-print] 11 [value]	0
+   0       6035892  [avrora.c-print] 11 [write]	1627
+   0       6037740  [avrora.c-print] 11 [value]	5
+   0       6040594  [avrora.c-print] 11 [read]	1044
+   0       6044266  [avrora.c-print] 11 [value]	-29688249
+   0       6048304  [avrora.c-print] 11 [read]	1587
+   0       6051888  [avrora.c-print] 11 [value]	67306243
+   0       6054450  [avrora.c-print] 11 [read]	1542
+   0       6057554  [avrora.c-print] 11 [value]	327684
+   0       6060510  [avrora.c-print] 11 [write]	1612
+   0       6062598  [avrora.c-print] 11 [value]	38
+   0       6065309  [avrora.c-print] 11 [write]	1611
+   0       6067157  [avrora.c-print] 11 [value]	6
+   0       6069718  [avrora.c-print] 11 [read]	1627
+   0       6072822  [avrora.c-print] 11 [value]	411909
+   0       6075341  [avrora.c-print] 11 [read]	1611
+   0       6077965  [avrora.c-print] 11 [value]	9734
+   0       6080487  [avrora.c-print] 11 [read]	1612
+   0       6082631  [avrora.c-print] 11 [value]	38
+   0       6085265  [avrora.c-print] 11 [read]	1628
+   0       6087889  [avrora.c-print] 11 [value]	1609
+   0       6090385  [avrora.c-print] 11 [read]	1609
+   0       6094209  [avrora.c-print] 11 [value]	637927600
+   0       6096953  [avrora.c-print] 11 [write]	1609
+   0       6099281  [avrora.c-print] 11 [value]	180
+   0       6101810  [avrora.c-print] 11 [read]	1628
+   0       6104434  [avrora.c-print] 11 [value]	1609
+   0       6107060  [avrora.c-print] 11 [write]	1628
+   0       6109628  [avrora.c-print] 11 [value]	1610
+   0       6112403  [avrora.c-print] 11 [read]	1628
+   0       6115027  [avrora.c-print] 11 [value]	1610
+   0       6117523  [avrora.c-print] 11 [read]	1610
+   0       6120867  [avrora.c-print] 11 [value]	2491904
+   0       6123657  [avrora.c-print] 11 [write]	1610
+   0       6126225  [avrora.c-print] 11 [value]	1216
+   0       6128885  [avrora.c-print] 11 [write]	1611
+   0       6130733  [avrora.c-print] 11 [value]	0
+   0       6133434  [avrora.c-print] 11 [write]	1627
+   0       6135282  [avrora.c-print] 11 [value]	3
+   0       6138136  [avrora.c-print] 11 [read]	1046
+   0       6141808  [avrora.c-print] 11 [value]	-30343622
+   0       6145846  [avrora.c-print] 11 [read]	1588
+   0       6149430  [avrora.c-print] 11 [value]	84148995
+   0       6151992  [avrora.c-print] 11 [read]	1544
+   0       6155096  [avrora.c-print] 11 [value]	393221
+   0       6158066  [avrora.c-print] 11 [write]	1612
+   0       6160154  [avrora.c-print] 11 [value]	82
+   0       6162865  [avrora.c-print] 11 [write]	1611
+   0       6164713  [avrora.c-print] 11 [value]	7
+   0       6167274  [avrora.c-print] 11 [read]	1627
+   0       6170378  [avrora.c-print] 11 [value]	412163
+   0       6172897  [avrora.c-print] 11 [read]	1611
+   0       6175761  [avrora.c-print] 11 [value]	20999
+   0       6178283  [avrora.c-print] 11 [read]	1612
+   0       6180427  [avrora.c-print] 11 [value]	82
+   0       6183061  [avrora.c-print] 11 [read]	1628
+   0       6185685  [avrora.c-print] 11 [value]	1610
+   0       6188181  [avrora.c-print] 11 [read]	1610
+   0       6191525  [avrora.c-print] 11 [value]	5375936
+   0       6194262  [avrora.c-print] 11 [write]	1610
+   0       6196590  [avrora.c-print] 11 [value]	212
+   0       6199119  [avrora.c-print] 11 [read]	1628
+   0       6201743  [avrora.c-print] 11 [value]	1610
+   0       6204369  [avrora.c-print] 11 [write]	1628
+   0       6206937  [avrora.c-print] 11 [value]	1611
+   0       6209712  [avrora.c-print] 11 [read]	1628
+   0       6212336  [avrora.c-print] 11 [value]	1611
+   0       6214832  [avrora.c-print] 11 [read]	1611
+   0       6217696  [avrora.c-print] 11 [value]	20999
+   0       6220493  [avrora.c-print] 11 [write]	1611
+   0       6223061  [avrora.c-print] 11 [value]	5255
+   0       6225721  [avrora.c-print] 11 [write]	1611
+   0       6227569  [avrora.c-print] 11 [value]	0
+   0       6230270  [avrora.c-print] 11 [write]	1627
+   0       6232118  [avrora.c-print] 11 [value]	2
+   0       6234972  [avrora.c-print] 11 [read]	1048
+   0       6238644  [avrora.c-print] 11 [value]	-31064528
+   0       6242682  [avrora.c-print] 11 [read]	1588
+   0       6246266  [avrora.c-print] 11 [value]	84148995
+   0       6248828  [avrora.c-print] 11 [read]	1544
+   0       6251932  [avrora.c-print] 11 [value]	393221
+   0       6254902  [avrora.c-print] 11 [write]	1612
+   0       6256990  [avrora.c-print] 11 [value]	85
+   0       6259701  [avrora.c-print] 11 [write]	1611
+   0       6261549  [avrora.c-print] 11 [value]	7
+   0       6264110  [avrora.c-print] 11 [read]	1627
+   0       6267214  [avrora.c-print] 11 [value]	412418
+   0       6269733  [avrora.c-print] 11 [read]	1611
+   0       6272597  [avrora.c-print] 11 [value]	21767
+   0       6275119  [avrora.c-print] 11 [read]	1612
+   0       6277263  [avrora.c-print] 11 [value]	85
+   0       6279897  [avrora.c-print] 11 [read]	1628
+   0       6282521  [avrora.c-print] 11 [value]	1611
+   0       6285017  [avrora.c-print] 11 [read]	1611
+   0       6287881  [avrora.c-print] 11 [value]	21767
+   0       6290611  [avrora.c-print] 11 [write]	1611
+   0       6292699  [avrora.c-print] 11 [value]	47
+   0       6295228  [avrora.c-print] 11 [read]	1628
+   0       6297852  [avrora.c-print] 11 [value]	1611
+   0       6300478  [avrora.c-print] 11 [write]	1628
+   0       6303046  [avrora.c-print] 11 [value]	1612
+   0       6305821  [avrora.c-print] 11 [read]	1628
+   0       6308445  [avrora.c-print] 11 [value]	1612
+   0       6310941  [avrora.c-print] 11 [read]	1612
+   0       6313085  [avrora.c-print] 11 [value]	85
+   0       6315889  [avrora.c-print] 11 [write]	1612
+   0       6318697  [avrora.c-print] 11 [value]	10965
+   0       6321357  [avrora.c-print] 11 [write]	1611
+   0       6323205  [avrora.c-print] 11 [value]	0
+   0       6325906  [avrora.c-print] 11 [write]	1627
+   0       6327754  [avrora.c-print] 11 [value]	1
+   0       6330608  [avrora.c-print] 11 [read]	1050
+   0       6334280  [avrora.c-print] 11 [value]	-31982043
+   0       6338318  [avrora.c-print] 11 [read]	1588
+   0       6341902  [avrora.c-print] 11 [value]	84148995
+   0       6344464  [avrora.c-print] 11 [read]	1544
+   0       6347568  [avrora.c-print] 11 [value]	393221
+   0       6350538  [avrora.c-print] 11 [write]	1612
+   0       6352626  [avrora.c-print] 11 [value]	84
+   0       6355337  [avrora.c-print] 11 [write]	1611
+   0       6357185  [avrora.c-print] 11 [value]	7
+   0       6359746  [avrora.c-print] 11 [read]	1627
+   0       6362850  [avrora.c-print] 11 [value]	412673
+   0       6365369  [avrora.c-print] 11 [read]	1611
+   0       6368233  [avrora.c-print] 11 [value]	21511
+   0       6370755  [avrora.c-print] 11 [read]	1612
+   0       6372899  [avrora.c-print] 11 [value]	84
+   0       6375531  [avrora.c-print] 11 [read]	1628
+   0       6378155  [avrora.c-print] 11 [value]	1612
+   0       6380651  [avrora.c-print] 11 [read]	1612
+   0       6382795  [avrora.c-print] 11 [value]	84
+   0       6385550  [avrora.c-print] 11 [write]	1612
+   0       6387638  [avrora.c-print] 11 [value]	84
+   0       6390298  [avrora.c-print] 11 [write]	1611
+   0       6392146  [avrora.c-print] 11 [value]	0
+   0       6394847  [avrora.c-print] 11 [write]	1627
+   0       6396695  [avrora.c-print] 11 [value]	8
+   0       6399549  [avrora.c-print] 11 [read]	1052
+   0       6403221  [avrora.c-print] 11 [value]	-30999017
+   0       6407259  [avrora.c-print] 11 [read]	1588
+   0       6410843  [avrora.c-print] 11 [value]	84148995
+   0       6413405  [avrora.c-print] 11 [read]	1544
+   0       6416509  [avrora.c-print] 11 [value]	393221
+   0       6419479  [avrora.c-print] 11 [write]	1612
+   0       6421567  [avrora.c-print] 11 [value]	81
+   0       6424278  [avrora.c-print] 11 [write]	1611
+   0       6426126  [avrora.c-print] 11 [value]	7
+   0       6428687  [avrora.c-print] 11 [read]	1627
+   0       6431791  [avrora.c-print] 11 [value]	412680
+   0       6434310  [avrora.c-print] 11 [read]	1611
+   0       6437174  [avrora.c-print] 11 [value]	20743
+   0       6439696  [avrora.c-print] 11 [read]	1612
+   0       6441840  [avrora.c-print] 11 [value]	81
+   0       6444474  [avrora.c-print] 11 [read]	1628
+   0       6447098  [avrora.c-print] 11 [value]	1612
+   0       6449594  [avrora.c-print] 11 [read]	1612
+   0       6451738  [avrora.c-print] 11 [value]	81
+   0       6454510  [avrora.c-print] 11 [write]	1612
+   0       6456598  [avrora.c-print] 11 [value]	81
+   0       6459127  [avrora.c-print] 11 [read]	1628
+   0       6461751  [avrora.c-print] 11 [value]	1612
+   0       6464377  [avrora.c-print] 11 [write]	1628
+   0       6466945  [avrora.c-print] 11 [value]	1613
+   0       6469720  [avrora.c-print] 11 [read]	1628
+   0       6472344  [avrora.c-print] 11 [value]	1613
+   0       6474840  [avrora.c-print] 11 [read]	1613
+   0       6476744  [avrora.c-print] 11 [value]	0
+   0       6479506  [avrora.c-print] 11 [write]	1613
+   0       6481834  [avrora.c-print] 11 [value]	162
+   0       6484494  [avrora.c-print] 11 [write]	1611
+   0       6486342  [avrora.c-print] 11 [value]	0
+   0       6489043  [avrora.c-print] 11 [write]	1627
+   0       6490891  [avrora.c-print] 11 [value]	7
+   0       6493745  [avrora.c-print] 11 [read]	1054
+   0       6497417  [avrora.c-print] 11 [value]	-29295066
+   0       6501455  [avrora.c-print] 11 [read]	1588
+   0       6505039  [avrora.c-print] 11 [value]	84148995
+   0       6507601  [avrora.c-print] 11 [read]	1544
+   0       6510705  [avrora.c-print] 11 [value]	393221
+   0       6513675  [avrora.c-print] 11 [write]	1612
+   0       6515763  [avrora.c-print] 11 [value]	95
+   0       6518474  [avrora.c-print] 11 [write]	1611
+   0       6520322  [avrora.c-print] 11 [value]	7
+   0       6522883  [avrora.c-print] 11 [read]	1627
+   0       6525987  [avrora.c-print] 11 [value]	412935
+   0       6528506  [avrora.c-print] 11 [read]	1611
+   0       6531370  [avrora.c-print] 11 [value]	24327
+   0       6533892  [avrora.c-print] 11 [read]	1612
+   0       6536036  [avrora.c-print] 11 [value]	95
+   0       6538670  [avrora.c-print] 11 [read]	1628
+   0       6541294  [avrora.c-print] 11 [value]	1613
+   0       6543790  [avrora.c-print] 11 [read]	1613
+   0       6545694  [avrora.c-print] 11 [value]	0
+   0       6548459  [avrora.c-print] 11 [write]	1613
+   0       6550307  [avrora.c-print] 11 [value]	1
+   0       6552836  [avrora.c-print] 11 [read]	1628
+   0       6555460  [avrora.c-print] 11 [value]	1613
+   0       6558086  [avrora.c-print] 11 [write]	1628
+   0       6560654  [avrora.c-print] 11 [value]	1614
+   0       6563429  [avrora.c-print] 11 [read]	1628
+   0       6566053  [avrora.c-print] 11 [value]	1614
+   0       6568549  [avrora.c-print] 11 [read]	1614
+   0       6570453  [avrora.c-print] 11 [value]	0
+   0       6573222  [avrora.c-print] 11 [write]	1614
+   0       6575550  [avrora.c-print] 11 [value]	380
+   0       6578210  [avrora.c-print] 11 [write]	1611
+   0       6580058  [avrora.c-print] 11 [value]	0
+   0       6582759  [avrora.c-print] 11 [write]	1627
+   0       6584607  [avrora.c-print] 11 [value]	6
+   0       6587461  [avrora.c-print] 11 [read]	1056
+   0       6591133  [avrora.c-print] 11 [value]	-29622720
+   0       6595171  [avrora.c-print] 11 [read]	1589
+   0       6598995  [avrora.c-print] 11 [value]	100992003
+   0       6601557  [avrora.c-print] 11 [read]	1546
+   0       6604661  [avrora.c-print] 11 [value]	917510
+   0       6607645  [avrora.c-print] 11 [write]	1612
+   0       6609973  [avrora.c-print] 11 [value]	218
+   0       6612684  [avrora.c-print] 11 [write]	1611
+   0       6614532  [avrora.c-print] 11 [value]	8
+   0       6617093  [avrora.c-print] 11 [read]	1627
+   0       6620197  [avrora.c-print] 11 [value]	413190
+   0       6622716  [avrora.c-print] 11 [read]	1611
+   0       6625580  [avrora.c-print] 11 [value]	55816
+   0       6628102  [avrora.c-print] 11 [read]	1612
+   0       6630486  [avrora.c-print] 11 [value]	218
+   0       6633120  [avrora.c-print] 11 [read]	1628
+   0       6635744  [avrora.c-print] 11 [value]	1614
+   0       6638240  [avrora.c-print] 11 [read]	1614
+   0       6640144  [avrora.c-print] 11 [value]	0
+   0       6642909  [avrora.c-print] 11 [write]	1614
+   0       6644757  [avrora.c-print] 11 [value]	3
+   0       6647286  [avrora.c-print] 11 [read]	1628
+   0       6649910  [avrora.c-print] 11 [value]	1614
+   0       6652536  [avrora.c-print] 11 [write]	1628
+   0       6655104  [avrora.c-print] 11 [value]	1615
+   0       6657879  [avrora.c-print] 11 [read]	1628
+   0       6660503  [avrora.c-print] 11 [value]	1615
+   0       6662999  [avrora.c-print] 11 [read]	1615
+   0       6664903  [avrora.c-print] 11 [value]	0
+   0       6667672  [avrora.c-print] 11 [write]	1615
+   0       6670000  [avrora.c-print] 11 [value]	872
+   0       6672660  [avrora.c-print] 11 [write]	1611
+   0       6674508  [avrora.c-print] 11 [value]	0
+   0       6677209  [avrora.c-print] 11 [write]	1627
+   0       6679057  [avrora.c-print] 11 [value]	6
+   0       6681911  [avrora.c-print] 11 [read]	1058
+   0       6685583  [avrora.c-print] 11 [value]	-29622725
+   0       6689621  [avrora.c-print] 11 [read]	1587
+   0       6693205  [avrora.c-print] 11 [value]	67306243
+   0       6695767  [avrora.c-print] 11 [read]	1542
+   0       6698871  [avrora.c-print] 11 [value]	327684
+   0       6701827  [avrora.c-print] 11 [write]	1612
+   0       6703915  [avrora.c-print] 11 [value]	34
+   0       6706626  [avrora.c-print] 11 [write]	1611
+   0       6708474  [avrora.c-print] 11 [value]	6
+   0       6711035  [avrora.c-print] 11 [read]	1627
+   0       6714139  [avrora.c-print] 11 [value]	413446
+   0       6716658  [avrora.c-print] 11 [read]	1611
+   0       6719282  [avrora.c-print] 11 [value]	8710
+   0       6721804  [avrora.c-print] 11 [read]	1612
+   0       6723948  [avrora.c-print] 11 [value]	34
+   0       6726582  [avrora.c-print] 11 [read]	1628
+   0       6729206  [avrora.c-print] 11 [value]	1615
+   0       6731702  [avrora.c-print] 11 [read]	1615
+   0       6733606  [avrora.c-print] 11 [value]	0
+   0       6736357  [avrora.c-print] 11 [write]	1615
+   0       6738205  [avrora.c-print] 11 [value]	2
+   0       6740734  [avrora.c-print] 11 [read]	1628
+   0       6743358  [avrora.c-print] 11 [value]	1615
+   0       6745984  [avrora.c-print] 11 [write]	1628
+   0       6748552  [avrora.c-print] 11 [value]	1616
+   0       6751327  [avrora.c-print] 11 [read]	1628
+   0       6753951  [avrora.c-print] 11 [value]	1616
+   0       6756447  [avrora.c-print] 11 [read]	1616
+   0       6758351  [avrora.c-print] 11 [value]	0
+   0       6761134  [avrora.c-print] 11 [write]	1616
+   0       6763462  [avrora.c-print] 11 [value]	544
+   0       6766122  [avrora.c-print] 11 [write]	1611
+   0       6767970  [avrora.c-print] 11 [value]	0
+   0       6770671  [avrora.c-print] 11 [write]	1627
+   0       6772519  [avrora.c-print] 11 [value]	4
+   0       6775373  [avrora.c-print] 11 [read]	1060
+   0       6779045  [avrora.c-print] 11 [value]	-29753797
+   0       6783098  [avrora.c-print] 11 [read]	1584
+   0       6786682  [avrora.c-print] 11 [value]	50529026
+   0       6789244  [avrora.c-print] 11 [read]	1536
+   0       6792348  [avrora.c-print] 11 [value]	131072
+   0       6794998  [avrora.c-print] 11 [write]	1612
+   0       6796846  [avrora.c-print] 11 [value]	0
+   0       6799516  [avrora.c-print] 11 [write]	1611
+   0       6801364  [avrora.c-print] 11 [value]	2
+   0       6803925  [avrora.c-print] 11 [read]	1627
+   0       6807029  [avrora.c-print] 11 [value]	413700
+   0       6809548  [avrora.c-print] 11 [read]	1611
+   0       6811452  [avrora.c-print] 11 [value]	2
+   0       6813974  [avrora.c-print] 11 [read]	1612
+   0       6815878  [avrora.c-print] 11 [value]	0
+   0       6818510  [avrora.c-print] 11 [read]	1628
+   0       6821134  [avrora.c-print] 11 [value]	1616
+   0       6823630  [avrora.c-print] 11 [read]	1616
+   0       6825774  [avrora.c-print] 11 [value]	32
+   0       6828543  [avrora.c-print] 11 [write]	1616
+   0       6830631  [avrora.c-print] 11 [value]	32
+   0       6833291  [avrora.c-print] 11 [write]	1611
+   0       6835139  [avrora.c-print] 11 [value]	0
+   0       6837840  [avrora.c-print] 11 [write]	1627
+   0       6839688  [avrora.c-print] 11 [value]	6
+   0       6842542  [avrora.c-print] 11 [read]	1062
+   0       6846214  [avrora.c-print] 11 [value]	-30409159
+   0       6850252  [avrora.c-print] 11 [read]	1586
+   0       6853836  [avrora.c-print] 11 [value]	50529027
+   0       6856398  [avrora.c-print] 11 [read]	1540
+   0       6859502  [avrora.c-print] 11 [value]	262147
+   0       6862444  [avrora.c-print] 11 [write]	1612
+   0       6864532  [avrora.c-print] 11 [value]	13
+   0       6867243  [avrora.c-print] 11 [write]	1611
+   0       6869091  [avrora.c-print] 11 [value]	5
+   0       6871652  [avrora.c-print] 11 [read]	1627
+   0       6874756  [avrora.c-print] 11 [value]	413702
+   0       6877275  [avrora.c-print] 11 [read]	1611
+   0       6879899  [avrora.c-print] 11 [value]	3333
+   0       6882421  [avrora.c-print] 11 [read]	1612
+   0       6884565  [avrora.c-print] 11 [value]	13
+   0       6887199  [avrora.c-print] 11 [read]	1628
+   0       6889823  [avrora.c-print] 11 [value]	1616
+   0       6892319  [avrora.c-print] 11 [read]	1616
+   0       6894463  [avrora.c-print] 11 [value]	32
+   0       6897207  [avrora.c-print] 11 [write]	1616
+   0       6899295  [avrora.c-print] 11 [value]	33
+   0       6901824  [avrora.c-print] 11 [read]	1628
+   0       6904448  [avrora.c-print] 11 [value]	1616
+   0       6907074  [avrora.c-print] 11 [write]	1628
+   0       6909642  [avrora.c-print] 11 [value]	1617
+   0       6912417  [avrora.c-print] 11 [read]	1628
+   0       6915041  [avrora.c-print] 11 [value]	1617
+   0       6917537  [avrora.c-print] 11 [read]	1617
+   0       6919441  [avrora.c-print] 11 [value]	0
+   0       6922231  [avrora.c-print] 11 [write]	1617
+   0       6924559  [avrora.c-print] 11 [value]	416
+   0       6927219  [avrora.c-print] 11 [write]	1611
+   0       6929067  [avrora.c-print] 11 [value]	0
+   0       6931768  [avrora.c-print] 11 [write]	1627
+   0       6933616  [avrora.c-print] 11 [value]	3
+   0       6936470  [avrora.c-print] 11 [read]	1064
+   0       6940142  [avrora.c-print] 11 [value]	-29557201
+   0       6944180  [avrora.c-print] 11 [read]	1588
+   0       6947764  [avrora.c-print] 11 [value]	84148995
+   0       6950326  [avrora.c-print] 11 [read]	1544
+   0       6953430  [avrora.c-print] 11 [value]	393221
+   0       6956400  [avrora.c-print] 11 [write]	1612
+   0       6958488  [avrora.c-print] 11 [value]	85
+   0       6961199  [avrora.c-print] 11 [write]	1611
+   0       6963047  [avrora.c-print] 11 [value]	7
+   0       6965608  [avrora.c-print] 11 [read]	1627
+   0       6968712  [avrora.c-print] 11 [value]	413955
+   0       6971231  [avrora.c-print] 11 [read]	1611
+   0       6974095  [avrora.c-print] 11 [value]	21767
+   0       6976617  [avrora.c-print] 11 [read]	1612
+   0       6978761  [avrora.c-print] 11 [value]	85
+   0       6981395  [avrora.c-print] 11 [read]	1628
+   0       6984019  [avrora.c-print] 11 [value]	1617
+   0       6986515  [avrora.c-print] 11 [read]	1617
+   0       6988899  [avrora.c-print] 11 [value]	160
+   0       6991636  [avrora.c-print] 11 [write]	1617
+   0       6993964  [avrora.c-print] 11 [value]	181
+   0       6996493  [avrora.c-print] 11 [read]	1628
+   0       6999117  [avrora.c-print] 11 [value]	1617
+   0       7001743  [avrora.c-print] 11 [write]	1628
+   0       7004311  [avrora.c-print] 11 [value]	1618
+   0       7007086  [avrora.c-print] 11 [read]	1628
+   0       7009710  [avrora.c-print] 11 [value]	1618
+   0       7012206  [avrora.c-print] 11 [read]	1618
+   0       7014110  [avrora.c-print] 11 [value]	0
+   0       7016907  [avrora.c-print] 11 [write]	1618
+   0       7019475  [avrora.c-print] 11 [value]	5440
+   0       7022135  [avrora.c-print] 11 [write]	1611
+   0       7023983  [avrora.c-print] 11 [value]	0
+   0       7026684  [avrora.c-print] 11 [write]	1627
+   0       7028532  [avrora.c-print] 11 [value]	2
+   0       7031386  [avrora.c-print] 11 [read]	1066
+   0       7035058  [avrora.c-print] 11 [value]	-29491652
+   0       7039096  [avrora.c-print] 11 [read]	1588
+   0       7042680  [avrora.c-print] 11 [value]	84148995
+   0       7045242  [avrora.c-print] 11 [read]	1544
+   0       7048346  [avrora.c-print] 11 [value]	393221
+   0       7051316  [avrora.c-print] 11 [write]	1612
+   0       7053404  [avrora.c-print] 11 [value]	93
+   0       7056115  [avrora.c-print] 11 [write]	1611
+   0       7057963  [avrora.c-print] 11 [value]	7
+   0       7060524  [avrora.c-print] 11 [read]	1627
+   0       7063628  [avrora.c-print] 11 [value]	414210
+   0       7066147  [avrora.c-print] 11 [read]	1611
+   0       7069011  [avrora.c-print] 11 [value]	23815
+   0       7071533  [avrora.c-print] 11 [read]	1612
+   0       7073677  [avrora.c-print] 11 [value]	93
+   0       7076311  [avrora.c-print] 11 [read]	1628
+   0       7078935  [avrora.c-print] 11 [value]	1618
+   0       7081431  [avrora.c-print] 11 [read]	1618
+   0       7083575  [avrora.c-print] 11 [value]	64
+   0       7086305  [avrora.c-print] 11 [write]	1618
+   0       7088633  [avrora.c-print] 11 [value]	110
+   0       7091162  [avrora.c-print] 11 [read]	1628
+   0       7093786  [avrora.c-print] 11 [value]	1618
+   0       7096412  [avrora.c-print] 11 [write]	1628
+   0       7098980  [avrora.c-print] 11 [value]	1619
+   0       7101755  [avrora.c-print] 11 [read]	1628
+   0       7104379  [avrora.c-print] 11 [value]	1619
+   0       7106875  [avrora.c-print] 11 [read]	1619
+   0       7108779  [avrora.c-print] 11 [value]	0
+   0       7111583  [avrora.c-print] 11 [write]	1619
+   0       7114391  [avrora.c-print] 11 [value]	11904
+   0       7117051  [avrora.c-print] 11 [write]	1611
+   0       7118899  [avrora.c-print] 11 [value]	0
+   0       7121600  [avrora.c-print] 11 [write]	1627
+   0       7123448  [avrora.c-print] 11 [value]	1
+   0       7126302  [avrora.c-print] 11 [read]	1068
+   0       7129974  [avrora.c-print] 11 [value]	-27591107
+   0       7134012  [avrora.c-print] 11 [read]	1585
+   0       7137596  [avrora.c-print] 11 [value]	50529027
+   0       7140158  [avrora.c-print] 11 [read]	1538
+   0       7143262  [avrora.c-print] 11 [value]	196610
+   0       7146190  [avrora.c-print] 11 [write]	1612
+   0       7148038  [avrora.c-print] 11 [value]	5
+   0       7150749  [avrora.c-print] 11 [write]	1611
+   0       7152597  [avrora.c-print] 11 [value]	4
+   0       7155158  [avrora.c-print] 11 [read]	1627
+   0       7158262  [avrora.c-print] 11 [value]	414465
+   0       7160781  [avrora.c-print] 11 [read]	1611
+   0       7163405  [avrora.c-print] 11 [value]	1284
+   0       7165927  [avrora.c-print] 11 [read]	1612
+   0       7167831  [avrora.c-print] 11 [value]	5
+   0       7170463  [avrora.c-print] 11 [read]	1628
+   0       7173087  [avrora.c-print] 11 [value]	1619
+   0       7175583  [avrora.c-print] 11 [read]	1619
+   0       7177967  [avrora.c-print] 11 [value]	128
+   0       7180743  [avrora.c-print] 11 [write]	1619
+   0       7183071  [avrora.c-print] 11 [value]	168
+   0       7185731  [avrora.c-print] 11 [write]	1611
+   0       7187579  [avrora.c-print] 11 [value]	0
+   0       7190280  [avrora.c-print] 11 [write]	1627
+   0       7192128  [avrora.c-print] 11 [value]	5
+   0       7194982  [avrora.c-print] 11 [read]	1070
+   0       7198654  [avrora.c-print] 11 [value]	-27918758
+   0       7202692  [avrora.c-print] 11 [read]	1589
+   0       7206516  [avrora.c-print] 11 [value]	100992003
+   0       7209078  [avrora.c-print] 11 [read]	1546
+   0       7212182  [avrora.c-print] 11 [value]	917510
+   0       7215166  [avrora.c-print] 11 [write]	1612
+   0       7217494  [avrora.c-print] 11 [value]	221
+   0       7220205  [avrora.c-print] 11 [write]	1611
+   0       7222053  [avrora.c-print] 11 [value]	8
+   0       7224614  [avrora.c-print] 11 [read]	1627
+   0       7227718  [avrora.c-print] 11 [value]	414469
+   0       7230237  [avrora.c-print] 11 [read]	1611
+   0       7233101  [avrora.c-print] 11 [value]	56584
+   0       7235623  [avrora.c-print] 11 [read]	1612
+   0       7238007  [avrora.c-print] 11 [value]	221
+   0       7240641  [avrora.c-print] 11 [read]	1628
+   0       7243265  [avrora.c-print] 11 [value]	1619
+   0       7245761  [avrora.c-print] 11 [read]	1619
+   0       7248145  [avrora.c-print] 11 [value]	168
+   0       7250903  [avrora.c-print] 11 [write]	1619
+   0       7253231  [avrora.c-print] 11 [value]	174
+   0       7255760  [avrora.c-print] 11 [read]	1628
+   0       7258384  [avrora.c-print] 11 [value]	1619
+   0       7261010  [avrora.c-print] 11 [write]	1628
+   0       7263578  [avrora.c-print] 11 [value]	1620
+   0       7266353  [avrora.c-print] 11 [read]	1628
+   0       7268977  [avrora.c-print] 11 [value]	1620
+   0       7271473  [avrora.c-print] 11 [read]	1620
+   0       7273377  [avrora.c-print] 11 [value]	0
+   0       7276153  [avrora.c-print] 11 [write]	1620
+   0       7278721  [avrora.c-print] 11 [value]	1768
+   0       7281381  [avrora.c-print] 11 [write]	1611
+   0       7283229  [avrora.c-print] 11 [value]	0
+   0       7285930  [avrora.c-print] 11 [write]	1627
+   0       7287778  [avrora.c-print] 11 [value]	5
+   0       7290632  [avrora.c-print] 11 [read]	1072
+   0       7294304  [avrora.c-print] 11 [value]	-29229483
+   0       7298342  [avrora.c-print] 11 [read]	1587
+   0       7301926  [avrora.c-print] 11 [value]	67306243
+   0       7304488  [avrora.c-print] 11 [read]	1542
+   0       7307592  [avrora.c-print] 11 [value]	327684
+   0       7310548  [avrora.c-print] 11 [write]	1612
+   0       7312636  [avrora.c-print] 11 [value]	34
+   0       7315347  [avrora.c-print] 11 [write]	1611
+   0       7317195  [avrora.c-print] 11 [value]	6
+   0       7319756  [avrora.c-print] 11 [read]	1627
+   0       7322860  [avrora.c-print] 11 [value]	414725
+   0       7325379  [avrora.c-print] 11 [read]	1611
+   0       7328003  [avrora.c-print] 11 [value]	8710
+   0       7330525  [avrora.c-print] 11 [read]	1612
+   0       7332669  [avrora.c-print] 11 [value]	34
+   0       7335303  [avrora.c-print] 11 [read]	1628
+   0       7337927  [avrora.c-print] 11 [value]	1620
+   0       7340423  [avrora.c-print] 11 [read]	1620
+   0       7342807  [avrora.c-print] 11 [value]	232
+   0       7345551  [avrora.c-print] 11 [write]	1620
+   0       7347879  [avrora.c-print] 11 [value]	236
+   0       7350408  [avrora.c-print] 11 [read]	1628
+   0       7353032  [avrora.c-print] 11 [value]	1620
+   0       7355658  [avrora.c-print] 11 [write]	1628
+   0       7358226  [avrora.c-print] 11 [value]	1621
+   0       7361001  [avrora.c-print] 11 [read]	1628
+   0       7363625  [avrora.c-print] 11 [value]	1621
+   0       7366121  [avrora.c-print] 11 [read]	1621
+   0       7368025  [avrora.c-print] 11 [value]	0
+   0       7370815  [avrora.c-print] 11 [write]	1621
+   0       7373383  [avrora.c-print] 11 [value]	1088
+   0       7376043  [avrora.c-print] 11 [write]	1611
+   0       7377891  [avrora.c-print] 11 [value]	0
+   0       7380592  [avrora.c-print] 11 [write]	1627
+   0       7382440  [avrora.c-print] 11 [value]	3
+   0       7385294  [avrora.c-print] 11 [read]	1074
+   0       7388966  [avrora.c-print] 11 [value]	-28770751
+   0       7393004  [avrora.c-print] 11 [read]	1589
+   0       7396828  [avrora.c-print] 11 [value]	100992003
+   0       7399390  [avrora.c-print] 11 [read]	1546
+   0       7402494  [avrora.c-print] 11 [value]	917510
+   0       7405478  [avrora.c-print] 11 [write]	1612
+   0       7407806  [avrora.c-print] 11 [value]	203
+   0       7410517  [avrora.c-print] 11 [write]	1611
+   0       7412365  [avrora.c-print] 11 [value]	8
+   0       7414926  [avrora.c-print] 11 [read]	1627
+   0       7418030  [avrora.c-print] 11 [value]	414979
+   0       7420549  [avrora.c-print] 11 [read]	1611
+   0       7423413  [avrora.c-print] 11 [value]	51976
+   0       7425935  [avrora.c-print] 11 [read]	1612
+   0       7428319  [avrora.c-print] 11 [value]	203
+   0       7430953  [avrora.c-print] 11 [read]	1628
+   0       7433577  [avrora.c-print] 11 [value]	1621
+   0       7436073  [avrora.c-print] 11 [read]	1621
+   0       7438217  [avrora.c-print] 11 [value]	64
+   0       7440961  [avrora.c-print] 11 [write]	1621
+   0       7443049  [avrora.c-print] 11 [value]	89
+   0       7445578  [avrora.c-print] 11 [read]	1628
+   0       7448202  [avrora.c-print] 11 [value]	1621
+   0       7450828  [avrora.c-print] 11 [write]	1628
+   0       7453396  [avrora.c-print] 11 [value]	1622
+   0       7456171  [avrora.c-print] 11 [read]	1628
+   0       7458795  [avrora.c-print] 11 [value]	1622
+   0       7461291  [avrora.c-print] 11 [read]	1622
+   0       7463195  [avrora.c-print] 11 [value]	0
+   0       7465985  [avrora.c-print] 11 [write]	1622
+   0       7468553  [avrora.c-print] 11 [value]	6496
+   0       7471213  [avrora.c-print] 11 [write]	1611
+   0       7473061  [avrora.c-print] 11 [value]	0
+   0       7475762  [avrora.c-print] 11 [write]	1627
+   0       7477610  [avrora.c-print] 11 [value]	3
+   0       7480464  [avrora.c-print] 11 [read]	1076
+   0       7484136  [avrora.c-print] 11 [value]	-28246456
+   0       7488174  [avrora.c-print] 11 [read]	1587
+   0       7491758  [avrora.c-print] 11 [value]	67306243
+   0       7494320  [avrora.c-print] 11 [read]	1542
+   0       7497424  [avrora.c-print] 11 [value]	327684
+   0       7500380  [avrora.c-print] 11 [write]	1612
+   0       7502468  [avrora.c-print] 11 [value]	39
+   0       7505179  [avrora.c-print] 11 [write]	1611
+   0       7507027  [avrora.c-print] 11 [value]	6
+   0       7509588  [avrora.c-print] 11 [read]	1627
+   0       7512692  [avrora.c-print] 11 [value]	415235
+   0       7515211  [avrora.c-print] 11 [read]	1611
+   0       7517835  [avrora.c-print] 11 [value]	9990
+   0       7520357  [avrora.c-print] 11 [read]	1612
+   0       7522501  [avrora.c-print] 11 [value]	39
+   0       7525135  [avrora.c-print] 11 [read]	1628
+   0       7527759  [avrora.c-print] 11 [value]	1622
+   0       7530255  [avrora.c-print] 11 [read]	1622
+   0       7532399  [avrora.c-print] 11 [value]	96
+   0       7535129  [avrora.c-print] 11 [write]	1622
+   0       7537457  [avrora.c-print] 11 [value]	115
+   0       7539986  [avrora.c-print] 11 [read]	1628
+   0       7542610  [avrora.c-print] 11 [value]	1622
+   0       7545236  [avrora.c-print] 11 [write]	1628
+   0       7547804  [avrora.c-print] 11 [value]	1623
+   0       7550579  [avrora.c-print] 11 [read]	1628
+   0       7553203  [avrora.c-print] 11 [value]	1623
+   0       7555699  [avrora.c-print] 11 [read]	1623
+   0       7557603  [avrora.c-print] 11 [value]	0
+   0       7560407  [avrora.c-print] 11 [write]	1623
+   0       7562975  [avrora.c-print] 11 [value]	4992
+   0       7565635  [avrora.c-print] 11 [write]	1611
+   0       7567483  [avrora.c-print] 11 [value]	0
+   0       7570184  [avrora.c-print] 11 [write]	1627
+   0       7572032  [avrora.c-print] 11 [value]	1
+   0       7574886  [avrora.c-print] 11 [read]	1078
+   0       7578558  [avrora.c-print] 11 [value]	-26149296
+   0       7582596  [avrora.c-print] 11 [read]	1588
+   0       7586180  [avrora.c-print] 11 [value]	84148995
+   0       7588742  [avrora.c-print] 11 [read]	1544
+   0       7591846  [avrora.c-print] 11 [value]	393221
+   0       7594816  [avrora.c-print] 11 [write]	1612
+   0       7596904  [avrora.c-print] 11 [value]	88
+   0       7599615  [avrora.c-print] 11 [write]	1611
+   0       7601463  [avrora.c-print] 11 [value]	7
+   0       7604024  [avrora.c-print] 11 [read]	1627
+   0       7607128  [avrora.c-print] 11 [value]	415489
+   0       7609647  [avrora.c-print] 11 [read]	1611
+   0       7612511  [avrora.c-print] 11 [value]	22535
+   0       7615033  [avrora.c-print] 11 [read]	1612
+   0       7617177  [avrora.c-print] 11 [value]	88
+   0       7619809  [avrora.c-print] 11 [read]	1628
+   0       7622433  [avrora.c-print] 11 [value]	1623
+   0       7624929  [avrora.c-print] 11 [read]	1623
+   0       7627313  [avrora.c-print] 11 [value]	128
+   0       7630068  [avrora.c-print] 11 [write]	1623
+   0       7632396  [avrora.c-print] 11 [value]	216
+   0       7635056  [avrora.c-print] 11 [write]	1611
+   0       7636904  [avrora.c-print] 11 [value]	0
+   0       7639605  [avrora.c-print] 11 [write]	1627
+   0       7641453  [avrora.c-print] 11 [value]	8
+   0       7644307  [avrora.c-print] 11 [read]	1080
+   0       7647979  [avrora.c-print] 11 [value]	-25690512
+   0       7652017  [avrora.c-print] 11 [read]	1590
+   0       7655841  [avrora.c-print] 11 [value]	117835012
+   0       7658403  [avrora.c-print] 11 [read]	1548
+   0       7661747  [avrora.c-print] 11 [value]	1966094
+   0       7664745  [avrora.c-print] 11 [write]	1612
+   0       7667073  [avrora.c-print] 11 [value]	928
+   0       7669784  [avrora.c-print] 11 [write]	1611
+   0       7671872  [avrora.c-print] 11 [value]	10
+   0       7674433  [avrora.c-print] 11 [read]	1627
+   0       7677537  [avrora.c-print] 11 [value]	415496
+   0       7680056  [avrora.c-print] 11 [read]	1611
+   0       7683160  [avrora.c-print] 11 [value]	237578
+   0       7685682  [avrora.c-print] 11 [read]	1612
+   0       7688066  [avrora.c-print] 11 [value]	928
+   0       7690700  [avrora.c-print] 11 [read]	1628
+   0       7693324  [avrora.c-print] 11 [value]	1623
+   0       7695820  [avrora.c-print] 11 [read]	1623
+   0       7698204  [avrora.c-print] 11 [value]	216
+   0       7700997  [avrora.c-print] 11 [write]	1623
+   0       7703325  [avrora.c-print] 11 [value]	216
+   0       7705854  [avrora.c-print] 11 [read]	1628
+   0       7708478  [avrora.c-print] 11 [value]	1623
+   0       7711104  [avrora.c-print] 11 [write]	1628
+   0       7713672  [avrora.c-print] 11 [value]	1624
+   0       7716449  [avrora.c-print] 11 [read]	1628
+   0       7719073  [avrora.c-print] 11 [value]	1624
+   0       7721569  [avrora.c-print] 11 [read]	1624
+   0       7725393  [avrora.c-print] 11 [value]	134217728
+   0       7728130  [avrora.c-print] 11 [write]	1624
+   0       7730458  [avrora.c-print] 11 [value]	232
+   0       7732987  [avrora.c-print] 11 [read]	1628
+   0       7735611  [avrora.c-print] 11 [value]	1624
+   0       7738237  [avrora.c-print] 11 [write]	1628
+   0       7740805  [avrora.c-print] 11 [value]	1625
+   0       7743580  [avrora.c-print] 11 [read]	1628
+   0       7746204  [avrora.c-print] 11 [value]	1625
+   0       7748700  [avrora.c-print] 11 [read]	1625
+   0       7752764  [avrora.c-print] 11 [value]	1493696512
+   0       7755561  [avrora.c-print] 11 [write]	1625
+   0       7758369  [avrora.c-print] 11 [value]	59392
+   0       7761029  [avrora.c-print] 11 [write]	1611
+   0       7762877  [avrora.c-print] 11 [value]	0
+   0       7765578  [avrora.c-print] 11 [write]	1627
+   0       7767426  [avrora.c-print] 11 [value]	2
+   0       7770280  [avrora.c-print] 11 [read]	1082
+   0       7773952  [avrora.c-print] 11 [value]	-25690505
+   0       7777990  [avrora.c-print] 11 [read]	1587
+   0       7781574  [avrora.c-print] 11 [value]	67306243
+   0       7784136  [avrora.c-print] 11 [read]	1542
+   0       7787240  [avrora.c-print] 11 [value]	327684
+   0       7790196  [avrora.c-print] 11 [write]	1612
+   0       7792284  [avrora.c-print] 11 [value]	39
+   0       7794995  [avrora.c-print] 11 [write]	1611
+   0       7796843  [avrora.c-print] 11 [value]	6
+   0       7799404  [avrora.c-print] 11 [read]	1627
+   0       7802508  [avrora.c-print] 11 [value]	416002
+   0       7805027  [avrora.c-print] 11 [read]	1611
+   0       7807651  [avrora.c-print] 11 [value]	9990
+   0       7810173  [avrora.c-print] 11 [read]	1612
+   0       7812317  [avrora.c-print] 11 [value]	39
+   0       7814949  [avrora.c-print] 11 [read]	1628
+   0       7817573  [avrora.c-print] 11 [value]	1625
+   0       7820069  [avrora.c-print] 11 [read]	1625
+   0       7824133  [avrora.c-print] 11 [value]	1493303296
+   0       7826888  [avrora.c-print] 11 [write]	1625
+   0       7828976  [avrora.c-print] 11 [value]	39
+   0       7831636  [avrora.c-print] 11 [write]	1611
+   0       7833484  [avrora.c-print] 11 [value]	0
+   0       7836185  [avrora.c-print] 11 [write]	1627
+   0       7838033  [avrora.c-print] 11 [value]	8
+   0       7840887  [avrora.c-print] 11 [read]	1084
+   0       7844559  [avrora.c-print] 11 [value]	-27328905
+   0       7848612  [avrora.c-print] 11 [read]	1584
+   0       7852196  [avrora.c-print] 11 [value]	50529026
+   0       7854758  [avrora.c-print] 11 [read]	1536
+   0       7857862  [avrora.c-print] 11 [value]	131072
+   0       7860512  [avrora.c-print] 11 [write]	1612
+   0       7862360  [avrora.c-print] 11 [value]	0
+   0       7865030  [avrora.c-print] 11 [write]	1611
+   0       7866878  [avrora.c-print] 11 [value]	2
+   0       7869439  [avrora.c-print] 11 [read]	1627
+   0       7872543  [avrora.c-print] 11 [value]	416008
+   0       7875062  [avrora.c-print] 11 [read]	1611
+   0       7876966  [avrora.c-print] 11 [value]	2
+   0       7879488  [avrora.c-print] 11 [read]	1612
+   0       7881392  [avrora.c-print] 11 [value]	0
+   0       7884026  [avrora.c-print] 11 [read]	1628
+   0       7886650  [avrora.c-print] 11 [value]	1625
+   0       7889146  [avrora.c-print] 11 [read]	1625
+   0       7893210  [avrora.c-print] 11 [value]	1493696551
+   0       7895947  [avrora.c-print] 11 [write]	1625
+   0       7898035  [avrora.c-print] 11 [value]	39
+   0       7900564  [avrora.c-print] 11 [read]	1628
+   0       7903188  [avrora.c-print] 11 [value]	1625
+   0       7905814  [avrora.c-print] 11 [write]	1628
+   0       7908382  [avrora.c-print] 11 [value]	1626
+   0       7911157  [avrora.c-print] 11 [read]	1628
+   0       7913781  [avrora.c-print] 11 [value]	1626
+   0       7916277  [avrora.c-print] 11 [read]	1626
+   0       7920101  [avrora.c-print] 11 [value]	106563584
+   0       7922898  [avrora.c-print] 11 [write]	1626
+   0       7924746  [avrora.c-print] 11 [value]	0
+   0       7927406  [avrora.c-print] 11 [write]	1611
+   0       7929254  [avrora.c-print] 11 [value]	0
+   0       7931955  [avrora.c-print] 11 [write]	1627
+   0       7933803  [avrora.c-print] 11 [value]	2
+   0       7936657  [avrora.c-print] 11 [read]	1086
+   0       7940329  [avrora.c-print] 11 [value]	-31195554
+   0       7944367  [avrora.c-print] 11 [read]	1589
+   0       7948191  [avrora.c-print] 11 [value]	100992003
+   0       7950753  [avrora.c-print] 11 [read]	1546
+   0       7953857  [avrora.c-print] 11 [value]	917510
+   0       7956841  [avrora.c-print] 11 [write]	1612
+   0       7959169  [avrora.c-print] 11 [value]	198
+   0       7961880  [avrora.c-print] 11 [write]	1611
+   0       7963728  [avrora.c-print] 11 [value]	8
+   0       7966289  [avrora.c-print] 11 [read]	1627
+   0       7969393  [avrora.c-print] 11 [value]	416258
+   0       7971912  [avrora.c-print] 11 [read]	1611
+   0       7974776  [avrora.c-print] 11 [value]	50696
+   0       7977298  [avrora.c-print] 11 [read]	1612
+   0       7979682  [avrora.c-print] 11 [value]	198
+   0       7982316  [avrora.c-print] 11 [read]	1628
+   0       7984940  [avrora.c-print] 11 [value]	1626
+   0       7987436  [avrora.c-print] 11 [read]	1626
+   0       7991260  [avrora.c-print] 11 [value]	106562048
+   0       7993997  [avrora.c-print] 11 [write]	1626
+   0       7996085  [avrora.c-print] 11 [value]	49
+   0       7998614  [avrora.c-print] 11 [read]	1628
+   0       8001238  [avrora.c-print] 11 [value]	1626
+   0       8003864  [avrora.c-print] 11 [write]	1628
+   0       8006432  [avrora.c-print] 11 [value]	1627
+   0       8009207  [avrora.c-print] 11 [read]	1628
+   0       8011831  [avrora.c-print] 11 [value]	1627
+   0       8014327  [avrora.c-print] 11 [read]	1627
+   0       8017431  [avrora.c-print] 11 [value]	416514
+   0       8020228  [avrora.c-print] 11 [write]	1627
+   0       8023036  [avrora.c-print] 11 [value]	12674
+   0       8025696  [avrora.c-print] 11 [write]	1611
+   0       8027544  [avrora.c-print] 11 [value]	0
+   0       8030245  [avrora.c-print] 11 [write]	1627
+   0       8032093  [avrora.c-print] 11 [value]	2
+   0       8034947  [avrora.c-print] 11 [read]	1088
+   0       8038619  [avrora.c-print] 11 [value]	-32965085
+   0       8042657  [avrora.c-print] 11 [read]	1590
+   0       8046481  [avrora.c-print] 11 [value]	117835012
+   0       8049043  [avrora.c-print] 11 [read]	1548
+   0       8052387  [avrora.c-print] 11 [value]	1966094
+   0       8055385  [avrora.c-print] 11 [write]	1612
+   0       8057713  [avrora.c-print] 11 [value]	900
+   0       8060424  [avrora.c-print] 11 [write]	1611
+   0       8062512  [avrora.c-print] 11 [value]	10
+   0       8065073  [avrora.c-print] 11 [read]	1627
+   0       8068177  [avrora.c-print] 11 [value]	416514
+   0       8070696  [avrora.c-print] 11 [read]	1611
+   0       8073800  [avrora.c-print] 11 [value]	230410
+   0       8076322  [avrora.c-print] 11 [read]	1612
+   0       8078706  [avrora.c-print] 11 [value]	900
+   0       8081340  [avrora.c-print] 11 [read]	1628
+   0       8083964  [avrora.c-print] 11 [value]	1627
+   0       8086460  [avrora.c-print] 11 [read]	1627
+   0       8089564  [avrora.c-print] 11 [value]	416514
+   0       8092315  [avrora.c-print] 11 [write]	1627
+   0       8094403  [avrora.c-print] 11 [value]	58
+   0       8096932  [avrora.c-print] 11 [read]	1628
+   0       8099556  [avrora.c-print] 11 [value]	1627
+   0       8102182  [avrora.c-print] 11 [write]	1628
+   0       8104750  [avrora.c-print] 11 [value]	1628
+   0       8107525  [avrora.c-print] 11 [read]	1628
+   0       8110149  [avrora.c-print] 11 [value]	1628
+   0       8112645  [avrora.c-print] 11 [read]	1628
+   0       8115269  [avrora.c-print] 11 [value]	1628
+   0       8118052  [avrora.c-print] 11 [write]	1628
+   0       8120860  [avrora.c-print] 11 [value]	14428
+   0       8123520  [avrora.c-print] 11 [write]	1611
+   0       8125368  [avrora.c-print] 11 [value]	0
+   0       8128069  [avrora.c-print] 11 [write]	1627
+   0       8129917  [avrora.c-print] 11 [value]	4
+   0       8132771  [avrora.c-print] 11 [read]	1090
+   0       8136443  [avrora.c-print] 11 [value]	-31195640
+   0       8140481  [avrora.c-print] 11 [read]	1589
+   0       8144305  [avrora.c-print] 11 [value]	100992003
+   0       8146867  [avrora.c-print] 11 [read]	1546
+   0       8149971  [avrora.c-print] 11 [value]	917510
+   0       8152955  [avrora.c-print] 11 [write]	1612
+   0       8155283  [avrora.c-print] 11 [value]	196
+   0       8157994  [avrora.c-print] 11 [write]	1611
+   0       8159842  [avrora.c-print] 11 [value]	8
+   0       8162403  [avrora.c-print] 11 [read]	1627
+   0       8165507  [avrora.c-print] 11 [value]	416772
+   0       8168026  [avrora.c-print] 11 [read]	1611
+   0       8170890  [avrora.c-print] 11 [value]	50184
+   0       8173412  [avrora.c-print] 11 [read]	1612
+   0       8175796  [avrora.c-print] 11 [value]	196
+   0       8178430  [avrora.c-print] 11 [read]	1628
+   0       8181054  [avrora.c-print] 11 [value]	1628
+   0       8183550  [avrora.c-print] 11 [read]	1628
+   0       8186174  [avrora.c-print] 11 [value]	1628
+   0       8188925  [avrora.c-print] 11 [write]	1628
+   0       8191013  [avrora.c-print] 11 [value]	92
+   0       8193542  [avrora.c-print] 11 [read]	1628
+   0       8196166  [avrora.c-print] 11 [value]	1628
+   0       8198792  [avrora.c-print] 11 [write]	1628
+   0       8201360  [avrora.c-print] 11 [value]	1629
+   0       8204135  [avrora.c-print] 11 [read]	1628
+   0       8206759  [avrora.c-print] 11 [value]	1629
+   0       8209255  [avrora.c-print] 11 [read]	1629
+   0       8211159  [avrora.c-print] 11 [value]	6
+   0       8213942  [avrora.c-print] 11 [write]	1629
+   0       8216510  [avrora.c-print] 11 [value]	3142
+   0       8219170  [avrora.c-print] 11 [write]	1611
+   0       8221018  [avrora.c-print] 11 [value]	0
+   0       8223719  [avrora.c-print] 11 [write]	1627
+   0       8225567  [avrora.c-print] 11 [value]	4
+   0       8228421  [avrora.c-print] 11 [read]	1092
+   0       8232093  [avrora.c-print] 11 [value]	-29622749
+   0       8236131  [avrora.c-print] 11 [read]	1589
+   0       8239955  [avrora.c-print] 11 [value]	100992003
+   0       8242517  [avrora.c-print] 11 [read]	1546
+   0       8245621  [avrora.c-print] 11 [value]	917510
+   0       8248605  [avrora.c-print] 11 [write]	1612
+   0       8250933  [avrora.c-print] 11 [value]	219
+   0       8253644  [avrora.c-print] 11 [write]	1611
+   0       8255492  [avrora.c-print] 11 [value]	8
+   0       8258053  [avrora.c-print] 11 [read]	1627
+   0       8261397  [avrora.c-print] 11 [value]	4611332
+   0       8263916  [avrora.c-print] 11 [read]	1611
+   0       8266780  [avrora.c-print] 11 [value]	56072
+   0       8269302  [avrora.c-print] 11 [read]	1612
+   0       8271686  [avrora.c-print] 11 [value]	219
+   0       8274320  [avrora.c-print] 11 [read]	1628
+   0       8277184  [avrora.c-print] 11 [value]	18013
+   0       8279920  [avrora.c-print] 11 [read]	18013
+   0       8284401  [avrora.c-print] 11 read out of bound! at 18013
 ==============================================================================
-Simulated time: 835738 cycles
+Simulated time: 8284420 cycles
 =={ Trace results for node 0 }================================================
-Instructions executed: 0 
-Program throughput: 0.0 instrs/cycle
-Program throughput: 0.0 mips
+Instructions executed: 2110109 
+Program throughput: 0.2547081 instrs/cycle
+Program throughput: 2.037665 mips
+brge	16257
+com	108
+asr	2205
+dec	51377
+sbiw	8325
+eor	7033
+jmp	160
+brtc	4691
+neg	36
+mov	41624
+cpc	42164
+cpi	57137
+brcc	5116
+subi	43084
+ret	35780
+add	48884
+adc	107129
+cli	4982
+std	57126
+rcall	14073
+in	12710
+brne	93077
+clt	1188
+push	117831
+sts	28950
+adiw	18362
+sbci	51386
+sub	6838
+brmi	35
+mul	4691
+lsr	42821
+elpm	14499
+out	29723
+pop	115499
+movw	166283
+cpse	20971
+breq	40492
+ror	177297
+and	30263
+andi	10038
+inc	36
+st	50815
+brpl	4187
+set	1188
+or	1289
+sbrs	39108
+break	1
+ori	629
+lpm	140
+ldd	152045
+cp	23046
+rjmp	77627
+brcs	4974
+ldi	77157
+call	21708
+sbc	31879
+sbrc	33761
+brlt	32
+ld	53255
+lds	6986
 
