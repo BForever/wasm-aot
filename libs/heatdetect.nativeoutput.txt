@@ -4,79 +4,79 @@ Loading ../app/benchmark/heatdetect.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0          1476  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:D6 R27:01 R28:FF R29:10 R30:9C R31:61 
+   0          1476  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:D6 R27:01 R28:FF R29:10 R30:A6 R31:61 
    0          1506  [avrora.trace]trace disabled --------------------------0
-   0      12652129  [avrora.trace]trace enabled ---------------------------1
-   0      14769015  [avrora.trace]trace disabled --------------------------0
-   0      14771415  [avrora.c-print] 11 weight_coordinate:
-   0      14772715  [avrora.c-print] 11 466
-   0      14774019  [avrora.c-print] 11 222
-   0      14774935  [avrora.c-print] 11 -1
-   0      14775851  [avrora.c-print] 11 -1
-   0      14777010  [avrora.c-print] 11 color:
-   0      14777826  [avrora.c-print] 11 0
-   0      14780582  [avrora.c-print] 11 201457664
-   0      14781402  [avrora.c-print] 11 0
-   0      14783432  [avrora.c-print] 11 786432
-   0      14784252  [avrora.c-print] 11 0
-   0      14785095  [avrora.c-print] 11 0
+   0          2274  [avrora.trace]trace enabled ---------------------------1
+   0      14769024  [avrora.trace]trace disabled --------------------------0
+   0      14771424  [avrora.c-print] 11 weight_coordinate:
+   0      14772724  [avrora.c-print] 11 466
+   0      14774028  [avrora.c-print] 11 222
+   0      14774944  [avrora.c-print] 11 -1
+   0      14775860  [avrora.c-print] 11 -1
+   0      14777019  [avrora.c-print] 11 color:
+   0      14777835  [avrora.c-print] 11 0
+   0      14780591  [avrora.c-print] 11 201457664
+   0      14781411  [avrora.c-print] 11 0
+   0      14783441  [avrora.c-print] 11 786432
+   0      14784261  [avrora.c-print] 11 0
+   0      14785104  [avrora.c-print] 11 0
 ==============================================================================
-Simulated time: 14785133 cycles
+Simulated time: 14785142 cycles
 =={ Trace results for node 0 }================================================
-Instructions executed: 1666807 
-Program throughput: 0.11273534 instrs/cycle
-Program throughput: 0.9018827 mips
-com	11368
-brge	7630
-dec	65975
-sbiw	1169
-eor	7100
-jmp	367
-brtc	3854
-neg	1098
-mov	7294
-cpc	278395
-cpi	24787
-brcc	3549
-subi	8301
-ret	9666
-add	40539
-adc	542991
-cli	150
-std	13678
-rcall	516
-in	500
-brne	108182
-push	7325
-sts	1437
-adiw	12198
-sbci	11776
-sub	14715
-bst	1927
-mul	14906
-lsr	25
-out	450
-movw	61821
-pop	7643
+Instructions executed: 12332125 
+Program throughput: 0.83408904 instrs/cycle
+Program throughput: 6.6727123 mips
+com	78384
+brge	14158
+dec	490488
+sbiw	102348
+eor	32994
+jmp	1923
+brtc	29582
+neg	5766
+mov	58994
+cpc	1849209
+cpi	24894
+brcc	16592
+subi	21539
+ret	64545
+add	124259
+adc	3971159
+cli	350
+std	53480
+rcall	2173
+in	1116
+brne	640408
+push	60595
+sts	1455
+adiw	12398
+sbci	39018
+sub	114068
+bst	14791
+mul	79354
+lsr	303442
+out	1050
+movw	522132
+pop	61097
 cpse	49
-breq	5217
-ror	50
+breq	11631
+ror	910000
 and	194
-inc	489
+inc	589
 andi	310
-st	30665
+st	95447
 brpl	1759
-or	436
-lpm	3200
-ldd	39061
-cp	94273
-rjmp	6008
-brcs	61960
-ldi	21449
-call	9299
-sbc	42888
-sbrc	3854
+or	482287
+lpm	16128
+cp	626484
+ldd	173865
+brcs	574694
+rjmp	31597
+call	62623
+ldi	98626
+sbc	289519
+sbrc	29582
 brlt	184
-ld	59768
-lds	14362
+ld	117752
+lds	15044
 

@@ -24,14 +24,14 @@ int main(int argc, char *argv[])
     int current=strtol(argv[2],&ptr,10);
     // int current=1064;
     bool inited = false;
-    getline(file, drop);
+    // getline(file, drop);
     // cout<<drop<<endl;
     printf("cycles,usage\n");
     map<int,int> addr_size_map;
     while (!file.eof())
     {
         unsigned int ins;
-        int cycles, size, addr_o,addr_n;
+        long long cycles, size, addr_o,addr_n;
         string func;
         file >>dec>> cycles;
         file >> func;

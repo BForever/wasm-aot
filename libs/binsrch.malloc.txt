@@ -34,13 +34,13 @@ cycle func size addr
 178326 realloc  20 6e1 6e1
 183755 realloc  24 6e1 6e1
 188979 realloc  28 6e1 6e1
-198849 malloc  192 6ff
-206221 malloc  256 7c1
-303618 free  7c1
-307873 malloc  256 7c1
-891205 free  7c1
-895460 malloc  256 7c1
-1214840 free  7c1
-1219112 malloc  256 7c1
-1892209 free  7c1
-1928502 malloc  400 0
+198851 malloc  192 6ff
+206223 malloc  256 7c1
+302480 free  7c1
+306735 malloc  256 7c1
+983427 free  7c1
+987682 malloc  256 7c1
+1216166 free  7c1
+1220438 malloc  256 7c1
+1968135 free  7c1
+2004305 malloc  400 0

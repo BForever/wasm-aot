@@ -2162,7 +2162,6 @@
     local.get 0)
   (func (;29;) (type 4) (param i32 i32 i32 i32 i32 i32)
     (local i32 i32)
-    call 4
     i32.const 0
     local.set 6
     loop  ;; label = @1
@@ -2193,24 +2192,20 @@
       i32.const 24
       i32.lt_u
       br_if 0 (;@1;)
-    end
-    call 5)
+    end)
   (func (;30;) (type 2)
     (local i32 i32 i32 i32)
     i32.const 0
     i32.const 128
     call 2
-    local.tee 0
     i32.store offset=17296
     i32.const 0
     i32.const 256
     call 2
-    local.tee 1
     i32.store offset=17300
     i32.const 0
     i32.const 128
     call 2
-    local.tee 2
     i32.store offset=17304
     i32.const 0
     i32.const 128
@@ -2220,17 +2215,27 @@
     i32.const 64
     call 2
     i32.store offset=17264
+    call 4
+    i32.const 0
+    i32.load offset=17296
+    local.set 0
+    i32.const 0
+    i32.load offset=17300
+    local.set 1
+    i32.const 0
+    i32.load offset=17304
+    local.set 2
     i32.const 0
     local.set 3
     loop  ;; label = @1
-      local.get 1
-      i32.const 0
-      i32.store
       local.get 2
       local.get 3
       i32.add
       i32.const 0
       i32.store16
+      local.get 1
+      i32.const 0
+      i32.store
       local.get 0
       local.get 3
       i32.add
@@ -2262,6 +2267,7 @@
     i32.const 256
     call 2
     call 29
+    call 5
     i32.const 17184
     call 1
     drop
