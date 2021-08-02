@@ -1,7 +1,7 @@
 # WASM-AoT
 
 ## 介绍
-一个WASM AOT运行时
+一个可以在AVR架构运行WASM的AOT运行时
 
 ## 软件架构
 ### libs
@@ -58,8 +58,30 @@ make
 在根目录执行以下shell命令：
 ```
 cd libs
-sh avrora.sh
+sh test.sh
 ```
+
+# 运行Benchmark
+1. 编译benchmark
+在app/benchmark文件夹运行
+```
+bash compile.sh
+```
+脚本将自动完成benchmark的编译（从C代码到native的elf以及wasm文件）
+
+2. 运行benchmark
+在libs目录运行
+```
+bash wasmbench.sh
+```
+可以自动运行所有上一步编译产生的wasm文件，并将结果输出到目录中的\[benchname\].wasmoutput.txt文件
+
+3. native 运行 benchmark
+在libs目录运行
+```
+bash nativebench.sh
+```
+可以自动运行所有第一步编译生成的elf文件，并将结果输出到目录中的\[benchname\].nativeoutput.txt文件，用于比较runtime的运行效率
 
 ## 参与贡献
 
