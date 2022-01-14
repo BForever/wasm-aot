@@ -1,0 +1,93 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../bin/aot.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0          2095  [avrora.c-print] 1 0000
+   0          2302  [avrora.trace]trace disabled --------------------------0
+   0         11336  [avrora.c-print] 11  sys | malloc 6 4dc
+   0         15146  [avrora.c-print] 11  sys | malloc 29 4e4
+   0         20106  [avrora.c-print] 11  sys | malloc 2 503
+   0         24401  [avrora.c-print] 11  sys | malloc 7 507
+   0         30015  [avrora.c-print] 11  sys | malloc 4 510
+   0         34263  [avrora.c-print] 11  sys | malloc 37 516
+   0         38664  [avrora.c-print] 11  sys | malloc 2 53d
+   0         42406  [avrora.c-print] 11  sys | malloc 26 541
+   0         46482  [avrora.c-print] 11  sys | malloc 4 55d
+   0         50730  [avrora.c-print] 11  sys | malloc 29 563
+   0         56158  [avrora.c-print] 11  sys | realloc 4 53d 582
+   0         59932  [avrora.c-print] 11  sys | malloc 26 588
+   0         66490  [avrora.c-print] 11  sys | realloc 6 582 5a4
+   0         70287  [avrora.c-print] 11  sys | malloc 26 5ac
+   0         73828  [avrora.c-print] 11  sys | malloc 2 53d
+   0         79661  [avrora.c-print] 11  sys | realloc 8 5a4 5c8
+   0         83456  [avrora.c-print] 11  sys | malloc 26 5d2
+   0         87051  [avrora.c-print] 11  sys | malloc 2 582
+   0         95745  [avrora.c-print] 11  sys | malloc 119 5ee
+   0        112489  [avrora.c-print] 11  sys | malloc 14 667
+   0        117854  [avrora.c-print] 11  sys | realloc 4 0 5a4
+   0        123163  [avrora.c-print] 11  sys | realloc 8 5a4 677
+   0        128532  [avrora.c-print] 11  sys | realloc 12 677 677
+   0        133901  [avrora.c-print] 11  sys | realloc 16 677 677
+   0        139270  [avrora.c-print] 11  sys | realloc 20 677 677
+   0        144639  [avrora.c-print] 11  sys | realloc 24 677 677
+   0        149803  [avrora.c-print] 11  sys | realloc 28 677 677
+   0        155660  [avrora.c-print] 11  temp | start of compiled code:   70d2
+   0        159633  [avrora.c-print] 11  sys | malloc 192 695
+   0        166161  [avrora.c-print] 11  sys | malloc 256 757
+   0        260458  [avrora.c-print] 11  sys | free 757
+   0        264673  [avrora.c-print] 11  sys | malloc 256 757
+   0        809169  [avrora.c-print] 11  sys | free 757
+   0        813401  [avrora.c-print] 11  sys | malloc 256 757
+   0       1262343  [avrora.c-print] 11  sys | free 757
+   0       1267434  [avrora.c-print] 11  temp | end of compiled code:   74a4
+   0       1270242  [avrora.c-print] 11  temp | SP:0x10fb
+   0       1278911  [avrora.c-print] 11  temp | mem[0]:1024-1026 at P:28880,size 2
+   0       1287171  [avrora.c-print] 11  temp | mem[1]:1026-4789 at D:538,size 3763
+   0       1290664  [avrora.c-print] 11  temp | mem_start:0x1fe
+   0       1294568  [avrora.c-print] 11  temp | copy 28 B globals
+   0       1300063  [avrora.c-print] 11  temp | memcpy from 0 to 0, size 0
+   0       1304164  [avrora.c-print] 11  temp | start exec: 0x386a
+   0       1304309  [avrora.trace]trace enabled ---------------------------1
+   0      68326409  [avrora.trace]trace disabled --------------------------0
+   0      68329368  [avrora.c-print] 11  temp | counter:0
+   0      68333153  [avrora.c-print] 11  temp | max stack usage:0
+   0      68336900  [avrora.c-print] 11  temp | wasm func returned.
+==============================================================================
+Simulated time: 68336923 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 51619051 
+Program throughput: 0.75536114 instrs/cycle
+Program throughput: 6.042889 mips
+com	307200
+sub	217600
+dec	2534400
+mul	768000
+eor	384000
+elpm	102400
+jmp	25599
+out	25600
+pop	2510080
+movw	819200
+breq	25760
+mov	281600
+and	102400
+cpc	7680960
+ret	512001
+add	819360
+adc	20890080
+st	25600
+std	206084
+brne	2560160
+ldd	512640
+cp	2662720
+push	2510080
+brcs	2611200
+rjmp	102400
+ldi	1308325
+call	512001
+sts	1
+sbc	140800
+lds	460800
+

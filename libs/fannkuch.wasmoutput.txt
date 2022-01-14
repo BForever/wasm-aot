@@ -1,0 +1,131 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../bin/aot.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0          2095  [avrora.c-print] 1 0000
+   0          2302  [avrora.trace]trace disabled --------------------------0
+   0         11336  [avrora.c-print] 11  sys | malloc 6 4dc
+   0         15146  [avrora.c-print] 11  sys | malloc 29 4e4
+   0         20106  [avrora.c-print] 11  sys | malloc 8 503
+   0         24643  [avrora.c-print] 11  sys | malloc 10 50d
+   0         31032  [avrora.c-print] 11  sys | malloc 8 519
+   0         36159  [avrora.c-print] 11  sys | malloc 7 523
+   0         40855  [avrora.c-print] 11  sys | malloc 8 52c
+   0         47308  [avrora.c-print] 11  sys | malloc 4 536
+   0         51318  [avrora.c-print] 11  sys | malloc 7 53c
+   0         55447  [avrora.c-print] 11  sys | malloc 2 545
+   0         59189  [avrora.c-print] 11  sys | malloc 26 549
+   0         63263  [avrora.c-print] 11  sys | malloc 4 565
+   0         67273  [avrora.c-print] 11  sys | malloc 9 56b
+   0         72519  [avrora.c-print] 11  sys | realloc 4 545 576
+   0         76295  [avrora.c-print] 11  sys | malloc 26 57c
+   0         80384  [avrora.c-print] 11  sys | malloc 4 598
+   0         84653  [avrora.c-print] 11  sys | malloc 37 59e
+   0         90275  [avrora.c-print] 11  sys | realloc 6 576 5c5
+   0         94072  [avrora.c-print] 11  sys | malloc 26 5cd
+   0         98137  [avrora.c-print] 11  sys | malloc 4 576
+   0        102406  [avrora.c-print] 11  sys | malloc 29 5e9
+   0        107972  [avrora.c-print] 11  sys | realloc 8 5c5 608
+   0        111765  [avrora.c-print] 11  sys | malloc 26 612
+   0        115856  [avrora.c-print] 11  sys | malloc 4 5c5
+   0        119885  [avrora.c-print] 11  sys | malloc 9 62e
+   0        125525  [avrora.c-print] 11  sys | realloc 10 608 639
+   0        129318  [avrora.c-print] 11  sys | malloc 26 645
+   0        136238  [avrora.c-print] 11  sys | realloc 12 639 661
+   0        140052  [avrora.c-print] 11  sys | malloc 26 66f
+   0        143591  [avrora.c-print] 11  sys | malloc 2 545
+   0        149786  [avrora.c-print] 11  sys | realloc 14 661 68b
+   0        153600  [avrora.c-print] 11  sys | malloc 26 69b
+   0        157225  [avrora.c-print] 11  sys | malloc 2 60e
+   0        163514  [avrora.c-print] 11  sys | realloc 16 68b 6b7
+   0        167347  [avrora.c-print] 11  sys | malloc 26 6c9
+   0        171000  [avrora.c-print] 11  sys | malloc 2 608
+   0        179730  [avrora.c-print] 11  sys | malloc 119 6e5
+   0        198209  [avrora.c-print] 11  sys | malloc 14 68b
+   0        203602  [avrora.c-print] 11  sys | realloc 4 0 63f
+   0        209070  [avrora.c-print] 11  sys | realloc 8 63f 665
+   0        214807  [avrora.c-print] 11  sys | realloc 12 665 75e
+   0        220208  [avrora.c-print] 11  sys | realloc 16 75e 75e
+   0        225609  [avrora.c-print] 11  sys | realloc 20 75e 75e
+   0        231010  [avrora.c-print] 11  sys | realloc 24 75e 75e
+   0        236206  [avrora.c-print] 11  sys | realloc 28 75e 75e
+   0        242063  [avrora.c-print] 11  temp | start of compiled code:   731c
+   0        246057  [avrora.c-print] 11  sys | malloc 192 77c
+   0        255162  [avrora.c-print] 11  sys | malloc 256 83e
+   0        352948  [avrora.c-print] 11  sys | free 83e
+   0        357184  [avrora.c-print] 11  sys | malloc 256 83e
+   0       2365874  [avrora.c-print] 11  sys | free 83e
+   0       2370110  [avrora.c-print] 11  sys | malloc 256 83e
+   0       2575786  [avrora.c-print] 11  sys | free 83e
+   0       2580039  [avrora.c-print] 11  sys | malloc 256 83e
+   0       4305041  [avrora.c-print] 11  sys | free 83e
+   0       4310130  [avrora.c-print] 11  temp | end of compiled code:   8486
+   0       4312938  [avrora.c-print] 11  temp | SP:0x10fb
+   0       4321847  [avrora.c-print] 11  temp | mem[0]:1024-1042 at P:29449,size 18
+   0       4330107  [avrora.c-print] 11  temp | mem[1]:1042-4805 at D:538,size 3763
+   0       4333600  [avrora.c-print] 11  temp | mem_start:0x1fe
+   0       4337504  [avrora.c-print] 11  temp | copy 28 B globals
+   0       4342999  [avrora.c-print] 11  temp | memcpy from 0 to 0, size 0
+   0       4347100  [avrora.c-print] 11  temp | start exec: 0x41f1
+   0       4347179  [avrora.trace]trace enabled ---------------------------1
+   0       4351992  [avrora.c-print] 11 write out of bound! at 1008
+==============================================================================
+Simulated time: 4352015 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 3091 
+Program throughput: 7.102457E-4 instrs/cycle
+Program throughput: 0.0056819655 mips
+brge	29
+dec	43
+sbiw	7
+eor	5
+brtc	4
+mov	22
+cpc	71
+cpi	94
+brcc	4
+subi	93
+ret	46
+add	34
+adc	97
+cli	4
+std	144
+rcall	12
+in	12
+brne	125
+clt	1
+push	210
+sts	55
+adiw	4
+sbci	152
+sub	11
+mul	4
+lsr	36
+elpm	27
+out	41
+movw	238
+pop	198
+cpse	32
+breq	65
+ror	144
+and	59
+andi	8
+st	91
+brpl	3
+set	1
+sbrs	63
+break	1
+ldd	301
+cp	36
+rjmp	125
+brcs	4
+ldi	126
+call	35
+sbc	16
+sbrc	58
+brlt	1
+ld	93
+lds	5
+

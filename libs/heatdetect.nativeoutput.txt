@@ -4,28 +4,28 @@ Loading ../app/benchmark/heatdetect.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0          1476  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:D6 R27:01 R28:FF R29:10 R30:A6 R31:61 
+   0          1476  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:D6 R27:01 R28:FF R29:10 R30:4E R31:61 
    0          1506  [avrora.trace]trace disabled --------------------------0
    0          2274  [avrora.trace]trace enabled ---------------------------1
    0      14769024  [avrora.trace]trace disabled --------------------------0
    0      14771424  [avrora.c-print] 11 weight_coordinate:
-   0      14772724  [avrora.c-print] 11 466
-   0      14774028  [avrora.c-print] 11 222
-   0      14774944  [avrora.c-print] 11 -1
-   0      14775860  [avrora.c-print] 11 -1
-   0      14777019  [avrora.c-print] 11 color:
-   0      14777835  [avrora.c-print] 11 0
-   0      14780591  [avrora.c-print] 11 201457664
-   0      14781411  [avrora.c-print] 11 0
-   0      14783441  [avrora.c-print] 11 786432
-   0      14784261  [avrora.c-print] 11 0
-   0      14785104  [avrora.c-print] 11 0
+   0      14772697  [avrora.c-print] 11 466
+   0      14773970  [avrora.c-print] 11 222
+   0      14774855  [avrora.c-print] 11 -1
+   0      14775740  [avrora.c-print] 11 -1
+   0      14776895  [avrora.c-print] 11 color:
+   0      14777684  [avrora.c-print] 11 0
+   0      14778473  [avrora.c-print] 11 0
+   0      14779262  [avrora.c-print] 11 0
+   0      14780051  [avrora.c-print] 11 0
+   0      14780840  [avrora.c-print] 11 0
+   0      14781652  [avrora.c-print] 11 0
 ==============================================================================
-Simulated time: 14785142 cycles
+Simulated time: 14781686 cycles
 =={ Trace results for node 0 }================================================
 Instructions executed: 12332125 
-Program throughput: 0.83408904 instrs/cycle
-Program throughput: 6.6727123 mips
+Program throughput: 0.83428407 instrs/cycle
+Program throughput: 6.6742725 mips
 com	78384
 brge	14158
 dec	490488

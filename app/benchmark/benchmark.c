@@ -63,8 +63,8 @@ void rtc_stopBenchmarkMeasurement(){
     // avroraPrintCharBuffer();
 }
 
-void printInt(uint32_t value){
-    avr_Printf("%ld\n",value);
+void printInt(int value){
+    avr_Printf("%d\n",value);
 }
 
 void printStr(uint8_t* str){

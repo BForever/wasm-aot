@@ -4,38 +4,38 @@ Loading ../app/benchmark/outlier.elf...OK
 =={ Simulation events }=======================================================
 Node          Time   Event
 ------------------------------------------------------------------------------
-   0           942  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:90 R27:01 R28:FF R29:10 R30:34 R31:0C 
-   0           972  [avrora.trace]trace disabled --------------------------0
-   0          1800  [avrora.trace]trace enabled ---------------------------1
-   0         34287  [avrora.trace]trace disabled --------------------------0
-   0         35078  [avrora.c-print] 11 0
-   0         35914  [avrora.c-print] 11 0
-   0         36750  [avrora.c-print] 11 1
-   0         37569  [avrora.c-print] 11 2
-   0         38399  [avrora.c-print] 11 0
-   0         39235  [avrora.c-print] 11 0
-   0         40071  [avrora.c-print] 11 0
-   0         40907  [avrora.c-print] 11 0
-   0         41743  [avrora.c-print] 11 0
-   0         42579  [avrora.c-print] 11 0
-   0         43415  [avrora.c-print] 11 0
-   0         44251  [avrora.c-print] 11 0
-   0         45087  [avrora.c-print] 11 1
-   0         46148  [avrora.c-print] 11 11
-   0         46978  [avrora.c-print] 11 0
-   0         47814  [avrora.c-print] 11 0
-   0         48650  [avrora.c-print] 11 0
-   0         49486  [avrora.c-print] 11 0
-   0         50322  [avrora.c-print] 11 0
-   0         51158  [avrora.c-print] 11 0
-   0         51994  [avrora.c-print] 11 0
-   0         52830  [avrora.c-print] 11 0
+   0           924  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:8E R27:01 R28:FF R29:10 R30:16 R31:0C 
+   0           954  [avrora.trace]trace disabled --------------------------0
+   0          1782  [avrora.trace]trace enabled ---------------------------1
+   0         34269  [avrora.trace]trace disabled --------------------------0
+   0         35034  [avrora.c-print] 11 0
+   0         35835  [avrora.c-print] 11 0
+   0         36636  [avrora.c-print] 11 1
+   0         37427  [avrora.c-print] 11 2
+   0         38222  [avrora.c-print] 11 0
+   0         39023  [avrora.c-print] 11 0
+   0         39824  [avrora.c-print] 11 0
+   0         40625  [avrora.c-print] 11 0
+   0         41426  [avrora.c-print] 11 0
+   0         42227  [avrora.c-print] 11 0
+   0         43028  [avrora.c-print] 11 0
+   0         43829  [avrora.c-print] 11 0
+   0         44630  [avrora.c-print] 11 1
+   0         45663  [avrora.c-print] 11 11
+   0         46458  [avrora.c-print] 11 0
+   0         47259  [avrora.c-print] 11 0
+   0         48060  [avrora.c-print] 11 0
+   0         48861  [avrora.c-print] 11 0
+   0         49662  [avrora.c-print] 11 0
+   0         50463  [avrora.c-print] 11 0
+   0         51264  [avrora.c-print] 11 0
+   0         52065  [avrora.c-print] 11 0
 ==============================================================================
-Simulated time: 52909 cycles
+Simulated time: 52134 cycles
 =={ Trace results for node 0 }================================================
 Instructions executed: 20429 
-Program throughput: 0.3861158 instrs/cycle
-Program throughput: 3.0889263 mips
+Program throughput: 0.3918556 instrs/cycle
+Program throughput: 3.1348448 mips
 brge	210
 sbci	840
 sub	211

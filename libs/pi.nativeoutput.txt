@@ -1,0 +1,60 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../app/benchmark/pi.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0           924  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:8E R27:01 R28:FF R29:10 R30:EA R31:0B 
+   0           954  [avrora.trace]trace disabled --------------------------0
+   0          1107  [avrora.trace]trace enabled ---------------------------1
+   0       1419793  [avrora.trace]trace disabled --------------------------0
+   0       1424630  [avrora.c-print] 11 03141592653589793238462643383279502884197
+==============================================================================
+Simulated time: 1424672 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 1107524 
+Program throughput: 0.77738875 instrs/cycle
+Program throughput: 6.21911 mips
+com	10722
+sbci	76
+brge	134
+sub	32817
+bst	5361
+dec	91137
+mul	26602
+sbiw	2
+eor	10641
+out	6
+movw	64199
+pop	22
+brtc	10722
+breq	2
+mov	10724
+cpc	86072
+cpi	76
+brcc	2
+subi	77
+ret	10725
+add	21426
+cli	2
+adc	359255
+st	11029
+std	7
+or	1
+in	6
+brne	91214
+cp	85996
+ldd	302
+push	22
+rjmp	10907
+brcs	85778
+ldi	21689
+call	10725
+sts	3
+sbrc	16082
+sbc	22096
+brlt	81
+ld	10640
+lds	10
+adiw	134
+

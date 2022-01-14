@@ -18,8 +18,8 @@
 
 
 benchlist=(binsrch bsort fillarray funcall hsort fft lec outlier heatcalib heatdetect)
-# benchlist=(lec)
-
+# benchlist=(wavelet)
+# benchlist=(image)
 for bench in ${benchlist[*]}
 do 
     echo "start benchmark: $bench"

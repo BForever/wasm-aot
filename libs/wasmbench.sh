@@ -18,7 +18,8 @@
 
 benchlist=(binsrch bsort fillarray funcall hsort lec fft outlier heatcalib heatdetect)
 # benchlist=(binsrch bsort fillarray funcall)
-# benchlist=(heatdetect)
+# benchlist=(image)
+# benchlist=(wavelet)
 
 for bench in ${benchlist[*]}
 do 

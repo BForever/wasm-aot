@@ -1,0 +1,55 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../app/benchmark/fannkuch.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0          1032  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:9A R27:01 R28:FF R29:10 R30:EC R31:09 
+   0          1062  [avrora.trace]trace disabled --------------------------0
+   0          1120  [avrora.trace]trace enabled ---------------------------1
+   0       3178694  [avrora.trace]trace disabled --------------------------0
+   0       3180988  [avrora.c-print] 11 Pfannkuchen(7) = 
+   0       3182019  [avrora.c-print] 11 16
+==============================================================================
+Simulated time: 3182053 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 2201402 
+Program throughput: 0.6918181 instrs/cycle
+Program throughput: 5.534545 mips
+sbci	130268
+brge	121837
+sub	5042
+asr	18508
+sbiw	103428
+out	21
+movw	290138
+pop	42
+neg	5040
+breq	40868
+ror	18508
+mov	6
+cpc	147816
+cpi	8660
+subi	142547
+ret	4
+add	49297
+adc	49297
+cli	7
+st	282274
+std	8
+rcall	3
+in	27
+sbrs	5041
+cp	139156
+ldd	150002
+push	42
+rjmp	117897
+ldi	79541
+call	4
+sts	1
+sbc	19841
+brlt	8659
+ld	226917
+lds	2
+adiw	40653
+

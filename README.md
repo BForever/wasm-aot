@@ -10,9 +10,10 @@
 ### include
 头文件
 ### src
-基于WASM3的运行时代码
+运行时核心代码
 ### app
 WASM示例应用代码
+包括benchmark
 
 
 ## 安装教程
@@ -61,7 +62,7 @@ cd libs
 sh test.sh
 ```
 
-# 运行Benchmark
+## 运行Benchmark
 1. 编译benchmark
 在app/benchmark文件夹运行
 ```

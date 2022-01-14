@@ -1,13 +1,16 @@
 #ifndef BENCHMARK_H
 #define BENCHMARK_H
-#define NULL 0
+// #define NULL 0
+
 #ifdef AVRORA
 #include <stdint.h>
 #include <stdbool.h>
 #include<AvroraPrint.h>
-void printInt(uint32_t value);
+void printInt(int value);
 void printStr(uint8_t* str);
+void avr_Printf(char * format, ...);
 #else
+#include <stddef.h>
 typedef unsigned char       uint8_t;
 typedef signed char         int8_t;
 typedef unsigned short      uint16_t;
@@ -20,7 +23,7 @@ typedef uint8_t            bool;
 #define true                1
 #define false               0
 
-extern void printInt(uint32_t value);
+extern void printInt(int value);
 extern void PrintStr(uint8_t* str);
 extern void* malloc(uint32_t size);
 extern void *memset(void *s, int c, uint32_t n);

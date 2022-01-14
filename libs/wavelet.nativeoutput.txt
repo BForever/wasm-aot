@@ -1,0 +1,79 @@
+Avrora [Beta 1.7.117] - (c) 2003-2007 UCLA Compilers Group
+
+Loading ../app/benchmark/wavelet.elf...OK
+=={ Simulation events }=======================================================
+Node          Time   Event
+------------------------------------------------------------------------------
+   0          1410  [avrora.c-print] 0 R0:00 R1:00 R2:00 R3:00 R4:00 R5:00 R6:00 R7:00 R8:00 R9:00 R10:00 R11:00 R12:00 R13:00 R14:00 R15:00 R16:00 R17:01 R18:01 R19:00 R20:00 R21:00 R22:00 R23:00 R24:00 R25:00 R26:C4 R27:01 R28:FF R29:10 R30:2A R31:19 
+   0          1440  [avrora.trace]trace disabled --------------------------0
+   0         10049  [avrora.c-print] 11 float size=
+   0         10836  [avrora.c-print] 11 4
+   0         10874  [avrora.trace]trace enabled ---------------------------1
+   0        149235  [avrora.trace]trace disabled --------------------------0
+==============================================================================
+Simulated time: 149289 cycles
+=={ Trace results for node 0 }================================================
+Instructions executed: 90035 
+Program throughput: 0.603092 instrs/cycle
+Program throughput: 4.824736 mips
+brge	680
+com	83
+asr	90
+dec	407
+sbiw	16
+eor	4333
+jmp	1689
+brtc	642
+neg	3
+mov	2273
+cpc	7152
+cpi	869
+brcc	1579
+subi	726
+ret	3419
+add	7108
+cli	12
+adc	7873
+std	2624
+brvs	4
+rcall	30
+in	32
+brne	1777
+clt	278
+push	250
+sts	1
+adiw	266
+sbci	426
+sub	821
+bst	1175
+brmi	359
+mul	900
+lsr	333
+out	36
+movw	5314
+pop	250
+breq	3924
+ror	3388
+and	412
+bld	844
+inc	1166
+andi	5
+st	1110
+brts	72
+brpl	355
+set	12
+or	40
+sbrs	151
+ori	3
+lpm	340
+cp	3276
+ldd	4489
+rjmp	2341
+brcs	2410
+ldi	1310
+call	3389
+sbrc	1089
+sbc	1488
+brlt	140
+ld	4451
+
