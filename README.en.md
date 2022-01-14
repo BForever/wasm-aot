@@ -114,7 +114,7 @@ Run in the `libs` directory
 bash nativebench.sh
 ```
 
-You can automatically run all elf files generated in the first step of compilation and output the results to `[benchneme].nativeoutput.txt` file, which is used to compare the running efficiency of runtime
+You can automatically run all elf files generated in the first step of compilation and output the results to `[benchname].nativeoutput.txt` file, which is used to compare the running efficiency of runtime
 
 #### Contribution
 
