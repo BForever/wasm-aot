@@ -1,34 +1,24 @@
 # WASM-AoT
-
-
-
 ## Introduction
-
 An AOT runtime that can run wasm in AVR architecture
 
-
-
 ## Software architecture
-
-### libs
-
-Third party Libraries
-
-Including Avrora simulator
-
-### include
-
-Header files
-
-### src
-
-core runtime code
-
 ### app
-
 Wasm sample application code
-including benchmarks
-
+Including benchmarks
+### bin
+Generated executable files
+### include
+Header files
+### libs
+Third party Libraries
+Including Avrora simulator
+### runtime-benchs
+Other runtime test sets
+### src
+Core runtime code
+### utils
+Data statistics tools
 
 ## Installation tutorial
 

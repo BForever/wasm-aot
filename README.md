@@ -4,16 +4,23 @@
 一个可以在AVR架构运行WASM的AOT运行时
 
 ## 软件架构
-### libs
-第三方库
-包括AVRORA模拟器
-### include
-头文件
-### src
-运行时核心代码
 ### app
 WASM示例应用代码
 包括benchmark
+### bin
+生成的可执行文件
+### include
+头文件
+### libs
+第三方库
+包括AVRORA模拟器
+### runtime-benchs
+其他运行时测试集
+### src
+运行时核心代码
+### utils
+数据统计工具
+
 
 
 ## 安装教程
